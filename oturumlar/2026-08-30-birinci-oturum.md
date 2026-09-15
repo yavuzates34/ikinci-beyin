@@ -3,6 +3,8 @@
 Tek kesintisiz oturum, sekiz gün. `izle.py` sıfırdan yazıldı, ortam kuruldu,
 oturum arşivi keşfedildi ve ikinci beyin fikri tasarlandı.
 
+**Ham kayit:** `claude 3c1530e9-7674-4352-8af6-7c11146bede8` (4966 KB)
+
 > Merkez: [[BEYIN]] · Sonraki: [[2026-09-07-ikinci-oturum]] · Devir belgesi: [[BAGLAM-DEVRI]]
 
 ---

@@ -4,6 +4,8 @@ Kapanış ritüelinin ve arşiv arama katmanının kurulduğu oturum. Bu dosya
 oturumun kendi kaydıdır; içinden çıkan kalıcı kurallar [[kapanis-ritueli]]
 ve [[arac-arsiv]] notlarına terfi ettirilmiştir.
 
+**Ham kayit:** `claude 3557db3e-dd00-49df-b5c3-5e6a50924530` (2.7 MB)
+
 > Merkez: [[BEYIN]] · Önceki: [[2026-08-30-birinci-oturum]]
 
 ---
