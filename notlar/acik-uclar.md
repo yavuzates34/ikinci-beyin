@@ -7,16 +7,17 @@ Kapanan maddeler silinmez, üstü çizilir — neyin ne zaman kapandığı da bi
 
 ---
 
-## Sıradaki işler (16 Eylül'de kararlaştırılan sıra)
+## Sıradaki işler
 
-1. **Akşam derleyicisi** — gece yarısı çalışır, `derleme/` altına yazar.
-   İlke: **ölçer, yazmaz.** Günlük = kapanış notu yazılmadan biten oturumların
-   dedektörü + klasörün tarihli yedeği. Haftalık = faaliyet dökümü (kaç oturum,
-   hangi projeler, hangi notlar değişti). Aylık = **açık uçların yaşı** — hangi
-   madde kaç gündür açık.
-2. **Git** — kullanıcı ayrı vakit ayıracak; yarım öğrenilirse kafa karıştırır.
-   O zamana kadar yedek boşluğunu akşam derleyicisinin tarihli kopyası kapatır.
-3. **mem0** — en son. Buluta aynalanacak şey önce iyi olmalı.
+Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş değil:
+
+1. **GitHub'a push** — kullanıcı git/GitHub'a ayrı vakit ayıracak. Bu yapılana
+   kadar **dış yedek yok**: depo aynı diskte, disk giderse her şey gider.
+   Ücretsiz private depo yeterli, ek masraf gerekmiyor.
+2. **Gelen kutusu** — ertelendi (kullanıcı kararı, 16 Eylül).
+3. **mem0** — ertelendi (kullanıcı kararı, 16 Eylül).
+4. **Yapıyı diğer projelere taşımak** — Nar Ajans dahil. Bu projenin yapısı
+   çekirdek olarak kullanılacak; sıra kullanıcının önceliğine göre gelecek.
 
 ## Karar bekleyenler
 
@@ -46,6 +47,12 @@ Kapanan maddeler silinmez, üstü çizilir — neyin ne zaman kapandığı da bi
   (`notlar/` + `oturumlar/`). Bkz. [[ikinci-beyin-mimarisi]].
 - ~~Kaynak gösterme yok~~ **16 Eylül** — kural `CLAUDE.md` kapanış ritüeline
   eklendi, kalıcı notlarda işaretçi kullanılıyor.
+- ~~Gece derleyicisi yok~~ **16 Eylül** — dedektör + haftalık/aylık ölçüm
+  kuruldu, görev zamanlayıcıya bağlandı. Bkz. [[gece-derleyicisi]].
+- ~~Sürüm geçmişi yok~~ **16 Eylül** — yerel git deposu açıldı, her gece
+  otomatik commit. Push hâlâ yok.
+- ~~Paralel oturum kör noktası~~ **16 Eylül** — `SessionStart` artık oturum
+  kimliğini ve açık paralel oturumları bildiriyor.
 - ~~Durum B açıkta~~ **16 Eylül** — `PreCompact` güvenlik ağı kuruldu,
   bloke etmeyen iki ayaklı tasarımla. Bkz. [[kapanis-ritueli]].
 - ~~Klasör düzeni karmaşık~~ **16 Eylül** — kök dizin 20 öğeden 2 dosya +

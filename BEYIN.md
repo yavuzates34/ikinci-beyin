@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 16 Eylül 2026, 02:35
+**Son güncelleme:** 16 Eylül 2026, 02:55
 
 ---
 
@@ -16,9 +16,11 @@ gerektiği görülür.
 | `oturumlar/` | **Arşiv katmanı.** Oturum başına bir kayıt. Her oturumda okunmaz, sorulunca okunur |
 | `araclar/` | Python araçları ve Whisper sözlüğü |
 | `dinleme/` | Sesli dinlemek için yazılmış düz anlatı dosyaları |
-| `derleme/` | Akşam derleyicisinin çıktısı (günlük / haftalık / aylık) |
+| `derleme/` | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
 
 Kurallar `CLAUDE.md` içinde; kapanış ritüelinin uygulanabilir hâli orada.
+
+Klasör bir **git deposu**: her gece otomatik commit atılıyor, geçmiş tutuluyor.
 
 ## Kalıcı notlar
 
@@ -26,7 +28,8 @@ Kurallar `CLAUDE.md` içinde; kapanış ritüelinin uygulanabilir hâli orada.
 |---|---|
 | [[ikinci-beyin-mimarisi]] | Sistemin neden böyle kurulduğu, katmanlar, hafıza tasarımı |
 | [[kapanis-ritueli]] | Oturum nasıl kapanır, neden öyle kapanır |
-| [[arac-arsiv]] | 123 oturumluk arşivde arama: omurga, ara, anlam, oku |
+| [[arac-arsiv]] | Arşivde arama: omurga, ara, anlam, oku |
+| [[gece-derleyicisi]] | Her gece çalışan dedektör ve git: ne ölçer, ne ölçmez |
 | [[arac-izle]] | Video/sesi modele okutma: izle.py |
 | [[olculmus-bulgular]] | Tahmin değil ölçüm. Yeniden ölçmeye gerek yok |
 | [[yasanan-hatalar]] | Bir kez düşülmüş tuzaklar |

@@ -272,7 +272,9 @@ def main() -> int:
     ap.add_argument("--yenile", action="store_true", help="--kur ile: sifirdan")
     ap.add_argument("--durum", action="store_true")
     ap.add_argument("--adet", type=int, default=8)
-    ap.add_argument("--kapsam", default="hepsi",
+    # Varsayilan "proje": anlamsal arama dar kapsamda iyi, tum arsivde zayif
+    # (skorlar 0.53-0.68 bandina sikisiyor). Iyi olan durum varsayilan olmali.
+    ap.add_argument("--kapsam", default="proje",
                     choices=["proje", "claude", "codex", "hepsi"])
     ap.add_argument("--rol", default="hepsi", choices=["kullanici", "model", "hepsi"])
     ap.add_argument("--sirala", default="zaman", choices=["zaman", "benzerlik"],

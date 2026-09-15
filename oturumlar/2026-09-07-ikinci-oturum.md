@@ -455,3 +455,26 @@ Kullanıcı `BEYIN.md`'deki "Son güncelleme" satırında saat olmadığını fa
 Saatsiz tarih, gün içinde birden fazla oturum olduğunda hangisinin yazdığını
 belirsiz bırakıyor. Düzeltildi ve `CLAUDE.md` mekanik bakım listesine kural
 olarak eklendi.
+
+### Gece derleyicisi ve git kuruldu
+
+`araclar/derle.py` + Windows görev kaydı (`playground-derleyici`, 00:30).
+Klasör yerel git deposu oldu, derleyici her gece commit atıyor. Tasarım ilkesi
+ve dürüst sınırları: [[gece-derleyicisi]].
+
+Sınama sırasında bir kapsam hatası yakalandı: dedektör ilk hâlinde **tüm Claude
+projelerini** tarıyordu ve Nar Ajans oturumlarını "işlenmemiş" diye listeliyordu.
+On iki satır gürültü — tam da "boşaltılmayan gelen kutusu çöplüğe döner"
+uyarısının derleyici hâli. Kapsam bu projeyle sınırlandı.
+
+Yan bulgu: kaynak gösterme kuralı beklenmedik bir işe daha yaradı. Dedektör
+"bu oturum işlendi mi" sorusunu, kimliğin notlarda geçip geçmediğine bakarak
+cevaplıyor — yani işaretçiler aynı zamanda işlenmişlik kaydı.
+
+### Küçük ayarlar
+
+- `anlam.py` varsayılan kapsamı `hepsi` → `proje`. Geniş kapsamda zaten zayıf;
+  iyi olan durum varsayılan olmalı. (10436 parça → 664 parça)
+- `notlar/` için 65 KB eşiği `CLAUDE.md`'ye yazıldı; haftalık rapor ölçüyor.
+- Kullanıcının kararları: mem0 ve gelen kutusu **ertelendi**, iCloud yedeği
+  **reddedildi** (ek abonelik masrafı istenmiyor).

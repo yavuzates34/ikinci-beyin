@@ -24,6 +24,9 @@ akışıma göre değil, kullanıcının takvimine göre kullan.
 | `dinleme/` | Sesli dinleme dosyaları | — |
 | `derleme/` | Akşam derleyicisi çıktısı | — |
 
+**Boyut eşiği:** `notlar/` toplamı **65 KB**'ı geçerse "hepsini oku"dan
+"haritayı oku, gerekeni aç"a geç. Haftalık derleme bu eşiği ölçüp raporluyor.
+
 ## Arşivde arama
 
 Bir şeyin daha önce konuşulup konuşulmadığından emin değilsen **tahmin etme, ara.**
