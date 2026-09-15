@@ -1,0 +1,98 @@
+# Tasarım dersleri
+
+Eğitim videolarından çıkarılıp bu projede yaşananlarla sınanmış ilkeler.
+
+> Merkez: [[BEYIN]] · İlgili: [[ikinci-beyin-mimarisi]] · [[kapanis-ritueli]] · [[yasanan-hatalar]]
+
+---
+
+Bu bölüm, izlenen eğitim videolarından (Avenox) çıkarılan derslerin oturumda
+yaşananlarla sınanmış hâlidir.
+
+### 5.1 Geri besleme döngüsünün üç parçası
+
+| Parça | Kim sağlar |
+|---|---|
+| **Aksiyon** — model değişiklik yapar | Model |
+| **Ölçüm** — sonuç iyi mi kötü mü | **Kullanıcı / proje** |
+| **Dönüş** — sonuç modele ulaşır | Harness *veya* kullanıcı (kopyala-yapıştır) |
+
+Ortadaki parça asla modelden gelmez. Harness sadece üçüncüyü otomatikleştirir.
+
+### 5.2 Ölçümün dört kalite şartı (dördü de bu oturumda ihlal edildi)
+
+1. **Doğru şeyi ölçmeli.** Bir GPU testi "BAŞARILI" dedi ama yalnızca modelin
+   *yüklenmesini* deniyordu, çıkarımı hiç çalıştırmadı. Yanlış ölçen gösterge,
+   "bilmiyorum"u "iyiyim"e çevirdiği için hiç gösterge olmamasından kötüdür.
+2. **Yıkımdan önce gelmeli.** Bir yama script'i dosyayı diske yazdı, *sonra*
+   sözdizimini doğruladı. Hasarı önlemedi, rapor etti.
+3. **Kırmızı ışık da yalan söyleyebilir.** "ffmpeg kurulu değil" hatası aracın
+   değil, testin hatasıydı (`--ffmpeg-location` unutulmuştu).
+4. **Sessiz başarı yasak.** `KARE SAYISI: 0` çıktısı iki hatayı yakalattı. Her
+   komut ne yaptığını **sayıyla** söylemeli.
+
+### 5.3 Komut mu, doküman mı
+
+- **Yeniden hesaplanabilen** (testler geçiyor mu, ne çalışıyor) → **komut**.
+  Doküman olarak yazılırsa bir hafta içinde yalan söyler.
+- **Yeniden hesaplanamayan** (neden bu yol seçildi, ne denenip elendi) → **doküman**.
+
+Kural: *ölçülebileni ölç, ölçülemeyeni yaz.*
+
+### 5.4 İkinci beynin dört unsuru
+
+**Sadece biri notları gerçekten tutar:**
+
+| Silinen | Kaybedilen | Notlar durur mu |
+|---|---|---|
+| Obsidian | Rahat okuma, graph görünümü | ✅ |
+| GitHub | Uzak yedek, çok makine | ✅ |
+| Git | Geçmiş, geri alma | ✅ |
+| mem0 | Anlamsal hatırlama | ✅ |
+| **Klasör** | **Her şey** | ❌ |
+
+- **Git** = bilgisayara kurulan program, klasörün geçmişini tutar. İnternet/hesap
+  gerekmez. **GitHub** = o geçmişin kopyasını saklayan site.
+  `git commit` yerelde kalır, `git push` internete gider.
+- **Obsidian** notlar arası bağı sağlar (`[[bağ]]`, backlinks, graph). Ama o bağlar
+  **düz metin olarak dosyanın içinde** durur — bağ veride, programda değil.
+  Modelin Obsidian'a doğrudan ihtiyacı yok; dosyaları diskten okur.
+- **mem0** anlamsal bağ kurar (sen kurmadan). Ama **klasörleri taramaz** —
+  konuşmalar sırasında içine yazılanı tutar.
+
+### 5.5 Oturumlar arası bellek — dört katman
+
+```
+1. HAM       jsonl — her şey + gömülü görseller, hiç silinmez
+2. YOLLAR    PDF/zip için işaretçi — %59 sağlam, kaynaklar/ ile %100
+3. ÖZET      oturum başına ~1 sayfa
+4. KOLEKTİF  tek dosya, her oturumun başında okunur
+```
+
+Özete yazılacaklar, değer sırasıyla: **kararlar + gerekçeleri**, **denenip
+elenenler** (en değerlisi), kurulan şeyler, açık uçlar.
+
+### 5.6 Eski oturuma soru sorma ekonomisi
+
+```bash
+claude --resume <id>                            # etkileşimli devam
+claude -p "soru" --resume <id> --fork-session   # sor, cevabı stdout'a bas
+```
+
+`--fork-session` yeni oturum kimliği açar, orijinale dokunmaz. **Ama fork sabit
+taban özelliğini ancak atıldığı sürece korur** — aynı fork'a tekrar sorulursa o da
+birikir.
+
+| Katman | Maliyet | Soruların ~oranı |
+|---|---|---|
+| Özet oku | bedava | %90 |
+| jsonl'de grep + oku | çok ucuz | %9 |
+| Fork + sor | soru başına %60-70 pencere | %1 |
+
+**Bir oturuma devam etmek** tüm bağlamı yüklemektir; **bir oturumu okumak** sadece
+ilgili satırları okumaktır. jsonl bir konuşma değil, bir **belgedir**.
+
+> Not: `--fork-session` mekanizması komut düzeyinde doğrulandı (CLI yardımından),
+> **canlı test edilmedi.**
+
+---

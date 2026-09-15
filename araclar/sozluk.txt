@@ -1,0 +1,8 @@
+Bu bir yazilim ve yapay zeka egitim videosudur. Turkce anlatimda su Ingilizce
+terimler gecer: Claude, Claude Code, Codex, Anthropic, Opus 5, Sonnet 5, Haiku, GPT, GPT-5, GPT-5.5,
+ChatGPT, Gemini, LLM, harness,
+skill, agent, subagent, MCP, server, prompt, context, token, hook, artifact,
+workflow, repo, repository, commit, push, pull request, branch, merge, GitHub,
+Vercel, deploy, endpoint, API, API key, CLI, terminal, script, loop, graph,
+goal, branch, verify, bounce, Instantly, HubSpot, framework, backend, frontend,
+debug, log, cache, index, embedding, model, output, input, feature.

@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+.obsidian/workspace*
+.claude/settings.local.json

@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "python araclar/oturum_basi.py",
+            "timeout": 20,
+            "statusMessage": "Beyin haritasi okunuyor"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "python araclar/precompact.py",
+            "timeout": 60,
+            "statusMessage": "Omurga diske aliniyor (PreCompact)"
+          }
+        ]
+      }
+    ]
+  }
+}
