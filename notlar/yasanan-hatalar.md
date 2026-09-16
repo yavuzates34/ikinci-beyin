@@ -49,3 +49,20 @@ Bir kez düşülmüş tuzaklar. Tekrar keşfedilmesin diye yazıldı.
     basıyor; çıktı boruya ya da dosyaya yönlendirilse bile bozuluyor. Çözüm:
     `sys.stdout.reconfigure(encoding="utf-8")`. Bu projede Türkçe basan her
     script'e gerekli — `araclar/kayit.py` içindeki `utf8_zorla()` bunu yapıyor.
+
+13. **Obsidian vault'u açıkken dosyaları sessizce değiştirebiliyor.** 16 Eylül'de
+    `BEYIN.md` içinde backtick içindeki `CLAUDE.md` ifadesi `[[[[CLAUDE]]]].md`
+    hâlinde bulundu — iç içe dört köşeli parantez. Tablolar da yeniden
+    hizalanmıştı. Mekanizma kesin değil (otomatik bağ güncelleme ya da düzenleyici
+    davranışı), ama sonuç ölçüldü. **Ders:** vault açıkken yazılan dosyalar
+    değişebilir; kritik metni yazdıktan sonra doğrula. Bunu yakalayan şey git
+    oldu — `git status` dosyayı "değişmiş" gösterdi. Sürüm kontrolü olmasa fark
+    edilmezdi.
+
+14. **Not, kendi anlattığı sistemden geri kalabiliyor.** `kapanis-ritueli.md`
+    `PreCompact` hook'unu "`matcher: auto` ile bağlı" diye anlatıyordu; matcher
+    aynı oturumda kaldırılmıştı. Yani not, iki saat içinde yalan söyler hâle
+    geldi. **Ders:** bir notta yapılandırma iddiası varsa, yapılandırma
+    değiştiğinde not da değişmeli — ya da iddia nottan çıkarılıp komutla
+    ölçülmeli. ([[tasarim-dersleri]] içindeki "komut mu doküman mı" kuralının
+    tam olarak uyardığı durum.)
