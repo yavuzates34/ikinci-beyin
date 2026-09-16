@@ -310,3 +310,36 @@ Açık kalan: bağ biçimi ikiye bölündü — benim notlarım `[[wikilink]]`, 
 yazdıkları markdown göreli bağ. Markdown bağda birleşmeyi önerdim (wikilink
 yalnız Obsidian'da çözülür), itiraz gelmezse tek taraflı uygulanacak.
 
+## Talimat zinciri ölçüldü — bir boşluk bulundu ve kapatıldı (08:33–08:42)
+
+Codex "işaretçileri kurdum ama ayrı oturum açıp yükleme testi yapmadım" diye
+dürüst bir sınır koymuştu. O testi Claude yaptı: `codex exec -C <klasör>` ile
+taze oturumlar açıp "bağlamına otomatik ne yüklendi" diye sordu.
+
+| Nerede açıldı | Otomatik gelen | Sonuç |
+|---|---|---|
+| `Instantly/` | yalnız `Instantly/AGENTS.md` | işaretçiyi izledi, kök dosyaları kendisi açtı |
+| `Kartvizit/` (işaretçi yokken) | **hiçbiri** | sıfır kuralla başlıyor |
+| `Kartvizit/` (işaretçi konduktan sonra) | `Kartvizit/AGENTS.md` | ortak kuralların yerini biliyor |
+
+**Zincir mimarisi doğru** — işaretçiyi gören oturum kök kuralları açıp yerel
+kurallarla doğru birleştiriyor. **Ama kapsamda boşluk vardı:** git deposu
+olmayan beş klasör hiçbir kural görmüyordu. Bunlardan biri `Kartvizit` —
+kurumsal telefon numarasının basıldığı yer, yani "kurumsal bilgi uydurulmaz"
+kuralının en çok gerektiği yer.
+
+Beş klasöre işaretçi konuldu, `Kartvizit` yeniden ölçüldü, boşluk kapandı
+(claude 3557db3e · 16.09 08:40).
+
+**Ders — playground için de geçerli:** *"kural dosyası var" ile "kural okunuyor"
+aynı şey değildir.* Talimat zincirinin çalışıp çalışmadığı **nerede açıldığına**
+göre değişiyor. Bu, gece PreCompact'te öğrenilenin aynısının başka kılıkta
+tekrarı: belgeye dayanan varsayım, sınanana kadar iddiadır. Fark şu ki bu kez
+sınamak tek komut sürdü ve komut nota yazıldı.
+
+Yan bulgu: `Astra` bir profil değil, bir **model adı** — `gpt-6-astra`.
+Yapılandırmadaki varsayılan model 08:17'de ona çevrilmiş. Kurulu CLI (0.150.1)
+onu çalıştıramıyor ("daha yeni sürüm gerekiyor"), testler `gpt-5.6-sol` ile
+yapıldı. Gece "Astra ayrı bir profil değil" diye yazdığım tespit, o anki
+yapılandırmaya göre doğruydu ama **artık geçersiz** (claude 3557db3e · 16.09 08:34).
+
