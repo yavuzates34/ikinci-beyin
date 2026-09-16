@@ -256,3 +256,57 @@ yol-anahtarlı güven kaydı var; D:'de hepsi geçersiz olur. Ayrıca oturum ar�
 yola göre gruplandığı için proje adı ikiye bölünür — playground'da aynı şey
 7 Eylül'de yaşanmıştı. Uyarı devir notuna ve açık uçlara yazıldı.
 
+## Codex devraldı ve beni iki yerde düzeltti (08:17–08:32)
+
+Kullanıcı devir notunu Codex'e (Astra, oturum `01a0a892`) verdi. Kendi tarafını
+kurdu, klasörü taşıdı ve yazışma dosyasına cevap yazdı. **Üç iddiasını
+bağımsız ölçtüm, üçünde de haklı çıktı.**
+
+**Düzeltme 1 — güven kayıtları beş, altı değil.** `config.toml` içinde
+"nar ajans" geçen satırları sayıp altı demiştim; altıncı saydığım
+`desktop\nar ajans` bu ağaca ait değil, ayrı bir klasör.
+**Ders:** eşleşmeyi ayırt etmeden saymak, arama sonucunu ölçüm sanmaktır.
+`grep | wc -l` bir ölçüm değildir; neyi saydığını görmeden sayı yazılmaz
+(claude 3557db3e · 16.09 08:28).
+
+**Düzeltme 2 — uzun yol bulgusu fazla iddialı yazılmıştı.** "Erişilemezliğin
+gerçek sebebi uzun yolmuş" demiştim. Ölçüm: `core.longpaths` erişilen nesne
+sayısını 92'den 349'a çıkardı, yani **257 nesneyi kurtardı**; geri kalan
+**2.236 nesne** hâlâ hiçbir ref'ten erişilemiyor. Doğru ifade: uzun yol gerçek
+bir okuma sorunuydu ve bir `gc`'nin canlı checkpoint'i silmesini önledi, ama
+yığının tamamını açıklamıyor. Kendi ölçümüm Codex'inkiyle birebir aynı çıktı
+(2.585 / 349 / 2.236).
+
+**Düzeltme 3 — DURUM kararı 22:57, 23:01 değil.** Ben dosya damgasından 23:01
+yazmıştım; arşivde kullanıcı 22:57'de "Durum.md ile bundan sonra bir iş
+yapmayalım" diyor, 23:01 modelin bitirdiğini bildirdiği an.
+
+**Ve burada tasarımın kendisi işe yaradı:** o kaydın yanına koyduğum
+`· saat dosya damgasından` işareti, Codex'e "bu saat çıkarımdır, kararın
+kendisi değil" dedi; o da gidip gerçeğini buldu. İşaret koymanın sebebi tam
+buydu ve **dört saat içinde** karşılığını verdi (claude 3557db3e · 16.09 08:30).
+
+Codex'in benim kaçırdıklarım: WhatsApp kararı aslında 15:38'de verilmiş,
+16:08 onu ayrıntılandırıyormuş; commit saatleri git committer zamanından tam
+alınabiliyor (04:57:06, ben 04:58 diye yuvarlamışım); arşiv başlığındaki tarih
+mesajın kendi damgasından farklı olabiliyor.
+
+## Taşıma: junction çözümü
+
+Klasör `D:\AI\Nar Ajans - Codex` konumuna taşındı; 50.996 dosya SHA-256 ile
+doğrulandı. Eski masaüstü yolu **silinmedi, junction'a çevrildi** — yani tüm
+mutlak yollar, kayıtlı proje girdileri ve eski görev dizinleri çalışmaya devam
+ediyor. Taşımanın en pahalı yan etkisi böyle ödenmeden geçildi; benim "yol
+anahtarları kırılır" uyarım bu sayede büyük ölçüde konusuz kaldı.
+
+## Bu iş birliğinden çıkan yöntem notu
+
+İki ajanın aynı klasörde çalışması, **birbirini denetlemesi** sayesinde işe
+yaradı — nazik olduğu için değil. Codex benim iç içe depo hatamı, ben onun
+okuyamadığı ref'i, o benim iki fazla iddiamı yakaladı. Ortak dosya olmasa
+bunların hiçbiri görünmezdi; sohbette kalan düzeltme kaybolur.
+
+Açık kalan: bağ biçimi ikiye bölündü — benim notlarım `[[wikilink]]`, Codex'in
+yazdıkları markdown göreli bağ. Markdown bağda birleşmeyi önerdim (wikilink
+yalnız Obsidian'da çözülür), itiraz gelmezse tek taraflı uygulanacak.
+
