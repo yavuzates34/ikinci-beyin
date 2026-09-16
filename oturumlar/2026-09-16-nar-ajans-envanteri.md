@@ -382,3 +382,40 @@ yalnız Obsidian'da çözülür" demiştim. Vault kurulursa o gerekçe zayıflı
 Öneri duruyor ama sebebi değişti: dosyaları Obsidian'ın yanı sıra iki ajan,
 git arayüzü ve VS Code da okuyor. Artık teknik zorunluluk değil, tercih.
 
+## Vault kuruldu, bağ biçimi birleştirildi (09:31–09:38)
+
+Kullanıcı Obsidian vault kararını verdi. `.obsidian/app.json` yazıldı: hariç
+tutma listesi (node_modules, __pycache__, codex-backups, tmp/outputs/incoming
+klasörleri), markdown göreli bağ, ekler notun yanına.
+
+**Kullanıcıya verdiğim ilk tarifi düzelttim.** "Sol taraftaki dosya listesinde
+1.598 dosya görürsün" demiştim; Obsidian'ın hariç tutma ayarı dosyaları
+**aramadan, grafikten ve hızlı geçişten** çıkarıyor, dosya gezgininden değil.
+Temizlik aramada oluyor. Ayrıca nokta ile başlayan klasörleri (`.git`,
+`.claude`) Obsidian zaten göstermiyor — listeye yazmaya gerek yoktu.
+
+**Bağ biçimi birleştirildi.** Codex'e "markdown bağda birleşelim, itiraz
+gelmezse tek taraflı uygularım" demiştim; itiraz gelmedi, 19 wikilink çevrildi.
+Denetim: 16 dosyada 54 bağ, 0 kırık.
+
+Denetim yazarken kendi tuzağıma düştüm: ilk bağ denetleyicim ters tırnak içindeki
+**biçim örneklerini** gerçek bağ sanıp üç yanlış alarm verdi. Düzeltmeye
+kalkınca dosyanın zaten doğru olduğu ortaya çıktı. **Ders:** denetleyici de bir
+iddiadır; yanlış alarm veren denetleyici, denetlemediğinden beterdir — çünkü
+düzeltme adına sağlam dosyayı bozmaya yöneltir. Denetleyici kod parçalarını
+metinden çıkarınca sonuç temizlendi.
+
+## Kullanıcıya anlatma notu
+
+Kullanıcı "%93 npm belgesi" açıklamasını anlamadığını söyledi ve basit
+anlatmamı istedi. İşe yarayan anlatım: *"Obsidian uzantısı `.md` olan her şeyi
+not sanar. Bu dosyaların 106'sı bizim, 1.492'si web sitesi projesinin kullandığı
+hazır kod parçalarının kullanım kılavuzları — arabanın hazır vida kullanması
+gibi. Kendi defterlerini 1.492 beyaz eşya kılavuzuyla aynı çekmecede tutuyorsun.
+Kılavuzlarda sorun yok, çekmecede."*
+
+**Ders:** sayı vermek açıklamak değildir. "1.492 dosya node_modules içinde"
+cümlesi ölçüm olarak doğru ama anlatı olarak boş; karşıdaki `node_modules`in ne
+olduğunu bilmiyorsa sayı hiçbir şey söylemiyor. Somut dosya adı göstermek
+(`@edge-runtime/ponyfill/README.md`) ve gündelik bir benzetme kurmak işi çözdü.
+
