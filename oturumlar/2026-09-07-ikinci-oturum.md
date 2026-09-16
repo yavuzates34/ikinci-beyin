@@ -485,3 +485,35 @@ Kullanıcı "GitHub ne günde duruyor, kullan gitsin" deyince private depo açı
 ve gönderildi: `yavuzates34/ikinci-beyin`. Derleyiciye push adımı eklendi.
 Gönderim öncesi sır taraması yapıldı, temiz çıktı. Böylece kapanışta "tek gerçek
 açık" diye bıraktığım dış yedek boşluğu aynı oturumda kapandı.
+
+### PreCompact gerçek sıkıştırmada sınandı — yarısı kırıldı, ağ tuttu
+
+Kullanıcı `/compact` ile bilerek sıkıştırma tetikledi. Öncesinde bir tartışma
+oldu: kullanıcı testi bir fork üstünde yapmayı önerdi, ben bu oturumda yapmayı
+savundum. Gerekçe: kalıcı olan her şey zaten commit edilmişti, sıkıştırma ham
+kaydı silmiyor, ve `--fork-session` de sınanmamış bir mekanizma — iki sınanmamış
+şeyi birleştirmek sonucu bulanıklaştırırdı. **Aynı anda tek bilinmeyen.**
+
+Sonuç ikiye bölündü:
+
+- **Deterministik ayak tuttu.** 03:13'te omurga diske yazıldı: 69 kullanıcı
+  mesajı, 44.974 bayt, 7 Eylül 13:02'den 16 Eylül 03:08'e kadar eksiksiz.
+- **Enjeksiyon ayağı düştü.** `PreCompact` olayı `additionalContext` kabul
+  etmiyor; Claude Code çıktıyı şema hatasıyla reddetti. Varsayım yanlıştı —
+  üstelik nota "muhtemelen" diye yazılmış bir varsayımdı.
+
+Düzeltme aynı gece yapıldı: **devir kutusu**. PreCompact mesajı diske bırakıyor,
+konuşabilen bir hook (`UserPromptSubmit`, yedekte `SessionStart`) alıp modele
+taşıyor ve kutuyu boşaltıyor. Yeni dosya `araclar/devir.py`; `precompact.py`
+artık kullanıcıya tek satır `systemMessage` basıyor. Zincir sahte girdiyle uçtan
+uca doğrulandı. Ayrıntı: [[kapanis-ritueli]], [[yasanan-hatalar]] madde 15.
+
+Yan karar: `derleme/omurga-anlik/` git'e girmiyor. İçinde kullanıcının ham
+sözleri var ve kaynağı olan jsonl de git'te değil; "kimlik/mali bilgi bu klasöre
+hiç yazılmaz" kuralıyla tutarlı olan, bu dosyaları yerel kurtarma malzemesi
+olarak bırakmak.
+
+Bir de kesinti: kullanıcının bir önceki promptu işlenirken elektrik gitti ve
+makine kapandı. Kayıp olmadı — commit ve push tamamlanmıştı. Git'in bu projedeki
+ikinci faydası aynı gece görüldü (birincisi: Obsidian'ın sessiz düzenlemesini
+yakalaması).

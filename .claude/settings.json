@@ -25,6 +25,19 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "python araclar/devir.py",
+            "timeout": 15,
+            "statusMessage": "Devir kutusu"
+          }
+        ]
+      }
     ]
   }
 }

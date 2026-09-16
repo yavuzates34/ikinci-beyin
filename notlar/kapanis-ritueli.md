@@ -85,14 +85,36 @@ Genel anlatım işaretçi taşımaz, yoksa her cümle parantezle dolar.
 (`/compact` yazılırsa) tetikliyor. Manual'i de kapsaması bilinçli — ağ ancak
 bilerek tetiklenebiliyorsa sınanabilir.
 
-**İki ayaklı, çünkü tek ayak güvenilmez.** Belge `PreCompact` için
-`additionalContext` desteğini "muhtemelen" diye geçiyor:
+**İki ayaklı, çünkü tek ayak güvenilmez.** Bu karar 16 Eylül gecesi kendini
+ödedi — ikinci ayak gerçek testte kırıldı, birincisi tuttu.
 
 1. **Deterministik ayak:** oturumun omurgası `derleme/omurga-anlik/` altına
    yazılır. Model hiçbir şey yapmasa, enjeksiyon hiç çalışmasa bile ham malzeme
    kurtulur. Bu dosya sıkıştırmadan etkilenmez — diskte durur.
-2. **Best-effort ayak:** bağlama "şimdi yaz" uyarısı enjekte edilir; uyarı
-   omurga dosyasının yolunu da taşır.
+2. **Dolaylı enjeksiyon ayağı:** "şimdi yaz" uyarısı **devir kutusuna** bırakılır,
+   konuşabilen bir hook onu modele taşır. Aşağıya bak.
+
+## Devir kutusu: PreCompact modele konuşamıyor
+
+Ölçüldü, varsayılmadı: `PreCompact` olayında `additionalContext` **geçerli
+değil**. Claude Code çıktıyı şema hatasıyla reddediyor ([[yasanan-hatalar]]
+madde 15). O olayda hook yalnızca kullanıcıya görünen `systemMessage`
+basabiliyor; modele tek kelime söyleyemiyor.
+
+Bu yüzden mesaj el değiştiriyor. `araclar/devir.py` bir posta kutusudur:
+
+- `precompact.py` mesajı kutuya **bırakır** (`derleme/omurga-anlik/devir-bekliyor.json`)
+  ve kullanıcıya tek satır durum basar.
+- Kutuyu **konuşabilen** iki hook boşaltır, hangisi önce tetiklenirse:
+  `UserPromptSubmit` (sıkıştırmadan sonraki ilk prompt — asıl yol, aynı oturum
+  içinde teslim eder) ya da `SessionStart` (oturum sıkıştırmadan sonra hiç devam
+  etmediyse yeni oturum devralır — yedek yol).
+- Teslim eden kutuyu siler, yani mesaj bir kez okunur.
+- **12 saatten eski mesaj teslim edilmez.** Günler sonra gelen "şimdi yaz" emri
+  yanlış oturuma yanlış işi yaptırır; bayat emir sessizce düşer.
+
+Genel kural, bu projeye özgü değil: *bir hook'un söyleyemediğini, söyleyebilen
+bir hook'a diske bırakarak söyletebilirsin.*
 
 **Neden bloke etmiyor.** Hook, çıkış kodu 2 ile sıkıştırmayı engelleyebiliyor ve
 bu ilk bakışta daha iyi görünüyor (model tam bağlamla yazardı). Seçilmedi:
@@ -101,7 +123,11 @@ sıkıştırma engellenir ve pencere zaten doluysa oturum sert bir sınıra çar
 malzemesi olarak bırakılıyor — sıkıştırma sonrasında bile oturum kaydı ondan
 yazılabilir.
 
-**Sınanan:** geçerli girdiyle doğru oturumu bulup omurgayı yazdığı ve geçerli
-JSON ürettiği doğrulandı; bozuk girdide yedek yola düşüp yine çıktı ürettiği de.
-**Sınanmayan:** gerçek bir sıkıştırma olayında enjeksiyonun modele ulaşıp
-ulaşmadığı. İlk gerçek tetiklenmede görülecek.
+**Gerçek sıkıştırmada ölçüldü** (16 Eylül 03:13, `/compact`, tetik `manual`):
+omurga dosyası yazıldı — 69 kullanıcı mesajı, 44.974 bayt, 07.09 13:02'den
+16.09 03:08'e kadar zaman damgalarıyla eksiksiz. Enjeksiyon aynı anda şema
+hatasıyla düştü (claude 3557db3e · 16.09 03:13). Yani ağ, tasarlandığı gibi tek ayak üstünde iş gördü.
+
+**Henüz sınanmayan:** devir kutusu zinciri *gerçek* bir sıkıştırmada. Zincirin
+üç halkası da sahte girdiyle uçtan uca çalıştırıldı (bırak → teslim et → kutuyu
+boşalt → ikinci çağrıda sessiz kal), ama gerçek olayda görülmedi.

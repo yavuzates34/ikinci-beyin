@@ -66,3 +66,22 @@ Bir kez düşülmüş tuzaklar. Tekrar keşfedilmesin diye yazıldı.
     değiştiğinde not da değişmeli — ya da iddia nottan çıkarılıp komutla
     ölçülmeli. ([[tasarim-dersleri]] içindeki "komut mu doküman mı" kuralının
     tam olarak uyardığı durum.)
+
+15. **Hook, desteklemediği bir alana yazdı: `PreCompact` modele konuşamıyor.**
+    16 Eylül 03:13'te `/compact` ile yapılan **gerçek sıkıştırma testinde**
+    ölçüldü. `precompact.py`, `hookSpecificOutput.additionalContext` basıyordu;
+    Claude Code çıktıyı *Hook JSON output validation failed* diyerek reddetti ve
+    geçerli olay listesini bastı: `PreToolUse`, `UserPromptSubmit`,
+    `UserPromptExpansion`, `SessionStart`, `Setup`, `PreModelSwitch`,
+    `PostToolUse`, `PostToolBatch`, `Stop`/`SubagentStop`, `PermissionRequest`.
+    **`PreCompact` listede yok.** O olayda sadece üst düzey alanlar geçerli:
+    `systemMessage`, `decision`, `reason`, `continue`, `stopReason`,
+    `suppressOutput`, `terminalSequence`.
+
+    **Ders bir:** belgeye dayanan "muhtemelen destekliyordur" varsayımı, sınanana
+    kadar iddiadır. Bu varsayım nota bile "muhtemelen" diye yazılmıştı; yine de
+    kod ona güvendi.
+    **Ders iki:** iki ayaklı tasarım tam da bunun için vardı ve işe yaradı —
+    enjeksiyon düştü, omurga dosyası (44.974 bayt, 69 mesaj) yazıldı ve
+    sıkıştırmadan sağ çıktı. Tek ayaklı olsaydı oturum sessizce kaybolurdu.
+    **Çözüm:** [[kapanis-ritueli]] içindeki devir kutusu — `araclar/devir.py`.

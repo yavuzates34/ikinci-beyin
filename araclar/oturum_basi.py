@@ -7,7 +7,10 @@ Uc sey soyler:
 2. Bu oturumun KENDI KIMLIGI. Ayni projede iki oturum acikken arac
    varsayilanlari ("en son yazilan kayit") yanlis oturumu secebiliyor; kimlik
    bilinince `omurga.py <id>` kesin olur.
-3. PARALEL OTURUMLAR. Bu projede son saatlerde yazilmis baska oturum kaydi
+3. DEVIR KUTUSU. PreCompact modele konusamiyor (bkz. araclar/devir.py);
+   biraktigi mesaji burasi teslim eder - sikistirmadan sonra oturum hic devam
+   etmediyse yedek yol budur.
+4. PARALEL OTURUMLAR. Bu projede son saatlerde yazilmis baska oturum kaydi
    varsa listelenir. Kritik: yan yana acilan bir oturum, otekinde konusulani
    KALICI NOTLARDAN goremez - cunku o oturum henuz kapanmamis, damitilmamistir.
    Ama ham kayit CANLIDIR: jsonl surekli yaziliyor, yani okunabiliyor.
@@ -22,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import kayit  # noqa: E402
+import devir  # noqa: E402
 
 YONERGE = kayit.PROJE_KOKU / ".claude" / "oturum-basi.md"
 PARALEL_PENCERE = timedelta(hours=6)  # bu kadar once yazilmis kayit "acik" sayilir
@@ -61,6 +65,12 @@ def main() -> int:
         metin = metin.replace(anahtar, deger)
 
     ek = []
+
+    # Sikistirmadan kalan devir mesaji varsa once o teslim edilir.
+    bekleyen = devir.al()
+    if bekleyen:
+        ek.append("DEVIR KUTUSUNDAN:" + chr(10) + bekleyen)
+
     kimlik = girdi.get("session_id")
     if kimlik:
         ek.append(

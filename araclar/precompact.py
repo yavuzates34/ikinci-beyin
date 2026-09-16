@@ -12,18 +12,22 @@ IKI AYAK
 1. DETERMINISTIK: oturumun omurgasi diske dokulur. Model hicbir sey yapmasa,
    enjeksiyon hic calismasa bile ham malzeme kurtulur. Omurga dosyasi
    sikistirmadan etkilenmez - diskte durur, sonra okunur.
-2. BEST-EFFORT: baglama "simdi yaz" uyarisi enjekte edilir. Calisirsa model
-   sikistirmadan once ya da hemen sonra notu yazar.
+2. DOLAYLI ENJEKSIYON: "simdi yaz" uyarisi devir kutusuna birakilir; konusabilen
+   bir hook (UserPromptSubmit ya da SessionStart) onu modele tasir.
+
+NEDEN DOLAYLI
+16 Eylul'de gercek bir sikistirmada olculdu: PreCompact'in kendisi modele
+KONUSAMIYOR. `hookSpecificOutput.additionalContext` bu olayda gecerli degil,
+Claude Code sema hatasi verip ciktiyi dusuruyor (bkz. yasanan-hatalar madde 15).
+Bu yuzden mesaj araclar/devir.py uzerinden aktariliyor.
 
 NEDEN BLOKE ETMIYOR
 Hook cikis kodu 2 ile sikistirmayi engelleyebilir. Denenmedi ve bilerek
 secilmedi: sikistirma engellenirse ve pencere zaten doluysa oturum sert bir
-sinira carpabilir. Agin kendisi hasara yol acmamali. Bunun yerine omurga
-dosyasi kurtarma malzemesi olarak birakiliyor - sikistirma sonrasinda bile
-oturum kaydi ondan yazilabilir.
+sinira carpabilir. Agin kendisi hasara yol acmamali.
 
 Girdi: stdin'den JSON (session_id, transcript_path, trigger, cwd).
-Cikti: stdout'a JSON (hookSpecificOutput.additionalContext).
+Cikti: stdout'a JSON - sadece `systemMessage` (kullaniciya gorunen tek satir).
 Cikis kodu her zaman 0 - bu bir ag, bir bariyer degil.
 """
 
@@ -34,18 +38,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import kayit  # noqa: E402
+import devir  # noqa: E402
 
 ANLIK = kayit.PROJE_KOKU / "derleme" / "omurga-anlik"
 
 
-def cikti(metin: str) -> None:
-    """Hook ciktisi. ensure_ascii=True: konsol kodlamasi ne olursa olsun
-    saglam kalsin (bkz. notlar/yasanan-hatalar.md madde 11)."""
-    print(json.dumps(
-        {"hookSpecificOutput": {
-            "hookEventName": "PreCompact", "additionalContext": metin}},
-        ensure_ascii=True,
-    ))
+def cikti(satir: str) -> None:
+    """Kullaniciya gorunen tek satir. ensure_ascii=True: konsol kodlamasi ne
+    olursa olsun saglam kalsin (bkz. notlar/yasanan-hatalar.md madde 11)."""
+    print(json.dumps({"systemMessage": satir}, ensure_ascii=True))
 
 
 def main() -> int:
@@ -71,8 +72,9 @@ def main() -> int:
     if oturum is None:
         havuz = kayit.oturumlar("proje")
         if not havuz:
-            cikti("PreCompact: oturum kaydi bulunamadi, omurga alinamadi. "
-                  "Baglam sikistirilmak uzere - onemli bir sey varsa simdi yaz.")
+            devir.birak("PreCompact: oturum kaydi bulunamadi, omurga alinamadi. "
+                        "Baglam sikistirildi - onemli bir sey varsa simdi yaz.")
+            cikti("PreCompact: oturum kaydi bulunamadi, omurga alinamadi.")
             return 0
         oturum = havuz[0]
 
@@ -104,21 +106,22 @@ def main() -> int:
     dosya.write_text("\n".join(govde), encoding="utf-8")
 
     goreli = dosya.relative_to(kayit.PROJE_KOKU).as_posix()
-    cikti(
-        f"BAGLAM SIKISTIRILMAK UZERE (PreCompact, tetik: {tetik}).\n\n"
-        f"Bu oturumun omurgasi diske alindi: {goreli} "
-        f"({len(mesajlar)} kullanici mesaji, {harf / 1024:.1f} KB). "
-        f"Bu dosya sikistirmadan etkilenmez.\n\n"
+    devir.birak(
+        f"BAGLAM SIKISTIRILDI ({an:%d.%m %H:%M}, PreCompact, tetik: {tetik}).\n\n"
+        f"Ilgili oturum: {oturum.kimlik[:8]}. Omurgasi sikistirmadan hemen once "
+        f"diske alindi: {goreli} ({len(mesajlar)} kullanici mesaji, "
+        f"{harf / 1024:.1f} KB). O dosya sikistirmadan etkilenmedi.\n\n"
         f"SIMDI YAP - CLAUDE.md'deki kapanis rituelinin ayni sirasi:\n"
         f"1) Bu oturumun kaydini oturumlar/ altina yaz (ya da varsa guncelle).\n"
         f"2) Kalici olani notlar/ icindeki ilgili konu notuna terfi ettir.\n"
         f"3) BEYIN.md haritasini ve kaynak isaretcilerini guncelle.\n\n"
-        f"Ayrinti hatirlamiyorsan yukaridaki omurga dosyasini oku - "
+        f"Ayrinti hatirlamiyorsan once yukaridaki omurga dosyasini oku - "
         f"konusmanin iskeleti orada, zaman damgalariyla.\n\n"
         f"Bu bir guvenlik agidir: kullanici 'kapatalim' demeden sikistirma "
-        f"geldi. Oturum bitmiyor, sadece baglam sikisiyor; yazdiktan sonra "
-        f"kaldigin yerden devam et."
+        f"geldi. Oturum bitmiyor; yazdiktan sonra kaldigin yerden devam et."
     )
+    cikti(f"Omurga diske alindi: {goreli} ({len(mesajlar)} mesaj, "
+          f"{harf / 1024:.1f} KB)")
     return 0
 
 

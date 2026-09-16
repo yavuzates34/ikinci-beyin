@@ -29,10 +29,9 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
 
 - `--fork-session` canlı denenmedi
 - Ekran kaydı → `izle.py` zinciri gerçek bir ChatGPT kaydıyla test edilmedi
-- `PreCompact` **gerçek bir sıkıştırma olayında** denenmedi. Script sahte
-  girdiyle sınandı ve çalışıyor; enjeksiyonun modele ulaşıp ulaşmadığı ilk
-  gerçek tetiklenmede görülecek. Matcher kaldırıldığı için `/compact`
-  yazarak bilerek sınanabilir.
+- **Devir kutusu zinciri** gerçek bir sıkıştırmada denenmedi. Sahte girdiyle
+  uçtan uca çalışıyor; gerçek olayda mesajın modele ulaşıp ulaşmadığı bir
+  sonraki `/compact`'te görülecek. Bkz. [[kapanis-ritueli]].
 
 ## Kapananlar
 
@@ -53,6 +52,10 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
   kimliğini ve açık paralel oturumları bildiriyor.
 - ~~Durum B açıkta~~ **16 Eylül** — `PreCompact` güvenlik ağı kuruldu,
   bloke etmeyen iki ayaklı tasarımla. Bkz. [[kapanis-ritueli]].
+- ~~`PreCompact` gerçek sıkıştırmada denenmedi~~ **16 Eylül 03:13** — `/compact`
+  ile sınandı. Deterministik ayak tuttu (omurga yazıldı), enjeksiyon ayağı
+  şema hatasıyla düştü ve devir kutusuyla yeniden kuruldu. Bkz.
+  [[yasanan-hatalar]] madde 15.
 - ~~Klasör düzeni karmaşık~~ **16 Eylül** — kök dizin 20 öğeden 2 dosya +
   5 klasöre indi.
 - ~~mem0 gerek var mı~~ **8 Eylül'de gerekçe netleşti, 16 Eylül'de sıraya kondu** —
