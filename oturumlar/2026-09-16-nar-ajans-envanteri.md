@@ -70,7 +70,7 @@ git'in görüş alanı dışında. `git check-ignore` ile doğrulandı.
 
 ## Yapılan tek fiziksel iş: yedek
 
-`C:\Users\Anj\Yedekler\NarAjans-20260916-0422` — robocopy ile birebir kopya.
+`D:\Yedekler\NarAjans-20260916-0422` — robocopy ile birebir kopya.
 **20.307 dosya, 4.21 GB, 0 hata, 7 dakika.** `node_modules` ve `__pycache__`
 hariç (611 MB, yeniden üretilebilir). Kritik dosyaların MD5'leri tek tek
 karşılaştırıldı, Türkçe karakterli derin yollar dahil hepsi aynı.
@@ -342,4 +342,43 @@ Yapılandırmadaki varsayılan model 08:17'de ona çevrilmiş. Kurulu CLI (0.150
 onu çalıştıramıyor ("daha yeni sürüm gerekiyor"), testler `gpt-5.6-sol` ile
 yapıldı. Gece "Astra ayrı bir profil değil" diye yazdığım tespit, o anki
 yapılandırmaya göre doğruydu ama **artık geçersiz** (claude 3557db3e · 16.09 08:34).
+
+## Yedek D:'ye taşındı, uzun yol üçüncü kez ısırdı (09:19–09:24)
+
+Kullanıcı yedeğin silinmesini değil taşınmasını istedi. Sıra: kopyala → doğrula
+→ aslını kaldır. Doğrulanmamış bir kopyaya güvenip aslı silmek yedeğin amacını
+bozar. Yeni yer `D:\Yedekler\NarAjans-20260916-0422`; dosya sayısı, toplam bayt
+(4.521.187.510) ve örnek SHA-256'lar eşleşti. C: 11,5 GB'tan **16,3 GB**'a çıktı.
+
+**Uzun yol sınırı üçüncü kez karşımıza çıktı.** PowerShell `Remove-Item` o
+311 karakterlik checkpoint dalını silemedi; 4,2 GB'ın geri kalanı gitmiş, dal
+kalmıştı. Çözüm: boş bir klasörle `robocopy <bos> <hedef> /MIR`.
+
+Aynı sınır, üç ayrı kılık: git ref'i okuyamadı (03:00 civarı), PowerShell ağacı
+listeleyemedi (05:00), PowerShell silemedi (09:21). **Ders:** bir ortam sınırı
+tek bir belirtiyle tanınmaz; aynı kök sebep farklı araçlarda farklı görünür.
+Bir kez teşhis edilince, sonraki belirtiler hızlı tanınıyor — ilkinde saatler,
+üçüncüsünde saniyeler sürdü.
+
+**Kendi kuralımı uyguladım:** yedeğin yolu değişince ona atıf yapan altı dosya
+ölü işaretçiye dönüştü. Hepsi güncellendi (Codex'in yazdığı taşıma notu dahil,
+yazışmada belirtilerek). "Ölü işaretçi yanlış bilgiden beterdir" kuralını
+yazmak, ona uymayı sağlamıyor — taşıma yapan, atıfları da taşır.
+
+## Obsidian vault değerlendirmesi
+
+Kullanıcı klasörün artık vault olarak tanımlanıp tanımlanamayacağını sordu.
+Ölçüm: klasörde **1.598 `.md` dosyası** var, bunların **1.492'si node_modules
+içinde**; gerçek bilgi katmanı **106 dosya**. Yani vault olduğu gibi açılırsa
+görünenin %93'ü npm paket belgeleri olur.
+
+Cevap: **evet, ama hariç tutma listesi şart** — `node_modules`, `.git`, `tmp`,
+`codex-backups`. Ayar vault'un içinde (`.obsidian/`) saklandığı için bir kez
+yapılır ve klasörle taşınır. Yapının geri kalanı zaten Obsidian'a uygun: giriş
+dosyası, konuya bölünmüş notlar, tarih adlı arşiv, birbirine bağlı dosyalar.
+
+**Kendi gerekçemi düzelttim:** Codex'e "markdown bağda birleşelim, wikilink
+yalnız Obsidian'da çözülür" demiştim. Vault kurulursa o gerekçe zayıflıyor.
+Öneri duruyor ama sebebi değişti: dosyaları Obsidian'ın yanı sıra iki ajan,
+git arayüzü ve VS Code da okuyor. Artık teknik zorunluluk değil, tercih.
 
