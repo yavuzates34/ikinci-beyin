@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 16 Eylül 2026, 03:38
+**Son güncelleme:** 16 Eylül 2026, 04:50
 
 ---
 
@@ -45,6 +45,7 @@ Klasör bir **git deposu** ve private GitHub deposuna bağlı
 |---|---|
 | [[2026-08-30-birinci-oturum]] | izle.py kuruldu, arşiv keşfedildi, ikinci beyin tasarlandı |
 | [[2026-09-07-ikinci-oturum]] | Kapanış ritüeli ve arşiv arama katmanı kuruldu |
+| [[2026-09-16-nar-ajans-envanteri]] | Nar Ajans çalışma alanı sayımı: 6 depo, Codex checkpoint'leri, 4.21 GB yedek |
 | [[BAGLAM-DEVRI]] | 30 Ağustos itibarıyla teknik devir belgesi (başka bir modele verilmek üzere) |
 
 ## Sesli dinleme dosyaları
