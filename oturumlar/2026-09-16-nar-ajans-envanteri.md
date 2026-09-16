@@ -436,8 +436,13 @@ Playground'un `kayit.py`'si kopyalanmadı, yol üzerinden içe aktarıldı. Yoks
 **1. Sessiz yanlış negatif.** Oturum dedektörüm metinden `\b[0-9a-f]{8}\b`
 deseniyle 8 haneli onaltılık her şeyi çekiyordu — **git commit hash'leri de o
 desene uyuyor.** Notlarda geçen bir hash, alakasız bir oturumu "işlenmiş"
-gösterebilirdi. Playground'daki derleyici de aynı mantıkla çalışıyor;
-**oraya da bakılmalı** (açık uç).
+gösterebilirdi.
+
+Playground'un derleyicisine bakıldı: **orada bu hata yok** — `o.kimlik[:8] in
+metin` diye hedefli arama yapıyor. Hata yeniden yazarken doğmuş. Yalnız oradaki
+yardımcı fonksiyon `-> set` diye imzalanıp metin döndürüyordu; davranış doğru,
+tip yanlıştı. Benim hatam tam olarak böyle bir yanlış anlamadan doğabilirdi,
+o yüzden imza ve açıklama düzeltildi (claude 3557db3e · 16.09 10:31).
 
 **2. "Sıfır sonuç yeşil sayılmaz."** Arşiv okuyucu yol ya da biçim değişikliği
 yüzünden sıfır döndürürse rapor sağlıklı görünürdü. Kaynak sağlığı bölümü eklendi.

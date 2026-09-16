@@ -47,8 +47,14 @@ def git(*arg) -> str:
         return ""
 
 
-def islenmis_kimlikler() -> set:
-    """notlar/ ve oturumlar/ icinde adi gecen oturum kimlikleri (ilk 8 karakter)."""
+def islenmis_metin() -> str:
+    """notlar/ ve oturumlar/ icindeki tum metin, tek parca.
+
+    Kimlik ARANIR, cikarilmaz: `o.kimlik[:8] in metin`. Metinden 8 haneli
+    onaltilik desen CEKMEK yanlis olurdu - git commit hash'leri de o desene
+    uyar ve alakasiz oturumlari "islenmis" gosterirdi. Bu hata Nar Ajans
+    derleyicisinde yapildi ve Codex yakaladi (claude 3557db3e · 16.09 10:22).
+    Imza eskiden `-> set` yaziyordu ama metin donduruyordu; yanilticiydi."""
     metin = []
     for klasor in ("notlar", "oturumlar"):
         for p in (KOK / klasor).glob("*.md"):
@@ -74,7 +80,7 @@ def gunluk(bugun: datetime, kuru: bool) -> int:
     # derleyicisi calisir. Diger projeler burada sadece tek satir sayidir.
     taze = [o for o in kayit.oturumlar("proje") if o.an >= dun]
     diger = [o for o in kayit.oturumlar("claude") if o.an >= dun and o not in taze]
-    metinler = islenmis_kimlikler()
+    metinler = islenmis_metin()
 
     islenmemis, islenmis = [], []
     for o in taze:
@@ -195,7 +201,7 @@ def aylik(bugun: datetime, kuru: bool) -> None:
           "karsilastirilir. Kalite yargilanmiyor - ORANTISIZLIK gosteriliyor.",
           f"Esik: kayit, konusmanin %{INCE_ESIK * 100:.0f}'inden kucukse 'ince'.", ""]
 
-    metinler = islenmis_kimlikler()
+    metinler = islenmis_metin()
     kayitlar = {p.name: p.stat().st_size for p in (KOK / "oturumlar").glob("*.md")}
     toplam_kayit = sum(kayitlar.values())
     ince = []
