@@ -419,3 +419,49 @@ cümlesi ölçüm olarak doğru ama anlatı olarak boş; karşıdaki `node_modul
 olduğunu bilmiyorsa sayı hiçbir şey söylemiyor. Somut dosya adı göstermek
 (`@edge-runtime/ponyfill/README.md`) ve gündelik bir benzetme kurmak işi çözdü.
 
+## Akşam derleyicisi kuruldu (10:15–10:28)
+
+Kullanıcı Nar Ajans'a da akşam derleyicisi istedi ve *"sen kendin için ekle,
+Codex kendisi için eklesin"* dedi. **İki ayrı derleyici yapılmadı** — birlikte
+yazdığımız `AGENTS.md` §8 kuralı bunu yasaklıyor: aynı şeyin iki kopyası bir
+gün birbirinden ayrılır. Çelişki kullanıcıya söylendi, Codex'e de soruldu;
+Codex katıldı: *"tek derle.py, tek zamanlayıcı; ayrışması gereken yer script
+değil, kaynak adaptörleri."*
+
+Playground'un `kayit.py`'si kopyalanmadı, yol üzerinden içe aktarıldı. Yoksa
+ölçüm atlanır ve rapor sebebini yazar — sessizce yeşil görünmez.
+
+## Codex iki gerçek hata buldu
+
+**1. Sessiz yanlış negatif.** Oturum dedektörüm metinden `\b[0-9a-f]{8}\b`
+deseniyle 8 haneli onaltılık her şeyi çekiyordu — **git commit hash'leri de o
+desene uyuyor.** Notlarda geçen bir hash, alakasız bir oturumu "işlenmiş"
+gösterebilirdi. Playground'daki derleyici de aynı mantıkla çalışıyor;
+**oraya da bakılmalı** (açık uç).
+
+**2. "Sıfır sonuç yeşil sayılmaz."** Arşiv okuyucu yol ya da biçim değişikliği
+yüzünden sıfır döndürürse rapor sağlıklı görünürdü. Kaynak sağlığı bölümü eklendi.
+
+Bir de rapor yazma sorusunda beni çürüttü: ben "sadece sorun olunca yazsın"
+diyordum, *"sessizlik, her şey iyi ile görev hiç çalışmadı'yı ayırt ettirmez"*
+dedi. Haklı. Her gece yazılıyor, üstüne kalp atışı dosyası eklendi.
+
+## Ve aynı hatayı ikinci kez yaptım
+
+Derleyici ilk çalıştırmada "`.env` İZLENİYOR" diye kırmızı alarm verdi.
+Yanlış alarmdı: kontrolü `".env" in ls-files çıktısı` diye yazmışım — **alt
+dize** araması, `.env.example` tetikliyor.
+
+Bu, aynı sabah 08:32'de Codex'e *"eşleşmeyi ayırt etmeden saymak, arama
+sonucunu ölçüm sanmaktır"* diye yazdığım hatanın aynısı. İki saat arayla, aynı
+sınıf hata, bu kez kendi kodumda (claude 3557db3e · 16.09 10:22).
+
+**Ders — playground için de geçerli:** bir hatayı *adlandırmak*, ona karşı
+bağışıklık kazandırmıyor. Kural yazmakla kurala uymak arasındaki boşluk bu
+oturumda üç kez göründü (ölü işaretçi ×2, alt dize eşleşmesi ×2). Kuralı
+yazmak ucuz; **kuralı denetleyen bir komut yazmak** pahalı ama tek işleyen yol.
+Derleyicinin varlık sebebi tam olarak bu.
+
+**Yan ders:** yanlış alarm veren bir güvenlik kontrolü, olmayan kontrolden
+beterdir — insan üçüncü seferde bakmayı bırakır.
+
