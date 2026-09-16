@@ -96,3 +96,41 @@ ilgili satırları okumaktır. jsonl bir konuşma değil, bir **belgedir**.
 > **canlı test edilmedi.**
 
 ---
+
+### 5.7 Kuralı yazmak, kurala uymayı sağlamıyor
+
+16 Eylül oturumunda aynı **sınıf** hata üç kez tekrarlandı ve her seferinde
+kuralı yazan kişi tarafından yapıldı:
+
+| Hata | Ne zaman |
+|---|---|
+| Ölü işaretçi (`memory/...`) | devralındı |
+| Ölü işaretçi (`.claude/settings.json`) | kural yazıldıktan **10 dakika** sonra |
+| Alt dize eşleşmesi (güven kaydı sayımı) | 08:28 |
+| Alt dize eşleşmesi (`.env` kontrolü) | 10:22, **iki saat** sonra |
+
+**Ders:** bir hatayı adlandırmak ona karşı bağışıklık kazandırmıyor. Kural
+yazmak ucuz; **kuralı denetleyen bir komut yazmak** pahalı ama tek işleyen yol.
+Akşam derleyicisinin varlık sebebi tam olarak budur — ve kurulduğu gün, onu
+kuran kişinin yeni yazdığı dosyadaki kırık bağı yakaladı
+(claude 3557db3e · 16.09 10:42).
+
+**Yan ders:** yanlış alarm veren bir denetleyici, denetlemeyenden **beterdir**.
+`.env` kontrolü her çalışmada yanlış alarm veriyordu; böyle bir kontrol insanı
+üçüncü seferde bakmayı bırakmaya iter. Denetleyici de bir iddiadır ve
+denetlenmesi gerekir.
+
+### 5.8 "Erişilemez" ile "çöp" aynı şey değil
+
+Bir ölçüm "şu kadar nesne hiçbir ref'ten erişilemiyor" diyorsa, sebebi iki ayrı
+şey olabilir: ref **yok**, ya da ref **okunamıyor**. İkisi aynı komutta aynı
+görünür, sonuçları zıttır — birincisinde temizlik güvenli, ikincisinde canlı
+veriyi siler.
+
+Ölçülen örnek: Windows'un 260 karakter yol sınırı, Codex'in checkpoint
+ref'lerini git'e "bozuk" gösteriyordu. `core.longpaths=true` 257 nesneyi
+kurtardı; kalan 2.236 gerçekten erişilemezdi. Sebep ayırt edilmeden `gc`
+çalıştırılsaydı canlı bir checkpoint silinecekti (claude 3557db3e · 16.09 08:30).
+
+**Genel hâli:** bir sayıyı yorumlamadan önce o sayının **nasıl üretildiğini**
+sor. `grep | wc -l` bir ölçüm değildir; neyi saydığını görmeden sayı yazılmaz.

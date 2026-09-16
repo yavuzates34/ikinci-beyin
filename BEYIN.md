@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 16 Eylül 2026, 04:50
+**Son güncelleme:** 17 Eylül 2026, 02:00
 
 ---
 
@@ -33,6 +33,7 @@ Klasör bir **git deposu** ve private GitHub deposuna bağlı
 | [[gece-derleyicisi]] | Her gece çalışan dedektör ve git: ne ölçer, ne ölçmez |
 | [[arac-izle]] | Video/sesi modele okutma: izle.py |
 | [[olculmus-bulgular]] | Tahmin değil ölçüm. Yeniden ölçmeye gerek yok |
+| [[iki-ajan-calismasi]] | Claude ve Codex aynı klasörde: yöntem, denetim, asimetri |
 | [[yasanan-hatalar]] | Bir kez düşülmüş tuzaklar |
 | [[tasarim-dersleri]] | Geri besleme, ölçümün kalite şartları, komut mu doküman mı |
 | [[capraz-arac-baglam]] | Kapalı sohbet uygulamalarına erişim sorunu (çözülmemiş) |

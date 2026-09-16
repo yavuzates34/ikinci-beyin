@@ -13,8 +13,11 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
 
 1. **Gelen kutusu** — ertelendi (kullanıcı kararı, 16 Eylül).
 2. **mem0** — ertelendi (kullanıcı kararı, 16 Eylül).
-3. **Yapıyı diğer projelere taşımak** — Nar Ajans dahil. Bu projenin yapısı
-   çekirdek olarak kullanılacak; sıra kullanıcının önceliğine göre gelecek.
+3. ~~**Yapıyı diğer projelere taşımak**~~ — **Nar Ajans'a taşındı**
+   (16–17 Eylül 2026). O klasör artık kendi haritası, kalıcı notları, oturum
+   arşivi, akşam derleyicisi ve üç hook'uyla çalışıyor. Yöntem ve elenenler:
+   [[2026-09-16-nar-ajans-envanteri]] · [[iki-ajan-calismasi]].
+   Diğer projeler için sıra kullanıcının önceliğinde.
 
 ## Karar bekleyenler
 
@@ -24,6 +27,20 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
   bırakıp uzaktan bağlanmayı test et.
 - Gelen kutusu (mobilden not düşme) kurulmadı. Uyarı: boşaltılmayan gelen kutusu
   çöplüğe döner; değer yakalamada değil damıtma ritüelinde.
+
+## Nar Ajans'tan devreden
+
+- **Astra'nın denetimi bekleniyor.** 17 Eylül'de Codex limitleri yenilenince
+  kullanıcı denetim yaptıracak. Denetim notu ve kendi işaret ettiğim dört zayıf
+  nokta o klasörün `notlar/asistan-yazismasi.md` dosyasında.
+- **Gerçek `/compact` orada hiç olmadı.** Hook zinciri sahte girdiyle uçtan uca
+  çalıştı; gerçek sıkıştırmada görülmedi. Burada aynı sınama yapılmıştı ve ilk
+  denemede enjeksiyon ayağı kırılmıştı — yani bu sınama önemsiz değil.
+- **Codex tarafında refleks yok.** Hook'lar Claude'a özel; asimetri oranın
+  ortak kural dosyasına yazıldı. Talimat temelli bir disiplinin işe yarar mı
+  yoksa sahte güven mi verir sorusu Astra'ya soruldu, cevabı beklemede.
+- **Mükerrer oturum elenmiyor.** İki yol anahtarında (C: ve D:) görünen oturum
+  iki kez sayılabilir. Aynı zayıflık burada da olabilir; bakılmadı.
 
 ## Yapılmamış testler
 

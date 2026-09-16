@@ -114,3 +114,24 @@ Bir kez düşülmüş tuzaklar. Tekrar keşfedilmesin diye yazıldı.
     `read_bytes()` / `write_bytes()` kullan, ya da `newline=""` ver. Depo
     karışık: notların çoğu LF, `yasanan-hatalar.md` CRLF (Obsidian'ın izi).
     Bu yüzden "hepsini LF yap" da doğru cevap değil — **dosya neyse o kalsın.**
+
+17. **Kaçış karakteri tuzağı üç kılıkta tekrarladı.** Madde 16 satır sonlarını
+    anlatıyordu; aynı kök sebep bu oturumda üç kez daha vurdu: satır sonu kaçışı
+    heredoc'tan geçerken gerçek satır sonuna dönüşüp üretilen Python dosyasını
+    bozdu; Windows yolundaki `\U` "truncated escape" hatası verdi; başka bir
+    yoldaki `\N` "malformed character escape" verdi
+    (claude 3557db3e · 16.09 10:20 ve 17.09 01:55).
+
+    **Kural:** kod üreten kod yazarken kaçış kullanma. Satır sonu için
+    `chr(10)`, Windows yolu için **ham dizge**. Üçü de derleme anında patlıyor,
+    yani ucuz yakalanıyor — ama her seferinde bir tur kaybettiriyor. Bu maddeyi
+    yazarken bile bir kez daha düşüldü.
+
+18. **Alt dize eşleşmesini ölçüm sanmak.** İki kez yapıldı (claude 3557db3e ·
+    16.09 08:28 ve 10:22): yapılandırma dosyasında "nar ajans" geçen satırlar
+    sayıldı ve başka bir klasöre ait kayıt da sayıya girdi; `.env` kontrolü
+    çıktı içinde alt dize arıyordu ve `.env.example` her çalışmada yanlış alarm
+    verdirdi.
+
+    **Kural:** eşleşmeyi **ayırt et**. Satır bazlı karşılaştır, tam eşleşme ara,
+    ya da neyi saydığını gözle gör. Arama sonucu bir ölçüm değildir.
