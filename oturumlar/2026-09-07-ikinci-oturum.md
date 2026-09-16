@@ -478,3 +478,10 @@ cevaplıyor — yani işaretçiler aynı zamanda işlenmişlik kaydı.
 - `notlar/` için 65 KB eşiği `CLAUDE.md`'ye yazıldı; haftalık rapor ölçüyor.
 - Kullanıcının kararları: mem0 ve gelen kutusu **ertelendi**, iCloud yedeği
   **reddedildi** (ek abonelik masrafı istenmiyor).
+
+### GitHub'a bağlandı
+
+Kullanıcı "GitHub ne günde duruyor, kullan gitsin" deyince private depo açıldı
+ve gönderildi: `yavuzates34/ikinci-beyin`. Derleyiciye push adımı eklendi.
+Gönderim öncesi sır taraması yapıldı, temiz çıktı. Böylece kapanışta "tek gerçek
+açık" diye bıraktığım dış yedek boşluğu aynı oturumda kapandı.

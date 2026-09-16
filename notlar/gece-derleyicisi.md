@@ -61,17 +61,23 @@ eski maddeler için gerçek yaş bundan büyüktür.
 
 ## Git
 
-Klasör 16 Eylül'de yerel git deposu oldu (`ana` dalı). Derleyici her gece
-`git add -A` + commit yapıyor. GitHub'a **push yok**: kullanıcı git/GitHub'a ayrı
-vakit ayıracak, yarım öğrenilen git faydadan çok kafa karışıklığı üretir.
+Klasör 16 Eylül'de yerel git deposu oldu (`ana` dalı) ve aynı gün **private
+GitHub deposuna** bağlandı: `yavuzates34/ikinci-beyin`. Derleyici her gece
+`git add -A` + commit + `push` yapıyor.
 
-Bu hâliyle git ne veriyor: **geçmiş ve geri alma.** Yanlışlıkla silinen ya da
-bozulan bir not geri getirilebilir.
+Ne veriyor: **geçmiş, geri alma ve dış yedek.** Yanlışlıkla silinen bir not geri
+getirilebilir; disk giderse depo GitHub'da durur. Ücretsiz private depo, ek
+masraf yok (kullanıcı iCloud için abonelik masrafı istemiyordu; GitHub bunu
+masrafsız çözdü).
 
-**Ne vermiyor — açıkça yazıyorum:** dış yedek. Depo aynı diskte. Disk giderse
-notlar da geçmiş de gider. iCloud'a kopyalama önerildi, kullanıcı ek abonelik
-masrafı istemediği için reddedildi. Bu boşluk, GitHub'a (ücretsiz private depo)
-push yapılana kadar **açık kalıyor.**
+**Push başarısız olursa derleme bozulmuyor:** internet yoksa ya da kimlik
+düşmüşse yerel commit yine atılır ve rapora `PUSH BASARISIZ - dis yedek guncel
+degil` satırı düşer. Sessiz başarı yasak.
+
+**Gönderilmeden önce tarandı:** izlenen dosyalarda API anahtarı, parola, token,
+e-posta, kimlik/IBAN benzeri örüntü aranıp temiz çıktı. Depo private ama
+[[ikinci-beyin-mimarisi]] içindeki "hiç girmeyen katman" kuralı geçerli:
+kimlik numarası, mali detay ve kimlik bilgileri bu klasöre hiç yazılmaz.
 
 ## Zamanlama
 

@@ -11,12 +11,9 @@ Kapanan maddeler silinmez, üstü çizilir — neyin ne zaman kapandığı da bi
 
 Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş değil:
 
-1. **GitHub'a push** — kullanıcı git/GitHub'a ayrı vakit ayıracak. Bu yapılana
-   kadar **dış yedek yok**: depo aynı diskte, disk giderse her şey gider.
-   Ücretsiz private depo yeterli, ek masraf gerekmiyor.
-2. **Gelen kutusu** — ertelendi (kullanıcı kararı, 16 Eylül).
-3. **mem0** — ertelendi (kullanıcı kararı, 16 Eylül).
-4. **Yapıyı diğer projelere taşımak** — Nar Ajans dahil. Bu projenin yapısı
+1. **Gelen kutusu** — ertelendi (kullanıcı kararı, 16 Eylül).
+2. **mem0** — ertelendi (kullanıcı kararı, 16 Eylül).
+3. **Yapıyı diğer projelere taşımak** — Nar Ajans dahil. Bu projenin yapısı
    çekirdek olarak kullanılacak; sıra kullanıcının önceliğine göre gelecek.
 
 ## Karar bekleyenler
@@ -49,8 +46,9 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
   eklendi, kalıcı notlarda işaretçi kullanılıyor.
 - ~~Gece derleyicisi yok~~ **16 Eylül** — dedektör + haftalık/aylık ölçüm
   kuruldu, görev zamanlayıcıya bağlandı. Bkz. [[gece-derleyicisi]].
-- ~~Sürüm geçmişi yok~~ **16 Eylül** — yerel git deposu açıldı, her gece
-  otomatik commit. Push hâlâ yok.
+- ~~Sürüm geçmişi ve dış yedek yok~~ **16 Eylül** — yerel git deposu açıldı,
+  private GitHub deposuna bağlandı (`yavuzates34/ikinci-beyin`), derleyici
+  her gece commit + push yapıyor. Bkz. [[gece-derleyicisi]].
 - ~~Paralel oturum kör noktası~~ **16 Eylül** — `SessionStart` artık oturum
   kimliğini ve açık paralel oturumları bildiriyor.
 - ~~Durum B açıkta~~ **16 Eylül** — `PreCompact` güvenlik ağı kuruldu,

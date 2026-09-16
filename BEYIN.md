@@ -4,23 +4,24 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 16 Eylül 2026, 02:55
+**Son güncelleme:** 16 Eylül 2026, 03:05
 
 ---
 
 ## Klasör düzeni
 
-| Klasör | Ne var |
-|---|---|
-| `notlar/` | **Kalıcı katman.** Konuya göre bölünmüş, birbirine bağlı notlar. Oturumla eskimez |
-| `oturumlar/` | **Arşiv katmanı.** Oturum başına bir kayıt. Her oturumda okunmaz, sorulunca okunur |
-| `araclar/` | Python araçları ve Whisper sözlüğü |
-| `dinleme/` | Sesli dinlemek için yazılmış düz anlatı dosyaları |
-| `derleme/` | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
+| Klasör       | Ne var                                                                                                         |
+| ------------ | -------------------------------------------------------------------------------------------------------------- |
+| `notlar/`    | **Kalıcı katman.** Konuya göre bölünmüş, birbirine bağlı notlar. Oturumla eskimez                              |
+| `oturumlar/` | **Arşiv katmanı.** Oturum başına bir kayıt. Her oturumda okunmaz, sorulunca okunur                             |
+| `araclar/`   | Python araçları ve Whisper sözlüğü                                                                             |
+| `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
+| `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
 
 Kurallar `CLAUDE.md` içinde; kapanış ritüelinin uygulanabilir hâli orada.
 
-Klasör bir **git deposu**: her gece otomatik commit atılıyor, geçmiş tutuluyor.
+Klasör bir **git deposu** ve private GitHub deposuna bağlı
+(`yavuzates34/ikinci-beyin`): her gece otomatik commit + push.
 
 ## Kalıcı notlar
 

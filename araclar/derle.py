@@ -247,6 +247,19 @@ def main() -> int:
         else:
             print("  git: degisiklik yok")
 
+        # Dis yedek: private GitHub deposuna gonder. Basarisizlik derlemeyi
+        # bozmamali - internet yoksa ya da kimlik dusmusse yerel commit yine
+        # duruyor, sonraki gece gonderilir.
+        if git("remote"):
+            onceki = git("rev-parse", "@{u}") or ""
+            git("push", "-q", "origin", "HEAD")
+            simdi_u = git("rev-parse", "@{u}") or ""
+            yerel = git("rev-parse", "HEAD") or ""
+            if simdi_u == yerel:
+                print("  git: push tamam" if simdi_u != onceki else "  git: uzak guncel")
+            else:
+                print("  git: PUSH BASARISIZ - dis yedek guncel degil")
+
     # Sessiz basari yasak: ne bulundugunu sayiyla soyle.
     print(f"# Islenmemis oturum: {eksik}")
     return 0
