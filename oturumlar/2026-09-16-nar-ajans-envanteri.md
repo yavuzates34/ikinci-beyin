@@ -211,3 +211,48 @@ Ders playground için de geçerli: kuralı yazmak, kurala uymayı sağlamıyor.
 Denetim kuralın kendisinden ayrı bir iş — bağ denetimi bu yüzden komutla
 yapıldı, gözle değil.
 
+## Geriye dönük saatlendirme (05:19–05:30)
+
+Kullanıcı kuralı sertleştirdi: **"kayıtlarda tüm saat detaylarını geriye dönük
+olarak da yazmamız hayati derecede önemli"** (16 Eyl 2026 05:19, Yavuz).
+Benim yazdığım kural "eskiler uydurularak doldurulmaz" diyordu; bu yeterli
+değilmiş — doldurulmalı, ama kaynağı gösterilerek.
+
+Devralınan **18 saatsiz kayıt** tarandı, 17'si saatlendi. Yöntem: arşiv arama.
+`ara.py` ile kararın konuşulduğu mesaj bulunup zaman damgası alındı.
+
+Üç işaret tanımlandı: `· saat arşivden` (kararın konuşulduğu an),
+`· saat dosya damgasından` (uygulandığı an), `· saat arşivde bulunamadı`
+(arandı, çıkmadı). Sonuncusu boşluk değil **ölçüm sonucudur** — bir sonraki
+oturum aynı aramayı baştan yapmasın diye.
+
+**Bulgu:** 15 Eylül 16:08'deki **tek kullanıcı mesajının içinde beş ayrı karar**
+varmış ve bunlar üç ayrı dosyaya dağılmış: açılış biçimi, "arasında" kelimesinin
+atılması, yalnız-WhatsApp kanalı, paket notunun yeri, kısa/uzun iki versiyon.
+Saat eklenmeden önce bu beşinin aynı ana ait olduğu görünmüyordu — hepsi
+"(15 Eyl 2026, Yavuz)" diye duruyordu. Saat, kararları **birbirine bağlayan**
+şeymiş; sadece sıralayan değil (claude 3557db3e · 16.09 05:25).
+
+Bu, playground için de geçerli bir ders: oradaki `(claude 3557db3e · 08.09 17:34)`
+biçimi zaten saat taşıyor, ama insan kararları için aynı disiplin yoktu.
+
+## Sözleşme klasörü kararı
+
+`NAR - Sözleşme Oluşturma` klasörü tamamen boştu. Kullanıcı kararı bana bıraktı.
+Silmeden önce arşivde arandı ve çıktı: sözleşme işi **5 Ağustos 17:00'de** Google
+Drive'a taşınmış (`dryaylldzz@gmail.com` hesabı) ve ayrı bir Codex projesinde
+(`Sözleşmeler`, oturum `019ea444`) yürütülüyormuş.
+
+Karar: **klasör silindi, bilgi kaydedildi.** Gerekçe: boş ama çağrışımlı bir
+klasör adı bir sonraki oturumu oraya yazmaya davet eder ve tek doğru kaynağı
+ikiye böler. Değerli olan klasör değil, sözleşmelerin nerede olduğuydu — o
+`AGENTS.md` §11 işaretçi tablosuna yazıldı (claude 3557db3e · 16.09 05:28).
+
+## Taşıma uyarısı
+
+Kullanıcı klasörü **D: sürücüsüne taşıyacağını** söyledi (Codex tarafında Astra
+yapacak). Ölçülen risk: `~/.codex/config.toml` içinde bu ağaç için **altı**
+yol-anahtarlı güven kaydı var; D:'de hepsi geçersiz olur. Ayrıca oturum arşivi
+yola göre gruplandığı için proje adı ikiye bölünür — playground'da aynı şey
+7 Eylül'de yaşanmıştı. Uyarı devir notuna ve açık uçlara yazıldı.
+
