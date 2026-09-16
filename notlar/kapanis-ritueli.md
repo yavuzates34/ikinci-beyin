@@ -106,9 +106,11 @@ Bu yüzden mesaj el değiştiriyor. `araclar/devir.py` bir posta kutusudur:
 - `precompact.py` mesajı kutuya **bırakır** (`derleme/omurga-anlik/devir-bekliyor.json`)
   ve kullanıcıya tek satır durum basar.
 - Kutuyu **konuşabilen** iki hook boşaltır, hangisi önce tetiklenirse:
-  `UserPromptSubmit` (sıkıştırmadan sonraki ilk prompt — asıl yol, aynı oturum
-  içinde teslim eder) ya da `SessionStart` (oturum sıkıştırmadan sonra hiç devam
-  etmediyse yeni oturum devralır — yedek yol).
+  `SessionStart` ya da `UserPromptSubmit`. Ölçüldü: sıkıştırma bitince Claude
+  Code `SessionStart`'ı zaten tetikliyor, yani teslimat kullanıcının bir şey
+  yazmasını beklemiyor — pratikte kutuyu `SessionStart` boşaltıyor.
+  `UserPromptSubmit` bu yol kaçtığında (hook henüz yüklü değilse, oturum başka
+  türlü devam ederse) devreye giren ikinci yol olarak duruyor.
 - Teslim eden kutuyu siler, yani mesaj bir kez okunur.
 - **12 saatten eski mesaj teslim edilmez.** Günler sonra gelen "şimdi yaz" emri
   yanlış oturuma yanlış işi yaptırır; bayat emir sessizce düşer.
@@ -128,6 +130,17 @@ omurga dosyası yazıldı — 69 kullanıcı mesajı, 44.974 bayt, 07.09 13:02'd
 16.09 03:08'e kadar zaman damgalarıyla eksiksiz. Enjeksiyon aynı anda şema
 hatasıyla düştü (claude 3557db3e · 16.09 03:13). Yani ağ, tasarlandığı gibi tek ayak üstünde iş gördü.
 
-**Henüz sınanmayan:** devir kutusu zinciri *gerçek* bir sıkıştırmada. Zincirin
-üç halkası da sahte girdiyle uçtan uca çalıştırıldı (bırak → teslim et → kutuyu
-boşalt → ikinci çağrıda sessiz kal), ama gerçek olayda görülmedi.
+**Zincirin tamamı gerçek sıkıştırmada ölçüldü** (16 Eylül 03:32, `/compact`,
+tetik `manual`): `precompact.py` şema hatası vermeden çalıştı, omurga yazıldı
+(73 kullanıcı mesajı, 47.947 bayt), kutu doldu ve mesaj sıkıştırmadan sonraki
+ilk turda modele ulaştı — `SessionStart` bloğunun içinde, `DEVIR KUTUSUNDAN:`
+başlığıyla. `devir-bekliyor.json` teslimden sonra diskte yoktu; tek okumalık
+tüketim de doğrulandı (claude 3557db3e · 16.09 03:35).
+
+**Beklenmeyen sonuç: asıl yol sandığım `UserPromptSubmit` değil, yedek saydığım
+`SessionStart` teslim etti.** Varsayım şuydu: "sıkıştırmadan sonra kullanıcı bir
+şey yazar, `UserPromptSubmit` aynı oturumda teslim eder." Gerçekte sıkıştırmanın
+kendisi `SessionStart`'ı tetikliyor, dolayısıyla teslimat daha erken oluyor.
+Tasarımın iki yollu olması tam da bu yüzden işe yaradı: hangi yolun kazanacağını
+bilmeden ikisini birden kurmak, doğru yolu tahmin etmeye çalışmaktan ucuzdu
+(claude 3557db3e · 16.09 03:35).

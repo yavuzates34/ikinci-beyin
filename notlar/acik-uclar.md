@@ -29,9 +29,6 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
 
 - `--fork-session` canlı denenmedi
 - Ekran kaydı → `izle.py` zinciri gerçek bir ChatGPT kaydıyla test edilmedi
-- **Devir kutusu zinciri** gerçek bir sıkıştırmada denenmedi. Sahte girdiyle
-  uçtan uca çalışıyor; gerçek olayda mesajın modele ulaşıp ulaşmadığı bir
-  sonraki `/compact`'te görülecek. Bkz. [[kapanis-ritueli]].
 
 ## Kapananlar
 
@@ -52,6 +49,10 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
   kimliğini ve açık paralel oturumları bildiriyor.
 - ~~Durum B açıkta~~ **16 Eylül** — `PreCompact` güvenlik ağı kuruldu,
   bloke etmeyen iki ayaklı tasarımla. Bkz. [[kapanis-ritueli]].
+- ~~Devir kutusu zinciri gerçek sıkıştırmada denenmedi~~ **16 Eylül 03:32** —
+  ikinci `/compact` ile sınandı, zincirin tamamı çalıştı: omurga yazıldı
+  (73 mesaj), kutu doldu, mesaj modele ulaştı, kutu silindi. Teslimatı
+  `UserPromptSubmit` değil `SessionStart` yaptı. Bkz. [[kapanis-ritueli]].
 - ~~`PreCompact` gerçek sıkıştırmada denenmedi~~ **16 Eylül 03:13** — `/compact`
   ile sınandı. Deterministik ayak tuttu (omurga yazıldı), enjeksiyon ayağı
   şema hatasıyla düştü ve devir kutusuyla yeniden kuruldu. Bkz.

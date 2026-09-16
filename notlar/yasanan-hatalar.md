@@ -85,3 +85,11 @@ Bir kez düşülmüş tuzaklar. Tekrar keşfedilmesin diye yazıldı.
     enjeksiyon düştü, omurga dosyası (44.974 bayt, 69 mesaj) yazıldı ve
     sıkıştırmadan sağ çıktı. Tek ayaklı olsaydı oturum sessizce kaybolurdu.
     **Çözüm:** [[kapanis-ritueli]] içindeki devir kutusu — `araclar/devir.py`.
+
+    **Kapanış (16 Eylül 03:32).** İkinci `/compact` ile zincir uçtan uca
+    doğrulandı: şema hatası yok, omurga yazıldı (73 mesaj, 47.947 bayt), mesaj
+    modele ulaştı, kutu silindi. Küçük bir sürpriz: teslimatı asıl yol sandığım
+    `UserPromptSubmit` değil, yedek saydığım `SessionStart` yaptı — sıkıştırma
+    kendisi `SessionStart`'ı tetikliyor. **Üçüncü ders:** düzeltmenin hangi
+    ayağının tutacağını da bilmiyordum; bilmediğimi kabul edip ikisini birden
+    kurmak doğru tahmini aramaktan ucuzdu.

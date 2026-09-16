@@ -517,3 +517,26 @@ Bir de kesinti: kullanıcının bir önceki promptu işlenirken elektrik gitti v
 makine kapandı. Kayıp olmadı — commit ve push tamamlanmıştı. Git'in bu projedeki
 ikinci faydası aynı gece görüldü (birincisi: Obsidian'ın sessiz düzenlemesini
 yakalaması).
+
+### İkinci sıkıştırma: zincirin tamamı tuttu
+
+03:32'de ikinci `/compact` atıldı. Aradaki tek fark düzeltmenin kendisiydi;
+ayrıca ikinci bir elektrik kesintisi uygulamayı yeniden başlatmış, dolayısıyla
+yeni `UserPromptSubmit` hook'u da kesin yüklenmişti.
+
+Üç halkanın üçü de ölçüldü:
+
+1. `precompact.py` şema hatası vermeden çalıştı; kullanıcıya görünen satır
+   `Omurga diske alindi: derleme/omurga-anlik/2026-09-16-0332-3557db3e.md
+   (73 mesaj, 41.1 KB)` oldu. Dosya diskte 47.947 bayt.
+2. Mesaj modele ulaştı — sıkıştırma sonrası ilk turda, `DEVIR KUTUSUNDAN:`
+   başlığıyla.
+3. `devir-bekliyor.json` teslimden sonra diskte yoktu; tek okumalık tüketim
+   çalışıyor.
+
+**Beklenmeyen:** teslimatı `UserPromptSubmit` değil `SessionStart` yaptı.
+Sıkıştırma bitince Claude Code `SessionStart`'ı zaten tetikliyor, yani kutu
+kullanıcı bir şey yazmadan önce boşalıyor. Tasarımda "asıl yol / yedek yol"
+diye ayırdığım şey tersine döndü. Ders kaydedildi: iki yollu kurmanın değeri,
+hangi yolun kazanacağını bilmemekti. Ayrıntı: [[kapanis-ritueli]],
+[[yasanan-hatalar]] madde 15.
