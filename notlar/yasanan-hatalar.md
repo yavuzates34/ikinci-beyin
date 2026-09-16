@@ -93,3 +93,24 @@ Bir kez düşülmüş tuzaklar. Tekrar keşfedilmesin diye yazıldı.
     kendisi `SessionStart`'ı tetikliyor. **Üçüncü ders:** düzeltmenin hangi
     ayağının tutacağını da bilmiyordum; bilmediğimi kabul edip ikisini birden
     kurmak doğru tahmini aramaktan ucuzdu.
+
+16. **Python'un `write_text`'i Windows'ta satır sonunu değiştiriyor.** 16 Eylül
+    03:37'de beş nota küçük yamalar atıldı; `git diff --stat` beşini de baştan
+    sona değişmiş gösterdi — `BEYIN.md`'de tek satır değiştirdiğim hâlde 154
+    satır. Sebep: `read_text()` okurken `
+` → `
+` çeviriyor, `write_text()`
+    yazarken `
+` → `os.linesep` yani `
+` geri koyuyor. Dosya LF ise
+    tamamı CRLF'e dönüyor.
+
+    Bu yalnızca estetik bir sorun değil: **gerçek değişiklik gürültünün içinde
+    kayboluyor.** Bu projede git'in şimdiye kadarki iki faydası da (Obsidian'ın
+    sessiz düzenlemesini ve bayat yapılandırma iddiasını yakalaması) diff'in
+    okunabilir olmasına dayanıyordu. Diff okunamazsa denetim de biter.
+
+    **Kural:** bir dosyayı yerinde yamalayan script satır sonuna dokunmamalı.
+    `read_bytes()` / `write_bytes()` kullan, ya da `newline=""` ver. Depo
+    karışık: notların çoğu LF, `yasanan-hatalar.md` CRLF (Obsidian'ın izi).
+    Bu yüzden "hepsini LF yap" da doğru cevap değil — **dosya neyse o kalsın.**
