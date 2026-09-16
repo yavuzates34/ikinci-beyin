@@ -74,7 +74,8 @@ def yaz(yol: Path, govde: str, kuru: bool) -> None:
 # ---------------------------------------------------------------- GUNLUK
 def gunluk(bugun: datetime, kuru: bool) -> int:
     dun = bugun - timedelta(days=1)
-    # Dedektor SADECE bu projeyi izler. Diger projelerde bu yapi henuz yok;
+    # Dedektor SADECE bu projeyi izler. Nar Ajans'in ARTIK kendi derleyicisi
+    # var (16 Eyl 2026), oradaki oturumlari o sayar. Diger projelerde yapi yok;
     # onlari "islenmemis" diye listelemek her gece onlarca satir gurultu uretir
     # ve rapor coplugee doner. Yapi baska projeye tasindiginda orada kendi
     # derleyicisi calisir. Diger projeler burada sadece tek satir sayidir.
@@ -88,7 +89,7 @@ def gunluk(bugun: datetime, kuru: bool) -> int:
 
     s = [f"# Gunluk derleme - {bugun:%d.%m.%Y}", "",
          f"Bu projede son 24 saatte yazilan oturum kaydi: **{len(taze)}**",
-         f"Diger projelerde: {len(diger)} oturum (bu yapi orada henuz yok, "
+         f"Diger projelerde: {len(diger)} oturum (kendi derleyicisi olanlar dahil, "
          f"dedektor kapsam disi)", ""]
 
     if islenmemis:
