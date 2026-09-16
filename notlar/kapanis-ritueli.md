@@ -81,7 +81,9 @@ Genel anlatım işaretçi taşımaz, yoksa her cümle parantezle dolar.
 ## PreCompact: güvenlik ağı (16 Eylül'de kuruldu)
 
 `araclar/precompact.py`, `.claude/settings.json` içinde `PreCompact` olayına
-`matcher: auto` ile bağlı. Bağlam sıkıştırılmadan hemen önce çalışır.
+**matcher'sız** bağlı: hem `auto` (sistem kendi sıkıştırırsa) hem `manual`
+(`/compact` yazılırsa) tetikliyor. Manual'i de kapsaması bilinçli — ağ ancak
+bilerek tetiklenebiliyorsa sınanabilir.
 
 **İki ayaklı, çünkü tek ayak güvenilmez.** Belge `PreCompact` için
 `additionalContext` desteğini "muhtemelen" diye geçiyor:
