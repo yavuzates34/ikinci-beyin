@@ -172,3 +172,42 @@ Codex'in bir checkpoint'i, artık görünür ve `gc`'ye karşı korumalı.
 - `Katılımcı-listeleri/.git` içindeki ~125 MB erişilemez nesne — `gc` kararı
 - Bayatlama tuzakları: `DURUM.md` mezar taşı, `TODAY-CHECKLIST-GUNCEL.md`
 
+## Hafıza katmanı kuruldu (05:05–05:15)
+
+Nar Ajans artık kendi hafızasına sahip. Kurulanlar:
+
+- **`AGENTS.md`** — ortak kurallar, tek kaynak. Kök `CLAUDE.md` içindeki marka
+  kararı, kapasite sayıları ve bağlayıcı güvenlik kuralları oraya taşındı,
+  **kopya bırakılmadı.** Sebep ölçülmüş: Codex `CLAUDE.md` okumuyor, yani ortak
+  sanılan kuralların yarısı ona görünmüyordu.
+- **`CLAUDE.md`** yeniden yazıldı: başında "önce `AGENTS.md`", gerisi Claude'a
+  özel. Eski sürüm yedekte duruyor.
+- **`BEYIN.md` + `notlar/` + `oturumlar/`** — playground'daki yapının aynısı.
+  Bilinçli olarak aynısı: kullanıcının iki projede iki zihin modeli taşıması
+  gereksiz.
+- **`CODEX-DEVIR.md`** — Codex'e devir notu. Onun tarafı onun kararı; ne
+  yapıldığı, ne bırakıldığı ve neye dokunulmayacağı yazılı.
+
+**Playground'un biçimi buraya zorla taşınmadı.** Oradaki `(15 Eyl 2026, Yavuz)`
+biçimi zaten çalışıyordu, korundu; üstüne ajan ölçümleri için oturum işaretçisi
+eklendi. Kullanıcının eklediği kural: **saat ve dakika zorunlu**
+(16 Eyl 2026 05:03, Yavuz) — yalnız tarih, aynı gün alınmış iki kararın sırasını
+kaybettiriyor.
+
+Devralınan saatsiz kayıtlar için yöntem: **uydurma yok.** Saat çoğu zaman diskte
+duruyor — kararın uygulandığı dosyanın damgası. `DURUM.md`'nin emekliye
+ayrılması 15 Eyl 23:01, marka kararı 4 Eyl 14:23 böyle bulundu ve
+`· saat dosya damgasından` diye işaretlendi.
+
+## Bu oturumun kendi tuzağı
+
+Ölü işaretçi tuzağına **iki kez** düşüldü. Biri devralınmıştı
+(`memory/fuar-takvimi-api.md` — öyle bir klasör hiç yok). Diğerini ben yazdım:
+`.claude/settings.json` dedim, dosyanın adı `settings.local.json`. Üstelik
+"bir belgeye yol yazarken yolun var olduğu o an doğrulanır" kuralını yazdıktan
+**on dakika sonra** (claude 3557db3e · 16.09 05:12).
+
+Ders playground için de geçerli: kuralı yazmak, kurala uymayı sağlamıyor.
+Denetim kuralın kendisinden ayrı bir iş — bağ denetimi bu yüzden komutla
+yapıldı, gözle değil.
+
