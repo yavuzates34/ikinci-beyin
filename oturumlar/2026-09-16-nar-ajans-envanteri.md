@@ -470,3 +470,50 @@ Derleyicinin varlık sebebi tam olarak bu.
 **Yan ders:** yanlış alarm veren bir güvenlik kontrolü, olmayan kontrolden
 beterdir — insan üçüncü seferde bakmayı bırakır.
 
+## Hafıza refleksleri kuruldu (10:36–10:47)
+
+Kullanıcı eksik dört parçayı istedi: `PreCompact` ağı, devir kutusu,
+`SessionStart` ve kapanış ritüeli. Hepsi kuruldu, playground'daki çalışan koddan
+uyarlanarak — sıfırdan yazmak bu gece öğrenilenleri kaybetmek olurdu.
+
+**Uyarlamada üç fark çıktı:**
+
+1. **Sabitler ayrı modüle alındı** (`araclar/ortak.py`). Playground'un
+   `kayit.py`'si kendi kökünü biliyor; körü körüne içe aktarılsa yanlış klasöre
+   bakardı. Ayrıca bu klasörün **iki yol anahtarı** var (taşıma öncesi C:,
+   sonrası D:) — ikisine birden bakılmazsa oturumların yarısı görünmez.
+2. **Paralel oturum uyarısı burada teorik değil.** Kullanıcı Claude ve Codex'i
+   birlikte çalıştırıyor; uyarı Codex'in izinin nerede olduğunu da söylüyor.
+3. **Derleyicinin sabitleri de ortak modüle bağlandı** — aynı sabit iki dosyada
+   duruyordu, yani kendi yasakladığımız şeyi kodda yapmışız.
+
+**Sınama:** üç hook da sahte girdiyle uçtan uca çalıştırıldı. `PreCompact`
+gerçek bir oturum kaydı üzerinde denendi (57 mesaj, 60 KB omurga), kutu oluştu,
+`UserPromptSubmit` teslim etti ve kutuyu boşalttı, ikinci çağrı sessiz kaldı.
+**Gerçek bir `/compact` bu klasörde henüz olmadı** — notlara böyle yazıldı.
+
+## Derleyici kendi işini yaptı
+
+Kurulum sırasında derleyici **1 kırık bağ** raporladı. Kaynağı: yeni yazdığım
+`.claude/oturum-basi.md` içindeki biçim örneği `[ad](notlar/ad.md)` — gerçek bağ
+değildi. İki düzeltme yapıldı: örnek kod işaretine alındı, ve nokta ile başlayan
+klasörler taramadan çıkarıldı (yapılandırma içerik değil; Obsidian da onları
+göstermiyor).
+
+**Bu, derleyicinin varlık sebebinin kanıtı oldu:** kurulduğu gün, onu kuran
+kişinin yeni yazdığı dosyadaki hatayı yakaladı. Kural yazmak ile kurala uymak
+arasındaki boşluğu kapatan şey kuralın kendisi değil, **kuralı denetleyen
+komut.**
+
+## Denetim notu bırakıldı
+
+Kullanıcı 5 saat sonra Codex limitleri yenilenince Astra'ya denetim yaptıracak.
+`notlar/asistan-yazismasi.md` sonuna denetim notu yazıldı: ne kuruldu, hangi
+komutlarla doğrulanır, **ve kendi şüphelendiğim dört zayıf nokta** —
+mükerrer oturum elenmiyor, `precompact.py` oturum bulamazsa "en son yazılan"ı
+seçiyor (paralel oturumda yanlış seçebilir), devir kutusu tek mesaj tutuyor,
+paralel uyarı eşiği gürültü yapabilir.
+
+Kendi zayıf noktalarını denetçiye söylemek, denetimin işe yaraması için şart —
+saklanan zayıflık denetimi tiyatroya çevirir.
+
