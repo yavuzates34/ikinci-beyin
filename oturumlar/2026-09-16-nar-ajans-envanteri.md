@@ -109,3 +109,66 @@ almak için çağrılan bir ajanın yazma yetkisi olmamalı
 48 KB'lık ara çıktı diskte durduğu için araştırma yeniden yapılmadı.
 
 Bağlantılar: [[kapanis-ritueli]], [[yasanan-hatalar]], [[acik-uclar]]
+
+## Codex'le ortak karar ve uygulama (04:49–05:00)
+
+Danışma `codex exec` ile yapıldı, `-s read-only` zorlandı, ilk tur kesintiye
+uğrayınca `codex exec resume <oturum-id>` ile kaldığı yerden sürdürüldü.
+`resume` alt komutu `-s`/`-m`/`-C` bayraklarını **almıyor**; kısıt ancak
+`-c sandbox_mode="read-only"` biçiminde veriliyor. Ayrıca resume çalışma
+dizinini taşımıyor, çağıran oturumunkini alıyor.
+
+**Codex planımdaki gerçek bir hatayı yakaladı:** `Katılımcı-listeleri` iç içe
+bir depo olduğu için, yalnızca `Instantly`'ye commit atmak o klasörün
+dosyalarını sürümlemiyor — git kendi `.git`'i olan alt klasöre girmez. Yani
+"aynı depoyu paylaş" planı 38 KB'lık hata kaydını ve araştırma protokolünü
+korumasız bırakacaktı (codex 01a0a7d7 · 16.09 04:49).
+
+Ortak karar: **hiçbir şey silinmeden iki depoya ayrı ayrı commit.** Birleştirme
+ertelendi — geri alınabilir bir iş.
+
+Codex'in kök depo hakkındaki görüşü: **kurmayın.** İç içe depolar gitlink gibi
+davranabilir, commit'siz depolar hata çıkarabilir. Kök dosyalar sürümlenecekse
+ancak "yalnızca izin verilenleri takip eden" sıkı bir meta depo olarak.
+
+## Uygulanan
+
+- `Katılımcı-listeleri/.gitignore` yazıldı (yoktu). `tmp/` **1.3 GB** ve o
+  klasörün ağırlığının neredeyse tamamı; dışarıda bırakıldı.
+  İlk commit: **257 dosya, 22.4 MB** (`11f4a22`).
+- `Instantly/.gitignore`'a `tmp/`, `__pycache__/` ve `Katılımcı-listeleri/`
+  eklendi. Sonuncusu bilinçli: alt depo ayrı, yanlışlıkla bozuk gitlink
+  eklenmesin. İlk commit: **47 dosya, 12.2 MB** (`19e1592`). `.env` dışarıda
+  kaldığı `git check-ignore` ile doğrulandı.
+
+## Ölçülmüş bulgu: uzun yol, checkpoint'leri git'e görünmez yapıyor
+
+Codex'in checkpoint ref'leri şu biçimde:
+`refs/codex/turn-diffs/checkpoints/<64 hex>/<64 hex>/<13 hane ts>/<uuid>`
+
+Bu yol `Katılımcı-listeleri` içinde **311 karakter** — Windows'un 260 sınırının
+üstünde. Sonuç: `git for-each-ref` ref'i hiç listelemiyor, `git show-ref`
+"bad ref ... (0000...)" diyor. Yani checkpoint git açısından **bozuk** ve bir
+`git gc` onu çöp sayıp işaret ettiği nesneleri silerdi.
+
+Çözüm ölçüldü: `git -c core.longpaths=true show-ref` ref'i doğru çözüyor
+(`4e3775be...`). İki depoya da `core.longpaths=true` kalıcı olarak yazıldı
+(claude 3557db3e · 16.09 05:00).
+
+**Ders:** "nesne erişilemez" demek "çöp" demek değil. Erişilemezliğin sebebi
+ref'in yokluğu olabileceği gibi, ref'in **okunamaması** da olabilir. Temizlikten
+önce sebep ayırt edilmeli. Codex'in raporladığı 125 MB'lık erişilemez yığının
+bir kısmı muhtemelen bu yüzden erişilemez görünüyordu.
+
+**Durum:** `Instantly`'de tek ref var (bizim commit) — oradaki checkpoint
+klasörleri gerçekten boş iskelet. `Katılımcı-listeleri`'nde iki ref: bizimki ve
+Codex'in bir checkpoint'i, artık görünür ve `gc`'ye karşı korumalı.
+
+## Henüz yapılmayan
+
+- Hafıza yapısının kendisi (asıl iş)
+- Kök `AGENTS.md` ve Codex'e devir notu
+- `NAR - Sözleşme Oluşturma` boş klasörü — silinsin mi, sorulacak
+- `Katılımcı-listeleri/.git` içindeki ~125 MB erişilemez nesne — `gc` kararı
+- Bayatlama tuzakları: `DURUM.md` mezar taşı, `TODAY-CHECKLIST-GUNCEL.md`
+
