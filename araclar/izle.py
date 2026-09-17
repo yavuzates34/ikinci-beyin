@@ -189,11 +189,15 @@ def transkript(kaynak_dosya, kok, ofset):
 
 # --- 2. asama: kareler ------------------------------------------------------
 
-def kareler(video, klasor, ofset, max_kare, sahne_esik=None):
-    """Varsayilan: araliga esit araliklarla max_kare adet kare.
+def kareler(video, klasor, ofset, max_kare, sahne_esik=None, kare_sn=None):
+    """Kare cikarir. Iki ayri birim:
 
-    Ekran kayitlarinda sahne algilama calismaz (ekran yavas degisir),
-    o yuzden varsayilan esit aralikli ornekleme.
+      max_kare : SAYI sabit  -> aralik uzadikca kareler seyreler (eski davranis)
+      kare_sn  : SIKLIK sabit -> kare sayisi aralikla buyur (dogru birim)
+
+    kare_sn verilirse max_kare yok sayilir.
+    Sahne algilama (--sahne) ekran kayitlarinda calismaz; mpdecimate ise
+    animasyonlu videolarda calismaz (17.09 olcumu). Eleme icin dhash kullan.
     """
     klasor.mkdir(parents=True, exist_ok=True)
     if sahne_esik is not None:
@@ -203,7 +207,7 @@ def kareler(video, klasor, ofset, max_kare, sahne_esik=None):
         zamanlar = [float(x) for x in re.findall(r"pts_time:([0-9.]+)", r.stderr)]
     else:
         d = sure(video)
-        adim = max(1.0, d / max_kare) if d else 3.0
+        adim = float(kare_sn) if kare_sn else (max(1.0, d / max_kare) if d else 3.0)
         kos([FFMPEG, "-y", "-loglevel", "error", "-i", str(video),
              "-vf", "fps=1/%.4f" % adim, "-fps_mode", "vfr",
              "-qscale:v", "3", str(klasor / "%05d.jpg")])
@@ -212,7 +216,7 @@ def kareler(video, klasor, ofset, max_kare, sahne_esik=None):
     ham = sorted(klasor.glob("[0-9]*.jpg"))
     if zamanlar is None:
         d = sure(video)
-        adim = max(1.0, d / max_kare) if d else 3.0
+        adim = float(kare_sn) if kare_sn else (max(1.0, d / max_kare) if d else 3.0)
         zamanlar = [i * adim for i in range(len(ham))]
 
     out = []
@@ -222,6 +226,205 @@ def kareler(video, klasor, ofset, max_kare, sahne_esik=None):
         h.rename(yeni)
         out.append((t, yeni))
     return out
+
+
+# --- 2b. eleme: algisal hash ------------------------------------------------
+
+def dhash(yol, s=16):
+    """Komsu piksel karsilastirmasi -> s*s bitlik parmak izi.
+
+    Gorsel benzerligi olcer, BILGISEL benzerligi degil. Konusan kafada
+    'farkli' der ama bilgi aynidir; slaytta tek kelime degisirse 'ayni' der.
+    Bu yuzden OCR varsa son soz onundur.
+    """
+    from PIL import Image
+    im = Image.open(yol).convert("L").resize((s + 1, s))
+    px = list(im.getdata())
+    bits = 0
+    for r in range(s):
+        for c in range(s):
+            if px[r * (s + 1) + c] < px[r * (s + 1) + c + 1]:
+                bits |= 1 << (r * s + c)
+    return bits
+
+
+def ele_benzer(kare_listesi, esik):
+    """Kendinden onceki SECILMIS karelerin hepsine uzaksa tut."""
+    if esik <= 0 or not kare_listesi:
+        return kare_listesi, []
+    tutulan, hashler, atilan = [], [], []
+    for t, p in kare_listesi:
+        h = dhash(p)
+        if not hashler or min(bin(h ^ o).count("1") for o in hashler) > esik:
+            tutulan.append((t, p))
+            hashler.append(h)
+        else:
+            atilan.append((t, p))
+    return tutulan, atilan
+
+
+# --- 3. asama: karedeki yazi ------------------------------------------------
+
+TESSERACT = shutil.which("tesseract") or r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+TESSDATA  = os.environ.get("IZLE_TESSDATA", "D:/AI/tessdata")
+
+
+def ocr_kare(yol, dil="tur", psm="6"):
+    """Karedeki yaziyi metne cevirir. Gurultu ayiklanir: sus sekillerinden
+    gelen 1-2 karakterlik anlamsiz parcalar atilir."""
+    ortam = dict(os.environ, TESSDATA_PREFIX=TESSDATA)
+    r = subprocess.run([TESSERACT, str(yol), "-", "-l", dil, "--psm", psm],
+                       capture_output=True, text=True, encoding="utf-8",
+                       errors="replace", env=ortam)
+    temiz = []
+    for parca in r.stdout.split():
+        if len(parca) >= 3 or parca.isdigit() or parca in ("mi", "mı", "ve", "bu"):
+            temiz.append(parca)
+    return " ".join(temiz).strip()
+
+
+def yazi_degisti(a, b, oran=0.80):
+    """Iki kare metni ayni bilgiyi mi tasiyor? Jaccard benzerligi."""
+    ka, kb = set(a.lower().split()), set(b.lower().split())
+    if not ka and not kb:
+        return False
+    ortak = len(ka & kb)
+    toplam = len(ka | kb)
+    return (ortak / toplam if toplam else 0) < oran
+
+
+# --- 1b. ikinci tanik: YouTube altyazisi ------------------------------------
+
+def altyazi_cek(url, kok, bas=None, bit=None):
+    """YouTube'daki hazir altyaziyi ceker. IKI TUR VAR ve ayrimi onemli:
+
+      'subtitles'         -> kanalin kendi yukledigi (Avenox'ta bu da bir AI
+                             transkripsiyon aracinin ciktisi, elle yazilmamis;
+                             ama kaynak ses HAM kayit, YouTube'un sikistirmasi
+                             degil - bu yuzden Whisper'dan bagimsiz bir taniktir)
+      'automatic_captions'-> YouTube'un kendi konusma tanimasi
+
+    Ikisi de tahmindir. Hakem yoktur, iki tanik vardir: uyustuklari yer guclu,
+    ayristiklari yer suphelidir.
+    """
+    if not str(url).startswith("http"):
+        return None, None
+    onek = str(kok / "ay")
+    for bayrak, tur in (("--write-subs", "kanal"), ("--write-auto-subs", "otomatik")):
+        for p in kok.glob("ay*.srt"):
+            p.unlink(missing_ok=True)
+        kos(["yt-dlp", "--skip-download", bayrak, "--sub-langs", "tr",
+             "--convert-subs", "srt", "-o", onek, url])
+        bulunan = list(kok.glob("ay*.srt"))
+        if bulunan:
+            satirlar = srt_oku(bulunan[0], bas, bit)
+            if satirlar:
+                return satirlar, tur
+    return None, None
+
+
+def srt_oku(yol, bas=None, bit=None):
+    """SRT'yi [mm:ss] metin satirlarina cevirir, istenen araliga kirpar."""
+    ham = yol.read_text(encoding="utf-8", errors="replace")
+    out = []
+    for blok in re.split(r"\n\s*\n", ham):
+        m = re.search(r"(\d+):(\d+):(\d+)[,.](\d+)\s*-->", blok)
+        if not m:
+            continue
+        t = int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
+        if bas is not None and t < bas:
+            continue
+        if bit is not None and t > bit:
+            continue
+        metin = " ".join(s.strip() for s in blok.splitlines()[2:] if s.strip())
+        metin = re.sub(r"<[^>]+>", "", metin).strip()
+        if metin:
+            out.append("[" + mmss(t) + "] " + metin)
+    return out
+
+
+# --- 4. asama: birlestirme --------------------------------------------------
+
+def _damgali(satirlar):
+    """[mm:ss] metin -> (saniye, metin) listesi."""
+    out = []
+    for s in satirlar or []:
+        m = re.match(r"\[(\d+):(\d+)\]\s*(.*)", s)
+        if m:
+            out.append((int(m.group(1)) * 60 + int(m.group(2)), m.group(3).strip()))
+    return out
+
+
+_NOKTALAMA = str.maketrans("", "", ".,;:!?\"'()[]{}…“”‘’–—")
+
+
+def _kelimeler(metin):
+    return {k for k in metin.lower().translate(_NOKTALAMA).split() if len(k) >= 3}
+
+
+def birlestir(kok, transkript_satir, altyazi_satir, kare_yazi_satir, kova=20):
+    """Uc kaynagi tek zaman cizelgesinde toplar ve AYRISMAYI isaretler.
+
+    Iki konusma kaynagi da tahmindir; hakem yoktur. Bu yuzden birlestirme
+    'dogruyu sec' degil, 'nerede ayrisiyorlar' sorusunu cevaplar. Ayrisan
+    kelime, ya birinin hatasi ya otekinin duydugu ek bilgidir - ikisi de
+    bakmaya degerdir.
+    """
+    tr = _damgali(transkript_satir)
+    ay = _damgali(altyazi_satir)
+    kr = _damgali(kare_yazi_satir)
+    if not tr and not ay and not kr:
+        return None
+
+    hepsi = [t for t, _ in tr + ay + kr]
+    bas, son = min(hepsi), max(hepsi)
+    out, ayrisma_say = [], 0
+
+    def pencere(L, t0, genislik=1):
+        """genislik=1 -> komsu kovalar da dahil. Iki kaynak ayni ani farkli
+        damgaliyor (whisper segmentin BASINI damgalar, altyazi her cumleyi),
+        bu yuzden kelime karsilastirmasi toleransli pencerede yapilir; yoksa
+        hizalama kaymasi gercek ayrisma gibi gorunur."""
+        a = t0 - genislik * kova
+        b = t0 + (genislik + 1) * kova
+        return [m for s, m in L if a <= s < b]
+
+    t = (bas // kova) * kova
+    while t <= son:
+        dar = lambda L: [m for s, m in L if t <= s < t + kova]
+        a, b, c = dar(tr), dar(ay), dar(kr)
+        if not (a or b or c):
+            t += kova
+            continue
+        out.append("## [%s]" % mmss(t))
+        if a:
+            out.append("**ses (whisper):** " + " ".join(a))
+        if b:
+            out.append("**ses (altyazi):** " + " ".join(b))
+        if a and b:
+            # dar pencerede soylenen, GENIS pencerede otekinde var mi?
+            ka, kb = _kelimeler(" ".join(a)), _kelimeler(" ".join(b))
+            gw = _kelimeler(" ".join(pencere(tr, t)))
+            ga = _kelimeler(" ".join(pencere(ay, t)))
+            yalniz_w, yalniz_a = sorted(ka - ga), sorted(kb - gw)
+            if yalniz_w or yalniz_a:
+                ayrisma_say += 1
+                out.append("**! ayrisma:** whisper'da `%s` | altyazida `%s`"
+                           % (", ".join(yalniz_w) or "-", ", ".join(yalniz_a) or "-"))
+        if c:
+            out.append("**ekranda:** " + " ".join(c))
+        out.append("")
+        t += kova
+
+    basl = ["# Birlesik dokum", "",
+            "Kaynak: %s%s%s. Iki konusma kaynagi da tahmindir, hakem yoktur;"
+            % ("whisper" if tr else "",
+               " + altyazi" if ay else "",
+               " + ekran yazisi (ocr)" if kr else ""),
+            "ayrisan kelimeler isaretlendi (%d pencerede)." % ayrisma_say, ""]
+    hedef = kok / "birlesik.md"
+    hedef.write_text("\n".join(basl + out), encoding="utf-8")
+    return hedef, ayrisma_say
 
 
 # --- ortam kontrolu ---------------------------------------------------------
@@ -245,6 +448,21 @@ def kontrol():
     print("%-10s %s %s" % ("model", MODEL_ADI,
                            "-> " + str(md) if md.exists() else "(indirilmemis)"))
     print("%-10s %s" % ("sozluk", "var" if (KOK / "sozluk.txt").exists() else "YOK"))
+    try:
+        import PIL
+        print("%-10s Pillow %s (dhash elemesi calisir)" % ("pillow", PIL.__version__))
+    except ImportError:
+        print("%-10s YOK -> pip install pillow (dhash elemesi calismaz)" % "pillow")
+    if Path(TESSERACT).exists() or shutil.which("tesseract"):
+        r = subprocess.run([TESSERACT, "--list-langs"], capture_output=True,
+                           text=True, encoding="utf-8", errors="replace",
+                           env=dict(os.environ, TESSDATA_PREFIX=TESSDATA))
+        diller = [x.strip() for x in r.stdout.splitlines()[1:] if x.strip()]
+        print("%-10s %s  diller: %s" % ("tesseract", TESSDATA, ", ".join(diller) or "?"))
+        if "tur" not in diller:
+            print("%-10s !! tur.traineddata yok -> tessdata_best'ten indir" % "")
+    else:
+        print("%-10s YOK -> winget install UB-Mannheim.TesseractOCR" % "tesseract")
 
 
 # --- ana akis ---------------------------------------------------------------
@@ -255,7 +473,18 @@ def main():
     a.add_argument("--basla")
     a.add_argument("--bitir")
     a.add_argument("--kare", action="store_true", help="2. asama: kare de cikar")
-    a.add_argument("--max-kare", type=int, default=24, dest="max_kare")
+    a.add_argument("--max-kare", type=int, default=24, dest="max_kare",
+                   help="SAYI sabit (eski birim): aralik uzadikca kareler seyreler")
+    a.add_argument("--kare-sn", type=float, default=None, dest="kare_sn",
+                   help="SIKLIK sabit: kac saniyede bir kare (dogru birim)")
+    a.add_argument("--benzer", type=int, default=24,
+                   help="dhash eleme esigi (0 = eleme yok, 24 onerilen)")
+    a.add_argument("--ocr", action="store_true",
+                   help="3. asama: karelerdeki yaziyi oku (Tesseract)")
+    a.add_argument("--altyazi", action="store_true",
+                   help="YouTube'daki hazir altyaziyi da cek (ikinci tanik)")
+    a.add_argument("--kova", type=int, default=20,
+                   help="birlesik dokumde zaman penceresi (saniye)")
     a.add_argument("--sahne", type=float, default=None)
     a.add_argument("--sessiz", action="store_true", help="transkript uretme")
     a.add_argument("--kontrol", action="store_true", help="ortami sina ve cik")
@@ -279,22 +508,78 @@ def main():
 
     dosya = hazirla(n.kaynak, bas, bit, kok, sadece_ses=not n.kare)
 
+    ay_satir, tr_satir, kr_satir = [], [], []
+
+    if n.altyazi:
+        ay_satir, tur = altyazi_cek(n.kaynak, kok, bas, bit)
+        ay_satir = ay_satir or []
+        if ay_satir:
+            (kok / "altyazi.txt").write_text("\n".join(ay_satir), encoding="utf-8")
+            print("ALTYAZI (%s): %s (%d satir)"
+                  % (tur, kok / "altyazi.txt", len(ay_satir)))
+        else:
+            print("ALTYAZI: bulunamadi")
+
     if not n.sessiz:
-        satirlar = transkript(dosya, kok, ofset)
-        print("TRANSKRIPT: %s (%d satir)" % (kok / "transkript.txt", len(satirlar)))
+        tr_satir = transkript(dosya, kok, ofset)
+        print("TRANSKRIPT: %s (%d satir)" % (kok / "transkript.txt", len(tr_satir)))
 
     if n.kare:
-        kl = kareler(dosya, kok / "kareler", ofset, n.max_kare, n.sahne)
+        kl = kareler(dosya, kok / "kareler", ofset, n.max_kare, n.sahne, n.kare_sn)
         aralik = (bit - bas) if (bas is not None and bit is not None) else sure(dosya)
-        print("KARE SAYISI: %d  (aralik %.1f dk -> %.0f sn'de bir kare)"
-              % (len(kl), aralik / 60, aralik / max(len(kl), 1)))
+        ham_sayi = len(kl)
+
+        atilan = []
+        if n.benzer > 0 and n.sahne is None:
+            kl, atilan = ele_benzer(kl, n.benzer)
+            for _, p in atilan:
+                p.unlink(missing_ok=True)
+
+        yazilar = {}
+        if n.ocr:
+            print("[ocr] %d kare okunuyor..." % len(kl), flush=True)
+            son_metin, ikinci_ele = "", []
+            kalan = []
+            for t, p in kl:
+                m = ocr_kare(p)
+                if m and not yazi_degisti(son_metin, m):
+                    ikinci_ele.append((t, p))   # ayni yazi: kare tekrar
+                    p.unlink(missing_ok=True)
+                    continue
+                if m:
+                    son_metin = m
+                yazilar[p.name] = m
+                kalan.append((t, p))
+            if ikinci_ele:
+                print("[ocr] yazisi degismeyen %d kare daha elendi" % len(ikinci_ele))
+            kl = kalan
+            kr_satir = ["[%s] %s" % (mmss(t), yazilar.get(p.name, ""))
+                        for t, p in kl]
+            (kok / "kare-yazilari.txt").write_text("\n".join(kr_satir),
+                                                   encoding="utf-8")
+            print("KARE YAZILARI: %s" % (kok / "kare-yazilari.txt"))
+
+        print("KARE SAYISI: %d  (ham %d -> elendi %d)  aralik %.1f dk -> %.0f sn'de bir"
+              % (len(kl), ham_sayi, ham_sayi - len(kl), aralik / 60,
+                 aralik / max(len(kl), 1)))
         for t, p in kl:
-            print("  [%s] %s" % (mmss(t), p.name))
-        if aralik > 300:
+            ek = ("  | " + yazilar[p.name][:70]) if yazilar.get(p.name) else ""
+            print("  [%s] %s%s" % (mmss(t), p.name, ek))
+        if aralik > 300 and not n.kare_sn:
             print("!! UYARI: aralik genis, kareler seyrek."
-                  " Ekran metni okumak icin 2-3 dakikalik aralik ver.")
+                  " --kare-sn 3 ile sikligi sabitle.")
     else:
         print("SONRAKI ADIM: ilgili zamani secip --kare ile dar aralik iste.")
+
+    # 4. asama: elde birden fazla kaynak varsa tek dokumde birlestir
+    kaynak_sayisi = sum(1 for x in (tr_satir, ay_satir, kr_satir) if x)
+    if kaynak_sayisi >= 2:
+        sonuc = birlestir(kok, tr_satir, ay_satir, kr_satir, n.kova)
+        if sonuc:
+            yol, ayr = sonuc
+            print("BIRLESIK: %s  (%d pencerede ayrisma isaretlendi)" % (yol, ayr))
+    elif kaynak_sayisi == 1:
+        print("(birlestirme atlandi: tek kaynak var, karsilastiracak tanik yok)")
 
 
 if __name__ == "__main__":

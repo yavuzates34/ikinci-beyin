@@ -97,11 +97,13 @@ Bir kez düşülmüş tuzaklar. Tekrar keşfedilmesin diye yazıldı.
 16. **Python'un `write_text`'i Windows'ta satır sonunu değiştiriyor.** 16 Eylül
     03:37'de beş nota küçük yamalar atıldı; `git diff --stat` beşini de baştan
     sona değişmiş gösterdi — `BEYIN.md`'de tek satır değiştirdiğim hâlde 154
-    satır. Sebep: `read_text()` okurken `
+    satır. Sebep: `read_text()` okurken `
+
 ` → `
 ` çeviriyor, `write_text()`
     yazarken `
-` → `os.linesep` yani `
+` → `os.linesep` yani `
+
 ` geri koyuyor. Dosya LF ise
     tamamı CRLF'e dönüyor.
 
@@ -135,3 +137,58 @@ Bir kez düşülmüş tuzaklar. Tekrar keşfedilmesin diye yazıldı.
 
     **Kural:** eşleşmeyi **ayırt et**. Satır bazlı karşılaştır, tam eşleşme ara,
     ya da neyi saydığını gözle gör. Arama sonucu bir ölçüm değildir.
+
+19. **Tarih hatası: etiketsiz sayı, yanlış soruya ölçüm, araç tuzağı.** Üç katman
+    üst üste geldi (claude 7f10f7a3 · 17.09 03:08–03:11). Kullanıcı "tarih benim
+    için çok önemlidir" dediği için madde uzun tutuldu.
+
+    **Ne oldu:** "30 Ağustos'ta Taha'nın videosunu (8 Temmuz 2026, 16:39)
+    işlemiştik" yazdım. Bir cümlede üç zaman bilgisi vardı — konuşma tarihi,
+    videonun yükleme tarihi, videonun süresi — ve ikisi etiketsizdi. Kullanıcı
+    "8 Temmuz mu? Emin misin?" diye sordu; **bizim konuşma tarihimizi**
+    soruyordu. Ben videonun yükleme tarihini ölçtüm, "doğruymuş" dedim ve
+    yanlış soruyu doğrulamış oldum.
+
+    **Kök 1 — Etiketsiz sayıyı taşıdım.** `ara.py` çıktısında "Avenox, 8 Temmuz
+    2026, 16:39" yazıyordu; orası da etiketsizdi. Stringi olduğu gibi kopyaladım.
+    *Kural: sayı taşınırken etiketi de taşınır.* Cümlede birden fazla tarih
+    varsa her birinin neyin tarihi olduğu yazılır.
+
+    **Kök 2 — Belirsiz soruya netleştirmeden ölçümle cevap verdim.** Soru iki
+    anlama geliyordu; ben kendi niyetimi okuyucunun niyeti sandım. Sonra ölçüm
+    yaptım ve ölçüm doğru çıktı — ama yanlış şeyi ölçtü. Bu, 30 Ağustos'ta
+    Avenox videosundan çıkardığımız dersin aynısı: *yanlış şeyi ölçen tabela,
+    hiç tabela olmamasından kötüdür, çünkü "bilmiyorum"u "doğruladım"a çevirir.*
+    Burada daha da kötüsü oldu: ölçüm yapmış olmak bana sahte güven verdi ve o
+    güveni kullanıcıya da aktardım. **Doğrulama ritüeli yanlış hedefe
+    uygulandığında hatayı düzeltmez, sertleştirir.** *Kural: kullanıcı bir
+    tarihi/sayıyı sorguladığında, ölçmeden önce hangisini sorduğunu netleştir.*
+
+    **Kök 3 — Araç tuzağı, ölçüldü.** `ara.py` başlığındaki tarih oturumun
+    `st_mtime`'ı, yani kaydın **son yazılma** tarihi (`kayit.py:180,196`).
+    Avenox oturumu başlıkta `07.09.2026` görünüyor; oysa konuşma **30 Ağustos**
+    12:34'te başlamış ve **4 Eylül** 22:08'e kadar sürmüş. Başlığa güvenseydim
+    "7 Eylül'de konuşmuştuk" derdim — o da yanlış olurdu.
+    *Kural: arşivden tarih alırken **mesaj damgasını** oku, oturum başlığını
+    değil. Gerekirse `omurga.py <id>` ile ilk ve son mesaja bak.*
+
+    **Neden bu projede tarih özellikle kırılgan:** oturumlar günlerce açık
+    kalıyor. Bu örnekte tek bir oturumun üç farklı "tarihi" var: başlangıç
+    (30.08), son mesaj (04.09), dosya mtime (07.09). `CLAUDE.md` bunun yazma
+    tarafını uyarıyordu ("oturum başında verilen tarih bayatlar"); **okuma
+    tarafı** bu maddeyle kapandı.
+
+20. **Dosya saydım, oturum saydığımı söyledim.** 4–7 Eylül boşluğunu tararken
+    "o üç günde altı oturum var" dedim. Kullanıcı itiraz etti: *"Ben kendim o
+    kadar oturum açtığımı hatırlamıyorum."* Haklıydı — ben `.jsonl` dosyası
+    saymıştım (claude 7f10f7a3 · 17.09 04:54).
+
+    Gerçek sayım üç farklı rakam veriyor ve hangisini kastettiğim yazılmamıştı:
+    **7 kayıt dosyası**, **6 benzersiz oturum kimliği** (`adbd10b1` iki yol
+    anahtarında mükerrer), ve **4 yeni açılmış konuşma** (biri `6052d412`'nin
+    fork'u, yani kullanıcının açtığı yeni bir oturum değil).
+
+    **Kural:** sayı verirken **neyin** sayısı olduğu yazılır. Bu, madde 19'daki
+    tarih hatasının aynı kökü: etiketsiz sayı. Orada "hangi tarih" eksikti,
+    burada "hangi birim". Dosya ≠ oturum ≠ konuşma; arada fork ve mükerrer
+    kayıt var. Ölçüm: [[olculmus-bulgular]] §4.

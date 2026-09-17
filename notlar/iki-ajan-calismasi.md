@@ -4,7 +4,7 @@
 yöntem işe yaradı. Bu not, neyin işe yaradığını ve **neden** işe yaradığını
 kaydeder; tekrarlanabilir olsun diye.
 
-> Merkez: [[BEYIN]] · İlgili: [[tasarim-dersleri]] · [[kapanis-ritueli]] · [[yasanan-hatalar]]
+> Merkez: [[BEYIN]] · İlgili: [[agentic-yapi]] · [[tasarim-dersleri]] · [[kapanis-ritueli]] · [[yasanan-hatalar]]
 > Kaynak: [[2026-09-16-nar-ajans-envanteri]]
 
 ---

@@ -144,3 +144,44 @@ kendisi `SessionStart`'ı tetikliyor, dolayısıyla teslimat daha erken oluyor.
 Tasarımın iki yollu olması tam da bu yüzden işe yaradı: hangi yolun kazanacağını
 bilmeden ikisini birden kurmak, doğru yolu tahmin etmeye çalışmaktan ucuzdu
 (claude 3557db3e · 16.09 03:35).
+
+---
+
+## Arşiv kaydında tarih kuralı
+
+17 Eylül'de kullanıcı haritaya bakıp *"birkaç saat önce kapattığımız oturumun
+kaydı neden yok"* diye sordu. Kayıt vardı — ama bakılacak yerde değildi. Üç ayrı
+kusur üst üste binmişti (claude 7f10f7a3 · 17.09 04:47):
+
+1. **Harita satırı oturumun ilk gününü anlatıyordu.** On günlük, 110 mesajlık,
+   iki iş kollu bir oturum "Kapanış ritüeli ve arşiv arama katmanı kuruldu"
+   diye özetlenmişti; bu 8 Eylül'ün işiydi. Kullanıcı son günü arıyordu.
+2. **Dosya başlıklarındaki tarihler yanlıştı.** Birinci oturum "30 Ağustos –
+   7 Eylül" yazıyordu, ham kayıt **04.09 22:13** diyor. İkincisi "7–16 Eylül"
+   yazıyordu, ham kayıt **17.09 01:55** diyor. İkisi de hatırlanarak yazılmıştı.
+3. **Kapanış yanlış dosyaya yazılmıştı.** Oturumun son 97 mesajı Nar Ajans iş
+   kolunda geçtiği için kapanış, o alt kolun dosyasına eklenmişti. Yani
+   **oturumun baskın konusu, oturumun tamamı sanıldı.**
+
+Üçüncüsü modelin yapısal bir zaafına dayanıyor ve tekrar edeceği için burada
+duruyor: bağlamda **sıra** var ama **ağırlık** yok. Sondaki yoğunluk bütünün
+rengi gibi görünür. Kapanış anı zaten modelin bu iş için en kötü hâlidir
+(bkz. yukarısı); oturum uzunsa baskın konu yanılgısı buna eklenir.
+
+**Kural — arşiv kaydı yazarken:**
+
+- Aralık **ham kayıttan ölçülür, hatırlanmaz.** İlk ve son damga:
+  `araclar/omurga.py <id>` kullanıcı mesajlarını verir; kaydın gerçek son anı
+  için `.jsonl`'ın son satırındaki damgaya bakılır (model çıktıları ve araç
+  çağrıları omurgada görünmez, kaydın sonunu onlar belirler).
+- Hem dosya başlığı hem harita satırı **açılış ve kapanışı saatiyle** taşır:
+  `30.08.2026 12:34 – 04.09.2026 22:13`. Dosya adındaki tarih yalnızca açılıştır
+  ve tek başına yanıltır; kullanıcı oturumları *kapandıkları* zamanla hatırlıyor.
+- **Kapanış, oturumun kendi dosyasına yazılır.** Oturum içinde açılan alt kol
+  dosyaları ayrı oturum değildir; o dosyalar hangi oturuma ait olduklarını
+  kendi içlerinde söyler ve asıl dosyaya bağ verir.
+- Harita satırı oturumun **tamamını** özetler. İki iş kolu varsa ikisi de
+  yazılır; son iş kolu bütünün adı olarak kullanılmaz.
+
+İlgili: [[yasanan-hatalar]] madde 19 (aynı kökten çıkan tarih hatası),
+[[kullanici-baglami]] (modelin zaman algısı üzerine).

@@ -519,55 +519,7 @@ saklanan zayıflık denetimi tiyatroya çevirir.
 
 ---
 
-## Oturum kapanışı — 17 Eylül 2026 02:00
+## Bu iş kolu hangi oturuma ait
 
-Bu oturum (`3557db3e`) **07.09 13:02'de açıldı, 17.09 01:48'de kapandı.**
-On gün, **110 kullanıcı mesajı**, 9.114 KB ham kayıt. Mesajların 97'si tek
-günde — 16 Eylül'de. Kapanış ritüeli gereği omurga okunarak yazıldı.
-
-Oturumun iki yarısı var: ilk yarı playground'un kendi beynini tamamladı
-(kapanış ritüeli, arşiv arama, gece derleyicisi, git, PreCompact ağı), ikinci
-yarı o yapıyı Nar Ajans'a taşıdı. Aradaki geçiş kullanıcının şu cümlesiydi:
-*"bu Nar Ajans - Codex klasörünü birlikte düzenleyin, adam edin işte."*
-
-## Kalıcı katmana terfi edenler
-
-- **[[iki-ajan-calismasi]]** — yeni not. Claude ve Codex'in aynı klasörde
-  çalışma yöntemi: ortak olan dosyalardır, asıl değer birbirini denetlemektir,
-  asimetri gizlenmez. Sekiz karşılıklı yakalama listelendi.
-- **[[tasarim-dersleri]] §5.7** — kuralı yazmak kurala uymayı sağlamıyor;
-  denetleyici komut şart. §5.8 — "erişilemez" ile "çöp" aynı şey değil.
-- **[[yasanan-hatalar]] 17 ve 18** — kaçış tuzağının üç kılığı, alt dize
-  eşleşmesini ölçüm sanmak.
-
-## Ortam bulgusu: heredoc ters eğik çizgiyi yutuyor
-
-Bu oturumda **üç kez** aynı duvara çarpıldı ve sonuncusu tam da o tuzağı
-anlatan notu yazarken oldu. Ampirik kural netleşti:
-
-> Bu ortamda `<<'PY'` heredoc'una giren Python kaynağında `\` tek `\`'e
-> iniyor. Yani kod üreten kod yazarken **ham dizge zorunlu**, tercih değil.
-> Satır sonu için `chr(10)`.
-
-Kaçış derleme anında patladığı için ucuz yakalanıyor — ama her seferinde bir
-tur kaybettiriyor (claude 3557db3e · 17.09 01:58).
-
-## Sayılarla ne bırakıldı
-
-| | |
-|---|---|
-| Nar Ajans bilgi katmanı | 710 KB, 96 dosya |
-| Markdown bağ | 66, kırık 0 |
-| İşaretçisi olmayan klasör | 0 |
-| Sürüm kontrolüne alınan | 2 depo, 304 dosya, 34.6 MB |
-| Doğrulanmış yedek | 20.307 dosya, 4.21 GB (`D:\Yedekler\`) |
-| Kurulan otomatik iş | 3 hook + 1 gece görevi |
-| Codex'le karşılıklı yakalanan hata | 8 |
-
-## Açık kalan
-
-[[acik-uclar]] içindeki "Nar Ajans'tan devreden" bölümü. Başlıcası: **Astra'nın
-denetimi** ve **gerçek bir `/compact`'in orada hiç denenmemiş olması.**
-
-Kullanıcının kapanış cümlesi: *"Bu oturumun context window'u şişeceği kadar
-şişmiş. Artık bunu bırakıp arşive almam gerekiyor."* — 605.3k / 1M, %61.
+Bu dosya ayrı bir oturum değil, `3557db3e` oturumunun (07.09.2026 13:02 – 17.09.2026 01:55) 16 Eylül 04:00–04:45 arasında açılan alt koludur.
+O oturumun kapanış kaydı burada değil, asıl oturum dosyasındadır: [[2026-09-07-ikinci-oturum]].

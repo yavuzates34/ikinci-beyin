@@ -30,6 +30,12 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
 
 ## Nar Ajans'tan devreden
 
+> **17 Eylül'de kapandı — bu başlık artık iş listesi değil, tarihsel kayıt.**
+> Nar Ajans kendi klasöründe kendi ajanlarıyla yürüyor; buradan oraya müdahale
+> edilmez. Kural: [[proje-egemenligi]]. Aşağıdaki maddeler burada kapatılmaz,
+> silinmedi çünkü neyin ne zaman devredildiği de bilgidir.
+
+
 - **Astra'nın denetimi bekleniyor.** 17 Eylül'de Codex limitleri yenilenince
   kullanıcı denetim yaptıracak. Denetim notu ve kendi işaret ettiğim dört zayıf
   nokta o klasörün `notlar/asistan-yazismasi.md` dosyasında.

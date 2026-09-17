@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 17 Eylül 2026, 02:00
+**Son güncelleme:** 17 Eylül 2026, 18:12
 
 ---
 
@@ -38,16 +38,21 @@ Klasör bir **git deposu** ve private GitHub deposuna bağlı
 | [[tasarim-dersleri]] | Geri besleme, ölçümün kalite şartları, komut mu doküman mı |
 | [[capraz-arac-baglam]] | Kapalı sohbet uygulamalarına erişim sorunu (çözülmemiş) |
 | [[kullanici-baglami]] | Hedefler, zaman kısıtı, öncelikler, çalışma tarzı |
+| [[proje-egemenligi]] | Her klasör ayrı devlet: okunur, müdahale edilmez |
+| [[agentic-yapi]] | Model, harness, bağlam: ne ajan, ne değil — şemalı |
 | [[acik-uclar]] | Karar bekleyenler, yapılmamış testler, yol haritası |
 
 ## Oturum arşivi
 
-| Oturum | Konu |
-|---|---|
-| [[2026-08-30-birinci-oturum]] | izle.py kuruldu, arşiv keşfedildi, ikinci beyin tasarlandı |
-| [[2026-09-07-ikinci-oturum]] | Kapanış ritüeli ve arşiv arama katmanı kuruldu |
-| [[2026-09-16-nar-ajans-envanteri]] | Nar Ajans çalışma alanı sayımı: 6 depo, Codex checkpoint'leri, 4.21 GB yedek |
-| [[BAGLAM-DEVRI]] | 30 Ağustos itibarıyla teknik devir belgesi (başka bir modele verilmek üzere) |
+Aralık, ham kaydın **ilk ve son damgasından** ölçüldü — dosya adındaki tarih
+oturumun açılışıdır, kapanışı değil.
+
+| Oturum | Açılış – Kapanış | Konu |
+|---|---|---|
+| [[2026-08-30-birinci-oturum]] | 30.08 12:34 – 04.09 22:13 | izle.py kuruldu, arşiv keşfedildi, ikinci beyin tasarlandı |
+| [[2026-09-07-ikinci-oturum]] | 07.09 13:02 – 17.09 01:55 | **On gün, 110 mesaj, iki iş kolu.** İlk yarı: kapanış ritüeli, arşiv arama, gece derleyicisi, git, PreCompact ağı. İkinci yarı: yapının Nar Ajans'a taşınması |
+| [[2026-09-16-nar-ajans-envanteri]] | 16.09 04:00 – 04:45 | Ayrı oturum değil — yukarıdaki oturumun **alt kolu**. Nar Ajans çalışma alanı sayımı: 6 depo, Codex checkpoint'leri, 4.21 GB yedek |
+| [[BAGLAM-DEVRI]] | — | 30 Ağustos itibarıyla teknik devir belgesi (başka bir modele verilmek üzere) |
 
 ## Sesli dinleme dosyaları
 
@@ -75,5 +80,8 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 - **Tarih hook'u kurulu** ama yine de dikkatli ol: oturum günlerce açık kalabiliyor
   ve konuşma modele kesintisiz görünüyor.
 - **Klasör taşınırsa hafıza öksüz kalır.** Oturumlar ve hafıza, klasör yoluna göre
-  gruplanıyor. 7 Eylül'de `Desktop\playground` → `Desktop\desktop\playground`
-  taşındı; hafıza dosyaları elle taşındı. Eski yoldaki ham jsonl kaydı silinmemeli.
+  gruplanıyor. `Desktop\playground` → `Desktop\desktop\playground` taşındı;
+  hafıza dosyaları elle taşındı. Eski yoldaki ham jsonl kaydı silinmemeli.
+  **Tarih düzeltmesi (17.09 ölçümü):** burada "7 Eylül" yazıyordu; yeni yol
+  anahtarındaki ilk damga **04.09 22:13**. Taşımada oturum fork'landı, kimlik
+  `6052d412` → `3c1530e9` oldu. Ayrıntı: [[olculmus-bulgular]] §4.

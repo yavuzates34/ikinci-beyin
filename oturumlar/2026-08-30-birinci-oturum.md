@@ -1,4 +1,4 @@
-# 30 Ağustos – 7 Eylül 2026 — birinci oturum
+# Birinci oturum — 30.08.2026 12:34 – 04.09.2026 22:13
 
 Tek kesintisiz oturum, sekiz gün. `izle.py` sıfırdan yazıldı, ortam kuruldu,
 oturum arşivi keşfedildi ve ikinci beyin fikri tasarlandı.

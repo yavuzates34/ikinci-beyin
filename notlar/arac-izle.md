@@ -46,3 +46,126 @@ metnin kat kat üstünde bağlam yer kaplar.
   örnekleme bu yüzden seçildi.
 
 ---
+
+## Dört katmanlı hat — 17 Eylül 2026 kurulumu
+
+Eski hat iki katmanlıydı (ses + kare). Kullanıcı *"videonun kaç saniyesinde bir
+kare alıyorsun"* diye sorunca ölçüldü, kusur çıktı ve hat yeniden kuruldu
+(claude 7f10f7a3 · 17.09 05:30). Ölçümler: [[olculmus-bulgular]] §5.
+
+| Katman | Ne yapar | Durum |
+|---|---|---|
+| 1. Ses | Whisper large-v3, GPU, Türkçe sözlükle | vardı, dokunulmadı |
+| 1b. İkinci tanık | YouTube'un hazır altyazısı (`--altyazi`) | **yeni** |
+| 2. Kare | Yoğunluk (`--kare-sn`) + dhash elemesi (`--benzer`) | **yeni** |
+| 3. Yazı | Tesseract OCR, Türkçe (`--ocr`) | **yeni** |
+| 4. Birleştirme | Üç kaynak tek zaman çizelgesinde, ayrışma işaretli | **yeni** |
+
+### Neden sıklık, neden sayı değil
+
+Eski davranış kare **sayısını** sabit tutuyordu (24), yani aralık uzadıkça
+kareler seyreliyordu — tam videoda 41,6 saniyede bir kare. `--kare-sn 2`
+sıklığı sabitler, kare sayısı aralıkla büyür. Kullanıcının kafasındaki birim
+zaten buydu; araç yanlış birimle konuşuyordu.
+
+### Eleme iki aşamalı
+
+Önce `dhash` (ucuz, görsel benzerlik), sonra OCR metni (pahalı ama doğru ölçüt).
+Sıra önemli: hash 120 kareyi 29'a indirir, OCR sadece o 29'u okur. Son söz
+OCR'ındır çünkü sorulan soru *"görüntü değişti mi"* değil, **"bilgi değişti mi".**
+
+### İkinci tanık: altyazı
+
+`--altyazi` önce kanalın yüklediği altyazıyı, yoksa YouTube'un otomatik
+üretimini çeker. **İkisi de tahmindir, hakem değildir** — Avenox'un "manuel"
+görünen altyazısı bile elle yazılmamış, kendi AI transkripsiyon aracının
+çıktısı (kullanıcı 17.09 05:24'te düzeltti). Değeri yine de var: o araç ham
+kaydı duydu, Whisper YouTube'un sıkıştırmasını duyuyor. **Uyuştukları yer
+güçlü, ayrıştıkları yer şüpheli.**
+
+### İlk gerçek test
+
+`WIw1lMIRL3I` 22:10–23:15, `--kare-sn 2 --ocr --altyazi`:
+32 ham kare → 3 benzersiz slayt. Whisper 4 paragraf verdi; OCR ise
+transkriptte **hiç geçmeyen** bir ödev listesi çıkardı. Bu videoda ses ve
+görüntü farklı şey söylüyor: biri anlatıyor, diğeri veriyor.
+
+### Bilinen kusurlar
+
+- **OCR gürültü üretiyor:** süs şekiller ve logolardan "İcik dik, dale kür"
+  gibi parçalar geliyor. Üç karakterden kısa parçalar ayıklanıyor ama yetmiyor.
+- **dhash eşiği video tipine bağlı.** 24 animasyonlu slaytta doğru; eşiği 8'e
+  düşürmek bu testte sonucu değiştirmedi, yani eşik her videoda ayarlanmalı
+  değil ama körü körüne de güvenilmemeli.
+- **Yerel görsel-dil modeli kurulmadı.** Yeri belli: video tipini tanıyıp
+  eşiği seçmek. Önce OCR hattının çıktısı güvenilir olsun; denetlenemeyen
+  özet, kazanılan bağlamı doğrulukla öder.
+
+### Kurulum
+
+Tesseract `winget install UB-Mannheim.TesseractOCR`, Türkçe dil paketi
+`tessdata_best`'ten **D:/AI/tessdata**'ya (C diski %94 dolu). `IZLE_TESSDATA`
+ortam değişkeniyle taşınabilir. `--kontrol` artık Pillow ve Tesseract dillerini
+de raporluyor.
+
+### Katman 4: birleştirme ve ayrışma haritası
+
+Üç kaynak (Whisper, altyazı, OCR) zaman kovalarında (`--kova`, varsayılan 20 sn)
+tek `birlesik.md` dosyasında toplanır. Amaç **doğruyu seçmek değil**, iki
+tanığın ayrıştığı yeri işaretlemek: ayrışan kelime ya birinin hatasıdır ya
+ötekinin duyduğu ek bilgidir; ikisi de bakmaya değer.
+
+**Kurulurken çıkan kusur ve çözümü (claude 7f10f7a3 · 17.09 05:45):**
+İlk sürüm 38 kelimeyi ayrışma diye işaretledi; gerçek sayı **5**'ti. Aradaki
+fark hizalama kaymasıydı — Whisper bir segmentin **başını** damgalayıp uzun
+paragraf veriyor, altyazı her cümleyi ayrı damgalıyor. Aynı cümle iki kaynakta
+farklı kovaya düşünce sistem "biri söylemiş öteki söylememiş" sandı.
+
+**Kural:** kelime karşılaştırması dar pencerede gösterilir ama **geniş
+pencerede** (±1 kova) yapılır. Aksi hâlde araç kendi hizalama hatasını
+içerik hatası gibi raporlar — yanlış şeyi ölçen tabelanın bir başka kılığı.
+
+**İlk testte yakalanan gerçek ayrışmalar** (`WIw1lMIRL3I` 22:10–23:15):
+
+| Whisper | Altyazı | Durum |
+|---|---|---|
+| `bytecoder` | `bipecoder` | **ikisi de yanlış** — muhtemelen "vibe coder" |
+| `Hermes` | `her birisi` | karar verilemedi, işaretli kaldı |
+| `yorun` | `görün` | Whisper yanıldı ("eğitim bütçesi gibi görün") |
+| `ayda` | `ayta` | altyazı yanıldı ("ayda 100 bin dolar") |
+
+İki tanığın **aynı yerde farklı şekilde** yanılması en güçlü şüphe işaretidir:
+tek transkriptte bu dördü sessizce doğru sanılırdı.
+
+## Video verilince SOR: şema var mı?
+
+**Refleks kuralı, kullanıcı talimatı (claude 7f10f7a3 · 17.09 05:46).**
+Bir video verildiğinde, işe başlamadan önce sorulacak: *videoda mimari şema,
+akış diyagramı, grafik var mı?* Varsa yerel görsel-dil modeli kurulur; yoksa
+OCR hattı yeterlidir.
+
+### Neden soru şart — sessiz başarısızlık
+
+"Şemalı videoda OCR boş döner" demiştim; kullanıcı düzeltti: **boş dönmez.**
+Şemadan kutu etiketlerini okur, birkaç kelime çıkarır, ve model o kelimelere
+bakıp *içeriği gördüm* sanır.
+
+Oysa şemada bilgi kutuların içinde değil, **kutular arasındaki ilişkidedir**:
+okun yönü, hangi kutunun hangisini beslediği, hiyerarşi, gruplama. OCR bunların
+hiçbirini görmez — ve görmediğini **söylemez.**
+
+Modelin bunu kendi başına fark etmesi yapısal olarak imkânsız: elinde karenin
+kendisi değil, yalnızca OCR çıktısı vardır. Eksiği anlaması için zaten görmüş
+olması gerekir. Kullanıcının ifadesiyle: *"gördüğünü zannedersin."*
+
+Bu, [[tasarim-dersleri]]'ndeki sessiz başarı vakalarının video hattındaki
+karşılığıdır ve aynı kökten gelir: **çıkış kodu 0 döndürmek, işin yapıldığı
+anlamına gelmez.**
+
+### Kural
+
+- Video isteği geldiğinde **önce sor**, sonra hat kur.
+- Cevap "şema var" ise VLM kurulur; OCR tek başına kullanılmaz.
+- Cevap "yok, düz metin/slayt" ise mevcut dört katmanlı hat yeterlidir.
+- Emin değilsen bir kareyi **gözünle gör** ve öyle karar ver — ucuzdur,
+  yanlış karar pahalıdır.

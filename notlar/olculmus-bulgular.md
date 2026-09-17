@@ -80,3 +80,107 @@ giden **80+ oturum**, ayrıca 47 arşivlenmiş oturum.
 Bağ olan 7'yi kullanıcı yazmadı — hafıza formatını takip eden modeller yazdı.
 
 ---
+
+## 4. Arşiv arkeolojisi — 4–7 Eylül boşluğu
+
+Kullanıcı arşiv tablosuna bakıp *"4 Eylül ile 7 Eylül arasındaki üç günlük
+boşluğun sebebi ne"* diye sordu. Tüm yol anahtarlarındaki ham kayıtlar
+tarandı (claude 7f10f7a3 · 17.09 04:53).
+
+### 4.1 Boşluk playground'a ait, kullanıcıya değil
+
+playground tarafında gerçek sessizlik: **04.09 22:08 → 07.09 10:24**, yaklaşık
+iki buçuk gün. Ama o aralıkta başka klasörlerde çalışılmış:
+
+| Oturum | Klasör | Aralık |
+|---|---|---|
+| `1b86bb52` | Nar Ajans - Codex | 05.09 04:02 – 07.09 12:08 |
+| `54366b9c` | Nar Ajans - Codex | 05.09 04:21 – 04:33 |
+| `adbd10b1` | Nar Ajans - Codex | 06.09 15:27 – 15:32 |
+| `3febe5ab` | Desktop | 06.09 03:52 – 07.09 10:21 |
+
+İkisi çok kısa (12 ve 5 dakika) — kullanıcının hatırlamaması beklenir.
+
+### 4.2 Boşluğun asıl sebebi: oturum fork'landı, klasör taşındı
+
+`6052d412` (eski yol: `Desktop\playground`) 04.09 22:08'de son mesajı aldı.
+Aynı konuşma **`3c1530e9` kimliğiyle yeni yol anahtarında**
+(`Desktop\desktop\playground`) devam etti; kaydın ilk damgası **04.09 22:13**.
+Kullanıcı 07.09 10:24'te oraya yazdığında sistem şunu bildirmişti:
+*"This conversation was forked from another session and now runs in a different
+working tree."*
+
+Yani 4–7 Eylül boşluğu iki şeyin üst üste binmesi: klasör taşıması ve ona bağlı
+fork. Konuşma kopmadı, **kimlik değişti.**
+
+**Düzeltme:** [[BEYIN]] "7 Eylül'de taşındı" diyordu; yeni yol anahtarındaki ilk
+damga **04.09 22:13**. Taşıma 4 Eylül gecesi oldu, kullanıcı 7 Eylül sabahı
+devam etti.
+
+**İkinci düzeltme:** [[acik-uclar]] "`--fork-session` canlı denenmedi" diyor.
+Fork fiilen **olmuş** — bayrakla mı yoksa klasör taşımasının yan etkisi olarak
+mı belirsiz, ama bağlam yeni kimliğe taşınmış ve çalışmış.
+
+### 4.3 Mükerrer oturum burada da doğrulandı
+
+`adbd10b1` iki yol anahtarında birden duruyor: `C--Users-Anj-Desktop-Nar-Ajans---Codex`
+ve `D--AI-Nar-Ajans---Codex`. Aynı kimlik, aynı aralık, aynı satır sayısı.
+Bu boşlukta **7 kayıt dosyası** ama **6 benzersiz oturum** var.
+[[acik-uclar]]'da Nar Ajans'tan devreden bir şüphe olarak duruyordu; playground
+tarafında da gerçek olduğu ölçüldü.
+
+## 5. Kare çıkarma ölçümü — mpdecimate elendi, algısal hash seçildi
+
+Kullanıcı *"videonun kaç saniyesinde bir kare alıyorsun"* diye sordu; ölçüldü
+(claude 7f10f7a3 · 17.09 05:12). Test: Avenox `eE7WZ0_LPCU`, 10:24–12:24 arası,
+iki dakika, 720p.
+
+### 5.1 Mevcut yöntemin gerçek sıklığı
+
+`izle.py` kare **sayısını** sabit tutuyor (varsayılan 24), sıklığı değil:
+`adım = aralık / max_kare`, alt sınır 1 sn. Sonuç: tam videoda **41,6 saniyede
+bir kare**. Kullanıcının sezgisi ("belki 10 saniyede bir") iyimsermiş.
+En iyi hâlde saniyede 1 kare — insanın gördüğünün yirmi beşte biri.
+
+### 5.2 Karşılaştırma
+
+| Yöntem | Kare | Kare arası |
+|---|---|---|
+| Mevcut (24 sabit) | 24 | 5,0 sn |
+| 1 fps ham | 120 | 1,0 sn |
+| 1 fps + `mpdecimate` (varsayılan) | 110 | 1,1 sn |
+| `mpdecimate` agresif (`hi=64*48:lo=64*24:frac=0.6`) | 86 | 1,4 sn |
+| 1 fps + **dhash** (eşik 24) | **29** | 4,1 sn |
+| 1 fps + dhash (eşik 32) | 20 | 6,0 sn |
+
+### 5.3 Elenen fikir: mpdecimate
+
+**`mpdecimate` bu videoda işe yaramadı** — 120 kareden 10'unu eledi, en agresif
+ayarda 34'ünü. Sebep: video **animasyonlu metin slaytı**, ekran kaydı değil.
+Sürekli hareket olduğu için "neredeyse özdeş kare" hiç yok; `mpdecimate` tam da
+onu arıyor. Bu, [[arac-izle]]'deki "sahne algılama ekran kayıtlarında çalışmaz"
+bulgusunun kardeşi: **piksel tabanlı filtrelerin hepsi video tipine bağlı.**
+
+Tamamen elenmedi — ekran kayıtlarında (gerçekten donuk kareler olan yerde)
+denenmeye değer. Ama varsayılan hattan çıkarıldı.
+
+### 5.4 Seçilen: algısal hash (dhash)
+
+120 → 29 kare, yani dört kat daha iyi eleme. Ama sınırı bilinerek kullanılmalı:
+dhash **görsel** benzerliği ölçer, **bilgisel** benzerliği değil. Konuşan kafada
+kafa oynayınca "farklı" der (bilgi aynıdır); slaytta tek kelime değişince "aynı"
+der (bilgi farklıdır).
+
+### 5.5 Asıl bulgu: bilgi görüntüde değil, görüntüdeki yazıda
+
+Karelere bakıldığında içerik animasyonlu **metin** çıktı ("PROMPT MI? CONTEXT
+Mİ? — AYNI ŞEY, ARADA FARK YOK"). Bu, doğru eleme ölçütünü değiştiriyor: soru
+"görüntü değişti mi" değil, **"ekrandaki yazı değişti mi".** Cevabı OCR verir,
+piksel farkı değil. OCR ayrıca bağlam maliyetini kırk kat düşürür: 100 kare
+görsel olarak ~130k token, metin olarak ~3k token.
+
+### 5.6 Donanım sınırı
+
+RTX 3060 Ti, **8 GB VRAM** (6,7 GB boşta). Whisper aynı GPU'yu kullanıyor —
+yerel bir görsel-dil modeli eklenirse **sıralı** çalışmalı, eşzamanlı değil.
+Disk: C **%94 dolu, 14 GB kaldı**; model indirilecekse D'ye (122 GB boş).
