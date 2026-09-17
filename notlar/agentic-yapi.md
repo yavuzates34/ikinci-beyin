@@ -127,3 +127,79 @@ tarih hatası ve "altı oturum" sayım hatası — [[yasanan-hatalar]] madde 19 
 Ayrıca bağlam yalnızca konuşma değildir: sistem talimatları, araç tanımları,
 okunan her dosya ve her araç çıktısı aynı masadadır. Uzun bir oturumda masanın
 büyük kısmını konuşma değil, okunan dosyalar doldurur.
+
+## Diskteki bilgi bağlama nasıl döner — üç kademe
+
+Bilgi bağlamdan diske **iner**, ama diskten bağlama **kendiliğinden dönmez.**
+Dönüşün üç yolu var ve güvence dereceleri farklı
+(claude 7f10f7a3 · 18.09 00:43):
+
+| Yol | Nasıl | Güvence |
+|---|---|---|
+| **Enjeksiyon** | Hook doğrudan bağlama yazar | **Zorunlu** — model okumaya karar vermez, okumuş olur |
+| **Arama** | `ara.py`, `anlam.py`, `oku.py` | Kural var, uygulaması **gönüllü** |
+| **Denetim** | İddia kaynağıyla karşılaştırılır | **Yok** — işaretçi var, açan kimse yok |
+
+**Kural: kritik olan okunmaz, enjekte edilir.** Okuma modelin kararına kalırsa
+gönüllüdür. Sınırı da açık: her şey enjekte edilemez, bağlam dolar.
+
+### Enjeksiyon kutusunun içinde ne var
+
+İki ayrı kaynak; biri kullanıcının kontrolünde, biri değil.
+
+**Harness'ın kendi enjeksiyonu:** sistem promptu · araç tanımları (sanılandan
+çok yer kaplar) · `CLAUDE.md` · `MEMORY.md` ve hafıza dosyaları · ortam bilgisi
+ve açılış `git status`'u · skill listesi ve MCP durumları.
+
+**Bu projenin hook'ları:** `SessionStart` açılışta bir kez — `BEYIN.md` boyutu
+ve damgası, `notlar/` ve `oturumlar/` dosya **sayıları**, `.claude/oturum-basi.md`
+yönergesinin tamamı, oturum kimliği ve ona özel `omurga.py` komutu, paralel
+oturum uyarısı (son 6 saat). `UserPromptSubmit` her mesajda — tarih ve saat,
+varsa devir kutusu.
+
+### Enjeksiyon dikkati garanti etmez
+
+Enjeksiyon bilginin bağlama **girmesini** garanti eder, **dikkat edilmesini**
+değil. Enjekte edilen şey de bağlamın bir yerine düşer; orta bölgeye kayarsa
+zayıflar.
+
+Kanıt: 17 Eylül'de bir side chat örneğine "read-only tools, cannot run commands"
+enjekte edilmişti. Bağlamındaydı, okumadı — üstelik aynı tur içinde oturum
+kimliği değişti, araçları kaldırıldı, MCP koptu, hiçbirini fark etmedi.
+
+Pratik sonuç: **`SessionStart` enjeksiyonu güçlüdür çünkü baş bölgede kalır.**
+Oturum ortasında düşen tek seferlik enjeksiyonlar zamanla ortaya kayar.
+`UserPromptSubmit`'in tarihi **her mesajda** basması bu yüzden doğru tasarımdır:
+tazelenir ve hep son bölgede durur.
+
+## Devir kutusu: bir hook'un söyleyemediğini başka bir hook söyler
+
+**Neden `PreCompact` modele konuşamaz.** Hook'ların çıktısı aynı yere gitmiyor;
+fark, o anda **ortada bir model turu olup olmadığı.** `SessionStart` ve
+`UserPromptSubmit` tetiklendiğinde hemen ardından bir tur başlayacaktır, yani
+harness çıktıyı bağlama yazabilir. `PreCompact` ise sıkıştırma anında çalışır —
+harness tam o sırada bağlamı yeniden yazmaktadır, yazılacak bir bağlam yoktur.
+Şemadaki kesikli aralığa denk gelir: model yok.
+
+Bu ölçülmüş bir sonuç, teori değil: ilk denemede enjeksiyon ayağı şema hatasıyla
+düştü, deterministik ayak tuttu. Bkz. [[kapanis-ritueli]], [[yasanan-hatalar]] 15.
+
+### Mesh olur mu — hayır, posta kutusu olur
+
+Paralel ajanların devir kutusu üzerinden haberleşmesi fikri doğru yönde ama
+mevcut tasarım uygun değil (claude 7f10f7a3 · 18.09 01:02):
+
+- **Tek alıcılı.** Adres yok; kim okursa alır ve kutuyu boşaltır. Tek okumalık
+  tüketim bilinçliydi — amacı aynı oturumun kendine not bırakmasıydı.
+- **Tek mesajlık.** Kuyruk yok; eşzamanlı iki yazma birbirinin üstüne biner.
+- **Pasif.** Mesaj bırakmak karşı tarafı **tetiklemez.** Diğer ajan ancak kendi
+  bir sonraki turunda bakar; hiç uyanmayabilir.
+
+Kutu adresli, kuyruklu, okundu-işaretli hâle getirilebilir — ama elde yine
+**asenkron mesajlaşma** olur, mesh değil. **Mesh'i kuran şey mesaj kutusu değil,
+çağırma yetkisidir.** Ve orada hiyerarşi geri gelir: çağıran ile çağrılan eşit
+değildir. Tetiklemenin iki yolu var: bir ajanın diğerini araç olarak çağırması
+(16 Eylül'de Codex böyle çağrıldı) ya da zamanlayıcı (gece derleyicisi).
+
+**Karar: paralelleştirme ertelendi** (kullanıcı, 18.09 01:02). Sıra Nar Ajans
+otomasyonunda; mesh ondan sonra.

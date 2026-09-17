@@ -22,6 +22,8 @@ Kullanim:
 """
 
 import argparse
+import json
+import re
 import subprocess
 import sys
 from datetime import datetime, timedelta
@@ -228,6 +230,131 @@ def aylik(bugun: datetime, kuru: bool) -> None:
     yaz(DERLEME / "aylik" / f"{bugun:%Y-%m}.md", "\n".join(s) + "\n", kuru)
 
 
+# --- saglik: derleyici kendi kesintisini bildirir ---------------------------
+
+DURUM = DERLEME / "son-calisma.json"
+
+
+def onceki_calisma() -> str | None:
+    """Onceki calisma tamamlandi mi? Tamamlanmadiysa sebebini dondur.
+
+    Neden: 18.09 00:30'da gorev cikis kodu 0xC000013A (kontrol kesmesi) ile
+    bitti, ama gunluk dosya yazilmis ve commit atilmisti. Gorev "Ready"
+    gorunuyordu. Yani denetim mekanizmasinin kendisi sessizce bozulabiliyor -
+    ve boyle bir mekanizmanin denetledigi seyler hakkinda soyledikleri de
+    guvenilmez olur.
+    """
+    if not DURUM.exists():
+        return None
+    try:
+        d = json.loads(DURUM.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return "son-calisma.json okunamadi ya da bozuk"
+    if not d.get("tamamlandi"):
+        return f"onceki calisma ({d.get('baslangic', '?')}) TAMAMLANMADAN kesildi"
+    return None
+
+
+def durum_yaz(bugun: datetime, tamamlandi: bool, kuru: bool, **ek) -> None:
+    if kuru:
+        return
+    DURUM.parent.mkdir(parents=True, exist_ok=True)
+    DURUM.write_text(
+        json.dumps({"baslangic": f"{bugun:%Y-%m-%d %H:%M}",
+                    "tamamlandi": tamamlandi, **ek},
+                   ensure_ascii=False, indent=1),
+        encoding="utf-8")
+
+
+# --- telafi: "bugun hangi gun" degil, "eksik olan var mi" -------------------
+
+def haftalik_gerekli(bugun: datetime) -> bool:
+    """Bu hafta icinde haftalik uretilmis mi?
+
+    Eski kosul "bugun pazartesi mi" idi ve bir acik biraktir: makine pazartesi
+    gecesi kapaliysa gorev sali gunu telafi olarak calisir (StartWhenAvailable),
+    ama icerde "bugun pazartesi degil" diye haftaligi ATLAR. Sessizce.
+    Dogru soru gune degil, eksige bakar.
+    """
+    hafta_basi = (bugun - timedelta(days=bugun.weekday())).replace(
+        hour=0, minute=0, second=0, microsecond=0)
+    for p in (DERLEME / "haftalik").glob("*.md"):
+        try:
+            if datetime.strptime(p.stem, "%Y-%m-%d") >= hafta_basi:
+                return False
+        except ValueError:
+            continue
+    return True
+
+
+def aylik_gerekli(bugun: datetime) -> bool:
+    return not (DERLEME / "aylik" / f"{bugun:%Y-%m}.md").exists()
+
+
+# --- denetim: kaynak isaretcileri -------------------------------------------
+
+ISARETCI = re.compile(r"\(claude ([0-9a-f]{8})([^)]*)\)", re.S)
+# Gun.ay, istege bagli saat. Tek isaretcide birden fazla damga olabilir:
+# "(claude 3557db3e - 16.09 10:20 ve 17.09 01:55)" gibi. Saatsiz olan da
+# gecerlidir; o zaman sadece "o gun o oturumda mesaj var mi" sorulur.
+DAMGA = re.compile(r"(\d{1,2})\.(\d{2})(?:\s+(\d{1,2}):(\d{2}))?")
+DAMGA_TOLERANS = 3  # dakika
+
+
+def isaretci_denetle() -> tuple[int, list[str], list[str]]:
+    """Notlardaki kaynak isaretcilerini ham kayda karsi dogrular.
+
+    ICERIGI denetlemez - sadece "bu adres var mi" der: oturum kaydi gercek mi,
+    o damgada bir mesaj var mi. Uydurulmus bir isaretci hatanin en tehlikeli
+    turudur, cunku denetlenebilirlik GORUNUSU verir ve o yuzden kimse acip
+    bakmaz. Bu ayak model gerektirmez, yargi gerektirmez: deterministiktir.
+
+    UC kategori dondurur, ve ucuncusu onemli: deseni tutmayan bir isaretci
+    SESSIZCE ATLANMAMALI. 18.09'da ilk surum tam da bunu yapiyordu - 40
+    isaretcinin 32'sini denetleyip 8'ini gormezden geliyordu.
+    """
+    kusurlu: list[str] = []
+    denetlenemeyen: list[str] = []
+    toplam = 0
+    onbellek: dict[str, list | None] = {}
+    for p in sorted((KOK / "notlar").glob("*.md")):
+        try:
+            metin = p.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        for m in ISARETCI.finditer(metin):
+            toplam += 1
+            kimlik, govde = m.group(1), m.group(2)
+            damgalar = DAMGA.findall(govde)
+            if not damgalar:
+                denetlenemeyen.append(
+                    f"{p.name}: {kimlik} - damga okunamadi ({govde.strip()[:40]})")
+                continue
+            if kimlik not in onbellek:
+                o = kayit.oturum_bul(kimlik)
+                onbellek[kimlik] = list(kayit.mesajlar(o)) if o else None
+            mesajlar = onbellek[kimlik]
+            if mesajlar is None:
+                kusurlu.append(f"{p.name}: {kimlik} - oturum kaydi bulunamadi")
+                continue
+            for gun, ay, saat, dakika in damgalar:
+                ayni_gun = [x for x in mesajlar
+                            if (x.an.day, x.an.month) == (int(gun), int(ay))]
+                if not ayni_gun:
+                    kusurlu.append(
+                        f"{p.name}: {kimlik} {gun}.{ay} - o gun mesaj yok")
+                    continue
+                if not saat:
+                    continue  # saatsiz isaretci: gun eslesmesi yeterli
+                hedef = int(saat) * 60 + int(dakika)
+                if not any(abs(x.an.hour * 60 + x.an.minute - hedef)
+                           <= DAMGA_TOLERANS for x in ayni_gun):
+                    kusurlu.append(
+                        f"{p.name}: {kimlik} {gun}.{ay} {saat}:{dakika}"
+                        " - o damgada mesaj yok")
+    return toplam, kusurlu, denetlenemeyen
+
+
 def main() -> int:
     kayit.utf8_zorla()
     ap = argparse.ArgumentParser(description="Aksam derleyicisi")
@@ -238,11 +365,28 @@ def main() -> int:
     bugun = datetime.now()
     print(f"# Derleme - {bugun:%d.%m.%Y %H:%M}")
 
+    kesinti = onceki_calisma()
+    if kesinti:
+        print(f"  !! SAGLIK: {kesinti}")
+    durum_yaz(bugun, False, a.kuru)
+
     eksik = gunluk(bugun, a.kuru)
-    if a.hepsi or bugun.weekday() == 0:
+    if a.hepsi or haftalik_gerekli(bugun):
         haftalik(bugun, a.kuru)
-    if a.hepsi or bugun.day == 1:
+    if a.hepsi or aylik_gerekli(bugun):
         aylik(bugun, a.kuru)
+
+    toplam_i, kusurlu, denetlenemeyen = isaretci_denetle()
+    if kusurlu or denetlenemeyen:
+        print(f"  !! ISARETCI: {toplam_i} isaretci - "
+              f"{len(kusurlu)} kusurlu, {len(denetlenemeyen)} denetlenemedi")
+        for k in (kusurlu + denetlenemeyen)[:12]:
+            print(f"     - {k}")
+        artan = len(kusurlu) + len(denetlenemeyen) - 12
+        if artan > 0:
+            print(f"     ... ve {artan} tane daha")
+    else:
+        print(f"  isaretci: {toplam_i} isaretcinin hepsi dogrulandi")
 
     if not a.kuru:
         git("add", "-A")
@@ -269,6 +413,13 @@ def main() -> int:
 
     # Sessiz basari yasak: ne bulundugunu sayiyla soyle.
     print(f"# Islenmemis oturum: {eksik}")
+    durum_yaz(bugun, True, a.kuru,
+              islenmemis_oturum=eksik,
+              isaretci_toplam=toplam_i,
+              isaretci_kusurlu=kusurlu,
+              isaretci_denetlenemeyen=denetlenemeyen,
+              onceki_kesinti=kesinti)
+    print("# Derleme tamamlandi")
     return 0
 
 

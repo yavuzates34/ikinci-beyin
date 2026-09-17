@@ -185,3 +185,69 @@ rengi gibi görünür. Kapanış anı zaten modelin bu iş için en kötü hâli
 
 İlgili: [[yasanan-hatalar]] madde 19 (aynı kökten çıkan tarih hatası),
 [[kullanici-baglami]] (modelin zaman algısı üzerine).
+
+---
+
+## SessionEnd boşluğu ve compact'in yeri
+
+17–18 Eylül'de ölçüldü ve bir açık bulundu (claude 7f10f7a3 · 18.09 01:02).
+
+### Bugün üç hook var, kapanış hook'u yok
+
+`.claude/settings.json`: `SessionStart`, `PreCompact`, `UserPromptSubmit`.
+**`SessionEnd` yok.** Yani "oturumu kapatalım" dendiğinde çalışan şey bir hook
+değil, bu dosyadaki ritüeli modelin uygulaması — **gönüllü.**
+
+Sonucu: **oturum kapatılmadan bırakılırsa hiçbir şey yazılmaz.** Ne arşiv, ne
+terfi, ne harita. Ham kayıt diskte durur ama kalıcı katmana hiçbir şey geçmez.
+Kullanıcının oturumları günlerce açık kaldığı için bu gerçek bir açıktır.
+
+### Dört çıkış yolu ve ne bıraktıkları
+
+| Oturum nasıl biter | Kalıcı katmana ne geçer |
+|---|---|
+| "oturumu kapatalım" | Tam not: karar, elenen fikir, açık uç |
+| `/compact` | Omurga diske düşer; not **sıkışmış bağlamdan** yazılır |
+| Kapatılmadan bırakılır | **Hiçbir şey** — ham kayıt var, okuyan yok |
+| Side chat'te konuşulur | **Kayıt bile oluşmaz** — bkz. [[acik-uclar]] |
+
+### `/compact` bir kapanış aracı değildir
+
+Compact bandın **ortasında** olur, kapanış **sonunda**. Compact sonrası model
+kendi ürettiği özete bakar — kuralı yoktur, denetlenmez, neyi attığını söylemez.
+Kapanış notu ise kural gereği üç şeyi taşır. Yani biri modelin o anki yargısı,
+diğeri yapılandırılmış bir devir.
+
+**Doğru sıra: önce kapanış yazılır, sonra compact ya da yeni oturum.**
+`PreCompact` bir **güvenlik ağı**; ağ düşen için vardır, plan düşmemektir.
+
+Ham kayıt her iki durumda da silinmiyor — ama durması yetmiyor, birinin dönüp
+bakmaya karar vermesi gerekiyor.
+
+### Karar: işareti ölen bant bıraksın, notu yaşayan bant yazsın
+
+`SessionEnd` hook'u modele **konuşamaz** — o an son model turu kapanmıştır,
+muhatap yoktur (mekanizma: [[agentic-yapi]]). Dolayısıyla "kapanışta modele not
+yazdır" kurgusu doğrudan kurulamaz.
+
+Denenen ve **elenen** kurgu: `SessionEnd`'de headless bir örnek doğurup notu
+ona yazdırmak. Teknik olarak mümkün (Claude Code'un tek seferlik çağrı modu var)
+ve bir yan faydası da var — o örnek **temiz bağlamla** doğar, yani "kapanış anı
+modelin en kötü hâlidir" problemi ortadan kalkar. İki kusuru yüzünden elendi:
+
+1. **`SessionEnd` her zaman tetiklenmez.** Çökme, güç kesintisi, uygulamanın
+   kapatılması — hook hiç çalışmaz ve çalışmadığını kimse fark etmez.
+2. **Omurga yetmez.** Sadece kullanıcı mesajlarını taşır; ölçümler, elenen
+   fikirler, gerekçeler model tarafındadır ve ham kayıttadır.
+
+**Seçilen kurgu:**
+
+- **`SessionEnd`:** ucuz ve modelsiz olsun — omurgayı döksün, *"bu oturum
+  kapanışsız bitti"* işareti bıraksın. Çökmeye dayanıklı, çünkü yapacağı küçük.
+- **Gece derleyicisi:** işareti görsün, temiz bağlamlı bir örnek doğurup notu
+  yazdırsın, sonucu rapora yazsın. Cron ile tetiklenir, yani oturumun nasıl
+  bittiğinden bağımsızdır ve **kaçmaz**; birden çok kapanışsız oturumu aynı
+  çalıştırmada sırayla işler; yapıldığı raporda **görünür** olur.
+
+Bu ikisi kurulmadan önce **omurganın zenginleştirilmesi** gerekir — yoksa temiz
+örnek eksik malzemeyle yazar. İkisi tek işin iki parçasıdır.

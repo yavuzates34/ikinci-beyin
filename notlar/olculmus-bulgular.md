@@ -184,3 +184,54 @@ görsel olarak ~130k token, metin olarak ~3k token.
 RTX 3060 Ti, **8 GB VRAM** (6,7 GB boşta). Whisper aynı GPU'yu kullanıyor —
 yerel bir görsel-dil modeli eklenirse **sıralı** çalışmalı, eşzamanlı değil.
 Disk: C **%94 dolu, 14 GB kaldı**; model indirilecekse D'ye (122 GB boş).
+
+## 6. Side chat kaydı diskte yok — kör nokta ölçüldü
+
+17 Eylül'de bir side chat'te uzun bir konuşma yapıldı. O taraftaki örnek kendi
+kaydını arayamadı (yazma aracı yoktu); ana oturumdan ölçüldü
+(claude 7f10f7a3 · 17.09 22:01):
+
+- Side chat'in oturum kimliği `1bfbca18`. **Bu kimliğe ait `.jsonl` hiçbir
+  yerde yok** — proje klasöründe de, `.claude` altında da.
+- Side chat'in hipotezi "belki kayıt oturum kapanınca yazılıyor" idi. **Düştü:**
+  bu ana oturumun kaydı açıkken yazılıyor (ölçüm anında dosya damgası dakikalar
+  öncesiydi). Yani ana oturumlar **canlı** yazılıyor, side chat'ler **hiç**.
+
+**Sonuç: side chat'te ne konuşulursa konuşulsun arşivde iz bırakmıyor.**
+`ara.py` bulamaz, `anlam.py` bulamaz, paralel oturum uyarısı göstermez.
+Tek taşıma yolu kullanıcının elle aktarmasıdır.
+
+17 Eylül'de bu bir kez yapıldı: kullanıcı side chat'in kaydırmalı ekran
+görüntüsünü video olarak alıp `izle.py` hattına soktu; OCR ile 17 kare okundu ve
+konuşma eksiksiz kurtarıldı. Yani **`izle.py` aynı zamanda bir kurtarma aracı.**
+
+## 7. Oturum süresi ölçümü — takvim, boşluk, aktif
+
+Model "beş buçuk saattir açık" dedi, kullanıcı sordu, ölçüldü ve **üçü de
+farklı çıktı** (claude 7f10f7a3 · 17.09 20:03):
+
+| Ölçü | Değer |
+|---|---|
+| Takvim süresi (ilk–son damga) | **18,1 saat** |
+| 10 dakikadan uzun aralar toplamı | **14,6 saat** |
+| Aktif konuşma | **3,5 saat** |
+| En uzun tek ara | 7,6 saat (05:52 → 13:28) |
+
+**"Oturum ne kadar sürdü" sorusunun tek cevabı yok.** Hangi ölçünün
+kastedildiği yazılmazsa sayı yanıltır — [[yasanan-hatalar]] madde 19 ve 20 ile
+aynı kök: etiketsiz sayı.
+
+## 8. Kaynak işaretçisi denetimi — ilk örnekleme
+
+Kalıcı notlarda **32 kaynak işaretçisi** var. İkisi rastgele seçilip ham kayda
+karşı denetlendi, **ikisi de doğru çıktı**; denetim başına maliyet ~10 saniye
+(claude 7f10f7a3 · 17.09 18:29).
+
+- `(claude 3557db3e · 08.09 17:34)` → o damgada gerçekten mesaj var.
+- `iki-ajan-calismasi`'ndaki "kökteki ortak dosya alt klasörlerde otomatik
+  yüklenmiyor" iddiası, `16.09 08:38` → kayıtta ölçüm var, iddia uyuşuyor.
+
+Yani bugünkü hata oranı düşük görünüyor. **Ama denetçi şu an sistem değil,
+kullanıcıdır** — 17 Eylül'deki dört model hatasının dördünü de kullanıcı
+yakaladı. Ekim hedefi "kullanıcı başında durmadan çalışsın" olduğuna göre o
+denetçi çekildiğinde yerine bir şey konmalıdır. Bkz. [[acik-uclar]].

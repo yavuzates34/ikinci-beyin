@@ -19,6 +19,43 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
    [[2026-09-16-nar-ajans-envanteri]] · [[iki-ajan-calismasi]].
    Diğer projeler için sıra kullanıcının önceliğinde.
 
+## 17–18 Eylül'de açılanlar
+
+Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
+
+1. **`SessionEnd` hook'u yok — kapanışsız oturum iz bırakmıyor.** Kapatılmadan
+   bırakılan oturumdan kalıcı katmana hiçbir şey geçmiyor. Karar verildi, kurgu
+   belli: *işareti ölen bant bıraksın, notu yaşayan bant yazsın.* Kurulmadı.
+   Tasarım ve elenen alternatif: [[kapanis-ritueli]].
+
+2. **Omurga model tarafını taşımıyor.** Sadece kullanıcı mesajlarını çıkarıyor;
+   ölçümler, elenen fikirler, gerekçeler ham kayıtta kalıyor. Madde 1'in ön
+   şartı — zenginleştirilmeden temiz örnek eksik malzemeyle yazar.
+
+3. **Denetim katmanı yok.** 32 kaynak işaretçisi var, açan kimse yok. Üç
+   seviyeli öneri (claude 7f10f7a3 · 17.09 18:29):
+   - **Mekanik işaretçi denetimi** — gece derleyicisine eklenir; her işaretçiyi
+     açar, o damgada mesaj var mı bakar, yoksa raporlar. Yargı istemez, model
+     istemez, ~20 dakikalık iş. **Uydurulmuş işaretçi en tehlikeli hata
+     türüdür: denetlenebilirlik görüntüsü verir.**
+   - **Örneklemeli içerik denetimi** — haftada bir, rastgele 3-5 işaretçi;
+     temiz bağlamlı ajan iddiayı kayıtla karşılaştırır. Hata oranı yükselirse
+     örneklem büyütülür.
+   - **Kapanış denetimi** — oturum kapandıktan sonra yazılan notlar omurgaya
+     karşı denetlenir. Kullanıcı çekildiğinde onun yerini alan mekanizma.
+
+   **Karar: denetçi rapor eder, düzeltmez.** Düzelten bir denetçi kendi
+   düzeltmesini denetletmez; rapor zinciri sonlu, düzeltme zinciri değildir.
+   Ayrıca bir iddianın yanlış olduğunu görmek, doğrusunu bilmek demek değildir.
+
+4. **Side chat'ler arşive hiç girmiyor.** Kayıt dosyası oluşmuyor; arama
+   bulmuyor, paralel oturum uyarısı görmüyor. Tek taşıma yolu elle aktarma.
+   Ölçüm: [[olculmus-bulgular]] §6. Çözüm bilinmiyor — harness tarafında,
+   bu vault'un erişemediği bir yer.
+
+5. **Paralelleştirme / mesh — ertelendi** (kullanıcı, 18.09 01:02). Devir
+   kutusu mesh'e uygun değil; neden ve ne gerekirdi: [[agentic-yapi]].
+
 ## Karar bekleyenler
 
 - Tek ortak hafıza klasörü (`autoMemoryDirectory`) kurulmadı. 30 izole notun
