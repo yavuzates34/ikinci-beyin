@@ -85,3 +85,74 @@ Windows Görev Zamanlayıcı görevi: `playground-derleyici`, her gün 00:30,
 `araclar/derle-gece.cmd` çağırıyor. Elle tetiklenip uçtan uca doğrulandı:
 çıkış kodu 0, rapor yazıldı, commit atıldı. Log: `derleme/derleyici.log`
 (git'e girmiyor).
+
+---
+
+## 18 Eylül 2026: üç ekleme — telafi, denetim, sağlık
+
+Kullanıcı "haftalık rapor kaçarsa ne olur" diye sordu; ölçüm üç ayrı şey buldu
+(claude 7f10f7a3 · 18.09 02:41).
+
+### Ölçülen durum
+
+- **Görev kaçması zaten telafi ediliyor:** `playground-derleyici` görevinde
+  `StartWhenAvailable = True` — makine kapalıyken kaçan görev, açılınca çalışır.
+  `WakeToRun = False`, yani uyuyan makineyi uyandırmaz (fan sesi nedeniyle
+  bilinçli doğru ayar).
+- **Haftalık rapor kaçmamıştı, sırası gelmemişti.** Tetik `weekday() == 0`
+  (Pazartesi); elimizdeki tek haftalık 16 Eylül Çarşamba tarihliydi çünkü
+  kurulumda elle üretilmişti. Model "ya üretildi kimse bakmadı ya ölçüm
+  çalışmıyor" diye ikilem kurmuştu — **üçüncü seçeneği atlamıştı.**
+- **Ve beklenmeyen:** 18.09 00:30 çalıştırması çıkış kodu `0xC000013A`
+  (kontrol kesmesi) ile bitmişti. Günlük dosya yazılmış, commit atılmıştı,
+  görev "Ready" görünüyordu — ama log'da 18 Eylül bölümü hiç yoktu.
+  **Denetim mekanizmasının kendisi sessizce bozulabiliyor.**
+
+### 1. Telafi: "bugün hangi gün" değil, "eksik olan var mı"
+
+`haftalik_gerekli()` ve `aylik_gerekli()` eklendi. Eski koşul güne bakıyordu ve
+bir açık bırakıyordu: makine Pazartesi gecesi kapalıysa görev Salı telafi olarak
+çalışır ama içeride "bugün Pazartesi değil" diye haftalığı **atlar, sessizce.**
+Yeni koşul çıktıya bakar — bu hafta üretilmiş mi, bu ay üretilmiş mi.
+
+Bu, [[kapanis-ritueli]]'ndeki `SessionEnd` kurgusunun aynı deseni: **ölen bant
+işaret bırakır, yaşayan bant eksiği toplar.** Kullanıcı aynı deseni bağımsız
+olarak ikinci kez buldu.
+
+### 2. Denetim: kaynak işaretçileri her gece açılır
+
+`isaretci_denetle()` eklendi. `notlar/` içindeki her `(claude <id> · <damga>)`
+işaretçisini açar, o oturum kaydı var mı ve o damgada mesaj var mı diye bakar.
+**İçeriği denetlemez** — sadece "bu adres mevcut mu" der. Model gerektirmez,
+yargı gerektirmez, deterministiktir.
+
+Çözdüğü sorun: işaretçi bir **imkândır, denetim değildir.** Denetlenmeyen bir
+işaretçi denetlenebilirlik görüntüsü verir; uydurulmuş bir kaynak tam da bu
+yüzden hatanın en tehlikeli türüdür.
+
+**İlk sürüm sessizce 8 işaretçi atlıyordu.** Katı desen 40'ın 32'sini yakalıyor,
+gerisini görmezden geliyordu — çünkü işaretçi formatı tek tip değil: saat
+aralığı (`17:54–18:10`), saatsiz tarih (`08.09`), tek işaretçide iki damga,
+satır sonuna bölünmüş olanlar. Desen esnetildi ve **üçüncü bir kategori**
+eklendi: *denetlenemeyen*. Eşleşmeyen bir işaretçi artık sessizce atlanmıyor,
+raporlanıyor.
+
+**Negatif testle doğrulandı** — "hepsi doğru" çıktısı tek başına mekanizmanın
+çalıştığını kanıtlamaz. Geçici bir dosyaya üç kusurlu işaretçi konuldu; üçü de
+ayrı ayrı yakalandı: uydurma damga, var olmayan oturum kimliği, okunamayan
+damga. Gerçek olan geçti.
+
+**İlk tam denetim sonucu: 40 işaretçinin hepsi doğrulandı.**
+
+### 3. Sağlık: derleyici kendi kesintisini bildirir
+
+`derleme/son-calisma.json` eklendi. Çalışma başında `tamamlandi: false` yazılır,
+sonunda `true`. Bir sonraki çalışma bu dosyayı okur; `false` bulursa önceki
+çalıştırmanın **tamamlanmadan kesildiğini** bildirir.
+
+Gerekçe: bir denetim mekanizması sessizce bozulabiliyorsa, denetlediği şeyler
+hakkında söyledikleri de güvenilmez olur. Log'a değil ayrı bir duruma yazılıyor,
+çünkü log'u görev zamanlayıcı yönetiyor ve üzerine yazıyor.
+
+Dosya ayrıca son denetim sonucunu taşır: işlenmemiş oturum sayısı, işaretçi
+toplamı, kusurlular, denetlenemeyenler.

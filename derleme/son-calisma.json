@@ -1,4 +1,9 @@
 {
  "baslangic": "2026-09-18 02:41",
- "tamamlandi": false
+ "tamamlandi": true,
+ "islenmemis_oturum": 0,
+ "isaretci_toplam": 40,
+ "isaretci_kusurlu": [],
+ "isaretci_denetlenemeyen": [],
+ "onceki_kesinti": null
 }

@@ -31,13 +31,18 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
 2. **Omurga model tarafını taşımıyor.** Sadece kullanıcı mesajlarını çıkarıyor;
    ölçümler, elenen fikirler, gerekçeler ham kayıtta kalıyor. Madde 1'in ön
    şartı — zenginleştirilmeden temiz örnek eksik malzemeyle yazar.
+   **Ek kusur (18.09):** `omurga.py` skill yüklemelerini kullanıcı mesajı
+   sanıyor. Bu oturumun omurgasında `claude-api` skill'inin tamamı bir
+   "kullanıcı mesajı" olarak göründü ve 128 KB'lık omurganın önemli kısmını
+   doldurdu. Filtrelenmeli.
 
 3. **Denetim katmanı yok.** 32 kaynak işaretçisi var, açan kimse yok. Üç
    seviyeli öneri (claude 7f10f7a3 · 17.09 18:29):
-   - **Mekanik işaretçi denetimi** — gece derleyicisine eklenir; her işaretçiyi
-     açar, o damgada mesaj var mı bakar, yoksa raporlar. Yargı istemez, model
-     istemez, ~20 dakikalık iş. **Uydurulmuş işaretçi en tehlikeli hata
-     türüdür: denetlenebilirlik görüntüsü verir.**
+   - ~~**Mekanik işaretçi denetimi**~~ **KURULDU 18.09 02:41** — gece
+     derleyicisinde. Her işaretçiyi açar, oturum ve damga gerçek mi bakar;
+     deseni tutmayanı da "denetlenemedi" diye ayrı raporlar. Negatif testle
+     doğrulandı. İlk sonuç: 40 işaretçinin hepsi temiz. Bkz.
+     [[gece-derleyicisi]].
    - **Örneklemeli içerik denetimi** — haftada bir, rastgele 3-5 işaretçi;
      temiz bağlamlı ajan iddiayı kayıtla karşılaştırır. Hata oranı yükselirse
      örneklem büyütülür.

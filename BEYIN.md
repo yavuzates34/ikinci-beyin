@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 18 Eylül 2026, 01:10
+**Son güncelleme:** 18 Eylül 2026, 04:40
 
 ---
 
@@ -52,6 +52,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-08-30-birinci-oturum]] | 30.08 12:34 – 04.09 22:13 | izle.py kuruldu, arşiv keşfedildi, ikinci beyin tasarlandı |
 | [[2026-09-07-ikinci-oturum]] | 07.09 13:02 – 17.09 01:55 | **On gün, 110 mesaj, iki iş kolu.** İlk yarı: kapanış ritüeli, arşiv arama, gece derleyicisi, git, PreCompact ağı. İkinci yarı: yapının Nar Ajans'a taşınması |
 | [[2026-09-16-nar-ajans-envanteri]] | 16.09 04:00 – 04:45 | Ayrı oturum değil — yukarıdaki oturumun **alt kolu**. Nar Ajans çalışma alanı sayımı: 6 depo, Codex checkpoint'leri, 4.21 GB yedek |
+| [[2026-09-17-agentic-yapi-ve-denetim]] | 17.09 01:59 – 18.09 04:40 | **90 mesaj, 26,7 saat.** izle.py dört katmana çıktı (OCR + birleştirme), agentic yapı notu ve dört şema, denetim katmanı kararı, SessionEnd boşluğu, gece derleyicisine üç ekleme |
 | [[BAGLAM-DEVRI]] | — | 30 Ağustos itibarıyla teknik devir belgesi (başka bir modele verilmek üzere) |
 
 ## Sesli dinleme dosyaları
