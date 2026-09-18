@@ -235,3 +235,21 @@ Yani bugünkü hata oranı düşük görünüyor. **Ama denetçi şu an sistem d
 kullanıcıdır** — 17 Eylül'deki dört model hatasının dördünü de kullanıcı
 yakaladı. Ekim hedefi "kullanıcı başında durmadan çalışsın" olduğuna göre o
 denetçi çekildiğinde yerine bir şey konmalıdır. Bkz. [[acik-uclar]].
+
+## 9. Arayüz "gidip geldi" — sessiz güncelleme, oturum kaydında iz yok
+
+18 Eylül 13:49'da kullanıcı okurken masaüstü uygulaması kapanıp açıldı. Sebep
+**otomatik güncelleme**: uygulama bir süre boşta kalınca kendini sessizce
+güncelliyor (2.2553.0 → 2.2553.1). Açık oturumu durduruyor, yeniden başlatıyor
+ve pencereyi aynı yere geri koyuyor. Toplam kesinti yaklaşık 6 saniye
+(claude 5c600e7e · 18.09 13:50).
+
+- **Oturum kaydında (`.jsonl`) hiç iz bırakmıyor.** 13:37 ile 13:50 arasında
+  tek satır yok. `SessionStart:resume` bile tetiklenmedi, oturum kaldığı yerden
+  sürdü.
+- **Görüldüğü yer:** `%LOCALAPPDATA%\Claude\logs\main.log`. Aranacak satırlar:
+  `stealth-update`, `beforeQuitForUpdate`, `Version changed since last launch`.
+- Kayıp yok. Konuşma, izinler ve bağlam yerinde.
+
+Genel ders: oturum kaydı modelin gördüğünü tutar, **uygulamanın başına
+geleni tutmaz.** Arayüzle ilgili bir soruda bakılacak yer `main.log`.
