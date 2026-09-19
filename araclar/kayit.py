@@ -217,7 +217,14 @@ def oturumlar(kapsam: str = "hepsi", proje: str | None = None) -> list[Oturum]:
 
     if kapsam in ("codex", "hepsi", "proje"):
         kok_yol = str(PROJE_KOKU).lower()
-        for p in (ev / ".codex" / "sessions").glob("**/*.jsonl"):
+        # Codex Desktop kapatilan (arsivlenen) oturumu sessions/'dan
+        # archived_sessions/'a TASIYOR. Yalnizca sessions/ taranirken 61 oturum
+        # aramaya, dedektore ve isaretci denetimine gorunmuyordu
+        # (claude 5c600e7e · 19.09 20:10).
+        codex_kok = ev / ".codex"
+        kaynaklar = [*(codex_kok / "sessions").glob("**/*.jsonl"),
+                     *(codex_kok / "archived_sessions").glob("*.jsonl")]
+        for p in kaynaklar:
             if kapsam == "proje" and (proje or _codex_cwd(p) != kok_yol):
                 continue
             st = p.stat()
