@@ -100,6 +100,14 @@ damgalarıyla ve kronolojik sırada çıkarır. Kayıt zaten diskte duruyor; kap
   terfi önerileri ilgili notlara işlenir, dosya gerçek arşiv adına
   (`YYYY-AA-GG-kisa-ad.md`) çevrilir, `oto-kayit:` satırı silinir,
   `kapanan-oturum:` yazılır. Taslaktaki işaretçileri gece denetimi de açar.
+
+  Taslağın kapsamı dardır. **Aynı oturuma dönülürse** taslak işlenmez: canlı
+  bağlam ve ham kayıt asıl kaynaktır. Oturum başı "BU OTURUM İÇİN GECE TASLAĞI
+  VAR" der ve o oturum kapanırken taslak kendi arşiv kaydına birleştirilip
+  kaldırılır. **Başka bir oturum devralırsa** ya da **oturum terk edildiyse**
+  taslak güncel omurgaya karşı doğrulanır ve yalnızca kalıcı olan taşınır;
+  körü körüne terfi edilmez. Kapanmış oturumun taslağı dosyada kalırsa gece
+  derleyicisi onu "yetim taslak" olarak raporlar.
 - **Terfi:** kalıcı olan `notlar/` içindeki ilgili konu notuna taşınır. Yeni bir
   konu çıktıysa yeni not açılır ve `BEYIN.md` haritasına satır eklenir.
 

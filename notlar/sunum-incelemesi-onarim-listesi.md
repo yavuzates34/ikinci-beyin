@@ -37,6 +37,30 @@ gerçek sistemi, sonra kalıcı notları, en son sunumu düzeltin. Kullanıcı k
 veya arayüz işlemi gereken yerde bana sorun; doğrulanmamış işi tamamlandı
 saymayın.”
 
+## Kullanıcı kararları (19.09.2026 20:1x)
+
+Claude oturumunda soruldu ve cevaplandı (claude 5c600e7e · 19.09 20:12):
+
+- **Erken devir eşiği:** bağlam doluluğu **%50'de uyarı, %70'te tekrar**.
+- **Eşik aşılınca:** tur sonunda uyar ve omurgayı diske al (kurtarma kontrol
+  noktası). Kapanışı kullanıcı "devret" ya da "kapatalım" diyerek başlatır.
+- **Yeni oturuma geçiş ve `kapanan-oturum:` onayı:** kullanıcı. İleride
+  paralelleştirme olursa yetkili **orkestratör ajan** da (Fable, Astra gibi)
+  onay verebilir. Bugün orkestratör yok; yetki rol olarak tanımlanır.
+- **Budama:** derleyici bakım **adaylarını** raporlar ve oturum başında uyarır.
+  Kapanmış tarihçe `oturumlar/` altına taşınır, otomatik silme yok. Bakımı
+  kullanıcı yapar, ileride orkestratör ajanlar da yapabilir.
+
+## Sonradan bulunan 14. açık
+
+**Codex Desktop'ın arşivlenmiş oturumları arşiv araçlarına görünmüyordu.**
+Desktop, kapatılan oturumu `~/.codex/sessions/` klasöründen
+`~/.codex/archived_sessions/` klasörüne taşıyor. `kayit.py` yalnızca birincisini
+tarıyordu: 61 oturum aramaya, dedektöre ve işaretçi denetimine görünmüyordu.
+Bu listenin kaynağı olan `01a0ba53` de bunlardan biriydi. Düzeltildi, commit
+`629fc81`: Codex oturumları 103'ten 164'e çıktı, 69 işaretçinin 69'u doğrulandı
+(claude 5c600e7e · 19.09 20:10).
+
 ## On üç bulgu
 
 ### 1. “Her oturumda BEYIN.md okunur” otomatiklik izlenimi veriyor

@@ -68,10 +68,27 @@ def al() -> str | None:
 
 
 def main() -> int:
+    try:
+        girdi = json.loads(sys.stdin.read() or "{}")
+    except (ValueError, OSError):
+        girdi = {}
+    parcalar = []
     metin = al()
     if metin:
+        parcalar.append(metin)
+    # Erken devir: tur sinirinda baglam dolulugu (bkz. araclar/baglam.py).
+    # Hata yutulur; devir kutusu teslimi hicbir kosulda bozulmamali.
+    try:
+        import baglam
+        uyari = baglam.kontrol(girdi.get("transcript_path"), girdi.get("session_id"))
+        if uyari:
+            parcalar.append(uyari)
+    except Exception:  # noqa: BLE001
+        pass
+    if parcalar:
         print(json.dumps({"hookSpecificOutput": {
-            "hookEventName": "UserPromptSubmit", "additionalContext": metin}},
+            "hookEventName": "UserPromptSubmit",
+            "additionalContext": "\n\n".join(parcalar)}},
             ensure_ascii=True))
     return 0
 

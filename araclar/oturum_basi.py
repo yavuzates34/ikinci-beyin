@@ -126,6 +126,19 @@ def main() -> int:
                   + "\n".join(f"  - {u}" for u in uyarilar)
                   + "\nBunlari kullaniciya ilk cevapta soyle.")
 
+    # Kalici katman bakimi: canli olculur (ucuz, deterministik), gece
+    # derleyicisi calismasa da gorunur. Silme yok; adaylar kullaniciya soylenir.
+    try:
+        import bakim
+        bakim_uyari = bakim.uyarilar(bakim.olc())
+    except Exception:  # noqa: BLE001 - olcum bozulursa oturum baslamali
+        bakim_uyari = ["bakim olcumu calismadi (araclar/bakim.py)"]
+    if bakim_uyari:
+        ek.append("KALICI KATMAN BAKIMI:\n"
+                  + "\n".join(f"  - {u}" for u in bakim_uyari)
+                  + "\nKullaniciya kisaca soyle; bakimi o (ya da yetkili "
+                  "orkestrator ajan) onaylamadan dosya tasima/silme yapma.")
+
     kimlik = girdi.get("session_id")
     if kimlik:
         ek.append(
@@ -133,6 +146,17 @@ def main() -> int:
             f"Araclara kesin kimlik ver: python araclar/omurga.py {kimlik[:8]}\n"
             f"Kapanista arsiv dosyasina su satiri yaz: kapanan-oturum: {kimlik[:8]}"
         )
+        # Ayni oturuma donus: gece bu oturuma taslak yazilmis olabilir.
+        # Eskiden kendi oturumu listeden cikarildigi icin bundan haberi
+        # olmuyordu ve kapanistan sonra taslak yetim kaliyordu (onarim 12).
+        kendi = kayit.PROJE_KOKU / "oturumlar" / f"oto-{kimlik[:8]}.md"
+        if kendi.exists():
+            ek.append(
+                f"BU OTURUM ICIN GECE TASLAGI VAR: oturumlar/{kendi.name}\n"
+                "Oturum devam ediyor; asil kaynak canli baglam ve ham kayittir. "
+                "Taslagi terfi etme. Kapanista arsiv kaydini yazarken taslagi "
+                "birlestir ve dosyayi kaldir (git gecmisi korur); yetim birakma."
+            )
 
     try:
         kapali = kayit.kapanmis_kimlikler()

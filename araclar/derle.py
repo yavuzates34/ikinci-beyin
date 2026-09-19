@@ -74,7 +74,8 @@ def yaz(yol: Path, govde: str, kuru: bool) -> None:
 
 
 # ---------------------------------------------------------------- GUNLUK
-def gunluk(bugun: datetime, kuru: bool, oto: list[str] | None = None) -> int:
+def gunluk(bugun: datetime, kuru: bool, oto: list[str] | None = None,
+           bakim_olcu: dict | None = None) -> int:
     dun = bugun - timedelta(days=1)
     # Dedektor SADECE bu projeyi izler. Nar Ajans'in ARTIK kendi derleyicisi
     # var (16 Eyl 2026), oradaki oturumlari o sayar. Diger projelerde yapi yok;
@@ -117,6 +118,16 @@ def gunluk(bugun: datetime, kuru: bool, oto: list[str] | None = None) -> int:
               "Kapanissiz ve 6 saattir sessiz oturumlara temiz baglamla yazdirilan",
               "taslaklar (`oturumlar/oto-*.md`). Kalici notlara terfi EDILMEDI.", ""]
         s += oto + [""]
+
+    if bakim_olcu is not None:
+        import bakim
+        uy = bakim.uyarilar(bakim_olcu)
+        s += ["## Kalici katman bakimi", "",
+              f"notlar/: **{bakim_olcu['notlar_kb']} KB** | esik: {bakim_olcu['esik']} "
+              f"(65 KB secmeli okuma, 100 KB bolme). Silme yok; adaylar oturum "
+              f"basinda kullaniciya soylenir.", ""]
+        s += [f"- {x}" for x in uy] if uy else ["- aday yok"]
+        s.append("")
 
     # PreCompact anlik goruntuleri + eskilerini temizle
     anlik = sorted((DERLEME / "omurga-anlik").glob("*.md"))
@@ -391,7 +402,12 @@ def main() -> int:
     for satir in oto:
         print(f"  oto: {satir[2:]}")
 
-    eksik = gunluk(bugun, a.kuru, oto)
+    try:
+        import bakim
+        bakim_olcu = bakim.olc()
+    except Exception as e:  # noqa: BLE001
+        bakim_olcu = {"hata": f"{type(e).__name__}: {e}"}
+    eksik = gunluk(bugun, a.kuru, oto, bakim_olcu if "hata" not in bakim_olcu else None)
     if a.hepsi or haftalik_gerekli(bugun):
         haftalik(bugun, a.kuru)
     if a.hepsi or aylik_gerekli(bugun):
@@ -443,6 +459,7 @@ def main() -> int:
               islenmemis_oturum=eksik,
               push=push,
               oto_kayit=oto,
+              bakim=bakim_olcu,
               isaretci_toplam=toplam_i,
               isaretci_kusurlu=kusurlu,
               isaretci_denetlenemeyen=denetlenemeyen,
