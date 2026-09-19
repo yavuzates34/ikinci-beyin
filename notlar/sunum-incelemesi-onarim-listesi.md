@@ -358,6 +358,12 @@ yapılmamış bir işlem yapılmış varsayılmamalıdır.
 
 ## Üçüncü göz: Astra turu
 
+**Karar (kullanıcı, 20.09 00:50):** Astra turunu kullanıcı kendi Codex Desktop
+oturumunda yapacak. Claude alt ajan olarak çağıramıyor: kurulu CLI 0.150.1
+`gpt-6-astra` modelini çalıştıramıyor ([[olculmus-bulgular]] §15). Claude ve
+Codex'in turu burada bitti; 15 maddenin 12'si kapandı, üçü kullanıcıya bağlı
+(5 ve 7: hook güveni; 10: budama kararı).
+
 Claude ve Codex'in turu bittikten sonra kullanıcı bir Astra oturumu açıp bu işi
 denetletecek. Astra'nın denetim haritası, bilerek açık bıraktığımız dört madde
 ve Claude'un kendi işaret ettiği altı zayıf nokta: `rehber/astra-kontrol.md`.

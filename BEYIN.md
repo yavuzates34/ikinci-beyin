@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 20 Eylül 2026, 00:48
+**Son güncelleme:** 20 Eylül 2026, 01:20
 
 ---
 
@@ -83,7 +83,7 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
 
-- **SIRADAKI IS — Astra turu.** Claude ve Codex'in onarım turu bitti. Üçüncü
+- **SIRADAKI IS — Astra turu (Codex Desktop'ta, kullanıcı başlatır; CLI Astra'yı çalıştıramıyor).** Claude ve Codex'in onarım turu bitti. Üçüncü
   göz denetimi için kullanıcı bir Astra oturumu açıp `/goal` verecek. Denetim
   haritası, açık bırakılan dört madde ve Claude'un kendi zayıf noktaları:
   `rehber/astra-kontrol.md`. Açık maddelerin durumu:
