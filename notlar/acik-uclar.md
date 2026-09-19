@@ -23,12 +23,23 @@ Altyapı işi 16 Eylül'de kapandı. Kalanlar **ertelenmiş**, sıradaki iş de�
 
 Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
 
-1. **`SessionEnd` hook'u yok — kapanışsız oturum iz bırakmıyor.** Kapatılmadan
+1. ~~**`SessionEnd` hook'u yok — kapanışsız oturum iz bırakmıyor.** Kapatılmadan
    bırakılan oturumdan kalıcı katmana hiçbir şey geçmiyor. Karar verildi, kurgu
    belli: *işareti ölen bant bıraksın, notu yaşayan bant yazsın.* Kurulmadı.
-   Tasarım ve elenen alternatif: [[kapanis-ritueli]].
+   Tasarım ve elenen alternatif: [[kapanis-ritueli]].~~
+   **Kapandı 19.09 17:3x, SessionEnd'siz.** `araclar/gece_kayit.py` her gece
+   kapanışsız ve 6 saattir sessiz oturuma temiz bağlamla taslak yazdırıyor
+   (`oturumlar/oto-<id8>.md`). SessionEnd hook'u **elendi**: `kapanan-oturum:`
+   satırı geldiğinden beri dedektörün kendisi işaret; çökme de böyle
+   yakalanıyor. Taslak kalıcı notlara terfi etmez, onu bir sonraki oturum
+   kullanıcıyla yapar. Bu oturumda uçtan uca sınandı: Sonnet 5, 103 saniye,
+   7 KB taslak, 18 işaretçinin 18'i gerçek damga
+   (claude 5c600e7e · 19.09 17:28). Ayrıntı: [[gece-derleyicisi]].
 
-2. **Omurga model tarafını taşımıyor.** Sadece kullanıcı mesajlarını çıkarıyor;
+2. ~~**Omurga model tarafını taşımıyor.**~~ **Kapandı 19.09:** `omurga.py
+   <id> --tam` kullanıcı mesajlarına modelin metin cevaplarını ekliyor (araç
+   çıktısı ve düşünme hariç). En büyük oturum 258 KB, bu oturum 40 KB.
+   Eski metin: Sadece kullanıcı mesajlarını çıkarıyor;
    ölçümler, elenen fikirler, gerekçeler ham kayıtta kalıyor. Madde 1'in ön
    şartı — zenginleştirilmeden temiz örnek eksik malzemeyle yazar.
    **Ek kusur (18.09):** `omurga.py` skill yüklemelerini kullanıcı mesajı

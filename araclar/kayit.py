@@ -45,6 +45,9 @@ GURULTU_ONEK = (
     "<environment_context>",
     "<available_plugins>",
     "Caveat: The messages below were generated",
+    # Reply bicimli mesajlarda her parcanin arkasina harness ekliyor; bu
+    # oturumun omurgasini 17 sahte mesajla sisiriyordu (claude 5c600e7e · 19.09 17:24).
+    "[Request interrupted by user",
 )
 
 # Bu isaretlerden birini tasiyan mesaj bastan asagi sistem uretimidir

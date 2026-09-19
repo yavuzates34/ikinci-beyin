@@ -253,3 +253,28 @@ ve pencereyi aynı yere geri koyuyor. Toplam kesinti yaklaşık 6 saniye
 
 Genel ders: oturum kaydı modelin gördüğünü tutar, **uygulamanın başına
 geleni tutmaz.** Arayüzle ilgili bir soruda bakılacak yer `main.log`.
+
+## 10. Omurga mesaj sayıları şişkindi — harness işaretleri
+
+19 Eylül'de omurga filtrelenirken ölçüldü (claude 5c600e7e · 19.09 17:24).
+Omurga iki tür harness metnini **kullanıcı mesajı** olarak sayıyordu:
+
+- `isMeta: true` satırlar: skill metni, komut uyarısı, "Continue from where
+  you left off". Arşivde 67 tane.
+- `[Request interrupted by user]`: reply biçimli mesajlarda her parçanın
+  arkasına ekleniyor.
+
+| Oturum | Arşivde yazan | Gerçek | Kesme işareti |
+|---|---|---|---|
+| `7f10f7a3` | 90 | **68** | 21 (+1 skill) |
+| `3557db3e` | 110 | **75** | 33 |
+| `5c600e7e` | — | 23 | 16 |
+
+İkisi de `kayit.py`'de filtrelendi. Filtre ortak katmanda olduğu için omurga,
+arama ve gece taslağı birlikte düzeldi. Eski arşiv kayıtlarındaki sayılar
+**düzeltilmedi**; altlarına denetim notu düşüldü. Kural: denetçi rapor eder,
+metni yeniden yazmaz ([[acik-uclar]]).
+
+Codex tarafındaki karşılığı: `AGENTS.md` içeriği, eklenti listesi ve ortam
+bilgisi, kullanıcı mesajının ayrı blokları olarak yazılıyor. Blok bazında
+atılıyor (codex 01a0b9eb · 19.09 16:47).

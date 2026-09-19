@@ -146,6 +146,8 @@ def main() -> int:
             f"  - {o.kisa} ({o.kaynak}, son yazma {o.an:%d.%m %H:%M}, "
             f"{o.boyut / 1024:.0f} KB"
             + (", muhtemelen HALA ACIK" if simdi - o.an < CANLI_PENCERE else "")
+            + (f", GECE TASLAGI VAR: oturumlar/oto-{o.kisa}.md"
+               if (kayit.PROJE_KOKU / "oturumlar" / f"oto-{o.kisa}.md").exists() else "")
             + ")" for o in acik[:8]
         )
         ek.append(
@@ -156,7 +158,10 @@ def main() -> int:
             "  python araclar/omurga.py <id>          -> o oturumun iskeleti\n"
             "  python araclar/oku.py <id> --saat SS:DD -> tam dokum\n"
             "Kullanici 'az once sunu konusmustuk' derse ve notlarda yoksa, "
-            "tahmin etme - bu kayitlari oku."
+            "tahmin etme - bu kayitlari oku.\n"
+            "GECE TASLAGI olanlari kullaniciya soyle: taslak gozden gecirilir, "
+            "terfi onerileri notlara islenir, dosya gercek arsiv kaydina cevrilir "
+            "ve `kapanan-oturum:` yazilir (AGENTS.md)."
         )
 
     cikti(metin.rstrip() + ("\n\n" + "\n\n".join(ek) if ek else ""), a.bicim)

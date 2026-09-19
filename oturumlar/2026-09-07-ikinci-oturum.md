@@ -556,6 +556,13 @@ Bu oturum (`3557db3e`) **07.09 13:02'de açıldı, 17.09 01:55'te kapandı.**
 On gün, **110 kullanıcı mesajı**, 9.114 KB ham kayıt. Mesajların 97'si tek
 günde — 16 Eylül'de. Kapanış ritüeli gereği omurga okunarak yazıldı.
 
+> **Denetim notu (19.09.2026):** "110 kullanıcı mesajı" sayısı şişkin. Bugünkü
+> omurga **75** sayıyor. Kayıtta 33 "[Request interrupted by user]" işareti
+> var ve omurga o sırada onları da kullanıcı mesajı sayıyordu. Kalan 2'lik
+> fark ölçülmedi. "97'si tek günde" oranı da aynı şişkinliği taşıyor olabilir.
+> Metin düzeltilmedi, not düşüldü (kullanıcı kararı). Ölçüm:
+> [[olculmus-bulgular]] §10.
+
 Oturumun iki yarısı var: ilk yarı playground'un kendi beynini tamamladı
 (kapanış ritüeli, arşiv arama, gece derleyicisi, git, PreCompact ağı), ikinci
 yarı o yapıyı Nar Ajans'a taşıdı. Aradaki geçiş kullanıcının şu cümlesiydi:

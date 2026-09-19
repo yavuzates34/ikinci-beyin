@@ -5,6 +5,12 @@ kapanan-oturum: 7f10f7a3
 **90 kullanıcı mesajı, 4.247 KB ham kayıt.** Takvim süresi 26,7 saat; içinde
 14,6 saatten fazla ara var (en uzunu 05:52 → 13:28, 7,6 saat).
 
+> **Denetim notu (19.09.2026):** "90 kullanıcı mesajı" sayısı şişkin. Gerçek
+> sayı **68**. Omurga o sırada 21 "[Request interrupted by user]" işaretini ve
+> 1 skill metnini de kullanıcı mesajı olarak sayıyordu. İkisi de harness'in
+> yazdığı şeyler. Metin düzeltilmedi, not düşüldü (kullanıcı kararı). Ölçüm:
+> [[olculmus-bulgular]] §10.
+
 Omurga okunarak yazıldı (`python araclar/omurga.py 7f10f7a3`).
 
 Konu iki koldan ilerledi: **`izle.py` video hattının yeniden kurulması** ve

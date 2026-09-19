@@ -44,6 +44,42 @@ oturumlara atıf yapıyor. Ayrıca yalnızca son 24 saate bakıldığı için
 kapanmadan sessiz kalan oturum ertesi gece görünmez oluyordu
 (claude 5c600e7e · 19.09 08:27).
 
+## Gece taslağı: ilkenin tek istisnası (19 Eylül)
+
+"Ölçer, yazmaz" ilkesinin bilinçli bir istisnası var: `araclar/gece_kayit.py`.
+Kapanışsız kalıp 6 saattir sessiz olan oturumun tam omurgasını (kullanıcı ve
+model metni) temiz bağlamlı, araçsız bir modele verip **arşiv taslağı**
+yazdırıyor: `oturumlar/oto-<id8>.md`.
+
+İstisna dar tutuldu, çünkü ilkenin gerekçesi hâlâ geçerli ("sessizce kötü
+özet"):
+
+- **Kalıcı katmana dokunmaz.** Terfi önerileri taslağın içinde kalır. Onları
+  bir sonraki oturum kullanıcıyla birlikte işler.
+- **Taslağın işaretçileri her gece denetlenir.** Uydurma damgayı mekanik
+  denetim yakalar.
+- **Oturum başı onu gösterir.** "GECE TASLAĞI VAR" uyarısı olmadan taslak
+  unutulurdu.
+- **Tavan:** gecede en fazla 3 oturum, omurga 600 KB'ı geçerse ortası kırpılır,
+  oturum başına 15 dakika.
+- **Model:** varsayılan `claude -p` ve Sonnet 5. Proje hook'ları, MCP ve
+  araçlar kapalı. Hook'lar kapalı çünkü SessionStart devir kutusunu tüketir ve
+  gerçek bir compact mesajı kaybolurdu. `GECE_KAYIT_KOMUT` ortam değişkeniyle
+  başka bir sağlayıcıya verilebilir.
+- Codex alt ajan oturumları (`originator: codex_exec`) işlenmez.
+
+**Sınama** (claude 5c600e7e · 19.09 17:28): bu oturumun kendisi üzerinde
+103 saniyede 7 KB taslak çıktı. Tarih aralığını ölçerek yazdı, iş kollarını
+ayırdı, kararları gerekçeleriyle, elenenleri ve açık kalanları ayrı verdi.
+18 işaretçinin hepsi gerçek bir damgaya denk geldi. Bir kusuru vardı: çıktıyı
+kod çitine sarmıştı, ayıklayıcı eklendi.
+
+**Elenen: `SessionEnd` hook'u ile işaret bırakmak.** `kapanan-oturum:` satırı
+geldiğinden beri dedektörün kendisi işaret. Oturumun bitiş anını yakalamaya
+gerek yok; çökme ve elektrik kesintisi de böyle yakalanıyor. Codex'in
+SessionEnd'i boşta kalınca da tetikleniyor, yani "konu bitti" demek değil
+(codex 01a0b9eb · 19.09 16:47).
+
 **Rapor artık bir alıcıya ulaşıyor.** Push sonucu `son-calisma.json`'a
 yazılıyor. Oturum başı betiği o dosyadaki sorunları (kesinti, 36 saatten uzun
 sessizlik, push hatası, kusurlu işaretçi) ilk mesajla modele veriyor. Önceden

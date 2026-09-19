@@ -90,6 +90,15 @@ damgalarıyla ve kronolojik sırada çıkarır. Kayıt zaten diskte duruyor; kap
   çünkü oturum bitmemiştir. Bu oturumun başka bir ajana devrettiği alt görev
   oturumları (örneğin `codex exec`) aynı satıra eklenir, çünkü onların
   kapanışı çağıran oturumun kaydıdır: `kapanan-oturum: 5c600e7e, 01a0b9eb`.
+
+  **Gece taslakları.** Kapanışsız kalan ve 6 saattir sessiz olan oturuma gece
+  derleyicisi temiz bağlamla bir taslak yazdırır: `oturumlar/oto-<id8>.md`.
+  Taslak kapanış **değildir**: kalıcı notlara terfi etmez, `kapanan-oturum:`
+  yazmaz, haritaya girmez. Oturum başında "GECE TASLAĞI VAR" uyarısı görülürse
+  kullanıcıya söylenir ve birlikte şu yapılır: taslak omurgaya karşı okunur,
+  terfi önerileri ilgili notlara işlenir, dosya gerçek arşiv adına
+  (`YYYY-AA-GG-kisa-ad.md`) çevrilir, `oto-kayit:` satırı silinir,
+  `kapanan-oturum:` yazılır. Taslaktaki işaretçileri gece denetimi de açar.
 - **Terfi:** kalıcı olan `notlar/` içindeki ilgili konu notuna taşınır. Yeni bir
   konu çıktıysa yeni not açılır ve `BEYIN.md` haritasına satır eklenir.
 

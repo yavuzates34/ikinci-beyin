@@ -74,7 +74,7 @@ def yaz(yol: Path, govde: str, kuru: bool) -> None:
 
 
 # ---------------------------------------------------------------- GUNLUK
-def gunluk(bugun: datetime, kuru: bool) -> int:
+def gunluk(bugun: datetime, kuru: bool, oto: list[str] | None = None) -> int:
     dun = bugun - timedelta(days=1)
     # Dedektor SADECE bu projeyi izler. Nar Ajans'in ARTIK kendi derleyicisi
     # var (16 Eyl 2026), oradaki oturumlari o sayar. Diger projelerde yapi yok;
@@ -111,6 +111,12 @@ def gunluk(bugun: datetime, kuru: bool) -> int:
     else:
         s += ["## Kapanmamis oturum yok", "",
               "Bu projenin her oturumu arsivde `kapanan-oturum:` satiriyla kapanmis.", ""]
+
+    if oto:
+        s += ["## Gece kaydi (taslak)", "",
+              "Kapanissiz ve 6 saattir sessiz oturumlara temiz baglamla yazdirilan",
+              "taslaklar (`oturumlar/oto-*.md`). Kalici notlara terfi EDILMEDI.", ""]
+        s += oto + [""]
 
     # PreCompact anlik goruntuleri + eskilerini temizle
     anlik = sorted((DERLEME / "omurga-anlik").glob("*.md"))
@@ -301,7 +307,7 @@ DAMGA = re.compile(r"(\d{1,2})\.(\d{2})(?:\s+(\d{1,2}):(\d{2}))?")
 DAMGA_TOLERANS = 3  # dakika
 
 
-def isaretci_denetle() -> tuple[int, list[str], list[str]]:
+def isaretci_denetle(dosyalar: list[Path] | None = None) -> tuple[int, list[str], list[str]]:
     """Notlardaki kaynak isaretcilerini ham kayda karsi dogrular.
 
     ICERIGI denetlemez - sadece "bu adres var mi" der: oturum kaydi gercek mi,
@@ -317,7 +323,12 @@ def isaretci_denetle() -> tuple[int, list[str], list[str]]:
     denetlenemeyen: list[str] = []
     toplam = 0
     onbellek: dict[str, list | None] = {}
-    for p in sorted((KOK / "notlar").glob("*.md")):
+    # Gece yazicisinin taslaklari da denetlenir: gozetimsiz yazilan metin
+    # uydurma damga uretebilir ve onu once bu ayak yakalar (19.09).
+    if dosyalar is None:
+        dosyalar = (sorted((KOK / "notlar").glob("*.md"))
+                    + sorted((KOK / "oturumlar").glob("oto-*.md")))
+    for p in dosyalar:
         try:
             metin = p.read_text(encoding="utf-8")
         except OSError:
@@ -370,7 +381,17 @@ def main() -> int:
         print(f"  !! SAGLIK: {kesinti}")
     durum_yaz(bugun, False, a.kuru)
 
-    eksik = gunluk(bugun, a.kuru)
+    # Gece kaydi: kapanissiz oturumlara taslak. Dedektorden ONCE calisir ki
+    # sonucu ayni rapora girsin. Basarisizligi derlemeyi bozmaz.
+    try:
+        import gece_kayit
+        oto = gece_kayit.calistir(a.kuru)
+    except Exception as e:  # noqa: BLE001 - ag bozulursa derleme surmeli
+        oto = [f"- GECE KAYDI CALISMADI: {type(e).__name__}: {e}"]
+    for satir in oto:
+        print(f"  oto: {satir[2:]}")
+
+    eksik = gunluk(bugun, a.kuru, oto)
     if a.hepsi or haftalik_gerekli(bugun):
         haftalik(bugun, a.kuru)
     if a.hepsi or aylik_gerekli(bugun):
@@ -421,6 +442,7 @@ def main() -> int:
     durum_yaz(bugun, True, a.kuru,
               islenmemis_oturum=eksik,
               push=push,
+              oto_kayit=oto,
               isaretci_toplam=toplam_i,
               isaretci_kusurlu=kusurlu,
               isaretci_denetlenemeyen=denetlenemeyen,

@@ -15,12 +15,19 @@ Sinir: omurga bir ICINDEKILER LISTESIDIR, kaydin kendisi degil. Ne olculdugu,
 ne kuruldugu model cevaplarindadir. Kapanista baglam zaten yuklu oldugu icin
 bu yeterlidir; eski bir oturumu okurken degildir - orada oku.py gerekir.
 
-Kullanim:
-    python araclar/omurga.py             # bu oturum (en son yazilan kayit)
-    python araclar/omurga.py --liste     # bu projedeki tum oturumlar
-    python araclar/omurga.py <oturum-id>
+TAM OMURGA (--tam, 19.09): kullanici mesajlari + modelin METIN cevaplari.
+Arac cagrilari, arac ciktilari ve dusunme bloklari yine disarida. Olcumler,
+elenen fikirler ve gerekceler model cevaplarinda durdugu icin, temiz baglamla
+dogan bir ajanin (gece derleyicisinin cagirdigi) not yazabilmesi icin gerekli.
+Yalnizca kullanici mesajlarindan yazilan not eksik malzemeyle yazilmis olur.
 
-Ilgili: BEYIN.md, CLAUDE.md (kapanis rituelı), ara.py, oku.py
+Kullanim:
+    python araclar/omurga.py <oturum-id>          # kullanici mesajlari
+    python araclar/omurga.py <oturum-id> --tam    # + model cevaplari
+    python araclar/omurga.py --liste              # bu projedeki tum oturumlar
+    python araclar/omurga.py                      # en son yazilan kayit (riskli)
+
+Ilgili: BEYIN.md, AGENTS.md (kapanis rituelı), ara.py, oku.py, gece_kayit.py
 """
 
 import sys
@@ -28,9 +35,31 @@ import sys
 import kayit
 
 
+def omurga_metni(oturum: kayit.Oturum, tam: bool = False) -> tuple[str, int, int]:
+    """Omurgayi metin olarak dondurur: (metin, kullanici mesaji, model mesaji).
+    gece_kayit.py de bunu kullanir; bicim tek yerde durur."""
+    mesajlar = [m for m in kayit.mesajlar(oturum)
+                if tam or m.rol == kayit.KULLANICI]
+    ku = sum(1 for m in mesajlar if m.rol == kayit.KULLANICI)
+    mo = len(mesajlar) - ku
+    satir = [f"# Oturum omurgasi{' (tam)' if tam else ''} - {oturum.kimlik}",
+             f"# kayit: {oturum.boyut / 1024:.0f} KB | kaynak: {oturum.kaynak}", ""]
+    i = 0
+    for m in mesajlar:
+        if m.rol == kayit.KULLANICI:
+            i += 1
+            satir.append(f"--- [{i}] {m.an:%d.%m %H:%M} ---")
+        else:
+            satir.append(f"--- model {m.an:%d.%m %H:%M} ---")
+        satir += [m.metin, ""]
+    return "\n".join(satir), ku, mo
+
+
 def main() -> int:
     kayit.utf8_zorla()
-    arg = sys.argv[1] if len(sys.argv) > 1 else None
+    tam = "--tam" in sys.argv
+    argler = [a for a in sys.argv[1:] if a != "--tam"]
+    arg = argler[0] if argler else None
 
     havuz = kayit.oturumlar("proje")
     if not havuz:
@@ -55,22 +84,14 @@ def main() -> int:
         # acikken yaniltabilir; supheliysen --liste ile bak.
         oturum = havuz[0]
 
-    satirlar = [m for m in kayit.mesajlar(oturum) if m.rol == kayit.KULLANICI]
-    if not satirlar:
+    metin, ku, mo = omurga_metni(oturum, tam)
+    if not ku:
         print(f"UYARI: {oturum.kisa} icinde kullanici mesaji yok", file=sys.stderr)
         return 1
-
-    print(f"# Oturum omurgasi - {oturum.kimlik}")
-    print(f"# kayit: {oturum.boyut / 1024:.0f} KB\n")
-    toplam = 0
-    for i, m in enumerate(satirlar, 1):
-        toplam += len(m.metin)
-        print(f"--- [{i}] {m.an:%d.%m %H:%M} ---")
-        print(m.metin)
-        print()
-
+    print(metin)
     # Sessiz basari yasak: ne yaptigini sayiyla soyle.
-    print(f"# {len(satirlar)} kullanici mesaji, {toplam / 1024:.1f} KB omurga")
+    ek = f", {mo} model mesaji" if tam else ""
+    print(f"# {ku} kullanici mesaji{ek}, {len(metin.encode('utf-8')) / 1024:.1f} KB omurga")
     return 0
 
 
