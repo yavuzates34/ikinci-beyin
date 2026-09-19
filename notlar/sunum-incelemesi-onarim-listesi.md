@@ -71,7 +71,7 @@ iddiasıdır.**
 | 9 | kapandı | `rehber/uygulama-adaptorleri.md`: tablo ve 8 adımlı protokol | Desktop hücreleri "ölçülmedi" |
 | 10 | kısmen | `bakim.py`: rapor ve uyarı çalışıyor, haritasız not ve yetim taslak negatif testle yakalandı. Kullanıcı 4 taşımadan 2'sini onayladı; biri yapıldı (137,9 → 125,4 KB) | 3. taşıma (bu liste) iş bitince; 100 KB eşiği hâlâ aşılı |
 | 11 | kapandı | Bakım uyarısı oturum başında canlı; slayt 8 yedi uyarı, sessizlik cümlesi daraltıldı | — |
-| 12 | kısmen | Aynı oturuma dönüş: kendi taslağı haber veriliyor (sınandı). Yetim taslak raporlanıyor (negatif test). Kapsam `AGENTS.md`'de; slayt 7 ve 9 | Başka oturumun devralması ve terk edilen oturumun kurtarılması ilk gerçek gecede (20.09 00:30) sınanacak |
+| 12 | kısmen | Dört hâlin üçü sınandı: aynı oturuma dönüş (kendi taslağı haber veriliyor), başka oturumun devralması (taslak "GECE TASLAĞI VAR" diye bildiriliyor, kapanmamış oturumun taslağı yetim sayılmıyor), terk edilmiş oturumdan taslak üretimi (`gece_kayit.py --oturum`). Yetim taslak negatif testle yakalanıyor. Kapsam `AGENTS.md`'de; slayt 7 ve 9 (claude 5c600e7e · 20.09 00:27) | Zincirin tamamı gerçek bir gece çalışmasında görülmedi |
 | 13 | kapandı | Slayt 10: ham JSONL → omurga → Markdown arşiv, görsel olarak ayrı | — |
 | 14 | kapandı | `kayit.py` `archived_sessions/` klasörünü okuyor: 103 → 164 oturum, 69/69 işaretçi | Codex denetimi |
 
@@ -328,6 +328,14 @@ ham kayıt ile yazılan Markdown arşivi görsel olarak ayırmalı.
 
 Bu işlemler gerektiğinde kullanıcıdan tek tek istenmeli; kullanıcı arayüzünde
 yapılmamış bir işlem yapılmış varsayılmamalıdır.
+
+## Üçüncü göz: Astra turu
+
+Claude ve Codex'in turu bittikten sonra kullanıcı bir Astra oturumu açıp bu işi
+denetletecek. Astra'nın denetim haritası, bilerek açık bıraktığımız dört madde
+ve Claude'un kendi işaret ettiği altı zayıf nokta: `rehber/astra-kontrol.md`.
+Astra kusur bulursa kod ve notlarda düzeltebilir; dosya taşıma, silme ve
+budama kullanıcı onayına bağlıdır.
 
 ## Tamamlanma ölçütü
 
