@@ -300,3 +300,23 @@ taranınca Codex oturumu sayısı 103'ten 164'e çıktı
   arayüzde gördüğü yüzdeyle kalibre edildi: 472.650 token yaklaşık %45-50
   gösteriyordu, yani pencere yaklaşık 1 milyon token
   (claude 5c600e7e · 19.09 20:26).
+
+## 13. Codex oturum kimliklerinin ilk 8 hanesi çakışıyor
+
+Codex zaman tabanlı UUID (v7) kullanıyor: aynı dakikada açılan iki oturum aynı
+ilk 8 haneyi paylaşıyor. 20 Eylül'de iki denetim oturumu arka arkaya açılınca
+ikisi de `01a0bb8e` göründü. Arşivin tamamında ölçüldü: **213 oturumda 24 ayrı
+ilk-8 çakışması**, biri dört oturumluk (claude 5c600e7e · 20.09 00:29).
+
+Bu, sistemin her yerini etkiliyordu: kapanış işareti, işaretçi denetimi, gece
+taslağı dosya adı ve dedektör hep 8 haneye dayanıyordu. Yanlış oturum kapanmış
+sayılabilirdi.
+
+**Düzeltme:** Codex için kısa kimlik 13 hane (`01a0bb8e-de58`), Claude için 8
+kalıyor. Kapanış eşleşmesi artık **önek** karşılaştırması, yani eski 8 haneli
+işaretler de çalışmaya devam ediyor. İşaretçi deseni iki uzunluğu da tanıyor.
+
+Ayrı bir olgu: 13 hanede de altı çakışma var. Bunlar farklı oturumlar değil,
+**aynı oturumun iki kopyası** — Claude tarafında iki proje yolunda (`C:` ve
+`D:`), Codex tarafında iki rollout dosyasında. Bu, eskiden beri bilinen
+"mükerrer oturum" açığının bu klasörde de doğrulanması; elenmesi yapılmadı.

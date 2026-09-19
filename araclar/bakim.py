@@ -69,8 +69,11 @@ def olc() -> dict:
                 if acik.exists() else 0)
 
     kapali = kayit.kapanmis_kimlikler()
+    # Taslak dosyasinin adindaki kimlik, kapanis isaretlerinden birinin
+    # ONEKI ise yetimdir (8 ve 13 haneli isaretler birlikte calisir).
     yetim = sorted(p.name for p in (KOK / "oturumlar").glob("oto-*.md")
-                   if p.stem[4:12] in kapali)
+                   if any(p.stem[4:].startswith(i) or i.startswith(p.stem[4:])
+                          for i in kapali))
 
     return {
         "notlar_kb": round(toplam / 1024, 1),

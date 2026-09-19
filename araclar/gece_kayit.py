@@ -66,7 +66,8 @@ VARSAYILAN_KOMUT = [
     # bir compact mesaji kaybolurdu. MCP yok, arac yok.
     "--setting-sources", "user", "--strict-mcp-config", "--tools", "",
 ]
-OTO_DESENI = re.compile(r"^oto-kayit:\s*([0-9a-f]{8})\s+(\S+ \S+)", re.MULTILINE)
+OTO_DESENI = re.compile(r"^oto-kayit:\s*([0-9a-f]{8}(?:-[0-9a-f]{4})?)\s+(\S+ \S+)",
+                        re.MULTILINE)
 
 
 def oto_dosyasi(o: kayit.Oturum) -> Path:
@@ -100,7 +101,7 @@ def adaylar(simdi: datetime) -> list[kayit.Oturum]:
     kapali = kayit.kapanmis_kimlikler()
     sonuc = []
     for o in kayit.oturumlar("proje"):
-        if o.kisa in kapali or alt_ajan_mi(o):
+        if kayit.kapanmis_mi(o, kapali) or alt_ajan_mi(o):
             continue
         if simdi - o.an < SESSIZLIK:
             continue  # hala konusuluyor olabilir

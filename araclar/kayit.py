@@ -86,7 +86,11 @@ class Oturum(NamedTuple):
 
     @property
     def kisa(self) -> str:
-        return self.kimlik[:8]
+        """Kisa kimlik. Codex UUID'leri ZAMAN TABANLI: ayni dakikada acilan iki
+        oturum ayni ilk 8 haneyi paylasiyor. 20.09'da arsivde 24 ayri ilk-8
+        cakismasi olctuk, biri dort oturumluk (claude 5c600e7e · 20.09 00:29).
+        Bu yuzden Codex'te 13 hane (8 + '-' + 4) kullanilir."""
+        return self.kimlik[:13] if self.kaynak == "codex" else self.kimlik[:8]
 
     def satir(self) -> str:
         return (
@@ -319,9 +323,15 @@ def mesajlar(oturum: Oturum) -> Iterator[Mesaj]:
 KAPANIS_DESENI = re.compile(r"^kapanan-oturum:\s*(.+)$", re.MULTILINE | re.IGNORECASE)
 
 
+def kapanmis_mi(oturum: "Oturum", kapali: set[str]) -> bool:
+    """Isaret ONEK olarak eslesir: 8 haneli eski isaretler de, 13 haneli yeni
+    Codex isaretleri de calisir."""
+    return any(oturum.kimlik.startswith(i) for i in kapali)
+
+
 def kapanmis_kimlikler() -> set[str]:
     """oturumlar/*.md icindeki `kapanan-oturum: <id>[, <id>]` satirlarindan
-    kapanmis oturum kimliklerinin ilk 8 karakteri."""
+    kapanmis oturum kimlikleri, YAZILDIGI GIBI (en az 8 hane)."""
     kimlikler: set[str] = set()
     for p in (PROJE_KOKU / "oturumlar").glob("*.md"):
         metin = p.read_text(encoding="utf-8", errors="replace")
@@ -329,5 +339,5 @@ def kapanmis_kimlikler() -> set[str]:
             for parca in re.split(r"[,\s]+", satir.strip()):
                 parca = parca.strip("`")
                 if re.fullmatch(r"[0-9a-f]{8}[0-9a-f-]*", parca):
-                    kimlikler.add(parca[:8])
+                    kimlikler.add(parca)
     return kimlikler

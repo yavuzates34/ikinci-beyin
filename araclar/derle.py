@@ -92,7 +92,7 @@ def gunluk(bugun: datetime, kuru: bool, oto: list[str] | None = None,
     # 08:27). Ayrica sadece son 24 saate bakiliyordu: kapanmadan 24 saat sessiz
     # kalan oturum bir daha hic raporlanmiyordu. Artik zaman siniri yok.
     kapali = kayit.kapanmis_kimlikler()
-    islenmemis = [o for o in proje if o.kisa not in kapali]
+    islenmemis = [o for o in proje if not kayit.kapanmis_mi(o, kapali)]
 
     s = [f"# Gunluk derleme - {bugun:%d.%m.%Y}", "",
          f"Bu projede son 24 saatte yazilan oturum kaydi: **{len(taze)}**",
@@ -310,7 +310,8 @@ def aylik_gerekli(bugun: datetime) -> bool:
 # --- denetim: kaynak isaretcileri -------------------------------------------
 
 # Saglayici adi claude ya da codex: beyin tek saglayiciya bagli degil (19.09).
-ISARETCI = re.compile(r"\((?:claude|codex) ([0-9a-f]{8})([^)]*)\)", re.S)
+# Kimlik 8 hane ya da 13 hane (Codex, bkz. kayit.Oturum.kisa).
+ISARETCI = re.compile(r"\((?:claude|codex) ([0-9a-f]{8}(?:-[0-9a-f]{4})?)([^)]*)\)", re.S)
 # Gun.ay, istege bagli saat. Tek isaretcide birden fazla damga olabilir:
 # "(claude 3557db3e - 16.09 10:20 ve 17.09 01:55)" gibi. Saatsiz olan da
 # gecerlidir; o zaman sadece "o gun o oturumda mesaj var mi" sorulur.

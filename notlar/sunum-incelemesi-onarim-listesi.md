@@ -75,6 +75,16 @@ iddiasıdır.**
 | 13 | kapandı | Slayt 10: ham JSONL → omurga → Markdown arşiv, görsel olarak ayrı | — |
 | 14 | kapandı | `kayit.py` `archived_sessions/` klasörünü okuyor: 103 → 164 oturum, 69/69 işaretçi | Codex denetimi |
 
+## Sonradan bulunan 15. açık
+
+**Codex oturum kimliklerinin ilk 8 hanesi çakışıyor.** Zaman tabanlı UUID
+yüzünden aynı dakikada açılan iki Codex oturumu aynı öneki taşıyor; arşivde 24
+ayrı çakışma ölçüldü. Kapanış işareti, dedektör, işaretçi denetimi ve gece
+taslağı dosya adı 8 haneye dayandığı için yanlış oturum kapanmış sayılabilirdi.
+Düzeltildi: Codex'te 13 hane, kapanış eşleşmesi önek tabanlı (eski işaretler
+çalışmaya devam eder). Ölçüm ve ayrıntı: [[olculmus-bulgular]] §13
+(claude 5c600e7e · 20.09 00:29).
+
 ## Sonradan bulunan 14. açık
 
 **Codex Desktop'ın arşivlenmiş oturumları arşiv araçlarına görünmüyordu.**

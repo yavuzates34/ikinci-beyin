@@ -141,16 +141,21 @@ def main() -> int:
 
     kimlik = girdi.get("session_id")
     if kimlik:
+        # Kisa kimlik kaynaga gore: Codex'te 8 hane CAKISIYOR (zaman tabanli
+        # UUID), bu yuzden kayittan bulunan kisa ad kullanilir (bkz. kayit.py).
+        bu = kayit.oturum_bul(kimlik[:8], "hepsi")
+        kisa = bu.kisa if bu and kimlik.startswith(bu.kimlik[:8]) else kimlik[:8]
         ek.append(
             f"BU OTURUMUN KIMLIGI: {kimlik}\n"
-            f"Araclara kesin kimlik ver: python araclar/omurga.py {kimlik[:8]}\n"
-            f"Kapanista arsiv dosyasina su satiri yaz: kapanan-oturum: {kimlik[:8]}"
+            f"Araclara kesin kimlik ver: python araclar/omurga.py {kisa}\n"
+            f"Kapanista arsiv dosyasina su satiri yaz: kapanan-oturum: {kisa}"
         )
         # Ayni oturuma donus: gece bu oturuma taslak yazilmis olabilir.
         # Eskiden kendi oturumu listeden cikarildigi icin bundan haberi
         # olmuyordu ve kapanistan sonra taslak yetim kaliyordu (onarim 12).
-        kendi = kayit.PROJE_KOKU / "oturumlar" / f"oto-{kimlik[:8]}.md"
-        if kendi.exists():
+        kendi = next((p for p in (kayit.PROJE_KOKU / "oturumlar").glob("oto-*.md")
+                      if kimlik.startswith(p.stem[4:])), None)
+        if kendi is not None:
             ek.append(
                 f"BU OTURUM ICIN GECE TASLAGI VAR: oturumlar/{kendi.name}\n"
                 "Oturum devam ediyor; asil kaynak canli baglam ve ham kayittir. "
@@ -161,7 +166,8 @@ def main() -> int:
     try:
         kapali = kayit.kapanmis_kimlikler()
         acik = [o for o in kayit.oturumlar("proje")
-                if o.kisa not in kapali and not (kimlik and o.kimlik == kimlik)]
+                if not kayit.kapanmis_mi(o, kapali)
+                and not (kimlik and o.kimlik == kimlik)]
     except OSError:
         acik = []
 
