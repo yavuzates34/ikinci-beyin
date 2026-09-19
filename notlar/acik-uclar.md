@@ -10,7 +10,13 @@ olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
 
 ## Açık — sistem
 
-1. **Sağlayıcıdan bağımsızlık: Codex Desktop tarafı ölçülmedi.** Çekirdek
+1. **Sağlayıcıdan bağımsızlık: Codex Desktop'ta hook'lar tetiklenmiyor.**
+   **Ölçüldü 20.09 00:38, sonuç olumsuz:** `/hooks` güven ekranı açmıyor;
+   yeni turda hiçbir hook satırı gelmiyor; kayıttaki harita ve saat satırları
+   `custom_tool_call_output`, yani betikleri modelin kendisi çalıştırmış.
+   Claude bunu bir ara yanlışlıkla "çalışıyor" saydı ve düzeltti
+   ([[olculmus-bulgular]] §14). Codex CLI tarafı yalıtılmış testte çalışıyor.
+   Eski metin: Çekirdek
    ortak: `AGENTS.md`, `kayit.py` Claude ve Codex okuyucuları, işaretçi
    denetimi. Codex adaptörü `.codex/hooks.json` içinde kurulu. Ama kullanıcı
    hook güveni vermedi. İki Codex Desktop oturumunda `AGENTS.md` enjeksiyonu
@@ -18,7 +24,11 @@ olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
    akışı resmî belgede yok; yalnızca CLI'ınki var. Uygulama bazlı durum:
    `rehber/uygulama-adaptorleri.md`. Onarım listesi madde 3, 5, 9.
 
-2. **Erken devir: Claude tarafı canlı doğrulandı, Codex tarafı bekliyor.**
+2. **Erken devir: Claude'da iki eşik de canlı, Codex'te taşıyıcı yok.**
+   %50 (19.09 20:31) ve %70 (20.09 00:36) uyarıları gerçek hook zinciriyle
+   geldi, ikisinde de kurtarma omurgası yazıldı. Codex tarafında mekanizma
+   hazır ve elle doğru sonuç veriyor, ama hook tetiklenmediği için canlı
+   uyarı yok. Eski metin:
    `araclar/baglam.py` %50 ve %70'te tur sınırında birer kez uyarıyor ve
    omurgayı diske alıyor. Bu oturumda gerçek hook ile çalıştı: %50 aşıldı,
    uyarı modele ulaştı, kurtarma omurgası yazıldı

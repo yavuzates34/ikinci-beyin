@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 19 Eylül 2026, 20:05
+**Son güncelleme:** 20 Eylül 2026, 00:42
 
 ---
 
@@ -60,6 +60,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-09-17-agentic-yapi-ve-denetim]] | 17.09 01:59 – 18.09 04:40 | **90 mesaj (gerçek 68), 26,7 saat.** izle.py dört katmana çıktı (OCR + birleştirme), agentic yapı notu ve dört şema, denetim katmanı kararı, SessionEnd boşluğu, gece derleyicisine üç ekleme |
 | [[2026-09-19-codex-sunum-ilk-alti-slayt]] | 19.09 18:40 – 19:10 | Codex ile sunumun ilk altı slaytı incelendi; sekiz anlatım/teknik bulgu ve sağlayıcıdan bağımsız erken-devir açığı kaydedildi |
 | [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]] | 19.09 19:16 – 20:04 | 7–10. slaytlar incelendi; bulgular 13'e çıktı, erken devir P0 hibrit tasarıma bağlandı ve Claude + Codex ortak onarım devri yazıldı |
+| [[2026-09-18-saglayici-bagimsizligi-ve-erken-devir]] | 18.09 04:37 – 20.09 00:40 | **25 mesaj, 44 saat.** Sağlayıcıdan bağımsız çekirdek (AGENTS.md, kapanış işareti, Codex adaptörü), erken devir (%50/%70), bakım döngüsü, 14 slaytlık kullanım rehberi ve 15 açıklık ortak onarım turu |
 | [[acik-uclar-tarihce]] | — | Oturum kaydı değil: açık uçlardan kapanan ve devredilen maddeler, metniyle (19.09 bakımında taşındı) |
 | [[BAGLAM-DEVRI]] | — | 30 Ağustos itibarıyla teknik devir belgesi (başka bir modele verilmek üzere) |
 
@@ -81,6 +82,16 @@ bağ kurulur: notun içinden ilgili notlara, ayrıca bu haritaya bir satır.
 Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
+
+- **SIRADAKI IS — Astra turu.** Claude ve Codex'in onarım turu bitti. Üçüncü
+  göz denetimi için kullanıcı bir Astra oturumu açıp `/goal` verecek. Denetim
+  haritası, açık bırakılan dört madde ve Claude'un kendi zayıf noktaları:
+  `rehber/astra-kontrol.md`. Açık maddelerin durumu:
+  [[sunum-incelemesi-onarim-listesi]] → "Durum" tablosu.
+
+- **Codex Desktop'ta hook'lar tetiklenmiyor** (20.09 ölçümü). Orada beyin
+  yalnızca ajanın betikleri kendi çalıştırmasıyla işliyor.
+  Ayrıntı: [[olculmus-bulgular]] §14.
 
 - **Claude + Codex ortak onarım devri:** Sunum incelemesinde bulunan 13 açık,
   kaynakları, test ölçütleri ve kullanıcı karar noktalarıyla
