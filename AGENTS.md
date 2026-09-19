@@ -87,7 +87,9 @@ damgalarıyla ve kronolojik sırada çıkarır. Kayıt zaten diskte duruyor; kap
   Bir oturumun kapandığını söyleyen **tek** kaynak budur. Gece derleyicisi ve
   oturum başı uyarısı buna bakar. Kimliğin başka bir notta geçmesi kapandı
   demek değildir. Compact sonrası yazılan ara kayıtta bu satır yazılmaz,
-  çünkü oturum bitmemiştir.
+  çünkü oturum bitmemiştir. Bu oturumun başka bir ajana devrettiği alt görev
+  oturumları (örneğin `codex exec`) aynı satıra eklenir, çünkü onların
+  kapanışı çağıran oturumun kaydıdır: `kapanan-oturum: 5c600e7e, 01a0b9eb`.
 - **Terfi:** kalıcı olan `notlar/` içindeki ilgili konu notuna taşınır. Yeni bir
   konu çıktıysa yeni not açılır ve `BEYIN.md` haritasına satır eklenir.
 

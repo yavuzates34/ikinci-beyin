@@ -27,10 +27,12 @@ secilmedi: sikistirma engellenirse ve pencere zaten doluysa oturum sert bir
 sinira carpabilir. Agin kendisi hasara yol acmamali.
 
 Girdi: stdin'den JSON (session_id, transcript_path, trigger, cwd).
+`--bicim codex` Codex transcript semasini secer; varsayilan `claude`dur.
 Cikti: stdout'a JSON - sadece `systemMessage` (kullaniciya gorunen tek satir).
 Cikis kodu her zaman 0 - bu bir ag, bir bariyer degil.
 """
 
+import argparse
 import json
 import sys
 from datetime import datetime
@@ -50,6 +52,10 @@ def cikti(satir: str) -> None:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description="PreCompact guvenlik agi")
+    ap.add_argument("--bicim", choices=("claude", "codex"), default="claude")
+    a = ap.parse_args()
+
     try:
         girdi = json.loads(sys.stdin.read() or "{}")
     except (ValueError, OSError):
@@ -65,8 +71,15 @@ def main() -> int:
         p = Path(kayit_yolu)
         if p.exists():
             st = p.stat()
+            # Codex ve Claude transcript semalari farkli. Varsayilan Claude
+            # davranisini aynen koru; Codex adaptorunun acik secimini kullan.
+            kaynak = "codex" if a.bicim == "codex" else "claude"
+            kimlik = (
+                (girdi.get("session_id") or p.stem)
+                if kaynak == "codex" else p.stem
+            )
             oturum = kayit.Oturum(
-                "claude", p.stem, p, p.parent.name,
+                kaynak, kimlik, p, p.parent.name,
                 datetime.fromtimestamp(st.st_mtime), st.st_size,
             )
     if oturum is None:

@@ -1,0 +1,54 @@
+{
+  "description": "Ikinci beyin icin proje-duzeyi Codex refleksleri.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 araclar/oturum_basi.py",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File araclar/codex-run-python.ps1 -Script araclar/oturum_basi.py",
+            "timeout": 20,
+            "statusMessage": "Beyin haritasi okunuyor",
+            "additionalContextLimit": 20000
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "date '+Su anki yerel tarih ve saat: %Y-%m-%d %H:%M:%S %A %z'",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File araclar/codex-time.ps1",
+            "timeout": 5,
+            "statusMessage": "Yerel saat okunuyor"
+          },
+          {
+            "type": "command",
+            "command": "python3 araclar/devir.py",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File araclar/codex-run-python.ps1 -Script araclar/devir.py",
+            "timeout": 15,
+            "statusMessage": "Devir kutusu"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "manual|auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 araclar/precompact.py --bicim codex",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -File araclar/codex-run-python.ps1 -Script araclar/precompact.py -Format codex",
+            "timeout": 60,
+            "statusMessage": "Omurga diske aliniyor (PreCompact)"
+          }
+        ]
+      }
+    ]
+  }
+}

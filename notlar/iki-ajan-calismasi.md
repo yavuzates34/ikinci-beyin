@@ -63,7 +63,12 @@ kurumsal telefon numarasının basıldığı klasördü.
 ## Asimetriyi gizleme
 
 Hook'lar Claude'a özel. Codex'te `PreCompact`/`SessionEnd` hafıza hook'u yok —
-bunu Codex kendisi söyledi. Yani **aynı klasörde çalışan iki ajanın hafıza
+bunu Codex kendisi söyledi. **Bayatladı (19.09):** Codex CLI 0.150.1'de hook
+desteği kararlı ve açık. `SessionStart`, `UserPromptSubmit`, `PreCompact`, `Stop`
+ve `SessionEnd` olayları var. Modele bağlam yalnızca ilk ikisinden gidiyor,
+`PreCompact` Claude'daki gibi konuşamıyor. Playground'da adaptörü Codex'in
+kendisi kurdu ve ölçtü (codex 01a0b9eb · 19.09 16:47): `.codex/hooks.json`,
+kullanıcı güveni bekliyor. Yani **aynı klasörde çalışan iki ajanın hafıza
 garantisi aynı değil.** Bu `AGENTS.md`'ye açıkça yazıldı; yazılmasaydı biri
 ötekinin garantisine güvenirdi.
 

@@ -31,12 +31,23 @@ basar.
 
 ## Dedektör nasıl çalışır
 
-Bir oturum "işlenmiş" sayılır: kimliğinin ilk 8 karakteri `notlar/` ya da
-`oturumlar/` içindeki herhangi bir dosyada geçiyorsa. Geçmiyorsa kapanış kaydı
-yazılmamış demektir ve rapora, okuma komutuyla birlikte düşer.
+**19 Eylül'den beri:** bir oturum ancak arşiv dosyasında
+`kapanan-oturum: <id>` satırı varsa kapanmış sayılır. Zaman sınırı yok; bu
+projenin her kapanmamış oturumu her gece rapora düşer, okuma komutuyla birlikte.
+Son 6 saatte yazılmış olanlar "muhtemelen hâlâ açık" diye etiketlenir.
+Proje kapsamı Codex oturumlarını da içerir (çalışma dizini bu klasör olanlar).
 
-Bu, kaynak gösterme kuralının beklenmedik bir yan faydası: işaretçiler aynı
-zamanda "bu oturum işlendi mi" sorusunun cevabı oluyor.
+**Elenen eski ölçüt:** "kimlik `notlar/` ya da `oturumlar/` içinde geçiyor mu".
+İki yerden sızdırıyordu. Birincisi, oturum içinde yazılan tek bir kaynak
+işaretçisi açık oturumu "işlenmiş" gösteriyordu. İkincisi, arşiv dosyaları başka
+oturumlara atıf yapıyor. Ayrıca yalnızca son 24 saate bakıldığı için
+kapanmadan sessiz kalan oturum ertesi gece görünmez oluyordu
+(claude 5c600e7e · 19.09 08:27).
+
+**Rapor artık bir alıcıya ulaşıyor.** Push sonucu `son-calisma.json`'a
+yazılıyor. Oturum başı betiği o dosyadaki sorunları (kesinti, 36 saatten uzun
+sessizlik, push hatası, kusurlu işaretçi) ilk mesajla modele veriyor. Önceden
+rapor diske düşüyor ve orada kalıyordu. Bkz. [[acik-uclar]].
 
 **Kapsam sadece bu proje.** Diğer projelerde bu yapı henüz yok; onları
 "işlenmemiş" diye listelemek her gece onlarca satır gürültü üretirdi ve rapor

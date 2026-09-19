@@ -1,7 +1,7 @@
 # Kapanış ritüeli
 
 Bir oturum bağlam kaybı olmadan nasıl kapanır, yenisi mirası nasıl devralır.
-Kuralın uygulanabilir hâli [[CLAUDE]] içindedir; burada **neden öyle olduğu** yazar.
+Kuralın uygulanabilir hâli [[AGENTS]] içindedir; burada **neden öyle olduğu** yazar.
 
 > Merkez: [[BEYIN]] · İlgili: [[arac-arsiv]] · [[ikinci-beyin-mimarisi]] · [[tasarim-dersleri]]
 > Kaynak: [[2026-09-07-ikinci-oturum]] (claude 3557db3e · 08.09)
@@ -251,3 +251,16 @@ modelin en kötü hâlidir" problemi ortadan kalkar. İki kusuru yüzünden elen
 
 Bu ikisi kurulmadan önce **omurganın zenginleştirilmesi** gerekir — yoksa temiz
 örnek eksik malzemeyle yazar. İkisi tek işin iki parçasıdır.
+
+---
+
+## Kapanış işareti (19 Eylül)
+
+Arşiv dosyasının başlığının altına `kapanan-oturum: <8 hane>` yazılır. Bir
+oturumun kapandığını söyleyen **tek** kaynak budur: gece derleyicisinin
+dedektörü ve oturum başındaki "kapanmamış oturumlar" uyarısı buna bakar.
+Compact sonrasında yazılan ara kayıtta bu satır yazılmaz, çünkü oturum
+bitmemiştir. `precompact.py`'nin devir mesajı bunu açıkça söylüyor.
+
+Kural artık `CLAUDE.md`'de değil `AGENTS.md`'de. Kapanış ritüeli bu klasörde
+çalışan her ajan için ortak. Bkz. [[gece-derleyicisi]] · [[acik-uclar]].

@@ -17,8 +17,11 @@ olanlar durur.
 
 Saat bilgisi global ayarlardaki ayrı bir hook'tan gelir (`~/.claude/settings.json`).
 
-Başka bir ajan bu klasörde çalışırken bu refleksler **onda yoktur**, kendi
-hook'larını kurmadıkça. İki ajanın hafıza garantisi aynı sanılmasın.
+Codex'in karşılığı `.codex/hooks.json` içinde: aynı betikler, `PreCompact`
+için `--bicim codex`. Kullanıcı Codex'in `/hooks` ekranından güven verene kadar
+**etkin değildir**. Codex'te `SessionEnd` var ama "konu bitti" anlamı taşımıyor
+(boşta kalma, arşivleme de tetikliyor). İki ajanın hafıza garantisi aynı
+sanılmasın.
 
 ## İşaretçi biçimi
 

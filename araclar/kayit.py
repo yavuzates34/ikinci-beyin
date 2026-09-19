@@ -56,6 +56,19 @@ TAM_GURULTU = (
     "<ci-monitor-event>",
 )
 
+# Codex, kural dosyasini ve ortam bilgisini role=user mesajinin AYRI BLOKLARI
+# olarak yaziyor. Satir satir temizlemek AGENTS.md'nin govdesini birakiyordu;
+# blogun tamami atilir. Codex yakaladi, 01a0b9eb omurgasinda olculdu
+# (claude 5c600e7e · 19.09 17:20).
+ENJEKSIYON_BLOK = (
+    "# AGENTS.md instructions for",
+    "<recommended_plugins>",
+    "<available_plugins>",
+    "<environment_context>",
+    "<user_instructions>",
+    "<INSTRUCTIONS>",
+)
+
 KULLANICI = "kullanici"
 MODEL = "model"
 
@@ -138,7 +151,10 @@ def _blok_metni(icerik) -> str:
         if not isinstance(blok, dict):
             continue
         if blok.get("type") in ("text", "input_text", "output_text"):
-            parcalar.append(blok.get("text", ""))
+            metin = blok.get("text", "")
+            if metin.lstrip().startswith(ENJEKSIYON_BLOK):
+                continue
+            parcalar.append(metin)
     return "\n".join(parcalar)
 
 

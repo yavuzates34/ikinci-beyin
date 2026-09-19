@@ -78,15 +78,35 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
    `CLAUDE.md` dosya adı (Codex `AGENTS.md` okur, bu klasörde yok), hook'lar ve
    bunların sağladığı otomatik refleksler. Nar Ajans'ta aynı asimetri
    yaşanmıştı: [[iki-ajan-calismasi]].
-2. **Günlük rapor kimseye ulaşmıyor.** Derleyici raporu `derleme/gunluk/`
+   **Yapılan (19.09 16:40–17:10, commit `d0bdf11`):** `CLAUDE.md` → `AGENTS.md`
+   (ortak kural, git geçmişiyle taşındı). `CLAUDE.md` artık `@AGENTS.md` içe
+   aktarması ve Claude'a özel refleks tablosu. İçe aktarma, kayıt bırakmayan
+   temiz bir Claude örneğiyle sınandı: iki kuralı da `AGENTS.md`'den okudu.
+   Yönerge metni `.claude/`'dan `araclar/oturum-basi.md`'ye taşındı.
+   `oturum_basi.py --bicim duz` hook'u olmayan ajan için. İşaretçi denetimi
+   `(codex …)` biçimini de tanıyor. **Açık:** Codex adaptörü. Kurulu Codex'te
+   hook desteği var (0.150.1, `hooks stable true`); kurulumu Codex'in kendisine
+   devredildi (codex 01a0b9eb · 19.09 16:47).
+2. ~~**Günlük rapor kimseye ulaşmıyor.** Derleyici raporu `derleme/gunluk/`
    altına yazıyor ama `SessionStart` onu açmıyor. "PUSH BASARISIZ" gibi bir
    uyarı kullanıcı sormazsa görünmüyor. 19.09 00:30'da tam olarak bu yaşandı:
    ethernet bağlı değildi, push düştü, 08:27'de hâlâ `ahead 1`
-   (claude 5c600e7e · 19.09 08:27).
-3. **Dedektör açık oturumu "işlenmiş" sayıyor.** Kimliğin herhangi bir notta
+   (claude 5c600e7e · 19.09 08:27).~~ **Kapandı 19.09:** derleyici push
+   sonucunu `son-calisma.json`'a yazıyor. `oturum_basi.py` o dosyadan yalnızca
+   sorunları çıkarıp oturum başında söylüyor: yarıda kesilme, 36 saatten uzun
+   sessizlik, push hatası, kusurlu işaretçi. Her şey yolundaysa sessiz kalıyor.
+   Negatif testle doğrulandı.
+3. ~~**Dedektör açık oturumu "işlenmiş" sayıyor.** Kimliğin herhangi bir notta
    geçmesi yeterli. Oturum içinde tek bir işaretçi yazılırsa (örneğin
    [[olculmus-bulgular]] §9) oturum kapanmamış olsa bile raporda görünmüyor.
-   19.09 raporu "işlenmemiş 0" dedi; `5c600e7e` o sırada kapanmamıştı.
+   19.09 raporu "işlenmemiş 0" dedi; `5c600e7e` o sırada kapanmamıştı.~~
+   **Kapandı 19.09:** kapanışın tek kaynağı artık arşiv dosyasındaki
+   `kapanan-oturum: <id>` satırı. Arşiv dosyaları da başka oturumlara atıf
+   yaptığı için "oturumlar/ içinde geçiyor mu" yeterli değildi. İkinci bir açık
+   da kapandı: dedektör yalnızca son 24 saate bakıyordu, yani kapanmadan 24
+   saat sessiz kalan oturum bir daha hiç raporlanmıyordu. Artık zaman sınırı
+   yok. Oturum başındaki uyarı da 6 saatlik pencere yerine aynı ölçütü
+   kullanıyor. Mevcut üç arşiv dosyasına işaret geriye dönük eklendi.
 4. **İçerik denetimi kararı:** uyuşmazlık bulunursa not düzeltilmez, iddianın
    **altına not düşülür** (kullanıcı, 19.09). Bu, "denetçi rapor eder,
    düzeltmez" kararıyla uyumlu: işaret koyuyor, metni yeniden yazmıyor.

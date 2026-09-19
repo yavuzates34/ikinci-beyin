@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 18 Eylül 2026, 04:40
+**Son güncelleme:** 19 Eylül 2026, 17:19
 
 ---
 
@@ -18,7 +18,9 @@ gerektiği görülür.
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
 
-Kurallar `CLAUDE.md` içinde; kapanış ritüelinin uygulanabilir hâli orada.
+Kurallar `AGENTS.md` içinde. Burada çalışan her ajan (Claude, Codex, sonrakiler)
+için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu içe
+aktarır ve yalnızca Claude'a özel olanı ekler.
 
 Klasör bir **git deposu** ve private GitHub deposuna bağlı
 (`yavuzates34/ikinci-beyin`): her gece otomatik commit + push.
@@ -74,7 +76,7 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
 
-- **Kapanış ritüeli kurulu.** "Oturumu kapatalım" dendiğinde `CLAUDE.md`'deki
+- **Kapanış ritüeli kurulu.** "Oturumu kapatalım" dendiğinde `AGENTS.md`'deki
   sırayı izle: önce `python araclar/omurga.py`, sonra yaz, sonra mekanik bakım.
 - **Arşiv aranabilir.** Bir şeyin daha önce konuşulup konuşulmadığından emin
   değilsen tahmin etme: `python araclar/ara.py "terim"`. 123 oturum, 10 saniye.
