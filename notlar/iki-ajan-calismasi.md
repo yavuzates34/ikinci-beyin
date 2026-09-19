@@ -72,6 +72,15 @@ kullanıcı güveni bekliyor. Yani **aynı klasörde çalışan iki ajanın haf�
 garantisi aynı değil.** Bu `AGENTS.md`'ye açıkça yazıldı; yazılmasaydı biri
 ötekinin garantisine güvenirdi.
 
+**Codex Desktop incelemesi (19.09):** Adaptör dosyasında üç olay grubu var,
+ama dört komut çalışıyor; “üç hook” ancak kaba bir özet. Resmî OpenAI belgesi
+`/hooks` güven incelemesini CLI için anlatıyor, Desktop'taki eşdeğer kullanıcı
+akışı henüz doğrulanmadı. Desktop arayüzünde bağlam yüzdesi görünmedi; yerel
+oturum kaydı `model_context_window: 258400` verdi. CLI ise alt çubukta kalan
+bağlam yüzdesini gösteriyor. Kullanıcı, görünürlük ve erken-devir tasarımı
+çözülmeden hook'lara güven vermedi (codex 01a0ba53 · 19.09 19:00).
+İnceleme: [[2026-09-19-codex-sunum-ilk-alti-slayt]].
+
 ## Pratik: nasıl çağrılır
 
 ```

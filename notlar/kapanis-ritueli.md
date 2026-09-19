@@ -264,3 +264,27 @@ bitmemiştir. `precompact.py`'nin devir mesajı bunu açıkça söylüyor.
 
 Kural artık `CLAUDE.md`'de değil `AGENTS.md`'de. Kapanış ritüeli bu klasörde
 çalışan her ajan için ortak. Bkz. [[gece-derleyicisi]] · [[acik-uclar]].
+
+---
+
+## Erken devir boşluğu (19 Eylül Codex incelemesi)
+
+Kapanış ritüeli sağlayıcıdan bağımsızlaştırıldı, fakat **onu doğru zamanda
+başlatan tetikleyici** hâlâ kullanıcıya bağlı. Claude tarafında kullanıcı
+bağlam yüzdesini arayüzden görüp yüzde 60–70 civarında “oturumu kapatalım”
+diyebiliyor. Codex Desktop'ta eşdeğer sayaç görünmüyor; incelenen oturumun
+etkin penceresi de 258.400 token ölçüldü (codex 01a0ba53 · 19.09 19:09).
+
+Bu nedenle `PreCompact` ağı ile kontrollü devir arasında boşluk var:
+
+- `PreCompact` bağlam zaten dolarken ve konunun rastgele bir yerinde gelir.
+- Kullanıcı sayaç görmüyorsa anlamlı bir sınırda erken kapanışı zamanlayamaz.
+- Daha küçük pencere, görünürlük eksikliğini daha önemli hâle getirir.
+
+**Yeni tasarım gereksinimi:** Claude veya Codex fark etmeksizin, bağlam güvenli
+bir eşiğe geldiğinde sistem turun sonunda kontrollü devir başlatmalı; kararları,
+elenenleri ve açık uçları özgün bağlam hâlâ eldeyken yazmalı. Eşik aşılması tek
+başına `kapanan-oturum:` yazmamalı; kapanış işareti ancak yeni oturuma gerçek
+geçişte konmalı. `PreCompact` ana yol değil, son savunma hattı olarak kalmalı
+(codex 01a0ba53 · 19.09 19:00). İnceleme kaydı:
+[[2026-09-19-codex-sunum-ilk-alti-slayt]].

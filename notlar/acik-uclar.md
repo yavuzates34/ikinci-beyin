@@ -95,9 +95,18 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
    temiz bir Claude örneğiyle sınandı: iki kuralı da `AGENTS.md`'den okudu.
    Yönerge metni `.claude/`'dan `araclar/oturum-basi.md`'ye taşındı.
    `oturum_basi.py --bicim duz` hook'u olmayan ajan için. İşaretçi denetimi
-   `(codex …)` biçimini de tanıyor. **Açık:** Codex adaptörü. Kurulu Codex'te
-   hook desteği var (0.150.1, `hooks stable true`); kurulumu Codex'in kendisine
-   devredildi (codex 01a0b9eb · 19.09 16:47).
+   `(codex …)` biçimini de tanıyor. Codex adaptörü kuruldu: üç olay grubu,
+   dört komut. **Açık:** kullanıcı güveni verilmedi; `/hooks` akışı resmî
+   belgede CLI için var, Desktop'ta uçtan uca doğrulanmadı. Ayrıntı:
+   [[iki-ajan-calismasi]] · [[2026-09-19-codex-sunum-ilk-alti-slayt]].
+   **Netleştirme (19.09 19:37):** Kurulumun dosya olarak varlığı belirsiz
+   değil; `.codex/hooks.json` ve çağırdığı adaptörler mevcut. Belirsiz olan bu
+   proje katmanının kullanıcı tarafından güvenilir sayılıp sayılmadığı ve
+   Codex Desktop'ta gerçek bir yeni oturumun `SessionStart` zincirini otomatik
+   çalıştırıp uyarıları modele teslim edip etmediği. Bu oturumda
+   `oturum_basi.py --bicim duz` elle çalıştırıldı; bu, otomatik hook zincirinin
+   kanıtı değildir. Yeni oturumla uçtan uca sınanmalı
+   (codex 01a0ba74 · 19.09 19:37).
 2. ~~**Günlük rapor kimseye ulaşmıyor.** Derleyici raporu `derleme/gunluk/`
    altına yazıyor ama `SessionStart` onu açmıyor. "PUSH BASARISIZ" gibi bir
    uyarı kullanıcı sormazsa görünmüyor. 19.09 00:30'da tam olarak bu yaşandı:
@@ -126,6 +135,53 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
    65 KB'ta "hepsini oku"dan "haritayı oku, gerekeni aç"a geçmeyi söylüyor;
    "Uzun vade" başlığındaki 100 KB bölme eşiği de aşıldı. Karar bekliyor:
    hangi notlar bölünür ya da arşive iner.
+
+6. **Sağlayıcıdan bağımsız erken devir yok.** Kapanış ritüeli ortak, fakat
+   başlangıç tetikleyicisi değil: bugün kullanıcı bağlam sayacını görüp anlamlı
+   bir yerde “oturumu kapatalım” diyor. Codex Desktop sayaç göstermiyor ve
+   incelenen oturumun etkin penceresi 258.400 token. `PreCompact` ise bağlam
+   dolduğunda gelen son ağ; kontrollü erken devir değil. Tasarlanacak: güvenli
+   eşik, ölçüm kaynağı, tur-sonu tetik, Claude/Codex adaptörleri ve kapanış
+   işaretinin ancak gerçek geçişte yazılması (codex 01a0ba53 · 19.09 19:00).
+   Bkz. [[kapanis-ritueli]].
+
+7. **Sunum incelemesi — ilk altı slayt.** Sekiz düzeltme adayı çıktı: otomatik
+   okuma izlenimi; “ilk mesaj”ın öznesi; Desktop/CLI ayrımı; üç olay/dört komut;
+   güven akışının sınanmamış olması; Desktop'ta bağlam sayacının görünmemesi;
+   erken-devir boşluğu; yeni uygulamanın dosya ve komut erişimi ön koşulu.
+   **Yeni bulgu:** Adaptör ayrımı sağlayıcıya göre değil, somut uygulama veya
+   harness'a göre yapılmalı. Hook'lar Anthropic ya da OpenAI modelinin değil,
+   Claude Code ve Codex gibi uygulamaların yeteneğidir; aynı sağlayıcının başka
+   bir uygulamasında hiç bulunmayabilir. İlk oturumdaki başlangıç komutu bu
+   yüzden uygulamayı ve gerçek yeteneklerini tespit etmeli, ortak çekirdeğe
+   uygun adaptörü kurup sınamalı; eksik refleksleri de garanti varmış gibi
+   göstermeden kaydetmelidir (codex 01a0ba74 · 19.09 19:21).
+   Sunuma dokunulmadı. İnceleme 7. slayttan sürecek:
+   [[2026-09-19-codex-sunum-ilk-alti-slayt]]. On üç maddelik ortak onarım
+   devri: [[sunum-incelemesi-onarim-listesi]].
+
+8. **Kalıcı katmanın budama döngüsü yok.** Gece derleyicisi bilinçli olarak
+   “ölçer, yazmaz”: haftalık raporda toplam boyutu ve 65 KB eşiğini gösteriyor,
+   fakat büyüyen notları bölmüyor, kapanmış maddeleri soğuk katmana indirmiyor
+   ve tekrarları birleştirmiyor. Boyut eşiğinin aşılması da şu anda oturum
+   başına taşınan derleyici uyarıları arasında değil. Sonuç: başlangıçta
+   haritadan seçmeli okuma context maliyetini sınırlıyor, ama kalıcı katmanda
+   tarihsel tortu birikiyor. Çözüm otomatik silme olmamalı; derleyici büyük
+   dosya, kapanmış madde, haritasız not, güncel durum/tarihçe karışması ve
+   yoğun tekrar için **budama adayları** raporlamalı, sonraki canlı oturumda
+   kullanıcıyla birlikte bakım yapılmalıdır (codex 01a0ba74 · 19.09 19:32).
+
+9. **Gece taslağının kapsamı daha dar anlatılmalı.** Kullanıcı aynı oturuma
+   dönerse taslağı işlemesine gerek yoktur; canlı bağlam ve ham kayıt devam
+   eder. `oturum_basi.py`nin mevcut oturum kimliğini kapanmamış *diğer*
+   oturumlar listesinden çıkarması bu nedenle büyük ölçüde doğru davranıştır.
+   Taslak asıl olarak farklı/yeni bir oturumun kapanışsız kalmış eski oturumu
+   kurtarması içindir; paralel oturum görünürlüğüne de yardım eder ama özel bir
+   paralelleştirme mekanizması değildir. Aynı oturum daha sonra normal kapanırsa
+   eski `oto-<id>.md` dosyasının temizlenip temizlenmediği ayrıca sınanmalı;
+   açık kalan dar konu budur. Sunumdaki “Gece taslağını işleyelim” cümlesi,
+   yalnızca başka bir oturum bu taslağı bildirdiğinde veya eski oturumun artık
+   bittiğine karar verildiğinde geçerlidir (codex 01a0ba74 · 19.09 19:41).
 
 ## Karar bekleyenler
 
