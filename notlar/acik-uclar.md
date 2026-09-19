@@ -4,7 +4,7 @@ Karar bekleyenler, yapılmamış testler, sıralanmış yol haritası. **Yalnız
 olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
 [[acik-uclar-tarihce]] dosyasına taşınır, silinmez (kullanıcı kararı, 19.09).
 
-> Merkez: [[BEYIN]] · İlgili: [[kullanici-baglami]] · [[ikinci-beyin-mimarisi]] · [[capraz-arac-baglam]] · [[sunum-incelemesi-onarim-listesi]]
+> Merkez: [[BEYIN]] · İlgili: [[kullanici-baglami]] · [[ikinci-beyin-mimarisi]] · [[capraz-arac-baglam]] · [[2026-09-19-sunum-onarim-listesi]]
 
 ---
 
@@ -61,7 +61,7 @@ olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
    kalabilir; karar kullanıcının, ileride yetkili orkestratör ajanın.
 
 6. **Sunum onarımı sürüyor.** 13 açık ve sonradan bulunan 14. açık:
-   [[sunum-incelemesi-onarim-listesi]].
+   [[2026-09-19-sunum-onarim-listesi]].
 
 ## Ertelenenler
 

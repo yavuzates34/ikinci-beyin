@@ -7,7 +7,7 @@ uyku araları var. Üç iş kolu: sistem envanteri, sağlayıcıdan bağımsız 
 sunum ve onarım turu. Kapanış omurga okunarak yazıldı
 (`python araclar/omurga.py 5c600e7e`).
 
-> Merkez: [[BEYIN]] · İlgili: [[sunum-incelemesi-onarim-listesi]] ·
+> Merkez: [[BEYIN]] · İlgili: [[2026-09-19-sunum-onarim-listesi]] ·
 > [[kapanis-ritueli]] · [[gece-derleyicisi]] · [[iki-ajan-calismasi]] ·
 > [[olculmus-bulgular]] · [[acik-uclar]]
 
@@ -44,7 +44,7 @@ uygulamasına bağlı olamaz. Yapılanlar:
 14 slaytlık kullanım rehberi yazıldı ve yayınlandı; Codex'le sesli incelendi
 (`01a0ba53`, `01a0ba74`), 13 açık çıktı. Bu oturumda ortak onarım turu yapıldı;
 iki açık daha bulundu (14 ve 15). Durum tablosu:
-[[sunum-incelemesi-onarim-listesi]].
+[[2026-09-19-sunum-onarim-listesi]].
 
 Kurulanlar: `baglam.py` (erken devir), `bakim.py` (budama adayları),
 `gece_kayit.py` genişletmeleri, `rehber/uygulama-adaptorleri.md`,

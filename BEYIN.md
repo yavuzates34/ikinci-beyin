@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 20 Eylül 2026, 01:20
+**Son güncelleme:** 20 Eylül 2026, 01:21
 
 ---
 
@@ -45,7 +45,6 @@ Klasör bir **git deposu** ve private GitHub deposuna bağlı
 | [[proje-egemenligi]] | Her klasör ayrı devlet: okunur, müdahale edilmez |
 | [[agentic-yapi]] | Model, harness, bağlam: ne ajan, ne değil — şemalı |
 | [[acik-uclar]] | Karar bekleyenler, yapılmamış testler, yol haritası |
-| [[sunum-incelemesi-onarim-listesi]] | Codex sunum incelemesindeki 13 açık; Claude + Codex ortak onarım ve test devri |
 
 ## Oturum arşivi
 
@@ -61,6 +60,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-09-19-codex-sunum-ilk-alti-slayt]] | 19.09 18:40 – 19:10 | Codex ile sunumun ilk altı slaytı incelendi; sekiz anlatım/teknik bulgu ve sağlayıcıdan bağımsız erken-devir açığı kaydedildi |
 | [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]] | 19.09 19:16 – 20:04 | 7–10. slaytlar incelendi; bulgular 13'e çıktı, erken devir P0 hibrit tasarıma bağlandı ve Claude + Codex ortak onarım devri yazıldı |
 | [[2026-09-18-saglayici-bagimsizligi-ve-erken-devir]] | 18.09 04:37 – 20.09 00:40 | **25 mesaj, 44 saat.** Sağlayıcıdan bağımsız çekirdek (AGENTS.md, kapanış işareti, Codex adaptörü), erken devir (%50/%70), bakım döngüsü, 14 slaytlık kullanım rehberi ve 15 açıklık ortak onarım turu |
+| [[2026-09-19-sunum-onarim-listesi]] | — | Oturum kaydı değil: 15 açıklık onarım turunun iş belgesi ve durum tablosu (19–20.09). Astra turu bunun üzerinden yürür |
 | [[acik-uclar-tarihce]] | — | Oturum kaydı değil: açık uçlardan kapanan ve devredilen maddeler, metniyle (19.09 bakımında taşındı) |
 | [[BAGLAM-DEVRI]] | — | 30 Ağustos itibarıyla teknik devir belgesi (başka bir modele verilmek üzere) |
 
@@ -87,7 +87,7 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
   göz denetimi için kullanıcı bir Astra oturumu açıp `/goal` verecek. Denetim
   haritası, açık bırakılan dört madde ve Claude'un kendi zayıf noktaları:
   `rehber/astra-kontrol.md`. Açık maddelerin durumu:
-  [[sunum-incelemesi-onarim-listesi]] → "Durum" tablosu.
+  [[2026-09-19-sunum-onarim-listesi]] → "Durum" tablosu.
 
 - **Codex Desktop'ta hook'lar tetiklenmiyor** (20.09 ölçümü). Orada beyin
   yalnızca ajanın betikleri kendi çalıştırmasıyla işliyor.
@@ -95,7 +95,7 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 - **Claude + Codex ortak onarım devri:** Sunum incelemesinde bulunan 13 açık,
   kaynakları, test ölçütleri ve kullanıcı karar noktalarıyla
-  [[sunum-incelemesi-onarim-listesi]] içinde. Önce sistem, sonra kalıcı notlar,
+  [[2026-09-19-sunum-onarim-listesi]] içinde. Önce sistem, sonra kalıcı notlar,
   en son sunum düzeltilmeli.
 
 - **Kullanıcı rehberi (sunum, 14 slayt, 19.09):**
@@ -106,7 +106,7 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
   Codex'le sesli inceleme için harita: [[codex-sunum-rehberi]]. İlk 10 slaytın
   ilk maddesine kadar incelendi; sunum henüz değiştirilmedi. İnceleme 10.
   slaytın kalanından sürebilir, fakat önce 13 açık için ortak onarım devri var:
-  [[sunum-incelemesi-onarim-listesi]]. Kayıtlar:
+  [[2026-09-19-sunum-onarim-listesi]]. Kayıtlar:
   [[2026-09-19-codex-sunum-ilk-alti-slayt]] ·
   [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]].
 

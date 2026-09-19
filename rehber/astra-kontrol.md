@@ -53,7 +53,7 @@ ikinci tur oturumu aynı gün. Sunum incelemesi: `01a0ba53`, `01a0ba74`.
 
 ## Kontrol listesi
 
-Ana belge: `notlar/sunum-incelemesi-onarim-listesi.md` (14 madde + durum
+Ana belge: `oturumlar/2026-09-19-sunum-onarim-listesi.md` (14 madde + durum
 tablosu). Sırayla kontrol et. Aşağıdakiler en kırılgan gördüğüm yerler.
 
 ### A. Bilerek açık bıraktıklarımız — bunları kapatman gerekebilir
@@ -126,6 +126,6 @@ tablosu). Sırayla kontrol et. Aşağıdakiler en kırılgan gördüğüm yerler
 - Bizim göremediğimiz, listede hiç olmayan bir açık bulursan onu ayrıca yaz:
   en değerli çıktı budur.
 
-> İlgili: [[sunum-incelemesi-onarim-listesi]] · [[acik-uclar]] ·
+> İlgili: [[2026-09-19-sunum-onarim-listesi]] · [[acik-uclar]] ·
 > [[iki-ajan-calismasi]] · `rehber/uygulama-adaptorleri.md` ·
 > `rehber/codex-sunum-rehberi.md`

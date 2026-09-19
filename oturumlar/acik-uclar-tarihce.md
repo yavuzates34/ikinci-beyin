@@ -5,7 +5,7 @@ değiştirilmeden buraya taşındı (19.09.2026, kullanıcı kararı: tarihçe `
 altına, silme yok · claude 5c600e7e · 19.09 20:31). Git geçmişi taşımadan önceki
 hâli de korur. Bu dosya bir oturum kaydı değildir; `kapanan-oturum:` satırı taşımaz.
 
-> Güncel açık uçlar: [[acik-uclar]] · İlgili: [[sunum-incelemesi-onarim-listesi]]
+> Güncel açık uçlar: [[acik-uclar]] · İlgili: [[2026-09-19-sunum-onarim-listesi]]
 
 ---
 
@@ -129,7 +129,7 @@ hâli de korur. Bu dosya bir oturum kaydı değildir; `kapanan-oturum:` satırı
    inceleme 10. slaytın kalan maddelerinden sürecek. Kayıtlar:
    [[2026-09-19-codex-sunum-ilk-alti-slayt]] ·
    [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]]. Ortak onarım devri:
-   [[sunum-incelemesi-onarim-listesi]].
+   [[2026-09-19-sunum-onarim-listesi]].
 
 8. **Kalıcı katmanın budama döngüsü yok.** Gece derleyicisi bilinçli olarak
    “ölçer, yazmaz”: haftalık raporda toplam boyutu ve 65 KB eşiğini gösteriyor,

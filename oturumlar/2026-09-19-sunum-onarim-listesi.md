@@ -31,7 +31,7 @@ yaparsa diğeri kaynak ve test açısından denetlesin. Kullanıcıdan işlem ge
 noktalar aşağıda ayrıca işaretlidir. Belirsiz davranışı çalışıyor varsaymayın.
 
 **Anthropic oturumunda başlangıç cümlesi:** “`BEYIN.md` ile
-`notlar/sunum-incelemesi-onarim-listesi.md` dosyasını oku. Bir Codex ajanı
+`oturumlar/2026-09-19-sunum-onarim-listesi.md` dosyasını oku. Bir Codex ajanı
 çalıştır; on üç açığı kaynaklardan bağımsız denetleyip birlikte kapatın. Önce
 gerçek sistemi, sonra kalıcı notları, en son sunumu düzeltin. Kullanıcı kararı
 veya arayüz işlemi gereken yerde bana sorun; doğrulanmamış işi tamamlandı

@@ -141,7 +141,7 @@ uyarıların olmadığını söyler.
 - Bakım uyarısı: `araclar/bakim.py` → `olc()` ve `uyarilar()`.
 - Bağlam uyarısı: `araclar/baglam.py` → `kontrol()`, çağıran `araclar/devir.py`.
 - Gerekçeler: `oturumlar/acik-uclar-tarihce.md` (push olayı) ·
-  `notlar/sunum-incelemesi-onarim-listesi.md` madde 7, 10, 11.
+  `oturumlar/2026-09-19-sunum-onarim-listesi.md` madde 7, 10, 11.
 
 ### 9 · Altı cümle yeter — `cumleler`
 **Bak (cümle cümle):**
