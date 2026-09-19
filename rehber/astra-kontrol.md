@@ -52,14 +52,20 @@ tablosu). Sırayla kontrol et. Aşağıdakiler en kırılgan gördüğüm yerler
 
 ### A. Bilerek açık bıraktıklarımız — bunları kapatman gerekebilir
 
-1. **Madde 5 — Codex Desktop hook güveni.** Adaptör diskte (`.codex/hooks.json`),
-   ama kullanıcı güveni verilene ve yepyeni bir Codex oturumunda `SessionStart`
-   zinciri ham kayıtta görülene kadar **çalıştığı kanıtlanmadı.** Ölçüldü: iki
-   Desktop oturumunda `AGENTS.md` enjeksiyonu var, hook metni yok
-   (claude 5c600e7e · 19.09 20:21). Elle çalıştırılan komut kanıt değildir.
-2. **Madde 7 — erken devirin Codex tarafı.** Claude'da canlı doğrulandı
-   (claude 5c600e7e · 19.09 20:31). Codex'te formül ham kayıttan doğrulandı ama
-   canlı uyarı görülmedi; hook güvenine bağlı.
+1. **Madde 5 — Codex Desktop'ta hook'lar tetiklenmiyor.** 20.09'da ölçüldü ve
+   sonuç olumsuz (claude 5c600e7e · 20.09 00:38): `/hooks` bir güven ekranı
+   açmıyor; kullanıcı testinde yeni turda hiçbir hook satırı gelmedi; kayıttaki
+   harita ve saat satırlarının tipi `custom_tool_call_output`, yani onları
+   modelin kendisi çalıştırmıştı. **Claude bu maddeyi bir ara yanlışlıkla
+   "kapandı" saydı**; düzeltildi. Senin işin: Desktop'ta hook desteği var mı,
+   varsa nasıl etkinleşir — belge ve sürüm notlarından; CLI'da ayrıca sına.
+   Ders: modelin "hook'lar etkin" demesi kanıt değildir, yapılandırmayı okumuş
+   olabilir. Kanıt ham kayıttaki enjeksiyon tipidir.
+2. **Madde 7 — erken devirin Codex tarafı.** Claude'da iki eşik de canlı
+   doğrulandı: %50 (19.09 20:31) ve %70 (20.09 00:36). Codex'te formül
+   düzeltildi (`total_tokens`, Codex'in itirazı) ve elle doğru sonuç verdi, ama
+   canlı uyarı yok — çünkü taşıyıcı hook tetiklenmiyor (madde 5). Mekanizma
+   değil, taşıyıcı eksik.
 3. **Madde 12 — gece taslağının diğer iki hâli.** Aynı oturuma dönüş sınandı.
    "Başka oturum devralır" ve "terk edilmiş oturum kurtarılır" hâlleri gerçek
    bir gece çalışmasında henüz görülmedi.
@@ -69,22 +75,27 @@ tablosu). Sırayla kontrol et. Aşağıdakiler en kırılgan gördüğüm yerler
 
 ### B. Benim kendi zayıf noktalarım — özellikle buraya bak
 
-5. **Claude hem yapan hem doğrulayan oldu.** Codex'in birinci turu kullanım
+5. **Claude bir maddeyi yanlış kapattı.** Madde 5'i ekran görüntüsü ve modelin
+   ifadesine dayanarak "kapandı" saydı; kayıt tipine bakınca tersi çıktı ve
+   geri açıldı. Aynı hata başka maddelerde de olabilir: "kapandı" satırlarının
+   kanıtını tipine kadar kontrol et.
+
+6. **Claude hem yapan hem doğrulayan oldu.** Codex'in birinci turu kullanım
    limitine takıldı ve raporunu yazamadı; ara bulguları kendi oturum kaydından
    okundu. İkinci tur kısa tutuldu. Yani bağımsız göz bu turda zayıf kaldı.
    Durum tablosundaki "kapandı" satırlarını bu gözle oku.
-6. **Claude'un bağlam penceresi ölçülmedi, kalibre edildi.** `araclar/baglam.py`
+7. **Claude'un bağlam penceresi ölçülmedi, kalibre edildi.** `araclar/baglam.py`
    içindeki `PENCERE` tablosu kullanıcının arayüzde gördüğü yüzdeye dayanıyor
    (472.650 token ≈ %45-50 → 1M). Model değişirse ya da tablo eskirse uyarı
    sessizce yanlış eşikte gelir. Daha sağlam bir kaynak bulabilir misin?
-7. **`derleme/baglam-durum.json` tek dosya.** İki oturum aynı anda yazarsa
+8. **`derleme/baglam-durum.json` tek dosya.** İki oturum aynı anda yazarsa
    oku-değiştir-yaz yarışı olur; kaybedilen seviye fazladan bir uyarı üretir.
    Zararsız gördüm, ölçmedim.
-8. **Bakım ölçütleri kaba.** `bakim.py` içindeki "kapanmış madde" sayımı
+9. **Bakım ölçütleri kaba.** `bakim.py` içindeki "kapanmış madde" sayımı
    basit bir desene dayanıyor; "büyük not" eşiği (12 KB) keyfî.
-9. **Antigravity ve diğer uygulamalar ölçülmedi.** `rehber/uygulama-adaptorleri.md`
+10. **Antigravity ve diğer uygulamalar ölçülmedi.** `rehber/uygulama-adaptorleri.md`
    tablosunda yokturlar. Yeni uygulama tanıtma protokolü hiç uygulanmadı.
-10. **Sunum artık doğru mu?** `rehber/sunum/slides/` içindeki 14 slaytı kodla
+11. **Sunum artık doğru mu?** `rehber/sunum/slides/` içindeki 14 slaytı kodla
     karşılaştır. Sunum, sistemi olduğundan daha otomatik, daha güvenli ya da
     daha tamamlanmış göstermemeli. Yayınlanan sunum kullanıcının claude.ai
     hesabında; sen yalnızca kaynağı görebilirsin.

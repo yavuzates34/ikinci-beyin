@@ -320,3 +320,23 @@ Ayrı bir olgu: 13 hanede de altı çakışma var. Bunlar farklı oturumlar değ
 **aynı oturumun iki kopyası** — Claude tarafında iki proje yolunda (`C:` ve
 `D:`), Codex tarafında iki rollout dosyasında. Bu, eskiden beri bilinen
 "mükerrer oturum" açığının bu klasörde de doğrulanması; elenmesi yapılmadı.
+
+## 14. Codex Desktop'ta hook'lar otomatik tetiklenmiyor
+
+20 Eylül'de iki ayrı yoldan ölçüldü (claude 5c600e7e · 20.09 00:38):
+
+- **Kullanıcı testi:** Desktop oturumunda yeni bir turda "hook'lardan sana ne
+  geldi" diye soruldu. Cevap: *hiçbir satır gelmedi.* Ham kayıt bunu
+  doğruluyor: o turda saat satırı yok.
+- **Kayıt tipi:** Daha önce "hook çalıştı" sandığımız harita ve saat satırları
+  `custom_tool_call_output` tipinde. Yani onları hook enjekte etmedi; Codex
+  modeli `/hooks` mesajına cevaben betikleri **kendisi çalıştırdı**.
+
+Yanıltıcı olan şey: Codex'in cevabı "bu projede etkin ve güvenilir üç hook
+grubu var" diyordu. Bu, `.codex/hooks.json` dosyasını okumuş olmasının
+sonucudur; enjeksiyonun kanıtı değildir. **Model bir şeyin çalıştığını söylemek
+için o şeyin yapılandırmasını okumuş olabilir.**
+
+Claude'un ilk yorumu bu yüzden yanlıştı ve düzeltildi: `/hooks` ekranının
+görüntüsü ve modelin ifadesi kanıt sayılmıştı. Kanıt yalnızca ham kayıttaki
+enjeksiyon tipidir.

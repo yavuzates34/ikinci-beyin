@@ -53,8 +53,8 @@ Claude oturumunda soruldu ve cevaplandı (claude 5c600e7e · 19.09 20:12):
 
 ## Durum (20.09.2026 00:35, Codex denetiminden sonra)
 
-Claude doldurdu, **Codex ikinci turda bağımsız denetledi** (codex 01a0bc0e ·
-20.09 00:33) ve beş yerde kusur buldu; üçü uygulandı, ikisi ölçümle
+Claude doldurdu, **Codex ikinci turda bağımsız denetledi**
+(codex 01a0bb8e-4631 · 20.09 00:30) ve beş yerde kusur buldu; üçü uygulandı, ikisi ölçümle
 sınırlandı. Codex'in birinci turu kullanım limitine takılmıştı
 (codex 01a0baa5 · 19.09 20:25); ara bulguları kendi kaydından okundu.
 Astra kontrolü bekliyor: `rehber/astra-kontrol.md`.
@@ -78,11 +78,11 @@ Ayrıca bakım ölçütlerindeki iki yanlış pozitif kapatıldı: kod bloğu i�
 |---|---|---|---|
 | 1 | kapandı | `AGENTS.md` "ortak kural otomatik uygulama değildir"; slayt 2 ve 3 | Codex denetimi |
 | 2 | kapandı | Slayt 3 ve 6: özne kullanıcı, sıklık kalıcı talimat yerine bağlı | Codex denetimi |
-| 3 | kapandı | Slayt 3 ve 5 ile adaptör tablosu: belge, ölçüldü ve ölçülmedi ayrı etiketli. Desktop davranışı artık ölçüldü (aşağıda madde 5) | — |
+| 3 | kapandı | Slayt 3 ve 5 ile adaptör tablosu: belge, ölçüldü ve ölçülmedi ayrı etiketli. Desktop davranışı ölçüldü ve **olumsuz** çıktı (madde 5) | — |
 | 4 | kapandı | Slayt 5: "üç olay, dört komut" | — |
-| 5 | kapandı | **Ölçüldü 20.09 00:25:** Codex Desktop'ta `/hooks` ayrı bir güven ekranı açmıyor, düz mesaj olarak gidiyor; proje güvenilir sayıldığı için hook'lar zaten etkin. `01a0bb8e-de58` kaydında harita, saat, bakım uyarısı ve kapanmamış oturum uyarısı modele ulaşmış (claude 5c600e7e · 20.09 00:32) | — |
+| 5 | **açık — ölçüldü, çalışmıyor** | `/hooks` Desktop'ta güven ekranı açmıyor, düz mesaj olarak gidiyor. Kayıttaki harita ve saat satırları `custom_tool_call_output`: onları hook değil, modelin kendisi çalıştırdı. Kullanıcı testinde yeni turda hiçbir satır gelmedi (claude 5c600e7e · 20.09 00:38). Ayrıntı: [[olculmus-bulgular]] §14 | Desktop'ta hook desteği var mı, varsa nasıl etkinleşir: OpenAI belgesi ve sürüm notları okunmalı. CLI'da ayrıca sınanmalı |
 | 6 | kapandı | Sistem sayaca bağlı değil, doluluğu ham kayıttan ölçüyor; slayt 5 ve 12 sınırı yazıyor | — |
-| 7 | kısmen | `baglam.py`: sentetik 5 test, Claude'da canlı %50 uyarısı (claude 5c600e7e · 19.09 20:31). Codex formülü Codex'in itirazıyla düzeltildi (`total_tokens`) ve o oturumun kaydıyla elle çalıştırıldığında doğru sonuç verdi | **Codex'te canlı uyarı görülmedi:** Desktop turunda saat geldi ama durum dosyasına Codex anahtarı düşmedi. `UserPromptSubmit` altındaki ikinci komut çalışmıyor olabilir; canlı ölçüm bekliyor |
+| 7 | kısmen | Claude'da **iki eşik de canlı doğrulandı**: %50 (19.09 20:31) ve %70 (20.09 00:36), her ikisinde kurtarma omurgası yazıldı. Codex formülü `total_tokens` olarak düzeltildi ve Codex kaydıyla elle doğru sonuç verdi | Codex tarafında canlı uyarı **yok**, çünkü Desktop'ta hook zinciri hiç tetiklenmiyor (madde 5). Mekanizma değil, taşıyıcı eksik |
 | 8 | kapandı | Slayt 6: başlık, ön koşul ve kullanıcı eylemi | — |
 | 9 | kapandı | `rehber/uygulama-adaptorleri.md`: tablo ve 8 adımlı protokol | Desktop hücreleri "ölçülmedi" |
 | 10 | kısmen | `bakim.py`: rapor ve uyarı çalışıyor, haritasız not ve yetim taslak negatif testle yakalandı. Kullanıcı 4 taşımadan 2'sini onayladı; biri yapıldı (137,9 → 125,4 KB) | 3. taşıma (bu liste) iş bitince; 100 KB eşiği hâlâ aşılı |
