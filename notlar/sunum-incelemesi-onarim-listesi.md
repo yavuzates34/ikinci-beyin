@@ -6,7 +6,9 @@ listesi değildir: sunumun açığa çıkardığı gerçek sistem kusurlarını 
 
 > Merkez: [[BEYIN]] · İlgili: [[acik-uclar]] · [[kapanis-ritueli]] ·
 > [[gece-derleyicisi]] · [[iki-ajan-calismasi]] ·
-> [[2026-09-19-codex-sunum-ilk-alti-slayt]] · [[codex-sunum-rehberi]]
+> [[2026-09-19-codex-sunum-ilk-alti-slayt]] ·
+> [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]] ·
+> [[codex-sunum-rehberi]]
 >
 > Kaynaklar: İlk sekiz bulgu önceki Codex incelemesinde ölçüldü
 > (codex 01a0ba53 · 19.09 18:40–19:10). Dokuzuncu–on üçüncü maddeler devam

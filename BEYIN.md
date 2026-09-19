@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 19 Eylül 2026, 19:55
+**Son güncelleme:** 19 Eylül 2026, 20:05
 
 ---
 
@@ -58,6 +58,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-09-16-nar-ajans-envanteri]] | 16.09 04:00 – 04:45 | Ayrı oturum değil — yukarıdaki oturumun **alt kolu**. Nar Ajans çalışma alanı sayımı: 6 depo, Codex checkpoint'leri, 4.21 GB yedek |
 | [[2026-09-17-agentic-yapi-ve-denetim]] | 17.09 01:59 – 18.09 04:40 | **90 mesaj (gerçek 68), 26,7 saat.** izle.py dört katmana çıktı (OCR + birleştirme), agentic yapı notu ve dört şema, denetim katmanı kararı, SessionEnd boşluğu, gece derleyicisine üç ekleme |
 | [[2026-09-19-codex-sunum-ilk-alti-slayt]] | 19.09 18:40 – 19:10 | Codex ile sunumun ilk altı slaytı incelendi; sekiz anlatım/teknik bulgu ve sağlayıcıdan bağımsız erken-devir açığı kaydedildi |
+| [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]] | 19.09 19:16 – 20:04 | 7–10. slaytlar incelendi; bulgular 13'e çıktı, erken devir P0 hibrit tasarıma bağlandı ve Claude + Codex ortak onarım devri yazıldı |
 | [[BAGLAM-DEVRI]] | — | 30 Ağustos itibarıyla teknik devir belgesi (başka bir modele verilmek üzere) |
 
 ## Sesli dinleme dosyaları
@@ -89,9 +90,12 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
   diğer ajanlarla tanımlama ve günlük kullanım. Sistem değişirse bu da
   güncellenir; `AGENTS.md` ile çelişirse `AGENTS.md` geçerlidir.
   Kaynağı `rehber/sunum/` altında; sunum değişirse orası da güncellenir.
-  Codex'le sesli inceleme için harita: [[codex-sunum-rehberi]].
-  İlk altı slayt incelendi; yeni oturum **7. slayttan** devam edecek. Bulgular:
-  [[2026-09-19-codex-sunum-ilk-alti-slayt]].
+  Codex'le sesli inceleme için harita: [[codex-sunum-rehberi]]. İlk 10 slaytın
+  ilk maddesine kadar incelendi; sunum henüz değiştirilmedi. İnceleme 10.
+  slaytın kalanından sürebilir, fakat önce 13 açık için ortak onarım devri var:
+  [[sunum-incelemesi-onarim-listesi]]. Kayıtlar:
+  [[2026-09-19-codex-sunum-ilk-alti-slayt]] ·
+  [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]].
 
 - **Kapanış ritüeli kurulu.** "Oturumu kapatalım" dendiğinde `AGENTS.md`'deki
   sırayı izle: önce `python araclar/omurga.py`, sonra yaz, sonra mekanik bakım.

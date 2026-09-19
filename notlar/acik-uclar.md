@@ -145,7 +145,8 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
    işaretinin ancak gerçek geçişte yazılması (codex 01a0ba53 · 19.09 19:00).
    Bkz. [[kapanis-ritueli]].
 
-7. **Sunum incelemesi — ilk altı slayt.** Sekiz düzeltme adayı çıktı: otomatik
+7. **Sunum incelemesi — 10. slaytın ilk maddesine kadar.** İlk altı slaytta
+   sekiz düzeltme adayı çıktı: otomatik
    okuma izlenimi; “ilk mesaj”ın öznesi; Desktop/CLI ayrımı; üç olay/dört komut;
    güven akışının sınanmamış olması; Desktop'ta bağlam sayacının görünmemesi;
    erken-devir boşluğu; yeni uygulamanın dosya ve komut erişimi ön koşulu.
@@ -156,9 +157,11 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
    yüzden uygulamayı ve gerçek yeteneklerini tespit etmeli, ortak çekirdeğe
    uygun adaptörü kurup sınamalı; eksik refleksleri de garanti varmış gibi
    göstermeden kaydetmelidir (codex 01a0ba74 · 19.09 19:21).
-   Sunuma dokunulmadı. İnceleme 7. slayttan sürecek:
-   [[2026-09-19-codex-sunum-ilk-alti-slayt]]. On üç maddelik ortak onarım
-   devri: [[sunum-incelemesi-onarim-listesi]].
+   7–10. slayt incelemesinde toplam sayı 13'e çıktı. Sunuma dokunulmadı;
+   inceleme 10. slaytın kalan maddelerinden sürecek. Kayıtlar:
+   [[2026-09-19-codex-sunum-ilk-alti-slayt]] ·
+   [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]]. Ortak onarım devri:
+   [[sunum-incelemesi-onarim-listesi]].
 
 8. **Kalıcı katmanın budama döngüsü yok.** Gece derleyicisi bilinçli olarak
    “ölçer, yazmaz”: haftalık raporda toplam boyutu ve 65 KB eşiğini gösteriyor,
