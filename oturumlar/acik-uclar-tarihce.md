@@ -79,6 +79,17 @@ hâli de korur. Bu dosya bir oturum kaydı değildir; `kapanan-oturum:` satırı
    kanıtı değildir. Yeni oturumla uçtan uca sınanmalı
    (codex 01a0ba74 · 19.09 19:37).
 
+## 20 Eylül — Codex hook güveni kapandı
+
+1. ~~**Sağlayıcıdan bağımsızlık: Codex hook'ları güven kaydı bekliyor.**~~
+   **Kapandı 20.09 01:32.** Kullanıcı CLI TUI'de proje hook'larına güven verdi.
+   Sonraki yeni Desktop oturumunda `SessionStart` ve `UserPromptSubmit`
+   çıktıları ham kayıtta `role=developer`, `hooks.additional_context` olarak
+   doğrulandı (codex 01a0bbc6-b6f6 · 20.09 01:28). Güven-atlatma bayrağı
+   olmadan açılan normal `codex exec` oturumunda da aynı iki çıktı aynı kayıt
+   türüyle geldi (codex 01a0bbcc-8818 · 20.09 01:32). Önceki başarısız ölçüm
+   ve yanlış pozitif [[olculmus-bulgular]] §14'te, kapanış §14.2'de.
+
 ## 19 Eylül — madde 2 ve 3 (kapandı)
 
 2. ~~**Günlük rapor kimseye ulaşmıyor.** Derleyici raporu `derleme/gunluk/`

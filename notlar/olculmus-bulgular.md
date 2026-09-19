@@ -357,6 +357,25 @@ Kullanıcının yapması gereken tek şey: terminalde bu klasörde `codex` (TUI)
 açıp `/hooks` ile güven vermek. Sonra Desktop'ta ve `exec`'te de çalışması
 beklenir — bu **ölçülmedi**.
 
+### 14.2 Güven verildi: Desktop ve normal `codex exec` çalışıyor
+
+Kullanıcı TUI'de proje hook'larına güven verdi. Hemen sonraki yeni Codex
+Desktop oturumunda `SessionStart` çıktısı "BU PROJENIN BEYNI: BEYIN.md…",
+ilk kullanıcı mesajında da `UserPromptSubmit` saat çıktısı otomatik geldi.
+Ham kayıtta ikisi de `role=developer` ve `content_item_kinds =
+["hooks.additional_context"]`; önceki yanlış pozitiflerdeki
+`custom_tool_call_output` değiller (codex 01a0bbc6-b6f6 · 20.09 01:28).
+
+Ayrıca güven-atlatma bayrağı olmadan yeni bir `codex exec --json` oturumu
+açıldı. Aynı iki çıktı yine ham kayıtta `hooks.additional_context` olarak
+görüldü; model başlangıç metninin ilk satırını doğru aktardı
+(codex 01a0bbcc-8818 · 20.09 01:32).
+
+Sonuç: `.codex/hooks.json`, Windows adaptörleri ve kalıcı güven kaydı hem
+Desktop hem CLI için çalışıyor. `SessionStart` ile `UserPromptSubmit` canlı
+doğrulandı. `PreCompact` ve Codex'te %50/%70 eşiğinin gerçek uyarısı henüz
+canlı ölçülmedi; yapılandırmanın varlığı onların gerçekleştiğinin kanıtı değil.
+
 ## 15. Astra alt ajan olarak çağrılamıyor: CLI sürümü yetmiyor
 
 20 Eylül 00:49'da denendi ve ölçüldü (claude 5c600e7e · 20.09 00:49).
@@ -372,3 +391,59 @@ kullanıcının Desktop oturumunda yapılmak zorunda. `gpt-5.6-sol` CLI'da
 Bu, 16 Eylül'de Nar Ajans'ta ölçülen "model adı değişti, kurulu CLI yeni modeli
 çalıştıramadı" bulgusunun hâlâ geçerli olduğunu gösteriyor: **model adı
 varsayılmaz, sürüm uyumu ölçülür.**
+
+## 16. Gece derleyicisi tetikleniyor ama konsolu kapanınca ölüyor
+
+20 Eylül 01:50'de ölçüldü (claude 96517e26 · 20.09 01:50). Bu gecenin
+dosyalarının commit'siz kalması "cron çalışmadı" sanılmıştı; Görev
+Zamanlayıcı'nın kendi kaydı tersini söylüyor:
+
+```
+LastRunTime        : 20.09.2026 00:30:01
+LastTaskResult     : 3221225786        # 0xC000013A = STATUS_CONTROL_C_EXIT
+NumberOfMissedRuns : 0
+NextRunTime        : 21.09.2026 00:30:00
+```
+
+**Görev saatinde tetiklendi, atlanan çalışma yok.** Dönüş kodu
+`0xC000013A`, sürecin Ctrl+C ya da konsol penceresinin kapanmasıyla
+sonlandırıldığını söyler — zaman aşımı ya da Python hatası değil.
+Görevin çalışma limiti PT15M ve çalışma 00:30:01'de başladı; derleme
+saniyeler sürer, yani limite de takılmadı.
+
+**Sebep, görevin nasıl kurulduğunda:** `Principal.LogonType = Interactive`,
+`RunLevel = Limited`. Görev kullanıcının açık oturumunda, `derle-gece.cmd`
+üzerinden **görünür bir konsol penceresi açarak** çalışıyor. O pencere
+kapanırsa süreç ölür. Derleme sırası da bunu doğruluyor: `son-calisma.json`
+(başlangıç) ve `derleme/gunluk/2026-09-20.md` yazıldı, ardından gelen log
+satırı ve **git commit + push adımı hiç çalışmadı**.
+
+`derleme/derleyici.log` aynı imzayı daha önce de taşıyor: 18.09 çalışmasının
+yerinde bir `^C` var ve o gecenin log kaydı hiç yok. Yani son dört gecenin
+ikisi bu şekilde yarıda kalmış:
+
+| Gece | Sonuç |
+|---|---|
+| 17.09 00:30 | temiz, commit + push tamam |
+| 18.09 00:30 | log'a yazılmamış, `^C` |
+| 19.09 00:30 | commit atıldı, push başarısız (borç sonradan kapandı) |
+| 20.09 00:30 | başladı, `0xC000013A` ile kesildi |
+
+**Neden önemli:** [[BEYIN]] "her gece otomatik commit + push" diyor; ölçüm son
+üç gecenin birinde tuttuğunu gösteriyor. Ayrıca gece taslağı zincirinin
+(onarım listesi madde 12) "gerçek koşulda çalıştı" kanıtı **elle tetiklenmiş**
+bir çalışmaya dayanıyor (20.09 00:45); zamanlanmış yolun kendisi henüz uçtan
+uca tamamlanmadı.
+
+**Kullanıcının gözlemi ve düzeltmesi:** kullanıcı o saatlerde Codex'in kullanım
+limiti dolduğu için 00:16'ya kadar beklemiş, 00:16–00:30 arası ve sonrasında
+aktif çalışmıştı; "o yüzden cron çalışmamış olabilir" diye tahmin etti
+(kullanıcı, 20.09 01:52). Ölçüm tahmini düzeltiyor: **aktif oturum cron'u
+engellemedi, açılan pencereyi öldürdü.** Mekanizma ters yönde.
+
+**Önerilen düzeltme (uygulanmadı, sistem ayarı kullanıcıya ait):** görevi
+"kullanıcı oturum açmasa da çalıştır" (S4U) olarak kurmak ya da pencereyi
+gizlemek. Konsol penceresi olmadığı sürece kapatılamaz. Değişiklik yapılırsa
+ertesi gece `derleme/derleyici.log` ve `LastTaskResult` ile doğrulanmalı.
+
+> İlgili: [[gece-derleyicisi]] · [[acik-uclar]] · [[2026-09-19-sunum-onarim-listesi]]

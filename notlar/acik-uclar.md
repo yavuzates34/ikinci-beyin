@@ -10,37 +10,15 @@ olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
 
 ## Açık — sistem
 
-1. **Sağlayıcıdan bağımsızlık: Codex hook'ları güven kaydı bekliyor.**
-   **Sebep bulundu 20.09 00:48:** `codex exec` normalde bağlam vermiyor, ama
-   `--dangerously-bypass-hook-trust` ile bağlam anında geliyor. Yani adaptör
-   çalışıyor; eksik olan güven kaydı. Kullanıcı terminalde `codex` TUI açıp
-   `/hooks` ile güven verecek; sonrasında Desktop ve exec ölçülecek
-   ([[olculmus-bulgular]] §14.1). Önceki ölçüm (20.09 00:38, sonuç olumsuz): `/hooks` güven ekranı açmıyor;
-   yeni turda hiçbir hook satırı gelmiyor; kayıttaki harita ve saat satırları
-   `custom_tool_call_output`, yani betikleri modelin kendisi çalıştırmış.
-   Claude bunu bir ara yanlışlıkla "çalışıyor" saydı ve düzeltti
-   ([[olculmus-bulgular]] §14). Codex CLI tarafı yalıtılmış testte çalışıyor.
-   Eski metin: Çekirdek
-   ortak: `AGENTS.md`, `kayit.py` Claude ve Codex okuyucuları, işaretçi
-   denetimi. Codex adaptörü `.codex/hooks.json` içinde kurulu. Ama kullanıcı
-   hook güveni vermedi. İki Codex Desktop oturumunda `AGENTS.md` enjeksiyonu
-   var, hook metni yok (claude 5c600e7e · 19.09 20:21). Desktop'taki güven
-   akışı resmî belgede yok; yalnızca CLI'ınki var. Uygulama bazlı durum:
-   `rehber/uygulama-adaptorleri.md`. Onarım listesi madde 3, 5, 9.
-
-2. **Erken devir: Claude'da iki eşik de canlı, Codex'te taşıyıcı yok.**
+1. **Erken devir: Claude'da iki eşik canlı; Codex'te eşik olayı bekleniyor.**
    %50 (19.09 20:31) ve %70 (20.09 00:36) uyarıları gerçek hook zinciriyle
-   geldi, ikisinde de kurtarma omurgası yazıldı. Codex tarafında mekanizma
-   hazır ve elle doğru sonuç veriyor, ama hook tetiklenmediği için canlı
-   uyarı yok. Eski metin:
-   `araclar/baglam.py` %50 ve %70'te tur sınırında birer kez uyarıyor ve
-   omurgayı diske alıyor. Bu oturumda gerçek hook ile çalıştı: %50 aşıldı,
-   uyarı modele ulaştı, kurtarma omurgası yazıldı
-   (claude 5c600e7e · 19.09 20:31). Codex tarafı aynı betiği `devir.py`
-   üzerinden çağırıyor, ama hook güveni olmadan çalışmaz. Onarım listesi
-   madde 6, 7.
+   geldi ve ikisinde de kurtarma omurgası yazıldı. Codex'te `SessionStart` ve
+   `UserPromptSubmit` taşıyıcıları güven sonrası canlı doğrulandı; formül de
+   ham kayıtta elle doğru sonuç veriyor ([[olculmus-bulgular]] §14.2). Açık
+   kalan tek kanıt, gerçek bir Codex oturumunun %50 ve %70'i geçip uyarının ve
+   kurtarma omurgasının otomatik oluşması. Onarım listesi madde 7.
 
-3. **Denetim katmanı: iki seviye kurulmadı.** Mekanik işaretçi denetimi kurulu
+2. **Denetim katmanı: iki seviye kurulmadı.** Mekanik işaretçi denetimi kurulu
    ve gece taslaklarını da tarıyor. Kurulmayanlar:
    - **Örneklemeli içerik denetimi:** haftada bir, rastgele 3-5 işaretçi.
      Temiz bağlamlı ajan iddiayı kayıtla karşılaştırır.
@@ -50,18 +28,27 @@ olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
    **Kararlar:** Denetçi rapor eder, düzeltmez. Uyuşmazlık bulunursa iddianın
    altına not düşülür (kullanıcı, 19.09).
 
-4. **Side chat'ler arşive hiç girmiyor.** Kayıt dosyası oluşmuyor. Tek yol elle
+3. **Side chat'ler arşive hiç girmiyor.** Kayıt dosyası oluşmuyor. Tek yol elle
    aktarma. Ölçüm: [[olculmus-bulgular]] §6.
 
-5. **Kalıcı katman boyutu.** Bakım döngüsü kuruldu: `araclar/bakim.py`
+4. **Kalıcı katman boyutu.** Bakım döngüsü kuruldu: `araclar/bakim.py`
    adayları ölçüyor, derleyici raporluyor, oturum başı uyarıyor. İlk bakımda
    kullanıcı iki taşımayı onayladı: kapanmış açık uçlar ve iş bitince onarım
    listesi. Kuralların yanındaki tarihçenin taşınmasını onaylamadı
    (claude 5c600e7e · 19.09 20:31). 100 KB eşiği bundan sonra da aşılı
    kalabilir; karar kullanıcının, ileride yetkili orkestratör ajanın.
 
-6. **Sunum onarımı sürüyor.** 13 açık ve sonradan bulunan 14. açık:
+5. **Sunum onarımı sürüyor.** 13 açık ve sonradan bulunan 14, 15, 16. açıklar:
    [[2026-09-19-sunum-onarim-listesi]].
+
+6. **Gece görevi tetikleniyor ama yarıda ölüyor.** Görev saatinde çalışıyor
+   (`LastRunTime 00:30:01`, atlanan çalışma yok) ama `0xC000013A`
+   (STATUS_CONTROL_C_EXIT) ile sonlanıyor: `LogonType = Interactive` olduğu
+   için görünür bir konsol penceresi açılıyor, o pencere kapanınca süreç
+   gidiyor. Günlük derleme yazılıyor, **git commit + push hiç çalışmıyor.**
+   Son dört gecenin ikisi böyle. Ölçüm: [[olculmus-bulgular]] §16. Düzeltme
+   (görevi S4U / gizli pencere olarak kurmak) **sistem ayarıdır, kullanıcıya
+   ait**; uygulanmadı. Onarım listesi madde 16.
 
 ## Ertelenenler
 
@@ -80,8 +67,10 @@ olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
 
 ## Yapılmamış testler
 
-- **Gece taslağının ilk gerçek gecesi:** 20.09 00:30. Sonuç
-  `derleme/gunluk/` ve `derleme/son-calisma.json` içinde görülecek.
+- **Gece taslağının ilk gerçek gecesi:** 20.09 00:30 çalıştı ama **yarıda
+  kesildi** (yukarıda madde 6). Zincir aynı gece 00:45'te *elle* tetiklenerek
+  uçtan uca çalıştı; zamanlanmış yolun kendisi hâlâ ölçülmedi. Sıradaki fırsat
+  21.09 00:30.
 - **Codex Desktop'ta yepyeni oturum:** hook güveninden sonra `SessionStart` ve
   erken devir uyarısı ham kayıtta görülmeli.
 - `--fork-session` canlı denenmedi.

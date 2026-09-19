@@ -51,7 +51,13 @@ Claude oturumunda soruldu ve cevaplandı (claude 5c600e7e · 19.09 20:12):
   Kapanmış tarihçe `oturumlar/` altına taşınır, otomatik silme yok. Bakımı
   kullanıcı yapar, ileride orkestratör ajanlar da yapabilir.
 
-## Durum (20.09.2026 00:35, Codex denetiminden sonra)
+## Durum (20.09.2026 00:35, Codex denetiminden sonra — **madde 5 ve 7: 01:35 tazelendi**)
+
+> **Tazeleme notu (claude 96517e26 · 20.09 01:55).** Aşağıdaki tablo 00:35
+> damgalıydı, yani hook güven ölçümünden önce. Güven 01:28'de verildi ve
+> ölçüldü; madde 5 ile 7'nin satırları bu yüzden güncellendi. Eski metin
+> silinmedi, ilgili hücrelerin içinde *"Önceki durum/gerekçe"* olarak duruyor.
+> Diğer satırlar 00:35 hâliyle ve **Claude'un iddiası** olarak duruyor.
 
 Claude doldurdu, **Codex ikinci turda bağımsız denetledi**
 (codex 01a0bb8e-4631 · 20.09 00:30) ve beş yerde kusur buldu; üçü uygulandı, ikisi ölçümle
@@ -80,9 +86,9 @@ Ayrıca bakım ölçütlerindeki iki yanlış pozitif kapatıldı: kod bloğu i�
 | 2 | kapandı | Slayt 3 ve 6: özne kullanıcı, sıklık kalıcı talimat yerine bağlı | Codex denetimi |
 | 3 | kapandı | Slayt 3 ve 5 ile adaptör tablosu: belge, ölçüldü ve ölçülmedi ayrı etiketli. Desktop davranışı ölçüldü ve **olumsuz** çıktı (madde 5) | — |
 | 4 | kapandı | Slayt 5: "üç olay, dört komut" | — |
-| 5 | kısmen — **sebep bulundu** | `/hooks` Desktop'ta güven ekranı açmıyor, düz mesaj olarak gidiyor. Kayıttaki harita ve saat satırları `custom_tool_call_output`: onları hook değil, modelin kendisi çalıştırdı. Kullanıcı testinde yeni turda hiçbir satır gelmedi (claude 5c600e7e · 20.09 00:38). Ayrıntı: [[olculmus-bulgular]] §14 **Sebep:** hook'lar güven kaydı bekliyor. `--dangerously-bypass-hook-trust` ile bağlam anında geldi ([[olculmus-bulgular]] §14.1). **Kullanıcı:** terminalde `codex` TUI açıp `/hooks` ile güven versin; sonra Desktop ve exec ölçülecek |
+| 5 | kapandı (01:35 tazelendi) | Kullanıcı CLI TUI'de güven verdi. Sonraki Desktop oturumunda **ve** güven-atlatma bayrağı olmadan açılan normal `codex exec --json` çağrısında `SessionStart` ile `UserPromptSubmit` ham kayıtta `hooks.additional_context` olarak görüldü (codex 01a0bbc6-b6f6 · 20.09 01:28; codex 01a0bbcc-8818 · 20.09 01:32). Ayrıntı: [[olculmus-bulgular]] §14.2. *Önceki durum (00:35): "kısmen — kullanıcı `/hooks` ile güven versin". Sebep ve Claude'un yanlış pozitifi §14 ve §14.1'de korunuyor, silinmedi* | `PreCompact` Codex'te hâlâ canlı ölçülmedi; yapılandırmanın varlığı kanıt değil |
 | 6 | kapandı | Sistem sayaca bağlı değil, doluluğu ham kayıttan ölçüyor; slayt 5 ve 12 sınırı yazıyor | — |
-| 7 | kısmen | Claude'da **iki eşik de canlı doğrulandı**: %50 (19.09 20:31) ve %70 (20.09 00:36), her ikisinde kurtarma omurgası yazıldı. Codex formülü `total_tokens` olarak düzeltildi ve Codex kaydıyla elle doğru sonuç verdi | Codex tarafında canlı uyarı **yok**, çünkü Desktop'ta hook zinciri hiç tetiklenmiyor (madde 5). Mekanizma değil, taşıyıcı eksik |
+| 7 | kısmen | Claude'da **iki eşik de canlı doğrulandı**: %50 (19.09 20:31) ve %70 (20.09 00:36), her ikisinde kurtarma omurgası yazıldı. Codex formülü `total_tokens` olarak düzeltildi ve Codex kaydıyla elle doğru sonuç verdi | Codex'te canlı uyarı hâlâ **yok**, ama gerekçe değişti (01:35 tazelendi): taşıyıcı hook'lar 20.09 01:28'den beri çalışıyor ([[olculmus-bulgular]] §14.2). Eksik olan tek kanıt, gerçek bir Codex oturumunun %50/%70 eşiğini geçip uyarıyı ve kurtarma omurgasını otomatik üretmesi. *Önceki gerekçe (00:35): "Desktop'ta hook zinciri hiç tetiklenmiyor (madde 5)" — artık geçersiz* |
 | 8 | kapandı | Slayt 6: başlık, ön koşul ve kullanıcı eylemi | — |
 | 9 | kapandı | `rehber/uygulama-adaptorleri.md`: tablo ve 8 adımlı protokol | Desktop hücreleri "ölçülmedi" |
 | 10 | kısmen | `bakim.py`: rapor ve uyarı çalışıyor, haritasız not ve yetim taslak negatif testle yakalandı. Kullanıcı 4 taşımadan 2'sini onayladı; biri yapıldı (137,9 → 125,4 KB) | 3. taşıma (bu liste) iş bitince; 100 KB eşiği hâlâ aşılı |
@@ -381,3 +387,23 @@ budama kullanıcı onayına bağlıdır.
   bağlanır.
 - Sunum artık sistemi olduğundan daha otomatik, daha güvenli veya daha tamamlanmış
   göstermez.
+
+## Sonradan bulunan 16. açık
+
+**Gece derleyicisinin zamanlanmış görevi tetikleniyor ama yarıda ölüyor.**
+20 Eylül 01:50'de ölçüldü (claude 96517e26 · 20.09 01:50). Görev saatinde
+çalıştı (`LastRunTime 00:30:01`, `NumberOfMissedRuns 0`) ama
+`LastTaskResult = 0xC000013A` (STATUS_CONTROL_C_EXIT) ile sonlandı: konsol
+penceresi kapandı. Görev `Principal.LogonType = Interactive` ile kurulu, yani
+kullanıcının açık oturumunda görünür bir pencere açıyor. `son-calisma.json` ve
+günlük derleme yazıldı, **git commit + push adımı hiç çalışmadı.** Aynı imza
+18.09'da da var (log'da `^C`, o gecenin kaydı yok).
+
+Bu, **madde 12'nin kanıtını zayıflatıyor:** gece taslağı zincirinin "gerçek
+koşulda çalıştı" delili 20.09 00:45'teki **elle** tetiklenmiş çalışmadır;
+zamanlanmış yol uçtan uca henüz tamamlanmadı. Ayrıca [[BEYIN]] satır 27'deki
+"her gece otomatik commit + push" ifadesi son üç gecenin birinde tuttu.
+
+Ölçümün tamamı, tablo ve önerilen düzeltme: [[olculmus-bulgular]] §16.
+Düzeltme **uygulanmadı** — zamanlanmış görev ayarı sistem ayarıdır, kullanıcıya
+aittir.

@@ -17,14 +17,14 @@ Durum etiketleri:
 | Yetenek | Claude Code (masaüstü, Code sekmesi) | Codex CLI 0.150 | Codex Desktop 0.155-alpha |
 |---|---|---|---|
 | Ortak kural dosyası | `CLAUDE.md` → `@AGENTS.md` — **ölçüldü** (temiz örnek, 19.09 16:46) | `AGENTS.md` otomatik — **ölçüldü** (01a0b9eb kaydında enjeksiyon bloğu) | `AGENTS.md` otomatik — **ölçüldü** (01a0ba74 kaydında enjeksiyon bloğu) |
-| Oturum başı bağlamı | `SessionStart` → `oturum_basi.py` — **ölçüldü** (startup ve resume) | `SessionStart` → aynı betik — **ölçüldü** (Codex'in yalıtılmış testi, 01a0b9eb) **ölçüldü: tetiklenmiyor** — sebebi güven kaydının olmaması (§14.1). Kayıttaki satırlar `custom_tool_call_output`, yani modelin kendi çalıştırması |
-| Tur başı bağlamı (saat, devir kutusu, erken devir) | `UserPromptSubmit` → `devir.py` — **ölçüldü** | aynı — **ölçüldü** (saat ve devir testi) | **ölçüldü: tetiklenmiyor.** Kullanıcı testinde yeni turda hiçbir satır gelmedi; durum dosyasına Codex anahtarı düşmedi |
+| Oturum başı bağlamı | `SessionStart` → `oturum_basi.py` — **ölçüldü** (startup ve resume) | `SessionStart` → aynı betik — **ölçüldü** (normal `exec`, 01a0bbcc-8818) | aynı — **ölçüldü** (01a0bbc6-b6f6); ham kayıt türü `hooks.additional_context` |
+| Tur başı bağlamı (saat, devir kutusu, erken devir) | `UserPromptSubmit` → `devir.py` — **ölçüldü** | saat + `devir.py` — **ölçüldü** (normal `exec`, 01a0bbcc-8818) | saat + `devir.py` taşıyıcısı — **ölçüldü** (01a0bbc6-b6f6); %50/%70 gerçek uyarısı henüz ölçülmedi |
 | Compact öncesi | `PreCompact` → `precompact.py`, modele konuşamaz — **ölçüldü** (16.09) | `PreCompact` → `--bicim codex`, modele konuşamaz — **belge** + adaptör testi | **ölçülmedi** |
 | Tur sonu (`Stop`) | var, kullanılmıyor | var, kullanılmıyor — **belge** | **ölçülmedi** |
 | Oturum sonu (`SessionEnd`) | var, modele konuşamaz; kullanılmıyor (gerekçe: gece taslağı) | var, "konu bitti" demek değil — **belge** | **ölçülmedi** |
 | Bağlam doluluğu kaynağı | `message.usage` (input + cache) ÷ pencere; pencere kayıtta yok, kalibre 1M — **ölçüldü** | `token_count`: `last_token_usage.total_tokens ÷ model_context_window` — **ölçüldü** | aynı alanlar — **ölçüldü** (01a0ba74: %83'e çıktı, 20:07'de sıkıştı) |
 | Arayüzde sayaç | var (kullanıcı görüyor) | ölçülmedi | **yok** (kullanıcı gözlemi) |
-| Hook güven akışı | proje ayarı, ek adım yok | `/hooks` (TUI) ile güven verilir — **belge**; güven yoksa hook'lar **sessizce atlanır** — **ölçüldü** (20.09 00:48) | `/hooks` ekran açmıyor; güven kaydı olmadan hook yok — **ölçüldü**. Güven CLI'da verilince çalışır mı: **ölçülmedi** |
+| Hook güven akışı | proje ayarı, ek adım yok | `/hooks` (TUI) ile güven verilir; güven yoksa sessizce atlanır, güven sonrası normal `exec` çalışır — **ölçüldü** (20.09 00:48–01:32) | Desktop içindeki `/hooks` ekran açmıyor; CLI TUI'de verilen kalıcı güven Desktop'ta da geçerli — **ölçüldü** (01a0bbc6-b6f6) |
 | Ham kayıt yeri | `~/.claude/projects/<proje>/<id>.jsonl` | `~/.codex/sessions/<y>/<a>/<g>/` | aynı, kapatılınca `~/.codex/archived_sessions/` |
 | Arşiv okuyucusu (`kayit.py`) | var | var | var (arşivlenmiş klasör 19.09'da eklendi) |
 
