@@ -1,23 +1,29 @@
-<section id="kapanis" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
+<section id="kapanis" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:36px">
   <div style="display:flex; flex-direction:column; gap:16px">
     <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#B4410F">09 · günlük kullanım</p>
     <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Kapanış: önce oku, sonra yaz</h2>
   </div>
+  <div style="display:flex; align-items:center; gap:20px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#16202A; background:#E7E2D8; border-radius:12px; padding:14px 22px">ham JSONL günlüğü (uygulamanın)</p>
+    <x-shape kind="arrow-right" style="width:44px; height:22px; background:#B4410F"></x-shape>
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#16202A; background:#E7E2D8; border-radius:12px; padding:14px 22px">omurga</p>
+    <x-shape kind="arrow-right" style="width:44px; height:22px; background:#B4410F"></x-shape>
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#FBFAF7; background:#0F6E66; border-radius:12px; padding:14px 22px">Markdown arşiv · oturumlar/</p>
+  </div>
   <div style="flex:1; display:flex; gap:40px">
-    <div style="flex:1; display:flex; flex-direction:column; gap:22px">
-      <p style="font-size:30px; line-height:1.4; color:#16202A"><span style="color:#B4410F">1 ·</span> Ajan oturumun omurgasını kayıttan okur, hafızadan değil.</p>
-      <p style="font-size:30px; line-height:1.4; color:#16202A"><span style="color:#B4410F">2 ·</span> Arşiv kaydını oturumlar/ altına yazar.</p>
-      <p style="font-size:30px; line-height:1.4; color:#16202A"><span style="color:#B4410F">3 ·</span> Kalıcı olanı ilgili nota taşır, kaynak işaretçisiyle.</p>
-      <p style="font-size:30px; line-height:1.4; color:#16202A"><span style="color:#B4410F">4 ·</span> Kapanış satırını yazar: kapanan-oturum: 5c600e7e</p>
-      <p style="font-size:30px; line-height:1.4; color:#16202A"><span style="color:#B4410F">5 ·</span> Haritayı ve saati günceller, değişikliği kaydeder.</p>
-      <p style="font-size:26px; line-height:1.4; color:#3E4A56">Üç soru boş kalamaz: hangi karar, neden · ne denendi, ne elendi · ne açık kaldı.</p>
+    <div style="flex:1; display:flex; flex-direction:column; gap:16px">
+      <p style="font-size:28px; line-height:1.4; color:#16202A"><span style="color:#B4410F">1 ·</span> Ajan omurgayı uygulamanın ham JSONL günlüğünden çıkarır, hafızadan değil.</p>
+      <p style="font-size:28px; line-height:1.4; color:#16202A"><span style="color:#B4410F">2 ·</span> Okunabilir arşiv kaydını Markdown olarak oturumlar/ altına yazar.</p>
+      <p style="font-size:28px; line-height:1.4; color:#16202A"><span style="color:#B4410F">3 ·</span> Kalıcı olanı ilgili nota taşır, kaynak işaretçisiyle.</p>
+      <p style="font-size:28px; line-height:1.4; color:#16202A"><span style="color:#B4410F">4 ·</span> Kapanış satırını yalnızca gerçek geçişte, senin onayınla yazar.</p>
+      <p style="font-size:28px; line-height:1.4; color:#16202A"><span style="color:#B4410F">5 ·</span> Haritayı ve saati günceller, değişikliği kaydeder.</p>
     </div>
-    <div style="width:620px; display:flex; flex-direction:column; gap:20px; background:#16202A; border-radius:16px; padding:40px">
-      <h3 style="font-size:34px; font-weight:600; color:#F4A259">Compact bir kapanış değildir</h3>
-      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">Bağlam sıkışırsa omurga diske alınır ve ajana "şimdi yaz" uyarısı gelir. Bu bir güvenlik ağı.</p>
-      <p style="font-size:26px; line-height:1.4; color:#EDE9E1"><b>Doğru sıra:</b> önce kapat, sonra compact ya da yeni oturum.</p>
+    <div style="width:600px; display:flex; flex-direction:column; gap:18px; background:#16202A; border-radius:16px; padding:36px">
+      <h3 style="font-size:32px; font-weight:600; color:#F4A259">Compact bir kapanış değildir</h3>
+      <p style="font-size:25px; line-height:1.4; color:#B9C3CC">Erken devir %50 ve %70'te uyarır; kapanışı o zaman başlatırsın. Compact son ağdır: omurgayı kurtarır, notu yazmaz.</p>
+      <p style="font-size:25px; line-height:1.4; color:#EDE9E1"><b>Doğru sıra:</b> önce kapat, sonra compact ya da yeni oturum.</p>
     </div>
   </div>
   <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#6B7178">İkinci beyin · kullanım rehberi · 10</p>
-  <aside>Kapanış anı, ajanın bu iş için en kötü hâlidir: bağlam dolu, oturumun başı en uzakta. Omurgayı okumak bu körleşmeyi dengeler. Kapanış satırı, oturumun kapandığını söyleyen tek kaynaktır.</aside>
+  <aside>İki farklı kayıt var. Ham JSONL günlüğünü uygulama (Claude Code, Codex) konuşma sırasında kendisi yazar; oturumlar/ altındaki Markdown arşiv ise kapanışta ajanın yazdığı insan-okur kayıttır. Normal kapanış omurgası kullanıcı mesajlarını taşır; --tam seçeneği modelin metin cevaplarını da ekler. Araç çıktıları ve düşünme blokları ikisinde de yok. Kapanış onayı sende; ileride paralelleştirme olursa yetkili orkestratör ajanda da.</aside>
 </section>

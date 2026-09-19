@@ -65,15 +65,18 @@ katmanların neden böyle ayrıldığı (kalıcı ve arşiv, sıcak ve soğuk) i
 `notlar/ikinci-beyin-mimarisi.md` · derleyici için
 `notlar/gece-derleyicisi.md`.
 
-### 3 · Çekirdek ortak, adaptör ince — `ilke`
-**Der ki:** Tablo, üç ajan türünü karşılaştırıyor: kuralları nereden okuyor,
-refleksleri var mı, arşive giriyor mu.
+### 3 · Çekirdek ortak, adaptör uygulamaya göre — `ilke`
+**Der ki:** Kural dosyası ortak; onu kendiliğinden okumak, hook ve bağlam
+ölçümü uygulamanın yeteneği. Tablo sağlayıcıya değil uygulamaya göre: Claude
+Code, Codex CLI, Codex Desktop, diğerleri. Her hücre ölçüldü, belge ya da
+ölçülmedi etiketi taşır.
 **Bak:**
-- Karar ve gerekçe: `notlar/acik-uclar.md` → "19 Eylül'de açılanlar" madde 1.
-- Claude'un refleksleri: `CLAUDE.md` · Codex'in refleksleri: `.codex/hooks.json`.
-- "Arşive girer mi" sütunu: `araclar/kayit.py` → `oturumlar()`. Yalnızca
-  Claude ve Codex kayıt biçimlerinin okuyucusu var.
-- İki ajanın tarihçesi: `notlar/iki-ajan-calismasi.md`.
+- Tam tablo ve yeni uygulama tanıtma protokolü: `rehber/uygulama-adaptorleri.md`.
+- Kural: `AGENTS.md` → "Ortak kural otomatik uygulama değildir".
+- Güncel durum: `notlar/acik-uclar.md` → "Açık — sistem" madde 1. Önceki
+  metin: `oturumlar/acik-uclar-tarihce.md`.
+- "Arşive girer mi" sütunu: `araclar/kayit.py` → `oturumlar()` (Claude,
+  Codex `sessions/` ve `archived_sessions/`).
 
 ### 4 · Claude: zaten hazır — `claude`
 **Der ki:** Klasörü aç, başka ayar yok. Çalıştığını ilk cevaptaki oturum
@@ -84,13 +87,19 @@ kimliğinden anlarsın.
   `araclar/oturum-basi.md`.
 - Saat bilgisi: global ayar, `~/.claude/settings.json` → UserPromptSubmit.
 - İçe aktarma: `CLAUDE.md` ilk satırı `@AGENTS.md`. Sınandığı an:
-  `notlar/acik-uclar.md` madde 1.
+  `oturumlar/acik-uclar-tarihce.md` → "19 Eylül — madde 1'in ayrıntılı durum metni".
 - Klasör taşınma riski (konuşma notunda geçiyor): `BEYIN.md` → "Bir sonraki
   oturuma not" ve `notlar/olculmus-bulgular.md` bölüm 4.
 
-### 5 · Codex: bir kerelik onay — `codex`
-**Der ki:** Codex'i bu klasörde aç, bir kez `/hooks` ile üç hook'a güven ver.
+### 5 · Codex: CLI ve Desktop ayrı ölçülür — `codex`
+**Der ki:** AGENTS.md iki uygulamada da yükleniyor (ölçüldü). Hook'lar üç olay,
+dört komut. Güveni kullanıcı verir: CLI'da `/hooks` (belge), Desktop'ta akış
+belgede yok (ölçülmedi). Desktop'ta bağlam sayacı yok; erken devir uyarısı
+güven verilince ham kayıttan gelir.
 **Bak:**
+- AGENTS.md enjeksiyonunun ve hook metninin yokluğunun ölçümü:
+  `notlar/acik-uclar.md` → "Açık — sistem" madde 1.
+- Sayaç yokluğu ve %83 bulgusu: `notlar/olculmus-bulgular.md` bölüm 12.
 - Senin kendi adaptörün: `.codex/hooks.json`, `araclar/codex-run-python.ps1`,
   `araclar/codex-time.ps1`, `araclar/precompact.py` (`--bicim codex`).
 - Senin ölçüm raporun: `notlar/iki-ajan-calismasi.md` → "Asimetriyi gizleme".
@@ -98,10 +107,13 @@ kimliğinden anlarsın.
 - Hook olaylarının belgesi: OpenAI'ın Codex hooks ve advanced configuration
   sayfaları. Bunları sen bulmuştun.
 
-### 6 · Başka bir ajan: ilk mesajla bağla — `diger`
-**Der ki:** Hook'u olmayan araçlar için tek satırlık kural ya da her oturumun
-ilk mesajında bir komut. Sınırı: refleks yok, konuşma arşive girmez.
+### 6 · Başka bir uygulama: önce yeteneğini tanı — `diger`
+**Der ki:** Ön koşul: yerel klasörü okuyup komut çalıştırabilmek. Kalıcı
+talimat yeri varsa bir kez tek satır; yoksa **kullanıcı** her oturumun başında
+ilk mesajı gönderir. Sınırı: refleks yok, konuşma arşive girmez.
 **Bak:**
+- Tanıtma protokolü: `rehber/uygulama-adaptorleri.md` → "Yeni bir uygulamayı
+  tanıtma protokolü".
 - `AGENTS.md` → "Oturum başı bağlamı" · `araclar/oturum_basi.py` → `--bicim duz`.
 - "Arşive girmez" gerekçesi: `araclar/kayit.py` → `_claude_mesajlari` ve
   `_codex_mesajlari`. Başka biçim okuyucusu yok.
@@ -115,18 +127,21 @@ yazılır.
 - Adımlar: `AGENTS.md` → "Oturum kapanışı".
 - Kapanışın neden böyle tasarlandığı: `notlar/kapanis-ritueli.md`.
 - Gece taslağı: `araclar/gece_kayit.py` (6 saatlik eşik `SESSIZLIK` sabiti) ve
-  `notlar/gece-derleyicisi.md` → "Gece taslağı".
+  `notlar/gece-derleyicisi.md` → "Gece taslağı". Aynı oturuma dönüş,
+  devralma ve terk: `AGENTS.md` → "Gece taslakları" ve sonraki paragraf.
+- Bağlam uyarısı: `araclar/baglam.py` · `AGENTS.md` → "Erken devir".
 
-### 8 · Oturum başında duyabileceklerin — `uyarilar`
-**Der ki:** Beş uyarı (push, kesinti, kapanmamış oturum, gece taslağı, kusurlu
-işaretçi); her birinin anlamı ve kullanıcının ne diyeceği.
+### 8 · Duyabileceğin uyarılar — `uyarilar`
+**Der ki:** Yedi uyarı: bağlam %50/%70, push, kesinti, kapanmamış oturum,
+gece taslağı, bakım eşiği, kusurlu işaretçi. Sessizlik yalnızca bu tanımlı
+uyarıların olmadığını söyler.
 **Bak:**
-- Uyarıları üreten kod: `araclar/oturum_basi.py` → `derleyici_uyarilari()`
-  (36 saat eşiği burada).
-- Uyarıların kaynağı: `derleme/son-calisma.json`. Onu yazan:
-  `araclar/derle.py` → `main()`.
-- Gerekçe: 19 Eylül gecesi push'un sessizce düşmesi.
-  `notlar/acik-uclar.md` → "19 Eylül'de açılanlar" madde 2.
+- Gece derleyicisi uyarıları: `araclar/oturum_basi.py` → `derleyici_uyarilari()`
+  (36 saat eşiği) · kaynağı `derleme/son-calisma.json`, yazanı `araclar/derle.py`.
+- Bakım uyarısı: `araclar/bakim.py` → `olc()` ve `uyarilar()`.
+- Bağlam uyarısı: `araclar/baglam.py` → `kontrol()`, çağıran `araclar/devir.py`.
+- Gerekçeler: `oturumlar/acik-uclar-tarihce.md` (push olayı) ·
+  `notlar/sunum-incelemesi-onarim-listesi.md` madde 7, 10, 11.
 
 ### 9 · Altı cümle yeter — `cumleler`
 **Bak (cümle cümle):**
@@ -136,13 +151,18 @@ işaretçi); her birinin anlamı ve kullanıcının ne diyeceği.
 - "Kalıcı nota yaz" → `araclar/oturum-basi.md` → "NE ZAMAN" ve "YAZMA".
 - "Kaynağını göster" → `AGENTS.md` → "3. Kaynak göster" · `araclar/oku.py` ·
   denetim: `araclar/derle.py` → `isaretci_denetle()`.
-- "Gece taslağını işleyelim" → `AGENTS.md` → "Gece taslakları" paragrafı.
+- "Eski oturumun taslağını işleyelim" → `AGENTS.md` → "Gece taslakları" ve
+  kapsam paragrafı. Aynı oturuma dönüşte geçerli değildir.
 - "Sol'a devret" → `notlar/iki-ajan-calismasi.md` → "Pratik: nasıl çağrılır" ·
   alt ajanın kapanışı: `AGENTS.md`, "kapanan-oturum" paragrafının sonu.
 
 ### 10 · Kapanış: önce oku, sonra yaz — `kapanis`
-**Der ki:** Kapanışın beş adımı ve "compact bir kapanış değildir".
+**Der ki:** Ham JSONL günlüğü (uygulamanın) → omurga → Markdown arşiv
+(`oturumlar/`). Kapanış satırı yalnızca gerçek geçişte, kullanıcı onayıyla.
+Compact son ağdır; erken devir %50/%70'te uyarır.
 **Bak:**
+- Omurganın neyi taşıdığı (kullanıcı mesajı; `--tam` ile model metni):
+  `araclar/omurga.py` başındaki açıklama · filtreler `araclar/kayit.py`.
 - Adımlar: `AGENTS.md` → "Oturum kapanışı" 1–4.
 - Neden: `notlar/kapanis-ritueli.md` → "Asıl tasarım kararı", "Kapanış işareti",
   "SessionEnd boşluğu ve compact'in yeri".
@@ -167,7 +187,7 @@ işaretçi); her birinin anlamı ve kullanıcının ne diyeceği.
 - İki ajanın garantisi: `CLAUDE.md` → refleks tablosunun altındaki Codex paragrafı · `notlar/iki-ajan-calismasi.md`.
 - Hiç girmeyen katman: `notlar/ikinci-beyin-mimarisi.md` → "Katmanlar" ·
   `notlar/gece-derleyicisi.md` → "Git".
-- Paralel çalışma: `notlar/agentic-yapi.md` · `notlar/acik-uclar.md` madde 5.
+- Paralel çalışma: `notlar/agentic-yapi.md` · `notlar/acik-uclar.md` → "Ertelenenler".
 
 ### 13 · Başvuru kartı — `komutlar`
 **Bak:** Her aracın dosyasının başındaki açıklama ve "Kullanım" bölümü
@@ -184,22 +204,22 @@ kökeni Avenox değerlendirmesi: `notlar/ikinci-beyin-mimarisi.md`.
 Bunları Claude kendisi işaretliyor. Saklanan zayıflık incelemeyi tiyatroya
 çevirir.
 
-- **Gece taslağı gerçek bir gecede hiç çalışmadı.** Yalnızca elle sınandı.
-  İlk gerçek çalışma 20.09.2026 00:30. Sonucunu `derleme/gunluk/` ve
-  `derleme/son-calisma.json` söyler.
-- **Codex tarafı yarı ölçülü.** Compact uçtan uca ve modelin bağlamı
-  gerçekten gördüğü ölçülmedi. Senin raporunda yazıyor.
-- **`/hooks` onayı** bu rehber yazılırken henüz verilmemişti. Slayt 5 bunu
-  varsayıyor.
-- **Slayt 8'deki "Derleyiciyi elle çalıştır"** gerçek bir çalıştırmadır: rapor
-  yazar, commit atar, push eder. Denemek için `--kuru` gerekir. Slayt bunu
-  söylemiyor.
-- **Slayt 11'deki "Pazartesi haftalık":** gerçekte "bu hafta üretilmediyse ilk
-  gecede" çalışıyor (`araclar/derle.py` → `haftalik_gerekli()`). Slayt
-  basitleştirmiş.
-- **Kalıcı notlar 118 KB.** `AGENTS.md` 65 KB'lık eşikte "hepsini oku"dan
-  "haritayı oku, gerekeni aç"a geçmeyi söylüyor. Sunum bu eşikten hiç
-  bahsetmiyor.
+19.09 onarımından sonra (onarım listesi, 13 + 1 madde) hâlâ geçerli olanlar:
+
+- **Gece taslağı gerçek bir gecede hiç çalışmadı.** İlk gerçek çalışma
+  20.09.2026 00:30; sonucu `derleme/gunluk/` ve `derleme/son-calisma.json`.
+- **Codex Desktop'ta hook güveni ve yeni oturum testi yapılmadı.** Slayt 3 ve
+  5 bunu "ölçülmedi" diye gösteriyor; test yapılınca etiket güncellenmeli.
+- **Erken devir yalnızca Claude'da canlı sınandı** (bu oturumda %50 uyarısı
+  geldi). Codex tarafı güvene bağlı.
+- **Claude penceresi kalibre edildi, kayıttan okunmuyor:** model değişirse
+  `araclar/baglam.py` → `PENCERE` tablosu güncellenmeli.
+- **Kalıcı notlar hâlâ 100 KB üstünde:** kullanıcı yalnızca iki taşımayı
+  onayladı. Bakım uyarısı sürüyor.
+
+Onarımda düzeltilenler: "Derleyiciyi çalıştır"ın gerçekten yazdığı (slayt 8
+konuşma notu), "Pazartesi haftalık" (slayt 11 artık gün vermiyor), bakım
+eşiğinin görünmemesi (slayt 8 uyarısı).
 
 ## Bu sunum nasıl yazıldı
 

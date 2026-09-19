@@ -1,41 +1,51 @@
-<section id="uyarilar" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
+<section id="uyarilar" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:36px">
   <div style="display:flex; flex-direction:column; gap:16px">
     <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#B4410F">07 · günlük kullanım</p>
-    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Oturum başında duyabileceklerin</h2>
+    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Duyabileceğin uyarılar</h2>
   </div>
-  <table style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:27px; color:#16202A; background:#FBFAF7; border:1px solid #E2DED5; border-radius:16px; padding:18px">
+  <table style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#16202A; background:#FBFAF7; border:1px solid #E2DED5; border-radius:16px; padding:14px">
     <tr>
-      <th style="width:28%; text-align:left">Uyarı</th>
-      <th style="width:40%; text-align:left">Anlamı</th>
-      <th style="width:32%; text-align:left">Ne dersin</th>
+      <th style="width:27%; text-align:left">Uyarı</th>
+      <th style="width:42%; text-align:left">Anlamı</th>
+      <th style="width:31%; text-align:left">Ne dersin</th>
+    </tr>
+    <tr>
+      <td style="color:#B4410F">BAĞLAM %50 · %70</td>
+      <td>Oturum doluyor, omurga diske alındı</td>
+      <td>"Burada devret." ya da devam</td>
     </tr>
     <tr>
       <td style="color:#B4410F">PUSH BAŞARISIZ</td>
-      <td>GitHub yedeği geride kaldı, çoğunlukla internet yoktu</td>
+      <td>GitHub yedeği geride, çoğunlukla internet</td>
       <td>"Push'la."</td>
     </tr>
     <tr>
       <td style="color:#B4410F">Tamamlanmadan kesildi</td>
-      <td>Gece çalışması yarıda kaldı</td>
-      <td>"Derleyiciyi elle çalıştır."</td>
+      <td>Gece yarıda kaldı; elle çalıştırma yazar</td>
+      <td>"Derleyiciyi çalıştır."</td>
     </tr>
     <tr>
       <td style="color:#B4410F">Kapanmamış oturum</td>
-      <td>Bir oturum kapanış ritüelinden geçmedi</td>
-      <td>"Onu kapatalım." ya da devam et</td>
+      <td>Ritüelden geçmemiş bir oturum var</td>
+      <td>"Onu kapatalım." ya da devam</td>
     </tr>
     <tr>
       <td style="color:#B4410F">GECE TASLAĞI VAR</td>
-      <td>Kapanışsız oturuma gece taslak yazıldı</td>
-      <td>"Taslağı işleyelim."</td>
+      <td>Eski bir oturuma gece taslak yazıldı</td>
+      <td>"Doğrulayıp işleyelim."</td>
+    </tr>
+    <tr>
+      <td style="color:#B4410F">Bakım eşiği aşıldı</td>
+      <td>Kalıcı notlar büyüdü, adaylar hazır</td>
+      <td>"Adaylara bakalım."</td>
     </tr>
     <tr>
       <td style="color:#B4410F">Kusurlu işaretçi</td>
-      <td>Bir notun kaynak adresi kayıtla tutmuyor</td>
+      <td>Bir kaynak adresi kayıtla tutmuyor</td>
       <td>"Denetle, altına not düş."</td>
     </tr>
   </table>
-  <p style="font-size:28px; line-height:1.4; color:#3E4A56">Her şey yolundaysa ajan hiçbir şey söylemez. Sessizlik, uyarı olmadığı anlamına gelir.</p>
+  <p style="font-size:27px; line-height:1.4; color:#3E4A56">Sessizlik yalnızca bu tanımlı uyarıların olmadığını söyler, her şeyin yolunda olduğunu değil.</p>
   <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#6B7178">İkinci beyin · kullanım rehberi · 8</p>
-  <aside>Bu uyarılar gece derleyicisinin durum dosyasından geliyor. Derleyici 36 saatten uzun çalışmamışsa o da ayrıca söyleniyor: sessizlik her şey iyi demek değil, görev hiç çalışmamış da olabilir.</aside>
+  <aside>Bağlam uyarısı tur sınırında gelir, eşik başına bir kez; ajan cevabın sonunda tek cümleyle söyler ve konuyu kesmez. Bakım uyarısı canlı ölçülür; hiçbir şey silinmez, taşımayı sen onaylarsın. "Derleyiciyi çalıştır" gerçek bir çalıştırmadır: rapor yazar, commit ve push yapar; yalnızca denemek için --kuru kullanılır. Derleyici 36 saatten uzun çalışmamışsa o da ayrıca söylenir. Codex Desktop'ta bu uyarılar hook güveni verilene kadar gelmez.</aside>
 </section>

@@ -1,35 +1,41 @@
-<section id="ilke" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
+<section id="ilke" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:32px">
   <div style="display:flex; flex-direction:column; gap:16px">
     <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#B4410F">02 · ilke</p>
-    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Çekirdek ortak, adaptör ince</h2>
+    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Çekirdek ortak, adaptör uygulamaya göre</h2>
   </div>
-  <p style="width:1400px; font-size:30px; line-height:1.4; color:#3E4A56">Notlar Markdown, araçlar Python: her model okur ve çalıştırır. Sağlayıcıya özel olan yalnızca ince bir kabuk.</p>
-  <table style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:27px; color:#16202A; background:#FBFAF7; border:1px solid #E2DED5; border-radius:16px; padding:20px">
+  <p style="width:1560px; font-size:28px; line-height:1.4; color:#3E4A56">Kural dosyası her ajan için ortak. Onu kendiliğinden okumak, hook çalıştırmak ve bağlamı ölçmek ise modelin değil, uygulamanın yeteneği.</p>
+  <table style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#16202A; background:#FBFAF7; border:1px solid #E2DED5; border-radius:16px; padding:16px">
     <tr>
-      <th style="width:20%; text-align:left">Ajan</th>
-      <th style="width:28%; text-align:left">Kuralları nereden okur</th>
-      <th style="width:32%; text-align:left">Oturum başı refleksleri</th>
+      <th style="width:18%; text-align:left">Uygulama</th>
+      <th style="width:34%; text-align:left">Kuralları nasıl okur</th>
+      <th style="width:28%; text-align:left">Oturum başı refleksleri</th>
       <th style="width:20%; text-align:left">Arşive girer mi</th>
     </tr>
     <tr>
       <td>Claude Code</td>
-      <td>CLAUDE.md, oradan AGENTS.md</td>
-      <td>Kurulu, kendiliğinden çalışır</td>
+      <td>CLAUDE.md üzerinden, kendiliğinden</td>
+      <td style="color:#0F6E66">Çalışıyor, ölçüldü</td>
       <td style="color:#0F6E66">Evet</td>
     </tr>
     <tr>
-      <td>Codex</td>
+      <td>Codex CLI</td>
       <td>AGENTS.md, kendiliğinden</td>
-      <td>Kurulu, bir kez /hooks onayı ister</td>
+      <td>Kurulu, yalıtılmış testte çalıştı</td>
       <td style="color:#0F6E66">Evet</td>
     </tr>
     <tr>
-      <td>Diğerleri</td>
-      <td>Destekliyorsa AGENTS.md, yoksa ilk mesaj</td>
-      <td>Yok, ilk mesajdaki komutla</td>
+      <td>Codex Desktop</td>
+      <td>AGENTS.md, kendiliğinden (ölçüldü)</td>
+      <td style="color:#B4410F">Kurulu, güven verilmedi: ölçülmedi</td>
+      <td style="color:#0F6E66">Evet</td>
+    </tr>
+    <tr>
+      <td>Diğer uygulamalar</td>
+      <td>Kalıcı talimat yeri varsa bir satır; yoksa senin her oturumdaki ilk mesajın</td>
+      <td style="color:#B4410F">Yok</td>
       <td style="color:#B4410F">Hayır, okuyucu eklenene kadar</td>
     </tr>
   </table>
   <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#6B7178">İkinci beyin · kullanım rehberi · 3</p>
-  <aside>Diğerleri: Antigravity, yerel modeller, ileride gelecek her şey. Konuşmalarının arşive girmesi için kayit.py'ye o aracın kayıt biçimini okuyan bir okuyucu eklemek gerekir; o zamana kadar kapanış notu yine yazılır ama arama o konuşmayı bulamaz.</aside>
+  <aside>Aynı sağlayıcının iki uygulaması farklı davranabilir: Codex CLI ile Codex Desktop'ın sürümü, arayüzü ve güven akışı ayrı. Bu yüzden tablo sağlayıcıya değil uygulamaya göre. Etiketler: ölçüldü (bu makinede ham kayıtla), belge, ölçülmedi. Tam tablo ve yeni uygulama tanıtma protokolü rehber/uygulama-adaptorleri.md içinde.</aside>
 </section>

@@ -51,6 +51,30 @@ Claude oturumunda soruldu ve cevaplandı (claude 5c600e7e · 19.09 20:12):
   Kapanmış tarihçe `oturumlar/` altına taşınır, otomatik silme yok. Bakımı
   kullanıcı yapar, ileride orkestratör ajanlar da yapabilir.
 
+## Durum (19.09.2026 21:0x, Claude turu)
+
+Bu tabloyu Claude doldurdu. Codex'in bağımsız denetimi ilk turda kullanım
+limitine takıldı (codex 01a0baa5 · 19.09 20:25). İkinci tur ve Astra kontrolü
+bekleniyor. "Kapandı" yazan her madde o denetimden geçene kadar **Claude'un
+iddiasıdır.**
+
+| # | Durum | Kanıt | Kalan |
+|---|---|---|---|
+| 1 | kapandı | `AGENTS.md` "ortak kural otomatik uygulama değildir"; slayt 2 ve 3 | Codex denetimi |
+| 2 | kapandı | Slayt 3 ve 6: özne kullanıcı, sıklık kalıcı talimat yerine bağlı | Codex denetimi |
+| 3 | kısmen | Slayt 3 ve 5 ile adaptör tablosu: belge, ölçüldü ve ölçülmedi ayrı etiketli | Desktop davranışı ölçülmedi, madde 5'e bağlı |
+| 4 | kapandı | Slayt 5: "üç olay, dört komut" | — |
+| 5 | **açık** | Adaptör diskte; iki Desktop oturumunda hook metni yok (claude 5c600e7e · 19.09 20:21) | **Kullanıcı:** Desktop'ta güven ve yepyeni oturum; sonra ham kayıtla doğrulama |
+| 6 | kapandı | Sistem sayaca bağlı değil, doluluğu ham kayıttan ölçüyor; slayt 5 ve 12 sınırı yazıyor | — |
+| 7 | kısmen | `baglam.py`: sentetik 5 test, Claude'da canlı %50 uyarısı (claude 5c600e7e · 19.09 20:31); Codex formülü ham kayıtta doğrulandı | Codex'te canlı uyarı, güvene bağlı |
+| 8 | kapandı | Slayt 6: başlık, ön koşul ve kullanıcı eylemi | — |
+| 9 | kapandı | `rehber/uygulama-adaptorleri.md`: tablo ve 8 adımlı protokol | Desktop hücreleri "ölçülmedi" |
+| 10 | kısmen | `bakim.py`: rapor ve uyarı çalışıyor, haritasız not ve yetim taslak negatif testle yakalandı. Kullanıcı 4 taşımadan 2'sini onayladı; biri yapıldı (137,9 → 125,4 KB) | 3. taşıma (bu liste) iş bitince; 100 KB eşiği hâlâ aşılı |
+| 11 | kapandı | Bakım uyarısı oturum başında canlı; slayt 8 yedi uyarı, sessizlik cümlesi daraltıldı | — |
+| 12 | kısmen | Aynı oturuma dönüş: kendi taslağı haber veriliyor (sınandı). Yetim taslak raporlanıyor (negatif test). Kapsam `AGENTS.md`'de; slayt 7 ve 9 | Başka oturumun devralması ve terk edilen oturumun kurtarılması ilk gerçek gecede (20.09 00:30) sınanacak |
+| 13 | kapandı | Slayt 10: ham JSONL → omurga → Markdown arşiv, görsel olarak ayrı | — |
+| 14 | kapandı | `kayit.py` `archived_sessions/` klasörünü okuyor: 103 → 164 oturum, 69/69 işaretçi | Codex denetimi |
+
 ## Sonradan bulunan 14. açık
 
 **Codex Desktop'ın arşivlenmiş oturumları arşiv araçlarına görünmüyordu.**
