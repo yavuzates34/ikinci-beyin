@@ -1,0 +1,33 @@
+<section id="codex" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#B4410F">04 · tanımlama · Codex</p>
+    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Codex: bir kerelik onay</h2>
+  </div>
+  <div style="flex:1; display:flex; gap:40px">
+    <div style="flex:1; display:flex; flex-direction:column; gap:26px">
+      <div style="display:flex; gap:24px">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:32px; font-weight:600; color:#B4410F">1</p>
+        <p style="font-size:30px; line-height:1.4; color:#16202A">Codex'i bu klasörde aç: uygulamada klasörü seç ya da terminalde orada codex yaz.</p>
+      </div>
+      <div style="display:flex; gap:24px">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:32px; font-weight:600; color:#B4410F">2</p>
+        <p style="font-size:30px; line-height:1.4; color:#16202A">AGENTS.md kendiliğinden yüklenir. Kurallar hemen geçerli.</p>
+      </div>
+      <div style="display:flex; gap:24px">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:32px; font-weight:600; color:#B4410F">3</p>
+        <p style="font-size:30px; line-height:1.4; color:#16202A">Bir kez /hooks yaz. Üç proje hook'unu incele ve güven ver: oturum başı, saat ve devir kutusu, compact öncesi.</p>
+      </div>
+      <div style="display:flex; gap:24px">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:32px; font-weight:600; color:#B4410F">4</p>
+        <p style="font-size:30px; line-height:1.4; color:#16202A">Sor: "Oturum başında sana ne geldi?" Harita özeti ve saat gelmeli.</p>
+      </div>
+    </div>
+    <div style="width:640px; display:flex; flex-direction:column; gap:20px; background:#16202A; border-radius:16px; padding:40px">
+      <h3 style="font-size:34px; font-weight:600; color:#F4A259">Onaya kadar yarım</h3>
+      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">Onay verilmeden Codex kuralları okur ama refleksleri yoktur: saat, harita özeti ve gece uyarıları gelmez.</p>
+      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">Hook dosyası: .codex/hooks.json. Aynı Python betiklerini çağırır, Claude'unkiyle aynı işi yapar.</p>
+    </div>
+  </div>
+  <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#6B7178">İkinci beyin · kullanım rehberi · 5</p>
+  <aside>Bu adaptörü Codex'in kendisi kurdu ve ölçtü (oturum 01a0b9eb). Onay yalnızca kullanıcıya ait; ne Claude ne Codex bunu senin yerine verebilir. Codex'te compact öncesi hook da modele konuşamıyor; devir kutusu orada da aynı işi görüyor.</aside>
+</section>

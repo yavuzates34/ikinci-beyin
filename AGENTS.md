@@ -41,6 +41,7 @@ akışıma göre değil, kullanıcının takvimine göre kullan.
 | `araclar/` | Python araçları | — |
 | `dinleme/` | Sesli dinleme dosyaları | — |
 | `derleme/` | Akşam derleyicisi çıktısı | — |
+| `rehber/` | Kullanıcı ve dış ajanlar için rehberler, sunum kaynağı | Sorulunca |
 
 **Boyut eşiği:** `notlar/` toplamı **65 KB**'ı geçerse "hepsini oku"dan
 "haritayı oku, gerekeni aç"a geç. Haftalık derleme bu eşiği ölçüp raporluyor.

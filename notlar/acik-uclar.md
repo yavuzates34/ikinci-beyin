@@ -122,6 +122,11 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
    **altına not düşülür** (kullanıcı, 19.09). Bu, "denetçi rapor eder,
    düzeltmez" kararıyla uyumlu: işaret koyuyor, metni yeniden yazmıyor.
 
+5. **Kalıcı notlar eşiği aştı: 118 KB** (19.09 18:35 ölçümü). `AGENTS.md`
+   65 KB'ta "hepsini oku"dan "haritayı oku, gerekeni aç"a geçmeyi söylüyor;
+   "Uzun vade" başlığındaki 100 KB bölme eşiği de aşıldı. Karar bekliyor:
+   hangi notlar bölünür ya da arşive iner.
+
 ## Karar bekleyenler
 
 - Tek ortak hafıza klasörü (`autoMemoryDirectory`) kurulmadı. 30 izole notun

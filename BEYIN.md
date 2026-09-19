@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 19 Eylül 2026, 17:29
+**Son güncelleme:** 19 Eylül 2026, 18:32
 
 ---
 
@@ -17,6 +17,7 @@ gerektiği görülür.
 | `araclar/`   | Python araçları ve Whisper sözlüğü                                                                             |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
+| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) ve Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) |
 
 Kurallar `AGENTS.md` içinde. Burada çalışan her ajan (Claude, Codex, sonrakiler)
 için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu içe
@@ -75,6 +76,13 @@ bağ kurulur: notun içinden ilgili notlara, ayrıca bu haritaya bir satır.
 Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
+
+- **Kullanıcı rehberi (sunum, 14 slayt, 19.09):**
+  https://claude.ai/artifact/8dvtxX9Xw9EJFg65ZbSU1x — Claude, Codex ve
+  diğer ajanlarla tanımlama ve günlük kullanım. Sistem değişirse bu da
+  güncellenir; `AGENTS.md` ile çelişirse `AGENTS.md` geçerlidir.
+  Kaynağı `rehber/sunum/` altında; sunum değişirse orası da güncellenir.
+  Codex'le sesli inceleme için harita: [[codex-sunum-rehberi]].
 
 - **Kapanış ritüeli kurulu.** "Oturumu kapatalım" dendiğinde `AGENTS.md`'deki
   sırayı izle: önce `python araclar/omurga.py`, sonra yaz, sonra mekanik bakım.
