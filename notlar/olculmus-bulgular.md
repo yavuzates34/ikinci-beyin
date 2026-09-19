@@ -340,3 +340,19 @@ için o şeyin yapılandırmasını okumuş olabilir.**
 Claude'un ilk yorumu bu yüzden yanlıştı ve düzeltildi: `/hooks` ekranının
 görüntüsü ve modelin ifadesi kanıt sayılmıştı. Kanıt yalnızca ham kayıttaki
 enjeksiyon tipidir.
+
+### 14.1 Sebep bulundu: hook'lar güven kaydı bekliyor
+
+Aynı gece ölçüldü (claude 5c600e7e · 20.09 00:48). `codex exec` ile normal
+çalıştırmada oturum başı bağlamı **gelmedi**. Aynı komut
+`--dangerously-bypass-hook-trust` ile çalıştırıldığında bağlam **anında geldi**:
+"BU PROJENIN BEYNI: BEYIN.md…", ve `hook: Stop` satırları da göründü.
+
+Yani adaptör doğru, betikler doğru: eksik olan **proje hook'larına verilmiş
+güven kaydı**. Codex bu güveni kendi TUI'sinde `/hooks` ekranından alıyor;
+`codex exec` ve Codex Desktop o ekranı açmadığı için hook'lar sessizce
+atlanıyor. "Sessizce" önemli: hiçbir uyarı yok, yalnızca bağlam gelmiyor.
+
+Kullanıcının yapması gereken tek şey: terminalde bu klasörde `codex` (TUI)
+açıp `/hooks` ile güven vermek. Sonra Desktop'ta ve `exec`'te de çalışması
+beklenir — bu **ölçülmedi**.

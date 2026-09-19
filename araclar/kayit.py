@@ -257,7 +257,24 @@ def oturumlar(kapsam: str = "hepsi", proje: str | None = None) -> list[Oturum]:
                 )
             )
 
-    return sorted(bulunan, key=lambda o: o.an, reverse=True)
+    return sorted(_tekille(bulunan), key=lambda o: o.an, reverse=True)
+
+
+def _tekille(havuz: list[Oturum]) -> list[Oturum]:
+    """Ayni kaynak + ayni TAM kimlik iki dosyada duruyorsa en buyugunu tutar.
+
+    Olculdu: 6 grup (claude'da ayni oturum iki proje yolunda - C: ve D: -,
+    codex'te ayni oturumun iki rollout dosyasi). Eskiden oturum iki kez
+    sayiliyordu: arama ayni sonucu iki kez veriyor, dedektor ayni oturumu iki
+    kez listeliyordu (claude 5c600e7e · 20.09 00:45). En BUYUK dosya tutulur;
+    kucuk olan ayni oturumun eksik kopyasidir."""
+    en_iyi: dict[tuple[str, str], Oturum] = {}
+    for o in havuz:
+        anahtar = (o.kaynak, o.kimlik)
+        mevcut = en_iyi.get(anahtar)
+        if mevcut is None or o.boyut > mevcut.boyut:
+            en_iyi[anahtar] = o
+    return list(en_iyi.values())
 
 
 def oturum_bul(parca: str, kapsam: str = "hepsi") -> Oturum | None:

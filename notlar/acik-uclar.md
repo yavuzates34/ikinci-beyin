@@ -10,8 +10,12 @@ olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
 
 ## Açık — sistem
 
-1. **Sağlayıcıdan bağımsızlık: Codex Desktop'ta hook'lar tetiklenmiyor.**
-   **Ölçüldü 20.09 00:38, sonuç olumsuz:** `/hooks` güven ekranı açmıyor;
+1. **Sağlayıcıdan bağımsızlık: Codex hook'ları güven kaydı bekliyor.**
+   **Sebep bulundu 20.09 00:48:** `codex exec` normalde bağlam vermiyor, ama
+   `--dangerously-bypass-hook-trust` ile bağlam anında geliyor. Yani adaptör
+   çalışıyor; eksik olan güven kaydı. Kullanıcı terminalde `codex` TUI açıp
+   `/hooks` ile güven verecek; sonrasında Desktop ve exec ölçülecek
+   ([[olculmus-bulgular]] §14.1). Önceki ölçüm (20.09 00:38, sonuç olumsuz): `/hooks` güven ekranı açmıyor;
    yeni turda hiçbir hook satırı gelmiyor; kayıttaki harita ve saat satırları
    `custom_tool_call_output`, yani betikleri modelin kendisi çalıştırmış.
    Claude bunu bir ara yanlışlıkla "çalışıyor" saydı ve düzeltti

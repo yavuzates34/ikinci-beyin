@@ -52,8 +52,11 @@ tablosu). Sırayla kontrol et. Aşağıdakiler en kırılgan gördüğüm yerler
 
 ### A. Bilerek açık bıraktıklarımız — bunları kapatman gerekebilir
 
-1. **Madde 5 — Codex Desktop'ta hook'lar tetiklenmiyor.** 20.09'da ölçüldü ve
-   sonuç olumsuz (claude 5c600e7e · 20.09 00:38): `/hooks` bir güven ekranı
+1. **Madde 5 — Codex hook'ları güven kaydı bekliyor (sebep bulundu).**
+   `codex exec` normalde bağlam vermiyor; `--dangerously-bypass-hook-trust`
+   ile anında veriyor (claude 5c600e7e · 20.09 00:48). Yani adaptör doğru,
+   güven eksik. Kullanıcı `codex` TUI'sinde `/hooks` ile güven verecek; sonra
+   Desktop ve exec **ölçülmeli** — senin işin bu. Önceki ölçüm: `/hooks` bir güven ekranı
    açmıyor; kullanıcı testinde yeni turda hiçbir hook satırı gelmedi; kayıttaki
    harita ve saat satırlarının tipi `custom_tool_call_output`, yani onları
    modelin kendisi çalıştırmıştı. **Claude bu maddeyi bir ara yanlışlıkla
@@ -66,9 +69,9 @@ tablosu). Sırayla kontrol et. Aşağıdakiler en kırılgan gördüğüm yerler
    düzeltildi (`total_tokens`, Codex'in itirazı) ve elle doğru sonuç verdi, ama
    canlı uyarı yok — çünkü taşıyıcı hook tetiklenmiyor (madde 5). Mekanizma
    değil, taşıyıcı eksik.
-3. **Madde 12 — gece taslağının diğer iki hâli.** Aynı oturuma dönüş sınandı.
-   "Başka oturum devralır" ve "terk edilmiş oturum kurtarılır" hâlleri gerçek
-   bir gece çalışmasında henüz görülmedi.
+3. **Madde 12 — kapandı, ama bir kez.** Zincirin tamamı 20.09 00:45'te gerçek
+   koşulda çalıştı (`oto-01a0bb8e-de58.md`). Tek çalıştırma; gece görevinin
+   kendi tetiklemesiyle henüz görülmedi. İlk fırsat: 21.09 00:30.
 4. **Madde 10 — kalıcı katman hâlâ 100 KB üstünde.** Kullanıcı dört taşımadan
    ikisini onayladı. Kalan iki taşıma (kuralların yanındaki tarihçe) bilinçli
    olarak yapılmadı.
