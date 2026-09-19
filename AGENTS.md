@@ -24,6 +24,20 @@ Bu komut haritanın özetini, kapanmamış oturumları ve gece derleyicisinin
 uyarılarını basar. Hook'lu ajanlar da aynı betiği çağırır; metin tek yerde
 üretilir.
 
+**Ortak kural otomatik uygulama değildir.** Bu dosya her ajan için geçerlidir,
+ama bir uygulamanın onu kendiliğinden okuması, hook çalıştırması ya da bağlamı
+ölçmesi o **uygulamanın** yeteneğidir, modelin değil. Hangi uygulamada neyin
+ölçüldüğü ve yeni bir uygulamanın nasıl tanıtılacağı:
+`rehber/uygulama-adaptorleri.md`. Tabloda "ölçülmedi" yazan refleks çalışıyor
+varsayılmaz.
+
+**Erken devir.** Tur başı hook'u olan uygulamada bağlam doluluğu ham kayıttan
+ölçülür (`araclar/baglam.py`). **%50'de** ve **%70'te** birer kez uyarı gelir
+ve kurtarma omurgası diske alınır. Uyarı gelince cevabın sonunda kullanıcıya
+tek cümleyle söyle, konuyu kesme. Kapanışı kullanıcı başlatır. Yeni oturuma
+geçiş ve `kapanan-oturum:` onayı kullanıcıya aittir; ileride yetkili bir
+orkestratör ajana da ait olabilir.
+
 ## Zaman
 
 Cevap vermeden önce güncel tarih ve saati kontrol et (PowerShell: `Get-Date`).

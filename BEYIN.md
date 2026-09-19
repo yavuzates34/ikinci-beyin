@@ -17,7 +17,7 @@ gerektiği görülür.
 | `araclar/`   | Python araçları ve Whisper sözlüğü                                                                             |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
-| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) ve Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) |
+| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) ve uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) |
 
 Kurallar `AGENTS.md` içinde. Burada çalışan her ajan (Claude, Codex, sonrakiler)
 için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu içe
@@ -35,6 +35,7 @@ Klasör bir **git deposu** ve private GitHub deposuna bağlı
 | [[arac-arsiv]] | Arşivde arama: omurga, ara, anlam, oku |
 | [[gece-derleyicisi]] | Her gece çalışan dedektör ve git: ne ölçer, ne ölçmez |
 | [[arac-izle]] | Video/sesi modele okutma: izle.py |
+| [[ortam-kurulum]] | Makinede neyin nereye kurulduğu: ffmpeg, yt-dlp, Python paketleri, kalıcı ayarlar |
 | [[olculmus-bulgular]] | Tahmin değil ölçüm. Yeniden ölçmeye gerek yok |
 | [[iki-ajan-calismasi]] | Claude ve Codex aynı klasörde: yöntem, denetim, asimetri |
 | [[yasanan-hatalar]] | Bir kez düşülmüş tuzaklar |
@@ -59,6 +60,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-09-17-agentic-yapi-ve-denetim]] | 17.09 01:59 – 18.09 04:40 | **90 mesaj (gerçek 68), 26,7 saat.** izle.py dört katmana çıktı (OCR + birleştirme), agentic yapı notu ve dört şema, denetim katmanı kararı, SessionEnd boşluğu, gece derleyicisine üç ekleme |
 | [[2026-09-19-codex-sunum-ilk-alti-slayt]] | 19.09 18:40 – 19:10 | Codex ile sunumun ilk altı slaytı incelendi; sekiz anlatım/teknik bulgu ve sağlayıcıdan bağımsız erken-devir açığı kaydedildi |
 | [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]] | 19.09 19:16 – 20:04 | 7–10. slaytlar incelendi; bulgular 13'e çıktı, erken devir P0 hibrit tasarıma bağlandı ve Claude + Codex ortak onarım devri yazıldı |
+| [[acik-uclar-tarihce]] | — | Oturum kaydı değil: açık uçlardan kapanan ve devredilen maddeler, metniyle (19.09 bakımında taşındı) |
 | [[BAGLAM-DEVRI]] | — | 30 Ağustos itibarıyla teknik devir belgesi (başka bir modele verilmek üzere) |
 
 ## Sesli dinleme dosyaları
