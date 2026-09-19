@@ -99,3 +99,23 @@ codex exec -m gpt-5.6-sol -c model_reasoning_effort="xhigh" \
 - **Model adı değişebilir.** 16 Eylül 03:51'de varsayılan `gpt-5.6-sol`'du,
   08:17'de `gpt-6-astra` oldu. Kurulu CLI yeni modeli çalıştıramadı
   ("daha yeni sürüm gerekiyor"). Yapılandırmaya bakılmadan model adı varsayılmaz.
+
+## 19–20 Eylül: ortak onarım turundan üç ders
+
+**1. Denetçinin kotası da bir kaynaktır.** Codex'in bağımsız denetimi kullanım
+limitine takıldı ve raporunu yazamadı (codex 01a0baa5 · 19.09 20:25). Ara
+bulguları kendi oturum kaydından okundu; yani **iş kaybolmadı, çünkü ham kayıt
+duruyordu.** Ders: uzun bir denetimi tek parça istemek riskli; ara bulguların
+kayıttan okunabildiğini bilerek çalış. Kota paylaşılıyorsa sıra önemli: önce
+kullanıcının kısa arayüz testi, sonra ajanın uzun denetimi.
+
+**2. Eşzamanlı çalışmada iş bölümü dosya bazlı olmalı.** Codex denetim
+yaparken Claude onarım commit'i attı; Codex bunu fark edip "ilk-tur baz
+çizgisini koruyorum" dedi. İyi sonuçlandı ama tesadüf değildi: Codex salt
+okunur çalışıyordu. Yazma yetkisi iki ajanda aynı anda olsaydı çakışırdı.
+
+**3. Ajanın kendi kimliği ölçülmeden kullanılmamalı.** Codex oturum kimlikleri
+zaman tabanlı; ilk sekiz hane çakışıyor ([[olculmus-bulgular]] §13). Kapanış
+işaretinden gece taslağı dosya adına kadar her şey bu kısaltmaya dayanıyordu.
+Ders: iki ajanlı bir sistemde "kimlik" ortak bir sözleşmedir ve sağlayıcıya
+göre değişir.
