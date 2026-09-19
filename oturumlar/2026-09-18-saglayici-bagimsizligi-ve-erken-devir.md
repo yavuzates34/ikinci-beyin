@@ -80,15 +80,27 @@ Kurulanlar: `baglam.py` (erken devir), `bakim.py` (budama adayları),
 - **Skill listesini kısaltmak — gereksiz.** Zaten yalnızca ad ve açıklama
   yükleniyor; asıl maliyet kullanılmayan eklentiler.
 
+## Kapanışta yapılan son üç ölçüm (20.09 00:45–00:50)
+
+- **Madde 12 kapandı.** Gece zinciri gerçek koşulda uçtan uca çalıştı: aday
+  seçimi, model çağrısı, `oturumlar/oto-01a0bb8e-de58.md`, oturum başı uyarısı
+  ve taslaktaki işaretçilerin denetimi (82/82 temiz).
+- **Madde 14 kapandı.** Mükerrer oturum elemesi eklendi: aynı kaynak ve aynı
+  tam kimlik iki dosyadaysa en büyüğü tutulur. 6 grup elendi, 213 → 207 oturum.
+- **Madde 5'in sebebi bulundu.** `codex exec` normalde bağlam vermiyor;
+  `--dangerously-bypass-hook-trust` ile bağlam anında geliyor. Adaptör doğru,
+  eksik olan **güven kaydı**. Kullanıcı `codex` TUI'sinde `/hooks` ile verecek.
+  Güven yokken hook'lar **sessizce** atlanıyor; hiçbir uyarı çıkmıyor.
+  [[olculmus-bulgular]] §14.1.
+
 ## Açık kalanlar
 
-- **Codex Desktop'ta hook'lar tetiklenmiyor** (madde 5). Desktop'ta destek var
-  mı, varsa nasıl etkinleşir: ölçülmedi.
-- **Erken devirin Codex tarafı** (madde 7): mekanizma hazır, taşıyıcı yok.
-- **Gece taslağı zinciri gerçek bir gecede görülmedi** (madde 12). 20.09 00:30
-  çalışmasında aday çıkmadı.
-- **Kalıcı katman 100 KB üstünde** (madde 10).
-- **Mükerrer oturum kayıtları elenmiyor** (madde 14).
+- **Codex hook güveni** (madde 5): kullanıcı işlemi. Sonrasında Desktop ve
+  `exec` ölçülecek.
+- **Erken devirin Codex tarafı** (madde 7): mekanizma hazır, taşıyıcı güvene
+  bağlı.
+- **Kalıcı katman 100 KB üstünde** (madde 10): kullanıcı iki taşımayı
+  onaylamadı, karar onun.
 - **Astra turu:** üçüncü göz denetimi `rehber/astra-kontrol.md` ile bekliyor.
 
 ## Ölçümler
@@ -101,3 +113,6 @@ Kurulanlar: `baglam.py` (erken devir), `bakim.py` (budama adayları),
 | İşaretçi denetimi | 80/80 temiz |
 | Erken devir | %50 (19.09 20:31) ve %70 (20.09 00:36) canlı |
 | Gece taslağı sınaması | 103 saniye, 7 KB, 18/18 işaretçi gerçek |
+| Gece zinciri (gerçek koşul) | aday 1, taslak 2 KB, 82/82 işaretçi |
+| Mükerrer eleme | 6 grup, 213 → 207 oturum |
+| Hook güven teşhisi | güven atlatılınca bağlam anında geldi |

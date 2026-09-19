@@ -4,7 +4,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 20 Eylül 2026, 00:42
+**Son güncelleme:** 20 Eylül 2026, 00:48
 
 ---
 
