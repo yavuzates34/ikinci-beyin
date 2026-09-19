@@ -32,4 +32,4 @@ oturumlar icin kayiptir.
 ISTISNA: dinleme/ icindeki dosyalara bag YAZMA - koseli parantezler sesli
 okumada gurultu yapar. Bu bilincli bir karardir, eksik sanip duzeltme.
 
-Kapanis rituelinin tam hali CLAUDE.md icinde.
+Kapanis rituelinin tam hali AGENTS.md icinde (tum saglayicilar icin ortak).

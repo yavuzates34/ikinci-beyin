@@ -1,5 +1,7 @@
 # İkinci oturum — 07.09.2026 13:02 – 17.09.2026 01:55
 
+kapanan-oturum: 3557db3e
+
 Kapanış ritüelinin ve arşiv arama katmanının kurulduğu oturum. Bu dosya
 oturumun kendi kaydıdır; içinden çıkan kalıcı kurallar [[kapanis-ritueli]]
 ve [[arac-arsiv]] notlarına terfi ettirilmiştir.

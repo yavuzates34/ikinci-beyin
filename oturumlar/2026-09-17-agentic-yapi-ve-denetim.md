@@ -1,5 +1,7 @@
 # Üçüncü oturum — 17.09.2026 01:59 – 18.09.2026 04:40
 
+kapanan-oturum: 7f10f7a3
+
 **90 kullanıcı mesajı, 4.247 KB ham kayıt.** Takvim süresi 26,7 saat; içinde
 14,6 saatten fazla ara var (en uzunu 05:52 → 13:28, 7,6 saat).
 

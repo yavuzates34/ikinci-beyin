@@ -34,7 +34,14 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
    **Ek kusur (18.09):** `omurga.py` skill yüklemelerini kullanıcı mesajı
    sanıyor. Bu oturumun omurgasında `claude-api` skill'inin tamamı bir
    "kullanıcı mesajı" olarak göründü ve 128 KB'lık omurganın önemli kısmını
-   doldurdu. Filtrelenmeli.
+   doldurdu. ~~Filtrelenmeli.~~ **Düzeltildi 19.09 08:3x:** kayıtta bu satırlar
+   `isMeta: true` taşıyor. `kayit.py` artık onları atlıyor. Arşivde 67 `isMeta`
+   satırı var ve hepsi harness'in yazdığı şeyler: skill metni, komut uyarısı,
+   "Continue from where you left off", görsel bilgisi. Kullanıcı mesajı yok.
+   `7f10f7a3` omurgası: 137,6 KB / 90 mesaj → 46,0 KB / 89 mesaj. İşaretçi
+   denetimi sonrasında yine temiz (42/42) (claude 5c600e7e · 19.09 08:33).
+   Filtre ortak katmanda olduğu için `ara.py` ve `anlam.py` de skill metinlerini
+   artık aramıyor.
 
 3. **Denetim katmanı yok.** 32 kaynak işaretçisi var, açan kimse yok. Üç
    seviyeli öneri (claude 7f10f7a3 · 17.09 18:29):
@@ -60,6 +67,29 @@ Sıralı: ilk ikisi Ekim hedefinin ön şartı, üçüncüsü bağımsız.
 
 5. **Paralelleştirme / mesh — ertelendi** (kullanıcı, 18.09 01:02). Devir
    kutusu mesh'e uygun değil; neden ve ne gerekirdi: [[agentic-yapi]].
+
+## 19 Eylül'de açılanlar
+
+1. **Sağlayıcıdan bağımsızlık.** Beyin tek bir sağlayıcının tek bir
+   uygulamasına bağlı kalmamalı. Codex (GPT-5.6, Sol, Astra), ileride çıkacak
+   yerel modeller ve Çin modelleri aynı beyni kullanabilmeli (kullanıcı kararı,
+   19.09). Bugünkü durum: notlar düz Markdown olduğu için her model okuyabiliyor.
+   Arama araçları Codex kayıtlarını da okuyor. **Claude'a bağlı olanlar:**
+   `CLAUDE.md` dosya adı (Codex `AGENTS.md` okur, bu klasörde yok), hook'lar ve
+   bunların sağladığı otomatik refleksler. Nar Ajans'ta aynı asimetri
+   yaşanmıştı: [[iki-ajan-calismasi]].
+2. **Günlük rapor kimseye ulaşmıyor.** Derleyici raporu `derleme/gunluk/`
+   altına yazıyor ama `SessionStart` onu açmıyor. "PUSH BASARISIZ" gibi bir
+   uyarı kullanıcı sormazsa görünmüyor. 19.09 00:30'da tam olarak bu yaşandı:
+   ethernet bağlı değildi, push düştü, 08:27'de hâlâ `ahead 1`
+   (claude 5c600e7e · 19.09 08:27).
+3. **Dedektör açık oturumu "işlenmiş" sayıyor.** Kimliğin herhangi bir notta
+   geçmesi yeterli. Oturum içinde tek bir işaretçi yazılırsa (örneğin
+   [[olculmus-bulgular]] §9) oturum kapanmamış olsa bile raporda görünmüyor.
+   19.09 raporu "işlenmemiş 0" dedi; `5c600e7e` o sırada kapanmamıştı.
+4. **İçerik denetimi kararı:** uyuşmazlık bulunursa not düzeltilmez, iddianın
+   **altına not düşülür** (kullanıcı, 19.09). Bu, "denetçi rapor eder,
+   düzeltmez" kararıyla uyumlu: işaret koyuyor, metni yeniden yazmıyor.
 
 ## Karar bekleyenler
 

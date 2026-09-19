@@ -166,5 +166,21 @@ saha operasyonu değil. (claude 7f10f7a3 · 17.09 04:29)
 - Nötr ve saygılı Türkçe; "kanka/bro/kral" gibi hitaplar kullanılmamalı
 - İş fikirlerini sadece destekleme, **eleştirel değerlendir**
 - Sesli dinlenecek çıktılarda tablo/şema/dosya yolu kullanma
+- Verbose arayüzü kullandığı dönemlerde thinking'in **Türkçe** yazılmasını
+  istiyor (19.09)
+- Uzun cevaplara madde madde "reply" veriyor. Tek cevapta toplanmasını
+  istiyor. Uyku düzeni bozuk olduğu için reply'lar arasında saatler olabilir.
+
+### Bu beynin amacı — kullanıcının tanımı (19.09)
+
+Playground **kontrollü deneme ortamı**. Burada başarılı olan yapı sonra diğer
+projelere ve vault'lara taşınacak. Hedef bir "Jarvis": hiçbir şeyi unutmayan,
+kendi kendine yeten bir beyin. Jarvis'ten tek farkı, konuşmanın sesli değil
+yazılı olması.
+
+**Sağlayıcıdan bağımsız olmalı.** Beyin bir altyapıdır, tek bir sağlayıcının
+uygulaması değil. Codex tarafı (GPT-5.6, Sol, Astra) zaman zaman burada
+çalışacak. İleride yerel modeller ve Çin modelleri de gelecek. Açık uç:
+[[acik-uclar]]. Paralel çalışma da hedefte, ama "birkaç seviye sonra".
 
 ---

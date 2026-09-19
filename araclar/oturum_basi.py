@@ -1,23 +1,31 @@
 #!/usr/bin/env python3
-"""SessionStart hook'u - her oturumun basinda haritayi ve durumu enjekte eder.
+"""Oturum basi baglami - her oturumun basinda haritayi ve durumu verir.
 
-Uc sey soyler:
-1. Sabit yonergeler (.claude/oturum-basi.md dosyasindan okunur; durağan metin
-   kabuk komutunun icine gomulmez - bkz. notlar/yasanan-hatalar.md madde 10).
-2. Bu oturumun KENDI KIMLIGI. Ayni projede iki oturum acikken arac
-   varsayilanlari ("en son yazilan kayit") yanlis oturumu secebiliyor; kimlik
-   bilinince `omurga.py <id>` kesin olur.
-3. DEVIR KUTUSU. PreCompact modele konusamiyor (bkz. araclar/devir.py);
-   biraktigi mesaji burasi teslim eder - sikistirmadan sonra oturum hic devam
-   etmediyse yedek yol budur.
-4. PARALEL OTURUMLAR. Bu projede son saatlerde yazilmis baska oturum kaydi
-   varsa listelenir. Kritik: yan yana acilan bir oturum, otekinde konusulani
-   KALICI NOTLARDAN goremez - cunku o oturum henuz kapanmamis, damitilmamistir.
-   Ama ham kayit CANLIDIR: jsonl surekli yaziliyor, yani okunabiliyor.
+SAGLAYICIDAN BAGIMSIZ CEKIRDEK. Claude Code bunu SessionStart hook'undan
+cagirir; hook'u olan baska bir saglayici kendi hook'undan, hook'u olmayan
+bir model ise talimatla (`python araclar/oturum_basi.py --bicim duz`)
+cagirir. Metni ureten tek yer burasi; saglayicilar sadece zarfi degistirir.
 
-Girdi: stdin'den JSON. Cikti: stdout'a hook JSON'u. Cikis kodu her zaman 0.
+Bes sey soyler:
+1. Sabit yonergeler (araclar/oturum-basi.md; duragan metin kabuk komutunun
+   icine gomulmez - bkz. notlar/yasanan-hatalar.md madde 10).
+2. DEVIR KUTUSU. PreCompact modele konusamiyor (bkz. araclar/devir.py);
+   biraktigi mesaji burasi teslim eder.
+3. Bu oturumun KENDI KIMLIGI (girdide varsa). Ayni projede iki oturum
+   acikken arac varsayilanlari yanlis oturumu secebiliyor.
+4. KAPANMAMIS OTURUMLAR. Arsivde `kapanan-oturum:` satiri olmayan her oturum.
+   Onlarda konusulan kalici notlara islenmemistir; ama ham kayit canlidir.
+   Eskiden sadece son 6 saate bakiliyordu - kapanmadan 6 saat sessiz kalan
+   oturum gorunmez oluyordu (claude 5c600e7e · 19.09 16:40).
+5. GECE DERLEYICISI UYARILARI. Rapor diske yaziliyordu ama kimse okumuyordu:
+   19.09 00:30'da push dustu ve kullanici sormasa fark edilmeyecekti
+   (claude 5c600e7e · 19.09 08:27). Artik uyari varsa buraya tasinir.
+
+Girdi: stdin'den JSON (varsa). Cikti: --bicim claude (varsayilan) -> Claude
+hook JSON'u; --bicim duz -> duz metin. Cikis kodu her zaman 0.
 """
 
+import argparse
 import json
 import sys
 from datetime import datetime, timedelta
@@ -27,11 +35,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import kayit  # noqa: E402
 import devir  # noqa: E402
 
-YONERGE = kayit.PROJE_KOKU / ".claude" / "oturum-basi.md"
-PARALEL_PENCERE = timedelta(hours=6)  # bu kadar once yazilmis kayit "acik" sayilir
+YONERGE = kayit.PROJE_KOKU / "araclar" / "oturum-basi.md"
+DURUM = kayit.PROJE_KOKU / "derleme" / "son-calisma.json"
+CANLI_PENCERE = timedelta(hours=6)  # bu kadar yeni yazilan "muhtemelen acik"
+DERLEYICI_SESSIZLIK = timedelta(hours=36)  # daha uzun sessizlik = calismamis
 
 
-def cikti(metin: str) -> None:
+def cikti(metin: str, bicim: str) -> None:
+    if bicim == "duz":
+        kayit.utf8_zorla()
+        print(metin)
+        return
     print(json.dumps(
         {"hookSpecificOutput": {
             "hookEventName": "SessionStart", "additionalContext": metin}},
@@ -39,76 +53,113 @@ def cikti(metin: str) -> None:
     ))
 
 
-def main() -> int:
+def derleyici_uyarilari(simdi: datetime) -> list[str]:
+    """son-calisma.json'dan sadece SORUNLARI cikarir. Her sey yolundaysa bos
+    liste - her oturumun basina "her sey yolunda" yazmak gurultudur."""
+    if not DURUM.exists():
+        return ["son-calisma.json yok - gece derleyicisi hic calismamis olabilir"]
     try:
-        girdi = json.loads(sys.stdin.read() or "{}")
+        d = json.loads(DURUM.read_text(encoding="utf-8"))
     except (ValueError, OSError):
-        girdi = {}
+        return ["son-calisma.json okunamadi ya da bozuk"]
+
+    uyari = []
+    try:
+        son = datetime.strptime(d.get("baslangic", ""), "%Y-%m-%d %H:%M")
+        if simdi - son > DERLEYICI_SESSIZLIK:
+            uyari.append(f"son calisma {son:%d.%m %H:%M} - 36 saatten eski; "
+                         "gorev calismiyor olabilir (sessizlik 'her sey iyi' demek degil)")
+    except ValueError:
+        pass
+    if not d.get("tamamlandi"):
+        uyari.append(f"son calisma ({d.get('baslangic', '?')}) TAMAMLANMADAN kesildi")
+    if d.get("push") == "BASARISIZ":
+        uyari.append("PUSH BASARISIZ - GitHub yedegi guncel degil (internet?). "
+                     "Kullaniciya soyle; elle: git push")
+    if d.get("isaretci_kusurlu"):
+        uyari.append(f"{len(d['isaretci_kusurlu'])} kaynak isaretcisi KUSURLU "
+                     "(oturum ya da damga yok)")
+    if d.get("isaretci_denetlenemeyen"):
+        uyari.append(f"{len(d['isaretci_denetlenemeyen'])} isaretci denetlenemedi "
+                     "(bicim okunamadi)")
+    return uyari
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Oturum basi baglami")
+    ap.add_argument("--bicim", choices=("claude", "duz"), default="claude")
+    a = ap.parse_args()
+
+    girdi = {}
+    if a.bicim == "claude":
+        try:
+            girdi = json.loads(sys.stdin.read() or "{}")
+        except (ValueError, OSError):
+            girdi = {}
 
     beyin = kayit.PROJE_KOKU / "BEYIN.md"
     if not beyin.exists() or not YONERGE.exists():
-        cikti("UYARI: BEYIN.md ya da .claude/oturum-basi.md bulunamadi. "
-              "Bu projenin giris ve haritasi BEYIN.md'dir; yoksa olustur.")
+        cikti("UYARI: BEYIN.md ya da araclar/oturum-basi.md bulunamadi. "
+              "Bu projenin giris ve haritasi BEYIN.md'dir; yoksa olustur.", a.bicim)
         return 0
 
     st = beyin.stat()
-    notlar = len(list((kayit.PROJE_KOKU / "notlar").glob("*.md")))
-    oturumlar = len(list((kayit.PROJE_KOKU / "oturumlar").glob("*.md")))
-
     metin = YONERGE.read_text(encoding="utf-8")
     for anahtar, deger in {
         "{KB}": str(round(st.st_size / 1024)),
         "{T}": datetime.fromtimestamp(st.st_mtime).strftime("%Y-%m-%d %H:%M"),
-        "{N}": str(notlar),
-        "{O}": str(oturumlar),
+        "{N}": str(len(list((kayit.PROJE_KOKU / "notlar").glob("*.md")))),
+        "{O}": str(len(list((kayit.PROJE_KOKU / "oturumlar").glob("*.md")))),
     }.items():
         metin = metin.replace(anahtar, deger)
 
     ek = []
+    simdi = datetime.now()
 
-    # Sikistirmadan kalan devir mesaji varsa once o teslim edilir.
     bekleyen = devir.al()
     if bekleyen:
         ek.append("DEVIR KUTUSUNDAN:" + chr(10) + bekleyen)
+
+    uyarilar = derleyici_uyarilari(simdi)
+    if uyarilar:
+        ek.append("GECE DERLEYICISI UYARISI (derleme/son-calisma.json):\n"
+                  + "\n".join(f"  - {u}" for u in uyarilar)
+                  + "\nBunlari kullaniciya ilk cevapta soyle.")
 
     kimlik = girdi.get("session_id")
     if kimlik:
         ek.append(
             f"BU OTURUMUN KIMLIGI: {kimlik}\n"
             f"Araclara kesin kimlik ver: python araclar/omurga.py {kimlik[:8]}\n"
-            f"(Argumansiz cagri 'en son yazilan kaydi' secer; ayni projede iki\n"
-            f"oturum acikken yanlis oturumu secebilir.)"
+            f"Kapanista arsiv dosyasina su satiri yaz: kapanan-oturum: {kimlik[:8]}"
         )
 
-    # Paralel oturumlar: son saatlerde yazilmis, bu oturum olmayan kayitlar
     try:
-        simdi = datetime.now()
-        paralel = [
-            o for o in kayit.oturumlar("proje")
-            if simdi - o.an < PARALEL_PENCERE
-            and not (kimlik and o.kimlik == kimlik)
-        ]
+        kapali = kayit.kapanmis_kimlikler()
+        acik = [o for o in kayit.oturumlar("proje")
+                if o.kisa not in kapali and not (kimlik and o.kimlik == kimlik)]
     except OSError:
-        paralel = []
+        acik = []
 
-    if paralel:
+    if acik:
         satirlar = "\n".join(
-            f"  - {o.kimlik[:8]} (son yazma {o.an:%d.%m %H:%M}, "
-            f"{o.boyut / 1024:.0f} KB)" for o in paralel[:5]
+            f"  - {o.kisa} ({o.kaynak}, son yazma {o.an:%d.%m %H:%M}, "
+            f"{o.boyut / 1024:.0f} KB"
+            + (", muhtemelen HALA ACIK" if simdi - o.an < CANLI_PENCERE else "")
+            + ")" for o in acik[:8]
         )
         ek.append(
-            "PARALEL OTURUM UYARISI: bu projede yakin zamanda yazilmis baska "
-            "oturum kaydi var:\n" + satirlar + "\n"
-            "Bu oturumlar HENUZ KAPANMAMIS olabilir - yani orada konusulanlar "
-            "kalici notlara (notlar/) islenmemistir ve haritada gorunmez.\n"
-            "Ama ham kayit CANLIDIR, okunabilir:\n"
+            "KAPANMAMIS OTURUMLAR: bu projede kapanis rituelinden gecmemis "
+            "oturum var:\n" + satirlar + "\n"
+            "Orada konusulanlar kalici notlara (notlar/) islenmemistir ve "
+            "haritada gorunmez. Ama ham kayit okunabilir:\n"
             "  python araclar/omurga.py <id>          -> o oturumun iskeleti\n"
             "  python araclar/oku.py <id> --saat SS:DD -> tam dokum\n"
             "Kullanici 'az once sunu konusmustuk' derse ve notlarda yoksa, "
-            "tahmin etme - paralel oturumun kaydini oku."
+            "tahmin etme - bu kayitlari oku."
         )
 
-    cikti(metin.rstrip() + ("\n\n" + "\n\n".join(ek) if ek else ""))
+    cikti(metin.rstrip() + ("\n\n" + "\n\n".join(ek) if ek else ""), a.bicim)
     return 0
 
 

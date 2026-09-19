@@ -158,10 +158,24 @@ def _codex_projesi(yol: Path) -> str:
         return "?"
 
 
+def _codex_cwd(yol: Path) -> str:
+    """Codex kaydinin calisma dizini, tam yol ve kucuk harf (karsilastirma icin)."""
+    try:
+        with io.open(yol, encoding="utf-8") as f:
+            ilk = json.loads(f.readline())
+        cwd = (ilk.get("payload") or {}).get("cwd") or ""
+        return str(Path(cwd)).lower() if cwd else ""
+    except (OSError, ValueError, TypeError):
+        return ""
+
+
 def oturumlar(kapsam: str = "hepsi", proje: str | None = None) -> list[Oturum]:
     """kapsam: proje | claude | codex | hepsi
 
-    "proje" sadece icinde bulunulan klasorun Claude oturumlarini verir.
+    "proje" icinde bulunulan klasorun oturumlarini verir: Claude kayitlari VE
+    calisma dizini bu klasor olan Codex kayitlari. Beyin tek saglayiciya bagli
+    kalmasin diye (kullanici karari, 19.09) - Codex'in kapanissiz biraktigi
+    oturum da dedektore gorunmeli.
     """
     bulunan: list[Oturum] = []
     ev = Path.home()
@@ -182,8 +196,11 @@ def oturumlar(kapsam: str = "hepsi", proje: str | None = None) -> list[Oturum]:
                 )
             )
 
-    if kapsam in ("codex", "hepsi"):
+    if kapsam in ("codex", "hepsi", "proje"):
+        kok_yol = str(PROJE_KOKU).lower()
         for p in (ev / ".codex" / "sessions").glob("**/*.jsonl"):
+            if kapsam == "proje" and (proje or _codex_cwd(p) != kok_yol):
+                continue
             st = p.stat()
             # rollout-2026-09-05T04-35-45-<uuid>.jsonl
             kimlik = p.stem.split("-", 1)[-1][20:] or p.stem
@@ -228,6 +245,8 @@ def _claude_mesajlari(yol: Path) -> Iterator[Mesaj]:
             continue
         if tip == "user" and "toolUseResult" in k:
             continue  # arac ciktisi, kullanici mesaji degil
+        if k.get("isMeta"):
+            continue  # skill metni, komut uyarisi, sistem notu: harness yazdi, kullanici degil
         govde = _temizle(_blok_metni((k.get("message") or {}).get("content", "")))
         if govde:
             yield Mesaj(
@@ -264,3 +283,25 @@ def mesajlar(oturum: Oturum) -> Iterator[Mesaj]:
     enjeksiyonu haric, kronolojik sirada."""
     okuyucu = _claude_mesajlari if oturum.kaynak == "claude" else _codex_mesajlari
     yield from okuyucu(oturum.yol)
+
+
+# Kapanis isareti: bir oturumun kapandigini soyleyen TEK kaynak.
+# Eskiden "kimlik herhangi bir notta geciyor mu" diye bakiliyordu; oturum icinde
+# yazilan tek bir kaynak isaretcisi, kapanmamis oturumu "islenmis" gosteriyordu
+# (claude 5c600e7e · 19.09 08:27). Arsiv dosyalari da baska oturumlara atif
+# yapiyor, yani "oturumlar/ icinde geciyor mu" da yetmez. Isaret acik olmali.
+KAPANIS_DESENI = re.compile(r"^kapanan-oturum:\s*(.+)$", re.MULTILINE | re.IGNORECASE)
+
+
+def kapanmis_kimlikler() -> set[str]:
+    """oturumlar/*.md icindeki `kapanan-oturum: <id>[, <id>]` satirlarindan
+    kapanmis oturum kimliklerinin ilk 8 karakteri."""
+    kimlikler: set[str] = set()
+    for p in (PROJE_KOKU / "oturumlar").glob("*.md"):
+        metin = p.read_text(encoding="utf-8", errors="replace")
+        for satir in KAPANIS_DESENI.findall(metin):
+            for parca in re.split(r"[,\s]+", satir.strip()):
+                parca = parca.strip("`")
+                if re.fullmatch(r"[0-9a-f]{8}[0-9a-f-]*", parca):
+                    kimlikler.add(parca[:8])
+    return kimlikler

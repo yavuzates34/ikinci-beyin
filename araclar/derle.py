@@ -81,13 +81,17 @@ def gunluk(bugun: datetime, kuru: bool) -> int:
     # onlari "islenmemis" diye listelemek her gece onlarca satir gurultu uretir
     # ve rapor coplugee doner. Yapi baska projeye tasindiginda orada kendi
     # derleyicisi calisir. Diger projeler burada sadece tek satir sayidir.
-    taze = [o for o in kayit.oturumlar("proje") if o.an >= dun]
+    proje = kayit.oturumlar("proje")
+    taze = [o for o in proje if o.an >= dun]
     diger = [o for o in kayit.oturumlar("claude") if o.an >= dun and o not in taze]
-    metinler = islenmis_metin()
 
-    islenmemis, islenmis = [], []
-    for o in taze:
-        (islenmis if o.kimlik[:8] in metinler else islenmemis).append(o)
+    # Kapanmis = arsivde `kapanan-oturum: <id>` satiri var. Eskiden "kimlik bir
+    # notta geciyor mu" diye bakiliyordu; oturum icinde yazilan tek bir kaynak
+    # isaretcisi acik oturumu "islenmis" gosteriyordu (claude 5c600e7e · 19.09
+    # 08:27). Ayrica sadece son 24 saate bakiliyordu: kapanmadan 24 saat sessiz
+    # kalan oturum bir daha hic raporlanmiyordu. Artik zaman siniri yok.
+    kapali = kayit.kapanmis_kimlikler()
+    islenmemis = [o for o in proje if o.kisa not in kapali]
 
     s = [f"# Gunluk derleme - {bugun:%d.%m.%Y}", "",
          f"Bu projede son 24 saatte yazilan oturum kaydi: **{len(taze)}**",
@@ -95,23 +99,18 @@ def gunluk(bugun: datetime, kuru: bool) -> int:
          f"dedektor kapsam disi)", ""]
 
     if islenmemis:
-        s += ["## ISLENMEMIS OTURUMLAR", "",
-              "Bu oturumlarin kimligi hicbir notta gecmiyor - yani kapanis kaydi",
-              "yazilmamis olabilir. Kalici olan bir sey varsa kaybolmadan isle.", ""]
+        s += ["## KAPANMAMIS OTURUMLAR", "",
+              "Arsivde `kapanan-oturum:` satiri yok - kapanis rituelinden gecmemis.",
+              "Son 6 saatte yazilan muhtemelen hala acik; eskiler kapanissiz kalmis.", ""]
         for o in islenmemis:
-            s.append(f"- `{o.kimlik[:8]}` | {o.proje} | son yazma {o.an:%d.%m %H:%M} "
-                     f"| {o.boyut / 1024:.0f} KB")
-            s.append(f"  - oku: `python araclar/omurga.py {o.kimlik[:8]}`")
+            acik = " | muhtemelen hala acik" if bugun - o.an < timedelta(hours=6) else ""
+            s.append(f"- `{o.kisa}` | {o.kaynak} | son yazma {o.an:%d.%m %H:%M} "
+                     f"| {o.boyut / 1024:.0f} KB{acik}")
+            s.append(f"  - oku: `python araclar/omurga.py {o.kisa}`")
         s.append("")
     else:
-        s += ["## Islenmemis oturum yok", "",
-              "Son 24 saatte yazilan her oturumun kimligi en az bir notta geciyor.", ""]
-
-    if islenmis:
-        s += ["## Islenmis", ""]
-        s += [f"- `{o.kimlik[:8]}` | {o.proje} | {o.boyut / 1024:.0f} KB"
-              for o in islenmis]
-        s.append("")
+        s += ["## Kapanmamis oturum yok", "",
+              "Bu projenin her oturumu arsivde `kapanan-oturum:` satiriyla kapanmis.", ""]
 
     # PreCompact anlik goruntuleri + eskilerini temizle
     anlik = sorted((DERLEME / "omurga-anlik").glob("*.md"))
@@ -293,7 +292,8 @@ def aylik_gerekli(bugun: datetime) -> bool:
 
 # --- denetim: kaynak isaretcileri -------------------------------------------
 
-ISARETCI = re.compile(r"\(claude ([0-9a-f]{8})([^)]*)\)", re.S)
+# Saglayici adi claude ya da codex: beyin tek saglayiciya bagli degil (19.09).
+ISARETCI = re.compile(r"\((?:claude|codex) ([0-9a-f]{8})([^)]*)\)", re.S)
 # Gun.ay, istege bagli saat. Tek isaretcide birden fazla damga olabilir:
 # "(claude 3557db3e - 16.09 10:20 ve 17.09 01:55)" gibi. Saatsiz olan da
 # gecerlidir; o zaman sadece "o gun o oturumda mesaj var mi" sorulur.
@@ -388,6 +388,7 @@ def main() -> int:
     else:
         print(f"  isaretci: {toplam_i} isaretcinin hepsi dogrulandi")
 
+    push = "kuru calisma"
     if not a.kuru:
         git("add", "-A")
         durum = git("status", "--porcelain")
@@ -407,14 +408,19 @@ def main() -> int:
             simdi_u = git("rev-parse", "@{u}") or ""
             yerel = git("rev-parse", "HEAD") or ""
             if simdi_u == yerel:
-                print("  git: push tamam" if simdi_u != onceki else "  git: uzak guncel")
+                push = "tamam" if simdi_u != onceki else "uzak guncel"
+                print(f"  git: push {push}")
             else:
+                push = "BASARISIZ"
                 print("  git: PUSH BASARISIZ - dis yedek guncel degil")
+        else:
+            push = "uzak depo yok"
 
     # Sessiz basari yasak: ne bulundugunu sayiyla soyle.
     print(f"# Islenmemis oturum: {eksik}")
     durum_yaz(bugun, True, a.kuru,
               islenmemis_oturum=eksik,
+              push=push,
               isaretci_toplam=toplam_i,
               isaretci_kusurlu=kusurlu,
               isaretci_denetlenemeyen=denetlenemeyen,
