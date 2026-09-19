@@ -17,7 +17,7 @@ gerektiği görülür.
 | `araclar/`   | Python araçları ve Whisper sözlüğü                                                                             |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
-| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) ve uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) |
+| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) ve Astra için kontrol dosyası (`rehber/astra-kontrol.md`) |
 
 Kurallar `AGENTS.md` içinde. Burada çalışan her ajan (Claude, Codex, sonrakiler)
 için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu içe
