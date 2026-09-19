@@ -5,6 +5,12 @@ Claude ve Codex (`gpt-5.6-sol`) birlikte bir onarım turu yaptı: sunum
 incelemesinde bulunan 13 açık, artı sonradan bulunan 1 açık. Senin işin bizim
 yaptığımızı **bağımsız olarak kontrol etmek** ve açık kalanları kapatmak.
 
+**Bu tur Codex Desktop'tan yapılmalı.** Claude, seni alt ajan olarak
+çağırmayı denedi ve olmadı: kurulu Codex CLI 0.150.1 `gpt-6-astra` modelini
+çalıştıramıyor ("requires a newer version of Codex"). Ölçüm:
+[[olculmus-bulgular]] §15. Yani bu denetim, kullanıcının Desktop oturumunda
+senin tarafından yapılacak.
+
 Kullanıcı sana bunu `/goal` ile verecek. Bu dosya emir listesi değil, denetim
 haritası: nereye bakacağını ve neyin kanıt sayıldığını söyler.
 

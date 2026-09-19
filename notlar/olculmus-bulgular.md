@@ -356,3 +356,19 @@ atlanıyor. "Sessizce" önemli: hiçbir uyarı yok, yalnızca bağlam gelmiyor.
 Kullanıcının yapması gereken tek şey: terminalde bu klasörde `codex` (TUI)
 açıp `/hooks` ile güven vermek. Sonra Desktop'ta ve `exec`'te de çalışması
 beklenir — bu **ölçülmedi**.
+
+## 15. Astra alt ajan olarak çağrılamıyor: CLI sürümü yetmiyor
+
+20 Eylül 00:49'da denendi ve ölçüldü (claude 5c600e7e · 20.09 00:49).
+`codex exec -m gpt-6-astra` çağrısı API'den şu hatayı aldı: *"The 'gpt-6-astra'
+model requires a newer version of Codex."* Kurulu CLI 0.150.1; Codex Desktop
+ise 0.155-alpha. Ayrıca CLI "model metadata bulunamadı" uyarısı veriyor.
+
+Sonuç: **Astra yalnızca Codex Desktop'tan çalıştırılabiliyor.** Claude, Astra'yı
+alt ajan olarak çağırıp üçüncü göz denetimini kendi başına yaptıramaz; o tur
+kullanıcının Desktop oturumunda yapılmak zorunda. `gpt-5.6-sol` CLI'da
+çalışıyor, iki denetim turunu o yaptı.
+
+Bu, 16 Eylül'de Nar Ajans'ta ölçülen "model adı değişti, kurulu CLI yeni modeli
+çalıştıramadı" bulgusunun hâlâ geçerli olduğunu gösteriyor: **model adı
+varsayılmaz, sürüm uyumu ölçülür.**
