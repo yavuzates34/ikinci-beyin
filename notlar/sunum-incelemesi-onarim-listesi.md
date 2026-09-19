@@ -51,29 +51,46 @@ Claude oturumunda soruldu ve cevaplandı (claude 5c600e7e · 19.09 20:12):
   Kapanmış tarihçe `oturumlar/` altına taşınır, otomatik silme yok. Bakımı
   kullanıcı yapar, ileride orkestratör ajanlar da yapabilir.
 
-## Durum (19.09.2026 21:0x, Claude turu)
+## Durum (20.09.2026 00:35, Codex denetiminden sonra)
 
-Bu tabloyu Claude doldurdu. Codex'in bağımsız denetimi ilk turda kullanım
-limitine takıldı (codex 01a0baa5 · 19.09 20:25). İkinci tur ve Astra kontrolü
-bekleniyor. "Kapandı" yazan her madde o denetimden geçene kadar **Claude'un
-iddiasıdır.**
+Claude doldurdu, **Codex ikinci turda bağımsız denetledi** (codex 01a0bc0e ·
+20.09 00:33) ve beş yerde kusur buldu; üçü uygulandı, ikisi ölçümle
+sınırlandı. Codex'in birinci turu kullanım limitine takılmıştı
+(codex 01a0baa5 · 19.09 20:25); ara bulguları kendi kaydından okundu.
+Astra kontrolü bekliyor: `rehber/astra-kontrol.md`.
+
+**Codex'in bulduğu ve uygulanan üç kusur:**
+1. Codex doluluğu `input_tokens` yerine `total_tokens` olmalı (o turun çıktısı
+   sayılmıyordu, doluluk bir tur geriden geliyordu).
+2. Kaynak tespiti yoldan (`".codex" in parts`) değil, **kayıt şemasından**
+   yapılmalı; yol tabanlı tespit büyük/küçük harfte ve özel kayıt dizininde
+   yanılır.
+3. Codex kimliği dosya adından değil **kayıt içinden** (`session_meta`)
+   alınmalı. Claude'un iddiası: Codex "39 kayıtta fark" dedi, bağımsız ölçüm
+   **3 kayıt** buldu ve üçü de aynı oturumun devam kayıtlarıydı
+   (claude 5c600e7e · 20.09 00:33).
+
+Ayrıca bakım ölçütlerindeki iki yanlış pozitif kapatıldı: kod bloğu içindeki
+`#` ve `-` satırları artık madde sayılmıyor; harita bağı `[[ad|alias]]` ve
+`[[ad#başlık]]` biçimlerini de tanıyor (negatif testle doğrulandı).
 
 | # | Durum | Kanıt | Kalan |
 |---|---|---|---|
 | 1 | kapandı | `AGENTS.md` "ortak kural otomatik uygulama değildir"; slayt 2 ve 3 | Codex denetimi |
 | 2 | kapandı | Slayt 3 ve 6: özne kullanıcı, sıklık kalıcı talimat yerine bağlı | Codex denetimi |
-| 3 | kısmen | Slayt 3 ve 5 ile adaptör tablosu: belge, ölçüldü ve ölçülmedi ayrı etiketli | Desktop davranışı ölçülmedi, madde 5'e bağlı |
+| 3 | kapandı | Slayt 3 ve 5 ile adaptör tablosu: belge, ölçüldü ve ölçülmedi ayrı etiketli. Desktop davranışı artık ölçüldü (aşağıda madde 5) | — |
 | 4 | kapandı | Slayt 5: "üç olay, dört komut" | — |
-| 5 | **açık** | Adaptör diskte; iki Desktop oturumunda hook metni yok (claude 5c600e7e · 19.09 20:21) | **Kullanıcı:** Desktop'ta güven ve yepyeni oturum; sonra ham kayıtla doğrulama |
+| 5 | kapandı | **Ölçüldü 20.09 00:25:** Codex Desktop'ta `/hooks` ayrı bir güven ekranı açmıyor, düz mesaj olarak gidiyor; proje güvenilir sayıldığı için hook'lar zaten etkin. `01a0bb8e-de58` kaydında harita, saat, bakım uyarısı ve kapanmamış oturum uyarısı modele ulaşmış (claude 5c600e7e · 20.09 00:32) | — |
 | 6 | kapandı | Sistem sayaca bağlı değil, doluluğu ham kayıttan ölçüyor; slayt 5 ve 12 sınırı yazıyor | — |
-| 7 | kısmen | `baglam.py`: sentetik 5 test, Claude'da canlı %50 uyarısı (claude 5c600e7e · 19.09 20:31); Codex formülü ham kayıtta doğrulandı | Codex'te canlı uyarı, güvene bağlı |
+| 7 | kısmen | `baglam.py`: sentetik 5 test, Claude'da canlı %50 uyarısı (claude 5c600e7e · 19.09 20:31). Codex formülü Codex'in itirazıyla düzeltildi (`total_tokens`) ve o oturumun kaydıyla elle çalıştırıldığında doğru sonuç verdi | **Codex'te canlı uyarı görülmedi:** Desktop turunda saat geldi ama durum dosyasına Codex anahtarı düşmedi. `UserPromptSubmit` altındaki ikinci komut çalışmıyor olabilir; canlı ölçüm bekliyor |
 | 8 | kapandı | Slayt 6: başlık, ön koşul ve kullanıcı eylemi | — |
 | 9 | kapandı | `rehber/uygulama-adaptorleri.md`: tablo ve 8 adımlı protokol | Desktop hücreleri "ölçülmedi" |
 | 10 | kısmen | `bakim.py`: rapor ve uyarı çalışıyor, haritasız not ve yetim taslak negatif testle yakalandı. Kullanıcı 4 taşımadan 2'sini onayladı; biri yapıldı (137,9 → 125,4 KB) | 3. taşıma (bu liste) iş bitince; 100 KB eşiği hâlâ aşılı |
 | 11 | kapandı | Bakım uyarısı oturum başında canlı; slayt 8 yedi uyarı, sessizlik cümlesi daraltıldı | — |
 | 12 | kısmen | Dört hâlin üçü sınandı: aynı oturuma dönüş (kendi taslağı haber veriliyor), başka oturumun devralması (taslak "GECE TASLAĞI VAR" diye bildiriliyor, kapanmamış oturumun taslağı yetim sayılmıyor), terk edilmiş oturumdan taslak üretimi (`gece_kayit.py --oturum`). Yetim taslak negatif testle yakalanıyor. Kapsam `AGENTS.md`'de; slayt 7 ve 9 (claude 5c600e7e · 20.09 00:27) | Zincirin tamamı gerçek bir gece çalışmasında görülmedi |
 | 13 | kapandı | Slayt 10: ham JSONL → omurga → Markdown arşiv, görsel olarak ayrı | — |
-| 14 | kapandı | `kayit.py` `archived_sessions/` klasörünü okuyor: 103 → 164 oturum, 69/69 işaretçi | Codex denetimi |
+| 14 | kısmen | `kayit.py` `archived_sessions/` klasörünü okuyor: 103 → 164 oturum. Codex doğruladı: tam kimlik mükerrerliği yok | Codex'in itirazı kabul: aynı oturumun iki kopyası (Claude'da iki proje yolu, Codex'te devam kayıtları) **elenmiyor**. Kısa kimlik çakışması ayrı madde olarak kapatıldı (15) |
+| 15 | kapandı | Codex kimliği 13 haneye çıktı, kapanış eşleşmesi önek tabanlı; zincir sınandı (claude 5c600e7e · 20.09 00:30) | — |
 
 ## Sonradan bulunan 14. açık
 

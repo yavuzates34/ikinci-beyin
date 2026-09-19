@@ -181,6 +181,18 @@ def _codex_projesi(yol: Path) -> str:
         return "?"
 
 
+def _codex_kimlik(yol: Path, yedek: str) -> str:
+    """Codex kimligini KAYIT ICINDEN alir; dosya adi yedektir. Codex yakaladi
+    (codex 01a0bb8e-de58 · 20.09 00:35): 3 kayitta dosya adindaki kimlik ile
+    session_meta icindeki farkli - bunlar ayni oturumun devam kayitlari."""
+    try:
+        with io.open(yol, encoding="utf-8") as f:
+            p = json.loads(f.readline()).get("payload") or {}
+        return p.get("id") or p.get("session_id") or yedek
+    except (OSError, ValueError, TypeError):
+        return yedek
+
+
 def _codex_cwd(yol: Path) -> str:
     """Codex kaydinin calisma dizini, tam yol ve kucuk harf (karsilastirma icin)."""
     try:
@@ -233,7 +245,7 @@ def oturumlar(kapsam: str = "hepsi", proje: str | None = None) -> list[Oturum]:
                 continue
             st = p.stat()
             # rollout-2026-09-05T04-35-45-<uuid>.jsonl
-            kimlik = p.stem.split("-", 1)[-1][20:] or p.stem
+            kimlik = _codex_kimlik(p, p.stem.split("-", 1)[-1][20:] or p.stem)
             bulunan.append(
                 Oturum(
                     "codex",

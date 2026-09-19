@@ -42,10 +42,14 @@ MADDE = re.compile(r"^(?:\d+\.|[-*])\s+")
 
 def _kapanmis_madde_bayti(metin: str) -> int:
     """acik-uclar.md: ustu cizili (~~) baslayan ust duzey maddelerin boyutu.
-    Bir madde, bir sonraki ust duzey madde ya da baslik gelene kadar surer."""
-    toplam, kapali, bayt = 0, False, 0
+    Bir madde, bir sonraki ust duzey madde ya da baslik gelene kadar surer.
+    KOD BLOKLARI atlanir: icindeki '# ' ve '- ' satirlari yapisal degildir
+    (codex 01a0bb8e-de58 · 20.09 00:35)."""
+    toplam, kapali, bayt, kod = 0, False, 0, False
     for satir in metin.splitlines(keepends=True):
-        if MADDE.match(satir) or satir.startswith("#"):
+        if satir.lstrip().startswith("```"):
+            kod = not kod
+        if not kod and (MADDE.match(satir) or satir.startswith("#")):
             if kapali:
                 toplam += bayt
             govde = MADDE.sub("", satir, count=1).lstrip()
@@ -62,7 +66,10 @@ def olc() -> dict:
     boyut = {p.stem: p.stat().st_size for p in notlar}
     toplam = sum(boyut.values())
     harita = (KOK / "BEYIN.md").read_text(encoding="utf-8", errors="replace")
-    haritasiz = [ad for ad in boyut if f"[[{ad}]]" not in harita]
+    # Bag alias ve baslik tasiyabilir: [[ad|goruntu]], [[ad#bolum]]. Yalnizca
+    # tam [[ad]] aramak yanlis pozitif uretiyordu (codex 01a0bb8e-de58 · 20.09 00:35).
+    haritasiz = [ad for ad in boyut
+                 if not any(f"[[{ad}{son}" in harita for son in ("]", "|", "#"))]
 
     acik = KOK / "notlar" / "acik-uclar.md"
     kapanmis = (_kapanmis_madde_bayti(acik.read_text(encoding="utf-8"))

@@ -36,6 +36,7 @@ Kullanim:
 """
 
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -88,7 +89,11 @@ def _codex_olc(yol: Path) -> dict:
             son = p["info"]
     if not son:
         return {"token": None, "pencere": None, "not": "token_count kaydi yok"}
-    return {"token": (son.get("last_token_usage") or {}).get("input_tokens"),
+    li = son.get("last_token_usage") or {}
+    # total_tokens: girdi + cikti + akil yurutme. Codex'in kendi baglam hesabi
+    # buna dayaniyor; input_tokens o turun ciktisini saymaz ve doluluk bir tur
+    # geriden gelir (codex 01a0bb8e-de58 · 20.09 00:35).
+    return {"token": li.get("total_tokens") or li.get("input_tokens"),
             "pencere": son.get("model_context_window"), "not": None}
 
 
@@ -98,6 +103,18 @@ def olc(oturum: kayit.Oturum) -> dict:
     o["yuzde"] = (round(o["token"] / o["pencere"], 3)
                   if o.get("token") and o.get("pencere") else None)
     return o
+
+
+def _kaynak_bul(yol: Path) -> str:
+    """Kaynagi KAYIT SEMASINDAN bulur, yoldan degil: yol tabanli tespit
+    (".codex" in parts) buyuk/kucuk harfte ve ozel kayit dizininde yanilir
+    (codex 01a0bb8e-de58 · 20.09 00:35)."""
+    try:
+        with open(yol, encoding="utf-8", errors="replace") as f:
+            ilk = json.loads(f.readline())
+        return "codex" if "payload" in ilk else "claude"
+    except (OSError, ValueError):
+        return "codex" if ".codex" in {x.lower() for x in yol.parts} else "claude"
 
 
 def _durum_oku() -> dict:
@@ -129,7 +146,7 @@ def kontrol(transcript_path: str | None, session_id: str | None) -> str | None:
     oturum = None
     if transcript_path and Path(transcript_path).exists():
         p = Path(transcript_path)
-        kaynak = "codex" if ".codex" in p.parts else "claude"
+        kaynak = _kaynak_bul(p)
         kimlik = session_id or p.stem
         st = p.stat()
         oturum = kayit.Oturum(kaynak, kimlik, p, p.parent.name,
@@ -150,9 +167,13 @@ def kontrol(transcript_path: str | None, session_id: str | None) -> str | None:
     durum[oturum.kisa] = {"seviye": seviye, "yuzde": yuzde,
                           "an": datetime.now().isoformat(timespec="minutes")}
     try:
+        # Atomik yazma: iki hook ayni anda yazarsa yarim dosya kalmasin.
+        # Kayip-guncelleme yarisi surer; zarari fazladan bir uyaridir.
         DURUM.parent.mkdir(parents=True, exist_ok=True)
-        DURUM.write_text(json.dumps(durum, ensure_ascii=False, indent=1),
-                         encoding="utf-8")
+        gecici = DURUM.with_suffix(".tmp")
+        gecici.write_text(json.dumps(durum, ensure_ascii=False, indent=1),
+                          encoding="utf-8")
+        os.replace(gecici, DURUM)
     except OSError:
         pass
     if seviye <= onceki:
