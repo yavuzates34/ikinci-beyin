@@ -278,3 +278,25 @@ metni yeniden yazmaz ([[acik-uclar]]).
 Codex tarafındaki karşılığı: `AGENTS.md` içeriği, eklenti listesi ve ortam
 bilgisi, kullanıcı mesajının ayrı blokları olarak yazılıyor. Blok bazında
 atılıyor (codex 01a0b9eb · 19.09 16:47).
+
+## 11. Codex Desktop kapanan oturumu başka klasöre taşıyor
+
+Desktop, kapatılan oturumu `~/.codex/sessions/` klasöründen
+`~/.codex/archived_sessions/` klasörüne taşıyor. `kayit.py` yalnızca
+birincisine bakıyordu, bu yüzden **61 oturum** arşiv araçlarına görünmüyordu.
+Onarım listesinin kaynağı `01a0ba53` de bunlardan biriydi. İkinci klasör de
+taranınca Codex oturumu sayısı 103'ten 164'e çıktı
+(claude 5c600e7e · 19.09 20:10).
+
+## 12. Bağlam doluluğu ham kayıttan ölçülebiliyor
+
+- **Codex:** `token_count` olayında `last_token_usage.input_tokens` alanı
+  `model_context_window` alanına bölünür (pencere 258.400). `01a0ba74`
+  oturumu uyarı almadan %83'e çıktı ve 20:07'de sıkıştırıldı: sayaç
+  gösterilmeyen arayüzde erken devrin neden gerektiğinin kanıtı
+  (claude 5c600e7e · 19.09 20:28).
+- **Claude:** son asistan satırında `usage` alanının `input + cache_read +
+  cache_creation` toplamı alınır. Pencere boyutu kayıtta geçmiyor. Kullanıcının
+  arayüzde gördüğü yüzdeyle kalibre edildi: 472.650 token yaklaşık %45-50
+  gösteriyordu, yani pencere yaklaşık 1 milyon token
+  (claude 5c600e7e · 19.09 20:26).

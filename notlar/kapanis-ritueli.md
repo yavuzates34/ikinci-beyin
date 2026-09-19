@@ -288,3 +288,13 @@ başına `kapanan-oturum:` yazmamalı; kapanış işareti ancak yeni oturuma ger
 geçişte konmalı. `PreCompact` ana yol değil, son savunma hattı olarak kalmalı
 (codex 01a0ba53 · 19.09 19:00). İnceleme kaydı:
 [[2026-09-19-codex-sunum-ilk-alti-slayt]].
+
+**Kuruldu (19.09 20:30):** `araclar/baglam.py`. Tur başı hook'u, kullanıcı yeni
+mesaj yazınca bağlam doluluğunu ham kayıttan ölçer. Kullanıcının seçtiği iki
+eşikte birer kez uyarır: %50 ve %70. Uyarıyla birlikte tam omurgayı diske
+alır. Aynı seviyede tekrar uyarmaz. Compact sonrasında doluluk düşerse seviye
+sıfırlanır. Kapanışı kullanıcı başlatır. `kapanan-oturum:` onayı kullanıcıya,
+ileride yetkili bir orkestratör ajana aittir. Bu oturumda gerçek hook ile
+sınandı: %50 aşıldı, uyarı modele ulaştı, omurga yazıldı
+(claude 5c600e7e · 19.09 20:31). Ölçüm kaynakları: [[olculmus-bulgular]] §12.
+

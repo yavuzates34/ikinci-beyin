@@ -80,6 +80,18 @@ gerek yok; çökme ve elektrik kesintisi de böyle yakalanıyor. Codex'in
 SessionEnd'i boşta kalınca da tetikleniyor, yani "konu bitti" demek değil
 (codex 01a0b9eb · 19.09 16:47).
 
+**Bakım adayları (19 Eylül).** `araclar/bakim.py` şunları ölçer:
+- `notlar/` toplam boyutu ve iki eşik
+- büyük notlar
+- haritasız notlar
+- `acik-uclar` içindeki kapanmış maddeler
+- yetim gece taslakları
+
+Derleyici bunları raporlar, oturum başı canlı ölçüp uyarır. Hiçbir şey
+silinmez. Taşımayı kullanıcı onaylar, ileride yetkili bir orkestratör ajan da
+onaylayabilir. İlk çalışmada haritada olmayan `ortam-kurulum` notunu yakaladı
+(claude 5c600e7e · 19.09 20:22).
+
 **Rapor artık bir alıcıya ulaşıyor.** Push sonucu `son-calisma.json`'a
 yazılıyor. Oturum başı betiği o dosyadaki sorunları (kesinti, 36 saatten uzun
 sessizlik, push hatası, kusurlu işaretçi) ilk mesajla modele veriyor. Önceden
