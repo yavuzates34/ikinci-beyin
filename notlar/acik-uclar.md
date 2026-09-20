@@ -68,6 +68,16 @@ henüz doğrulanmadı.
    (görevi S4U / gizli pencere olarak kurmak) **sistem ayarıdır, kullanıcıya
    ait**; uygulanmadı. Onarım listesi madde 16.
 
+7. **Tam otomasyon kararı (20.09).** Kullanıcı sistemin tam otomatik
+   çalışmasına karar verdi; kapanış ritüeli yerine **eşik ritüeli** gelecek,
+   çünkü sistem uygulamanın arayüzünde oturum açıp kapatamıyor. Tasarım,
+   7 açık (3 küme), kabul edilen politikalar ve ölçülecekler
+   [[2026-09-21-tam-otomasyon-plani]] içinde. En kritik teknik engel: bağlam
+   ölçümü turun **içinde** yok (`UserPromptSubmit`'e bağlı), bu yüzden uzun
+   tek tur eşiği kaçırıyor. İlk üç iş: telafi kuyruğu, örneklemeli içerik
+   denetimi, sağlık/eskime alarmı.
+   (claude 96517e26 · 21.09 01:11)
+
 ## Ertelenenler
 
 - **Gelen kutusu** (mobilden not düşme) ve **mem0** (kullanıcı, 16.09).
