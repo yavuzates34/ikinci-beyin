@@ -11,7 +11,19 @@
  },
  "96517e26": {
   "seviye": 0,
-  "yuzde": 0.115,
-  "an": "2026-09-20T01:52"
+  "yuzde": 0.168,
+  "an": "2026-09-20T04:07"
+ },
+ "01a0bc5c-f1c4-7002-a761-c9d3dec8e7f1": {
+  "seviye": 2,
+  "yuzde": 0.8480882352941177,
+  "an": "2026-09-20T05:46",
+  "kurtarma_bekliyor": false
+ },
+ "96517e26-5948-4d47-8014-6e69edc7d0c3": {
+  "seviye": 0,
+  "yuzde": 0.209768,
+  "an": "2026-09-20T06:04",
+  "kurtarma_bekliyor": false
  }
 }
