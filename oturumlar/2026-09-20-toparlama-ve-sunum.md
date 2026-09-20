@@ -1,6 +1,7 @@
 # Toparlama ve sağlayıcıdan bağımsız ikinci beyin sunumu — 20 Eylül 2026
+kapanan-oturum: 01a0bc5c-f1c4
 
-**Ara kayıt; çalışma sürüyor.** Aynı Codex oturumu: `01a0bc5c-f1c4`.
+**Tamamlanan iş evresi.** 20.09 06:06 – 20.09 17:37. Aynı Codex oturumu: `01a0bc5c-f1c4`.
 Bu, [[2026-09-20-astra-kontrol]] sonrasında kullanıcının verdiği ikinci iş
 evresidir; önceki denetim kaydı kendi zaman aralığını korur.
 
@@ -102,10 +103,38 @@ Yayınlanan claude.ai kopyasına erişim/yazma yapılmayacak.
   için omurga onu kullanıcı konuşması diye saymıyor; bu arşivde hedef açıkça
   kaydedildi. Test silme onayı 06:12 mesajında doğrudan mevcut.
 
-## Hâlâ tamamlanmayan işlem
+## 17:33 itibarıyla kalan işlem — tarihçe
 
 17:33 sayımı: **178 test klasörü hâlâ mevcut**. Kullanıcı onayı var;
 otomatik onay denetiminin engeli nedeniyle silme gerçekleşmedi. Kullanıcıya
 doğrulamalı betiği elle çalıştırma komutu verildi; sonucu bekleniyor. Bu iş
 bitmeden hedef “tamamlandı” sayılmayacak. Kalıcı not budaması ise istenen
 **plan** olarak teslim edildi; uygulanması bu hedefin zorunlu işi değil.
+
+
+## Son ölçüm ve kapanış
+
+17:35’te bağımsız dosya sistemi sayımı temizlik sonucunu doğruladı:
+manifestodaki 178 hedefin tamamı yok; sahte BEYIN.md sayısı **0**; yedi
+eski test kanıt logu korunmuş. Otomatik silme çağrım engellenmişti; sonradan
+silmenin hangi dış süreçle yapıldığını kayıttan ölçmedim. Sonucu doğruladım,
+“ben sildim” iddiası kurmuyorum. Kanıt `temizlik-sonucu.json`.
+
+Temizlik sonrasında testler tekrar çalıştı: **28/28**, kasa fixture'ı 0,
+sahte BEYIN 0, yeni geçici kalıntı 0. Böylece sadece eski çöpün kalkması
+veya testlerin çalışması ayrı ayrı değil, yeniden kirletmeme de sınandı.
+
+Sunum commit'i `c4ff8ab`; harita/plan kaydı `b642302`; son uygulama durumu
+`7fb58bd`. İlk dört geri dönüş noktası üstte. Son kapanış güncellemeleri de
+ayrı commit'e alınacak. Uzak hesaptaki sunum ve uzak git deposuna yayın/push
+yapılmadı.
+
+Kapanıştan önce kesin kimlikle omurga yeniden okundu. Kalıcı ders
+`notlar/tasarim-dersleri.md` içine terfi etti; BEYIN ve kaynak haritası
+bağlandı. Hedefin gerektirdiği kod ve yerel sunum işi tamamlandı.
+
+**Bekleyen karar:** üç notta tarihçeyi soğuk katmana taşıma planı kullanıcıya
+sunuldu; onay olmadan uygulanmadı. “Plan sun” isteği yerine getirildi.
+**Ölçülmemiş davranışlar:** canlı Codex PreCompact, yeni gece tetiklemesi,
+yeni uygulamaların entegrasyonu ve yayımlanan sunumun güncelliği. Bunlar
+sunumda sınır olarak duruyor; bu iş evresinde “kapandı” diye işaretlenmedi.

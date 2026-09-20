@@ -30,8 +30,8 @@ test_threshold_crossings_repeat_only_after_reset (__main__.OnarimTests.test_thre
 test_token_zero_is_valid_measurement (__main__.OnarimTests.test_token_zero_is_valid_measurement) ... ok
 
 ----------------------------------------------------------------------
-Ran 28 tests in 1.185s
+Ran 28 tests in 1.229s
 
 OK
 
-Kasa ve gecici alan farki: 0
+Temizlik sonrasi: kasa fixture 0, sahte BEYIN 0, yeni gecici kalinti 0

@@ -79,6 +79,11 @@ henüz doğrulanmadı.
 
 ## Karar bekleyenler
 
+- **Kalıcı katman bölme paketi:** [[kalici-katman-bakim-plani]]. Üç büyük
+  notun eski ölçüm/deneme tarihçesini kaynaklarıyla arşive almak önerildi;
+  yaklaşık 96–97 KB sıcak katman hedefi tahmin. Henüz onaylanmadı/uygulanmadı.
+  (codex 01a0bc5c-f1c4 · 20.09 17:24)
+
 - Tek ortak hafıza klasörü (`autoMemoryDirectory`) kurulmadı.
 - Raspberry Pi alınacak mı? Öneri: önce mevcut makineyi sürekli açık bırakıp
   uzaktan bağlanmayı test et.

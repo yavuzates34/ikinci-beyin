@@ -4,9 +4,10 @@
 > test klasörlerini Obsidian yine tarar. Önceki Astra testleri 178 sahte
 > BEYIN.md bıraktı. Test fixture'ı artık kasa dışındaki geçici alanda,
 > başarı/kurulum hatası/assertion hatasında `addCleanup` ile temizleniyor.
-> 28 test geçti, yeni kalıntı 0; eski klasör temizliği ayrı, onaylı işlemdir.
+> 28 test geçti, yeni kalıntı 0. Kullanıcı 178 eski klasörü silmeyi onayladı;
+> sonraki bağımsız sayımda hedefler ve sahte BEYIN 0, kanıt logları mevcut.
 > [[2026-09-20-toparlama-ve-sunum]].
-> (codex 01a0bc5c-f1c4 · 20.09 17:31)
+> (codex 01a0bc5c-f1c4 · 20.09 17:35)
 
 Eğitim videolarından çıkarılıp bu projede yaşananlarla sınanmış ilkeler.
 

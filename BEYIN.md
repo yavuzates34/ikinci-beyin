@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 20.09.2026 17:32
+**Son güncelleme:** 20.09.2026 17:37
 
 ---
 
@@ -75,7 +75,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-09-18-saglayici-bagimsizligi-ve-erken-devir]] | 18.09 04:37 – 20.09 00:40 | **25 mesaj, 44 saat.** Sağlayıcıdan bağımsız çekirdek (AGENTS.md, kapanış işareti, Codex adaptörü), erken devir (%50/%70), bakım döngüsü, 14 slaytlık kullanım rehberi ve 15 açıklık ortak onarım turu |
 | [[2026-09-19-sunum-onarim-listesi]] | — | Oturum kaydı değil: 15 açıklık onarım turunun iş belgesi ve durum tablosu (19–20.09). Astra turu bunun üzerinden yürür |
 | [[2026-09-20-astra-kontrol]] | 20.09 04:10 – 20.09 05:55 | Bağımsız 16 madde denetimi, yeni açıklar, kod/not/sunum kaynağı düzeltmeleri, onaylı gece görevi ve proje 1M ayarı |
-| [[2026-09-20-toparlama-ve-sunum]] | 20.09 06:06 – sürüyor | Önceki denetimin commitleri, test kirliliğinin giderilmesi, bakım planı ve sağlayıcıdan bağımsız sunumun yeniden yazımı |
+| [[2026-09-20-toparlama-ve-sunum]] | 20.09 06:06 – 20.09 17:37 | Önceki denetimin commitleri, test kirliliğinin giderilmesi, bakım planı ve sağlayıcıdan bağımsız sunumun yeniden yazımı |
 | [[2026-09-20-codex-hook-guven-oncesi-denetimi]] | 20.09 00:25 – 00:35 | Desktop'ta güven öncesi hook denetimi; model beyanı ile gerçek `hooks.additional_context` kaydının ayrımı |
 | [[2026-09-20-codex-hook-guveni-ve-testlerin-kapanisi]] | 20.09 00:45 – 01:39 | Güven öncesi/sonrası beş Codex test kaydı; Desktop ve normal CLI zinciri doğrulandı, tüm açık Codex oturumları kapatıldı |
 | [[acik-uclar-tarihce]] | — | Oturum kaydı değil: açık uçlardan kapanan ve devredilen maddeler, metniyle (19.09 bakımında taşındı) |
@@ -102,9 +102,8 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 - **Toparlama ve sunum:** [[2026-09-20-toparlama-ve-sunum]]. Önceki
   denetim dört commit'te kaydedildi; testler artık kasa dışında kendi geçici
-  verisini temizliyor. Eski 178 test klasörünün silinmesi kullanıcı tarafından
-  onaylandı, fakat otomatik onay denetimi engelledi; henüz silinmiş sayılmaz.
-  Doğrulamalı elle çalıştırma betiği `araclar/temizle-astra-testleri.ps1`.
+  verisini temizliyor. Eski 178 test klasörü de kalktı: bağımsız son sayımda sahte BEYIN 0,
+  test sonrası yeni kalıntı 0; yedi kanıt logu korunuyor.
 - **Kalıcı katman:** [[kalici-katman-bakim-plani]] yaklaşık 100 KB altına
   iniş önerisi; henüz uygulanmadı, kullanıcı onayı gerekir.
 - **Sunumun yeni kaynağı:** `rehber/sunum/index.html`. 14 slayt önce amaç ve

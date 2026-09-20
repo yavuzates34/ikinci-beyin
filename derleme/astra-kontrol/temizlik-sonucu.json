@@ -1,0 +1,15 @@
+{
+  "manifest_targets": 178,
+  "remaining_targets": 0,
+  "fake_BEYIN_remaining": 0,
+  "test_evidence_logs_preserved": [
+    "test-dorduncu-duzeltme.txt",
+    "test-ikinci-duzeltme.txt",
+    "test-ikinci-oncesi.txt",
+    "test-ilk-duzeltme.txt",
+    "test-oncesi.txt",
+    "test-son.txt",
+    "test-ucuncu-duzeltme.txt"
+  ],
+  "method": "Otomatik silme engeli sonrasi dosya sisteminde bagimsiz tekrar sayim; silmeyi bu ajan aracinin yaptigi iddia edilmiyor."
+}
