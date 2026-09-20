@@ -4,3 +4,5 @@ __pycache__/
 .claude/settings.local.json
 derleme/derleyici.log
 derleme/omurga-anlik/
+derleme/*.lock
+derleme/astra-kontrol/test-*/

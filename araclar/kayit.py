@@ -44,6 +44,7 @@ GURULTU_ONEK = (
     "<user_instructions>",
     "<environment_context>",
     "<available_plugins>",
+    "<codex_internal_context",
     "Caveat: The messages below were generated",
     # Reply bicimli mesajlarda her parcanin arkasina harness ekliyor; bu
     # oturumun omurgasini 17 sahte mesajla sisiriyordu (claude 5c600e7e · 19.09 17:24).
@@ -64,6 +65,7 @@ TAM_GURULTU = (
 # blogun tamami atilir. Codex yakaladi, 01a0b9eb omurgasinda olculdu
 # (claude 5c600e7e · 19.09 17:20).
 ENJEKSIYON_BLOK = (
+    "<codex_internal_context",
     "# AGENTS.md instructions for",
     "<recommended_plugins>",
     "<available_plugins>",
@@ -83,6 +85,7 @@ class Oturum(NamedTuple):
     proje: str
     an: datetime  # son yazma zamani (yerel)
     boyut: int  # bayt
+    parcalar: tuple[Path, ...] = ()  # ayni mantiksal oturumun tum ham dosyalari
 
     @property
     def kisa(self) -> str:
@@ -111,6 +114,11 @@ def utf8_zorla() -> None:
     for akis in (sys.stdout, sys.stderr):
         if hasattr(akis, "reconfigure"):
             akis.reconfigure(encoding="utf-8", errors="replace")
+
+
+def ham_satirlar(yol: Path) -> Iterator[str]:
+    with io.open(yol, encoding='utf-8', errors='replace') as f:
+        yield from f
 
 
 # Proje koku = bu dosyanin bir ustu (araclar/ icinde yasiyor). Calisma
@@ -261,27 +269,35 @@ def oturumlar(kapsam: str = "hepsi", proje: str | None = None) -> list[Oturum]:
 
 
 def _tekille(havuz: list[Oturum]) -> list[Oturum]:
-    """Ayni kaynak + ayni TAM kimlik iki dosyada duruyorsa en buyugunu tutar.
-
-    Olculdu: 6 grup (claude'da ayni oturum iki proje yolunda - C: ve D: -,
-    codex'te ayni oturumun iki rollout dosyasi). Eskiden oturum iki kez
-    sayiliyordu: arama ayni sonucu iki kez veriyor, dedektor ayni oturumu iki
-    kez listeliyordu (claude 5c600e7e · 20.09 00:45). En BUYUK dosya tutulur;
-    kucuk olan ayni oturumun eksik kopyasidir."""
+    """Oturumu bir kez say, parcalarini atma. En buyuk dosya tam kopya
+    olmayabilir: Astra olcumu uc Codex grubunda 81 ozel mesaj buldu.
+    Ana yol en yeni yazilan parcadir; mesajlar() tum parcalari birlestirir."""
     en_iyi: dict[tuple[str, str], Oturum] = {}
     for o in havuz:
         anahtar = (o.kaynak, o.kimlik)
         mevcut = en_iyi.get(anahtar)
-        if mevcut is None or o.boyut > mevcut.boyut:
+        if mevcut is None:
             en_iyi[anahtar] = o
+        else:
+            yollar = tuple(dict.fromkeys((mevcut.parcalar or (mevcut.yol,))
+                                         + (o.parcalar or (o.yol,))))
+            yeni = max((mevcut, o), key=lambda x: x.an)
+            en_iyi[anahtar] = yeni._replace(parcalar=yollar,
+                boyut=sum(p.stat().st_size for p in yollar))
     return list(en_iyi.values())
 
 
 def oturum_bul(parca: str, kapsam: str = "hepsi") -> Oturum | None:
-    """Kimligin bas kismiyla oturum bulur."""
-    for o in oturumlar(kapsam):
-        if o.kimlik.startswith(parca) or o.yol.stem.startswith(parca):
-            return o
+    """Tam kimlik veya benzersiz onek. Belirsizlikte ilk kaydi SECMEZ."""
+    havuz = oturumlar(kapsam)
+    tam = [o for o in havuz if o.kimlik == parca]
+    eslesen = tam or [o for o in havuz if o.kimlik.startswith(parca)
+                     or o.yol.stem.startswith(parca)]
+    if len(eslesen) == 1:
+        return eslesen[0]
+    if len(eslesen) > 1:
+        print(f"UYARI: belirsiz oturum '{parca}'; tam kimlik ver: "
+              + ", ".join(o.kimlik for o in eslesen), file=sys.stderr)
     return None
 
 
@@ -291,7 +307,7 @@ def oturum_bul(parca: str, kapsam: str = "hepsi") -> Oturum | None:
 
 
 def _claude_mesajlari(yol: Path) -> Iterator[Mesaj]:
-    for satir in io.open(yol, encoding="utf-8"):
+    for satir in ham_satirlar(yol):
         satir = satir.strip()
         if not satir:
             continue
@@ -314,7 +330,7 @@ def _claude_mesajlari(yol: Path) -> Iterator[Mesaj]:
 
 
 def _codex_mesajlari(yol: Path) -> Iterator[Mesaj]:
-    for satir in io.open(yol, encoding="utf-8"):
+    for satir in ham_satirlar(yol):
         satir = satir.strip()
         if not satir:
             continue
@@ -341,7 +357,13 @@ def mesajlar(oturum: Oturum) -> Iterator[Mesaj]:
     """Bir oturumun konusma mesajlari: arac ciktisi, dusunme ve sistem
     enjeksiyonu haric, kronolojik sirada."""
     okuyucu = _claude_mesajlari if oturum.kaynak == "claude" else _codex_mesajlari
-    yield from okuyucu(oturum.yol)
+    if not oturum.parcalar:
+        yield from okuyucu(oturum.yol)
+        return
+    # Ayni mesaj ayni damga/rol/metinle kopyalandiysa bir kez; farkli devam
+    # parcalarindaki mesajlar korunur. Dosyalara tasima/silme/yazma yapilmaz.
+    birlesik = dict.fromkeys(m for p in oturum.parcalar for m in okuyucu(p))
+    yield from sorted(birlesik, key=lambda m: m.an)
 
 
 # Kapanis isareti: bir oturumun kapandigini soyleyen TEK kaynak.
@@ -353,20 +375,59 @@ KAPANIS_DESENI = re.compile(r"^kapanan-oturum:\s*(.+)$", re.MULTILINE | re.IGNOR
 
 
 def kapanmis_mi(oturum: "Oturum", kapali: set[str]) -> bool:
-    """Isaret ONEK olarak eslesir: 8 haneli eski isaretler de, 13 haneli yeni
-    Codex isaretleri de calisir."""
-    return any(oturum.kimlik.startswith(i) for i in kapali)
+    """Eski onek ancak tek oturumu gosteriyorsa kapanis kanitidir."""
+    if oturum.kimlik in kapali:
+        return True
+    for i in kapali:
+        if oturum.kimlik.startswith(i):
+            bulunan = oturum_bul(i)
+            if bulunan and bulunan.kimlik == oturum.kimlik:
+                return True
+    return False
+
+
+def kod_disindaki(metin: str) -> str:
+    """Markdown kod citi ornekleri mekanik isaret sanilmasin."""
+    sonuc, cit, uzunluk = [], None, 0
+    for satir in metin.splitlines(keepends=True):
+        m = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", satir.rstrip("\r\n"))
+        if m:
+            isaret, kuyruk = m.groups()
+            if cit is None:
+                cit, uzunluk = isaret[0], len(isaret)
+            elif isaret[0] == cit and len(isaret) >= uzunluk and not kuyruk.strip():
+                cit = None
+            continue
+        if cit is None:
+            sonuc.append(satir)
+    return "".join(sonuc)
 
 
 def kapanmis_kimlikler() -> set[str]:
     """oturumlar/*.md icindeki `kapanan-oturum: <id>[, <id>]` satirlarindan
-    kapanmis oturum kimlikleri, YAZILDIGI GIBI (en az 8 hane)."""
+    kapanmis oturumlarin benzersiz cozulmus tam kimlikleri.
+    Taslaklar ve kod ornekleri onay sayilmaz."""
     kimlikler: set[str] = set()
     for p in (PROJE_KOKU / "oturumlar").glob("*.md"):
+        if p.name.startswith("oto-"):
+            continue  # model taslagi insanin kapanis onayi olamaz
         metin = p.read_text(encoding="utf-8", errors="replace")
-        for satir in KAPANIS_DESENI.findall(metin):
+        if re.search(r"^oto-kayit:", metin, re.M):
+            continue
+        for satir in KAPANIS_DESENI.findall(kod_disindaki(metin)):
             for parca in re.split(r"[,\s]+", satir.strip()):
                 parca = parca.strip("`")
                 if re.fullmatch(r"[0-9a-f]{8}[0-9a-f-]*", parca):
                     kimlikler.add(parca)
-    return kimlikler
+    # Bir kez coz; dedektorun her oturum icin arsivi yeniden taramasi gerekmez.
+    if not kimlikler:
+        return set()
+    havuz = oturumlar()
+    sonuc = set()
+    for i in kimlikler:
+        eslesen = [o for o in havuz if o.kimlik.startswith(i)]
+        if len(eslesen) == 1:
+            sonuc.add(eslesen[0].kimlik)
+        elif len(eslesen) > 1:
+            print(f"UYARI: kapanis isareti belirsiz: {i}", file=sys.stderr)
+    return sonuc

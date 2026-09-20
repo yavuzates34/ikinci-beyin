@@ -40,13 +40,49 @@ ANLIK_OMUR = 30  # gun
 INCE_ESIK = 0.02
 
 
-def git(*arg) -> str:
+def git_sonuc(*arg) -> subprocess.CompletedProcess:
     try:
-        s = subprocess.run(["git", *arg], cwd=KOK, capture_output=True,
-                           text=True, encoding="utf-8", errors="replace")
-        return s.stdout.strip()
-    except OSError:
-        return ""
+        return subprocess.run(["git", *arg], cwd=KOK, capture_output=True,
+                              text=True, encoding="utf-8", errors="replace", timeout=120)
+    except (OSError, subprocess.TimeoutExpired) as e:
+        return subprocess.CompletedProcess(arg, 1, '', type(e).__name__)
+
+
+def git(*arg) -> str:
+    s = git_sonuc(*arg)
+    return s.stdout.strip() if s.returncode == 0 else ''
+
+
+def yedekle() -> dict:
+    """Git basarisini cikis kodundan olc; yerel tracking ref uzak kaniti degil."""
+    sonuc = {'commit': 'degisiklik yok', 'push': 'calismadi'}
+    for args in [('add', '-A'), ('status', '--porcelain')]:
+        s = git_sonuc(*args)
+        if s.returncode:
+            sonuc['commit'] = 'BASARISIZ'
+            print(f'  git: {args[0]} BASARISIZ (kod {s.returncode})')
+            return sonuc
+    if s.stdout.strip():
+        c = git_sonuc('-c', 'core.quotepath=false', 'commit', '-q', '-m',
+                      f'Derleme {datetime.now():%Y-%m-%d}')
+        if c.returncode:
+            sonuc['commit'] = 'BASARISIZ'
+            print(f'  git: COMMIT BASARISIZ (kod {c.returncode})')
+            return sonuc
+        sonuc['commit'] = 'tamam'
+        print('  git: commit atildi')
+    else:
+        print('  git: degisiklik yok')
+    remote = git_sonuc('remote')
+    if remote.returncode:
+        sonuc['push'] = 'BASARISIZ'
+    elif 'origin' not in remote.stdout.splitlines():
+        sonuc['push'] = 'origin yok'
+    else:
+        push = git_sonuc('push', '-q', 'origin', 'HEAD')
+        sonuc['push'] = 'tamam' if push.returncode == 0 else 'BASARISIZ'
+    print(f"  git: push {sonuc['push']}")
+    return sonuc
 
 
 def islenmis_metin() -> str:
@@ -129,20 +165,18 @@ def gunluk(bugun: datetime, kuru: bool, oto: list[str] | None = None,
         s += [f"- {x}" for x in uy] if uy else ["- aday yok"]
         s.append("")
 
-    # PreCompact anlik goruntuleri + eskilerini temizle
+    # Eski kurtarma dosyalari adaydir; dosya silme kullanici onayi ister.
     anlik = sorted((DERLEME / "omurga-anlik").glob("*.md"))
     yeni_anlik = [p for p in anlik
                   if datetime.fromtimestamp(p.stat().st_mtime) >= dun]
-    silinen = 0
+    eski = 0
     for p in anlik:
         if datetime.fromtimestamp(p.stat().st_mtime) < bugun - timedelta(days=ANLIK_OMUR):
-            if not kuru:
-                p.unlink()
-            silinen += 1
+            eski += 1
     s += [f"## PreCompact", "",
           f"Son 24 saatte alinan omurga anlik goruntusu: **{len(yeni_anlik)}** "
           f"(agin devreye girdigi an sayisi)",
-          f"{ANLIK_OMUR} gunden eski silinen: {silinen}", ""]
+          f"{ANLIK_OMUR} gunden eski bakim adayi: {eski} (silinmedi; kullanici onayi gerekir)", ""]
 
     degisen = git("log", "--since=24 hours ago", "--name-only", "--pretty=format:")
     dosyalar = sorted({d for d in degisen.splitlines() if d.strip()})
@@ -220,25 +254,36 @@ def aylik(bugun: datetime, kuru: bool) -> None:
           "karsilastirilir. Kalite yargilanmiyor - ORANTISIZLIK gosteriliyor.",
           f"Esik: kayit, konusmanin %{INCE_ESIK * 100:.0f}'inden kucukse 'ince'.", ""]
 
-    metinler = islenmis_metin()
-    kayitlar = {p.name: p.stat().st_size for p in (KOK / "oturumlar").glob("*.md")}
-    toplam_kayit = sum(kayitlar.values())
+    havuz = kayit.oturumlar('proje')
+    kayit_bayti = {}
+    for p in (KOK / 'oturumlar').glob('*.md'):
+        metin = p.read_text(encoding='utf-8', errors='replace')
+        if p.name.startswith('oto-') or re.search(r'^oto-kayit:', metin, re.M):
+            continue
+        isaretler = kayit.KAPANIS_DESENI.findall(kayit.kod_disindaki(metin))
+        for satir in isaretler:
+            for kimlik in re.split(r'[,\s]+', satir.strip()):
+                kimlik = kimlik.strip('`')
+                eslesen = [o for o in havuz if o.kimlik.startswith(kimlik)] if kimlik else []
+                if len(eslesen) == 1:
+                    key = eslesen[0].kimlik
+                    kayit_bayti[key] = kayit_bayti.get(key, 0) + p.stat().st_size
     ince = []
-    for o in kayit.oturumlar("proje"):
-        if o.kimlik[:8] not in metinler:
+    for o in havuz:
+        if o.kimlik not in kayit_bayti:
             continue
         try:
-            harf = sum(len(m.metin) for m in kayit.mesajlar(o))
+            harf = sum(len(m.metin.encode('utf-8')) for m in kayit.mesajlar(o))
         except OSError:
             continue
         if harf < 2000:
             continue
-        oran = toplam_kayit / harf
+        oran = kayit_bayti[o.kimlik] / harf
         if oran < INCE_ESIK:
             ince.append((oran, o, harf))
     if ince:
         for oran, o, harf in sorted(ince):
-            s.append(f"- `{o.kimlik[:8]}` | konusma {harf / 1024:.0f} KB | "
+            s.append(f"- `{o.kisa}` | konusma {harf / 1024:.0f} KB | "
                      f"oran %{oran * 100:.1f} - **ince, gozden gecir**")
     else:
         s.append("- Orantisiz kayit bulunmadi.")
@@ -311,7 +356,7 @@ def aylik_gerekli(bugun: datetime) -> bool:
 
 # Saglayici adi claude ya da codex: beyin tek saglayiciya bagli degil (19.09).
 # Kimlik 8 hane ya da 13 hane (Codex, bkz. kayit.Oturum.kisa).
-ISARETCI = re.compile(r"\((?:claude|codex) ([0-9a-f]{8}(?:-[0-9a-f]{4})?)([^)]*)\)", re.S)
+ISARETCI = re.compile(r"\((claude|codex)\s+([^\s·)]+)([^)]*)\)", re.S)
 # Gun.ay, istege bagli saat. Tek isaretcide birden fazla damga olabilir:
 # "(claude 3557db3e - 16.09 10:20 ve 17.09 01:55)" gibi. Saatsiz olan da
 # gecerlidir; o zaman sadece "o gun o oturumda mesaj var mi" sorulur.
@@ -334,7 +379,7 @@ def isaretci_denetle(dosyalar: list[Path] | None = None) -> tuple[int, list[str]
     kusurlu: list[str] = []
     denetlenemeyen: list[str] = []
     toplam = 0
-    onbellek: dict[str, list | None] = {}
+    onbellek: dict[tuple[str, str], list | None] = {}
     # Gece yazicisinin taslaklari da denetlenir: gozetimsiz yazilan metin
     # uydurma damga uretebilir ve onu once bu ayak yakalar (19.09).
     if dosyalar is None:
@@ -345,18 +390,24 @@ def isaretci_denetle(dosyalar: list[Path] | None = None) -> tuple[int, list[str]
             metin = p.read_text(encoding="utf-8")
         except OSError:
             continue
-        for m in ISARETCI.finditer(metin):
+        for m in ISARETCI.finditer(kayit.kod_disindaki(metin)):
+            if m.group(2) == '<id>':
+                continue  # belgelenmis yer tutucu; gercek kaynak iddiasi degil
             toplam += 1
-            kimlik, govde = m.group(1), m.group(2)
+            kaynak, kimlik, govde = m.groups()
+            if not re.fullmatch(r"[0-9a-f]{8}(?:-[0-9a-f]{4})?(?:-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?", kimlik):
+                denetlenemeyen.append(f"{p.name}: kimlik bicimi okunamadi ({kimlik})")
+                continue
             damgalar = DAMGA.findall(govde)
             if not damgalar:
                 denetlenemeyen.append(
                     f"{p.name}: {kimlik} - damga okunamadi ({govde.strip()[:40]})")
                 continue
-            if kimlik not in onbellek:
-                o = kayit.oturum_bul(kimlik)
-                onbellek[kimlik] = list(kayit.mesajlar(o)) if o else None
-            mesajlar = onbellek[kimlik]
+            anahtar = (kaynak, kimlik)
+            if anahtar not in onbellek:
+                o = kayit.oturum_bul(kimlik, kaynak.lower())
+                onbellek[anahtar] = list(kayit.mesajlar(o)) if o else None
+            mesajlar = onbellek[anahtar]
             if mesajlar is None:
                 kusurlu.append(f"{p.name}: {kimlik} - oturum kaydi bulunamadi")
                 continue
@@ -426,39 +477,15 @@ def main() -> int:
     else:
         print(f"  isaretci: {toplam_i} isaretcinin hepsi dogrulandi")
 
-    push = "kuru calisma"
+    yedek = {'commit': 'kuru calisma', 'push': 'kuru calisma'}
     if not a.kuru:
-        git("add", "-A")
-        durum = git("status", "--porcelain")
-        if durum:
-            git("-c", "core.quotepath=false", "commit", "-q", "-m",
-                f"Derleme {bugun:%Y-%m-%d}")
-            print(f"  git: commit atildi ({len(durum.splitlines())} dosya)")
-        else:
-            print("  git: degisiklik yok")
-
-        # Dis yedek: private GitHub deposuna gonder. Basarisizlik derlemeyi
-        # bozmamali - internet yoksa ya da kimlik dusmusse yerel commit yine
-        # duruyor, sonraki gece gonderilir.
-        if git("remote"):
-            onceki = git("rev-parse", "@{u}") or ""
-            git("push", "-q", "origin", "HEAD")
-            simdi_u = git("rev-parse", "@{u}") or ""
-            yerel = git("rev-parse", "HEAD") or ""
-            if simdi_u == yerel:
-                push = "tamam" if simdi_u != onceki else "uzak guncel"
-                print(f"  git: push {push}")
-            else:
-                push = "BASARISIZ"
-                print("  git: PUSH BASARISIZ - dis yedek guncel degil")
-        else:
-            push = "uzak depo yok"
+        yedek = yedekle()
 
     # Sessiz basari yasak: ne bulundugunu sayiyla soyle.
     print(f"# Islenmemis oturum: {eksik}")
     durum_yaz(bugun, True, a.kuru,
               islenmemis_oturum=eksik,
-              push=push,
+              **yedek,
               oto_kayit=oto,
               bakim=bakim_olcu,
               isaretci_toplam=toplam_i,
@@ -466,7 +493,10 @@ def main() -> int:
               isaretci_denetlenemeyen=denetlenemeyen,
               onceki_kesinti=kesinti)
     print("# Derleme tamamlandi")
-    return 0
+    hata = (yedek['commit'] == 'BASARISIZ' or yedek['push'] == 'BASARISIZ'
+            or any('BASARISIZ' in s or 'CALISMADI' in s for s in oto)
+            or 'hata' in bakim_olcu)
+    return 1 if hata else 0
 
 
 if __name__ == "__main__":

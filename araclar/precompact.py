@@ -64,8 +64,8 @@ def main() -> int:
     tetik = girdi.get("trigger", "?")
     kayit_yolu = girdi.get("transcript_path")
 
-    # Oturumu once transcript_path'ten bul (kesin), olmazsa en son yazilan
-    # kayda dus (bu projede calisan oturum odur).
+    # Transcript yoksa yalniz verilen kimligi kullan. Son yazilan kayit
+    # paralel bir oturuma ait olabilir; tahminle kurtarma yapilmaz.
     oturum = None
     if kayit_yolu:
         p = Path(kayit_yolu)
@@ -83,13 +83,13 @@ def main() -> int:
                 datetime.fromtimestamp(st.st_mtime), st.st_size,
             )
     if oturum is None:
-        havuz = kayit.oturumlar("proje")
-        if not havuz:
+        kimlik = girdi.get("session_id")
+        oturum = kayit.oturum_bul(kimlik, "hepsi") if kimlik else None
+        if oturum is None:
             devir.birak("PreCompact: oturum kaydi bulunamadi, omurga alinamadi. "
-                        "Baglam sikistirildi - onemli bir sey varsa simdi yaz.")
+                        "Baglam sikistirildi - onemli bir sey varsa simdi yaz.", kimlik)
             cikti("PreCompact: oturum kaydi bulunamadi, omurga alinamadi.")
             return 0
-        oturum = havuz[0]
 
     mesajlar = [m for m in kayit.mesajlar(oturum) if m.rol == kayit.KULLANICI]
     if not mesajlar:
@@ -98,7 +98,7 @@ def main() -> int:
 
     ANLIK.mkdir(parents=True, exist_ok=True)
     an = datetime.now()
-    dosya = ANLIK / f"{an:%Y-%m-%d-%H%M}-{oturum.kimlik[:8]}.md"
+    dosya = ANLIK / f"{an:%Y-%m-%d-%H%M%S-%f}-{oturum.kimlik}.md"
 
     govde = [
         f"# Omurga anlik goruntusu - {an:%d.%m.%Y %H:%M}",
@@ -121,7 +121,7 @@ def main() -> int:
     goreli = dosya.relative_to(kayit.PROJE_KOKU).as_posix()
     devir.birak(
         f"BAGLAM SIKISTIRILDI ({an:%d.%m %H:%M}, PreCompact, tetik: {tetik}).\n\n"
-        f"Ilgili oturum: {oturum.kimlik[:8]}. Omurgasi sikistirmadan hemen once "
+        f"Ilgili oturum: {oturum.kimlik}. Omurgasi sikistirmadan hemen once "
         f"diske alindi: {goreli} ({len(mesajlar)} kullanici mesaji, "
         f"{harf / 1024:.1f} KB). O dosya sikistirmadan etkilenmedi.\n\n"
         f"SIMDI YAP - AGENTS.md'deki kapanis rituelinin ayni sirasi:\n"
@@ -132,7 +132,7 @@ def main() -> int:
         f"Ayrinti hatirlamiyorsan once yukaridaki omurga dosyasini oku - "
         f"konusmanin iskeleti orada, zaman damgalariyla.\n\n"
         f"Bu bir guvenlik agidir: kullanici 'kapatalim' demeden sikistirma "
-        f"geldi. Oturum bitmiyor; yazdiktan sonra kaldigin yerden devam et."
+        f"geldi. Oturum bitmiyor; yazdiktan sonra kaldigin yerden devam et.", oturum.kimlik
     )
     cikti(f"Omurga diske alindi: {goreli} ({len(mesajlar)} mesaj, "
           f"{harf / 1024:.1f} KB)")

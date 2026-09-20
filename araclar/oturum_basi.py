@@ -76,6 +76,12 @@ def derleyici_uyarilari(simdi: datetime) -> list[str]:
     if d.get("push") == "BASARISIZ":
         uyari.append("PUSH BASARISIZ - GitHub yedegi guncel degil (internet?). "
                      "Kullaniciya soyle; elle: git push")
+    if d.get('commit') == 'BASARISIZ':
+        uyari.append('COMMIT BASARISIZ - gece degisiklikleri yerel git kaydina alinamadi')
+    if any('BASARISIZ' in s or 'CALISMADI' in s for s in d.get('oto_kayit', [])):
+        uyari.append('GECE TASLAGI BASARISIZ - ayrinti son-calisma.json oto_kayit alaninda')
+    if d.get('bakim', {}).get('hata'):
+        uyari.append('BAKIM OLCUMU BASARISIZ - derleyicinin bakim verisi eksik')
     if d.get("isaretci_kusurlu"):
         uyari.append(f"{len(d['isaretci_kusurlu'])} kaynak isaretcisi KUSURLU "
                      "(oturum ya da damga yok)")
@@ -116,7 +122,7 @@ def main() -> int:
     ek = []
     simdi = datetime.now()
 
-    bekleyen = devir.al()
+    bekleyen = devir.al(girdi.get('session_id'), devral=True)
     if bekleyen:
         ek.append("DEVIR KUTUSUNDAN:" + chr(10) + bekleyen)
 
@@ -143,8 +149,8 @@ def main() -> int:
     if kimlik:
         # Kisa kimlik kaynaga gore: Codex'te 8 hane CAKISIYOR (zaman tabanli
         # UUID), bu yuzden kayittan bulunan kisa ad kullanilir (bkz. kayit.py).
-        bu = kayit.oturum_bul(kimlik[:8], "hepsi")
-        kisa = bu.kisa if bu and kimlik.startswith(bu.kimlik[:8]) else kimlik[:8]
+        bu = kayit.oturum_bul(kimlik, "hepsi")
+        kisa = bu.kisa if bu and kimlik == bu.kimlik else kimlik
         ek.append(
             f"BU OTURUMUN KIMLIGI: {kimlik}\n"
             f"Araclara kesin kimlik ver: python araclar/omurga.py {kisa}\n"

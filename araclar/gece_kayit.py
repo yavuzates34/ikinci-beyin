@@ -184,6 +184,8 @@ def yazdir(o: kayit.Oturum, cikti: Path | None) -> tuple[bool, str]:
         metin = citli.group(1).strip()
     if s.returncode != 0 or len(metin) < 200:
         return False, f"model basarisiz (kod {s.returncode}): {(s.stderr or metin)[:160]}"
+    if kayit.KAPANIS_DESENI.search(metin):
+        return False, "model taslaga kapanis isareti yazdi; cikti reddedildi"
 
     an = datetime.now()
     govde = (
@@ -233,6 +235,9 @@ def main() -> int:
         if not o:
             print(f"HATA: '{a.oturum}' yok", file=sys.stderr)
             return 1
+        if a.kuru:
+            print(f"{o.kisa}: kuru calisma, model cagrilmadi ve yazilmadi")
+            return 0
         tamam, not_ = yazdir(o, a.cikti)
         print(("YAZILDI: " if tamam else "BASARISIZ: ") + not_)
         return 0 if tamam else 1

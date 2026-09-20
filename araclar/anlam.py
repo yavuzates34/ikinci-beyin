@@ -251,13 +251,13 @@ def ara(soru: str, adet: int, kapsam: str, rol: str,
         metin = " ".join(p["metin"].split())
         son = sirala == "zaman" and k == len(sira)
         print(f"[{k}]{' <- EN GUNCEL' if son else ''} benzerlik {skor[j]:.3f}  "
-              f"{p['kaynak']} {p['kimlik'][:8]}  {an}  {p['proje']}  {etiket}")
+              f"{p['kaynak']} {p['kimlik']}  {an}  {p['proje']}  {etiket}")
         print(f"    {metin[:400]}{'...' if len(metin) > 400 else ''}\n")
 
     yeni = max((parcalar[secim[j]] for j in sira), key=lambda p: p["an"])
     print(f"# En guncel eslesme: {yeni['an'].replace('T', ' ')[:16]} "
-          f"({yeni['kaynak']} {yeni['kimlik'][:8]})")
-    print(f"# Tam dokum: python araclar/oku.py {yeni['kimlik'][:8]} "
+          f"({yeni['kaynak']} {yeni['kimlik']})")
+    print(f"# Tam dokum: python araclar/oku.py {yeni['kimlik']} "
           f"--saat {yeni['an'][11:16]}")
     print("# UYARI: bunlar kanit, hukum degil. Bir konuda ne KARARLASTIRILDIGI "
           "notlar/ icinde yazar; arsiv o kararin nasil olustugunu gosterir.")

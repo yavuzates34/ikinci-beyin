@@ -17,7 +17,7 @@ KARAR (kullanici, 19.09.2026 · claude 5c600e7e · 19.09 20:12)
 
 OLCUM KAYNAKLARI (ikisi de ham kayittan, arayuzden bagimsiz)
 - Codex: son `token_count` olayi. Doluluk
-  `last_token_usage.input_tokens / model_context_window`; pencere kayitta var.
+  `last_token_usage.total_tokens / model_context_window`; pencere kayitta var.
 - Claude: son ana zincir asistan satirinin `message.usage` alani. Doluluk
   `input + cache_read + cache_creation`. Pencere kayitta YOK.
   PENCERE tablosundan gelir. Tablodaki deger kalibre edildi: 472.650 token
@@ -38,11 +38,13 @@ Kullanim:
 import json
 import os
 import sys
+import uuid
 from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import kayit  # noqa: E402
+from dosya_kilidi import kilit
 
 KOK = kayit.PROJE_KOKU
 DURUM = KOK / "derleme" / "baglam-durum.json"
@@ -54,7 +56,7 @@ PENCERE = {"claude-opus-5": 1_000_000}
 
 def _claude_olc(yol: Path) -> dict:
     son = None
-    for satir in open(yol, encoding="utf-8", errors="replace"):
+    for satir in kayit.ham_satirlar(yol):
         if '"usage"' not in satir:
             continue
         try:
@@ -73,12 +75,13 @@ def _claude_olc(yol: Path) -> dict:
     model = str(son.get("model", ""))
     pencere = next((v for k, v in PENCERE.items() if model.startswith(k)), None)
     return {"token": token, "pencere": pencere, "model": model,
+            "pencere_kaynagi": "kalibrasyon; canli pencere olculmedi",
             "not": None if pencere else f"pencere bilinmiyor ({model})"}
 
 
 def _codex_olc(yol: Path) -> dict:
     son = None
-    for satir in open(yol, encoding="utf-8", errors="replace"):
+    for satir in kayit.ham_satirlar(yol):
         if '"token_count"' not in satir:
             continue
         try:
@@ -93,15 +96,16 @@ def _codex_olc(yol: Path) -> dict:
     # total_tokens: girdi + cikti + akil yurutme. Codex'in kendi baglam hesabi
     # buna dayaniyor; input_tokens o turun ciktisini saymaz ve doluluk bir tur
     # geriden gelir (codex 01a0bb8e-de58 · 20.09 00:35).
-    return {"token": li.get("total_tokens") or li.get("input_tokens"),
+    return {"token": li.get("total_tokens", li.get("input_tokens")),
             "pencere": son.get("model_context_window"), "not": None}
 
 
 def olc(oturum: kayit.Oturum) -> dict:
     o = _codex_olc(oturum.yol) if oturum.kaynak == "codex" else _claude_olc(oturum.yol)
     o["kaynak"] = oturum.kaynak
-    o["yuzde"] = (round(o["token"] / o["pencere"], 3)
-                  if o.get("token") and o.get("pencere") else None)
+    o["yuzde"] = (o["token"] / o["pencere"]
+                  if o.get("token") is not None and o["token"] >= 0
+                  and o.get("pencere") and o["pencere"] > 0 else None)
     return o
 
 
@@ -131,7 +135,7 @@ def _omurga_al(oturum: kayit.Oturum, seviye: int) -> str | None:
         metin, _, _ = omurga_metni(oturum, tam=True)
         ANLIK.mkdir(parents=True, exist_ok=True)
         yuzde = int(ESIKLER[seviye - 1] * 100)
-        p = ANLIK / f"{datetime.now():%Y-%m-%d-%H%M}-{oturum.kisa}-esik{yuzde}.md"
+        p = ANLIK / f"{datetime.now():%Y-%m-%d-%H%M%S-%f}-{oturum.kimlik}-esik{yuzde}.md"
         p.write_text(metin, encoding="utf-8")
         try:
             return p.relative_to(KOK).as_posix()
@@ -142,50 +146,65 @@ def _omurga_al(oturum: kayit.Oturum, seviye: int) -> str | None:
 
 
 def kontrol(transcript_path: str | None, session_id: str | None) -> str | None:
+    try:
+        with kilit(DURUM.with_suffix('.lock')):
+            return _kontrol(transcript_path, session_id)
+    except (OSError, TimeoutError):
+        return 'BAGLAM OLCULEMEDI: durum kilidi/dosyasi kullanilamadi; sonraki turda yeniden denenecek.'
+
+
+def _durum_yaz(durum: dict) -> None:
+    DURUM.parent.mkdir(parents=True, exist_ok=True)
+    gecici = DURUM.with_name(DURUM.name + '.' + uuid.uuid4().hex + '.tmp')
+    gecici.write_text(json.dumps(durum, ensure_ascii=False, indent=1), encoding='utf-8', newline='\n')
+    os.replace(gecici, DURUM)
+
+
+def _kontrol(transcript_path: str | None, session_id: str | None) -> str | None:
     """Tur sinirinda cagrilir. Esik yeni asildiysa uyari metni dondurur."""
     oturum = None
     if transcript_path and Path(transcript_path).exists():
         p = Path(transcript_path)
         kaynak = _kaynak_bul(p)
-        kimlik = session_id or p.stem
+        kimlik = session_id or (kayit._codex_kimlik(p, p.stem) if kaynak == 'codex' else p.stem)
         st = p.stat()
         oturum = kayit.Oturum(kaynak, kimlik, p, p.parent.name,
                               datetime.fromtimestamp(st.st_mtime), st.st_size)
     elif session_id:
-        oturum = kayit.oturum_bul(session_id[:8], "hepsi")
+        oturum = kayit.oturum_bul(session_id, "hepsi")
     if oturum is None:
-        return None
+        return 'BAGLAM OLCULEMEDI: kesin oturum kaydi bulunamadi.'
 
     o = olc(oturum)
     durum = _durum_oku()
-    onceki = durum.get(oturum.kisa, {}).get("seviye", 0)
+    onceki_durum = durum.get(oturum.kimlik, durum.get(oturum.kisa, {}))
+    onceki = onceki_durum.get("seviye", 0)
     yuzde = o.get("yuzde")
     if yuzde is None:
-        return None  # olculemeyen oturumda her tur uyarmak gurultu olur
+        neden = o.get('not') or 'token veya pencere kaydi yok/gecersiz'
+        if onceki_durum.get('olculemedi') == neden:
+            return None
+        durum[oturum.kimlik] = {**onceki_durum, 'olculemedi': neden}
+        _durum_yaz(durum)
+        return f'BAGLAM OLCULEMEDI: {neden}. Esiklerin calistigi varsayilmamali.'
     seviye = sum(1 for e in ESIKLER if yuzde >= e)
     # Compact sonrasi doluluk duser: seviye geri iner, sonra yeniden uyarabilir.
-    durum[oturum.kisa] = {"seviye": seviye, "yuzde": yuzde,
-                          "an": datetime.now().isoformat(timespec="minutes")}
-    try:
-        # Atomik yazma: iki hook ayni anda yazarsa yarim dosya kalmasin.
-        # Kayip-guncelleme yarisi surer; zarari fazladan bir uyaridir.
-        DURUM.parent.mkdir(parents=True, exist_ok=True)
-        gecici = DURUM.with_suffix(".tmp")
-        gecici.write_text(json.dumps(durum, ensure_ascii=False, indent=1),
-                          encoding="utf-8")
-        os.replace(gecici, DURUM)
-    except OSError:
-        pass
-    if seviye <= onceki:
+    gerekli = seviye > onceki or (seviye > 0 and onceki_durum.get('kurtarma_bekliyor'))
+    anlik = _omurga_al(oturum, seviye) if gerekli else None
+    durum[oturum.kimlik] = {"seviye": seviye, "yuzde": yuzde,
+                          "an": datetime.now().isoformat(timespec="minutes"),
+                          "kurtarma_bekliyor": bool(gerekli and not anlik)}
+    _durum_yaz(durum)
+    if not gerekli:
         return None
-
-    anlik = _omurga_al(oturum, seviye)
     son_cagri = seviye == len(ESIKLER)
     return (
         f"BAGLAM {yuzde:.0%} ({o['token']:,} / {o['pencere']:,} token, kaynak: "
         f"{oturum.kaynak} ham kaydi). Esik %{int(ESIKLER[seviye - 1] * 100)} asildi"
+        + (" (pencere kalibrasyon)" if o.get('pencere_kaynagi') else "")
         + (" - SON CAGRI" if son_cagri else "") + ".\n"
-        + (f"Kurtarma icin omurga diske alindi: {anlik}\n" if anlik else "")
+        + (f"Kurtarma icin omurga diske alindi: {anlik}\n" if anlik else
+           "Kurtarma omurgasi ALINAMADI; sonraki turda yeniden denenecek.\n")
         + "Bu turun cevabinin SONUNDA kullaniciya tek cumleyle soyle: anlamli "
         "bir yerde 'devret' ya da 'oturumu kapatalim' diyebilir, devam etmek "
         "de serbest. Konuyu kesme. `kapanan-oturum:` yalnizca gercek gecis "
