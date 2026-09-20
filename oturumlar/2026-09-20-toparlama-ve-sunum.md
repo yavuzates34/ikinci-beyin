@@ -72,3 +72,40 @@ HTML dosyası ve `deck.json` olarak kalacak. Presentations becerisinin
 yazı/yerleşim/kanıt ve görsel denetim ilkeleri uygulandı; ayrı PPTX üretimi
 kullanıcının istediği kaynak biçimini değiştireceği için kullanılmadı.
 Yayınlanan claude.ai kopyasına erişim/yazma yapılmayacak.
+
+### 17:31–17:34 — sunum kaynağı ve doğrulama
+
+- 14 slaydın tamamı yeniden yazıldı. Önceki kapak “Kullanım rehberi” iken
+  yeni kapak “Sağlayıcıdan bağımsız ikinci beyin”; kurulum öne alınmadı.
+  İlk beş slayt yeniden anlatma sorunu, taşınan karar/gerekçe/kaynak, ortak
+  hafıza ve dosyaların seçilmesini anlatıyor. Sonra katmanlar, günlük akış,
+  kanıt, yeni uygulama, kapanış, otomasyon, ölçüm sınırları ve bakım geliyor.
+- Antigravity yeni uygulama örneği olarak ve “ölçülmedi” sınırıyla yazıldı;
+  sağlayıcı/model/uygulama kavramları karıştırılmadı. Codex canlı PreCompact,
+  yeni gece tetiklemesi ve büyük pencerenin eşikleri tamamlanmış sayılmadı.
+- Eski 14 dosya kimliği korunuyor; dosya taşıma/silme yok. `deck.json`
+  bölüm/sunum adı güncel. Her slaytta kaynaklı `aside` konuşma notu var.
+  `rehber/codex-sunum-rehberi.md` yeni başlıklara göre yeniden yazıldı.
+- `araclar/sunum-kaynak.cjs` aynı kaynakları ve `index.html` önizlemesini
+  tekrar üretir. Kaynak/preview iki ayrı, elle farklılaşan kopya olarak
+  tutulmuyor. `sunum-kontrol.cjs` yerel HTML'i 1920×1080 render ediyor.
+- Önceki 14 slaytın toplu görünümü incelendi. Yeni 14 slaytın toplu render'ı,
+  özellikle yoğun 11/12. slaytlar tam boy incelendi. Tablo genişlikleri sabit
+  yerleşime alındı. Son sonuç: **14 slayt, 14 konuşma notu, 0 taşma**.
+  Kanıt `derleme/astra-kontrol/sunum-son-denetim.json`; ekran görüntüleri
+  işletim sistemi geçici alanında. Yayındaki hesaba yazılmadı.
+- BEYIN'in çelişkili eski güncel-durum paragrafları bu iş evresinin gerçek
+  durumuyla yenilendi. Kalıcı not tarihçesi budanmadı. Güncel boyut 129,1 KB;
+  plandaki 96–97 KB tahmini son ölçüme göre düzeltildi.
+- Kapanış hazırlığında kesin kimlikle omurga tekrar okundu: 5 gerçek
+  kullanıcı mesajı. İkinci hedefin metni zamanlayıcı iç bağlamında taşındığı
+  için omurga onu kullanıcı konuşması diye saymıyor; bu arşivde hedef açıkça
+  kaydedildi. Test silme onayı 06:12 mesajında doğrudan mevcut.
+
+## Hâlâ tamamlanmayan işlem
+
+17:33 sayımı: **178 test klasörü hâlâ mevcut**. Kullanıcı onayı var;
+otomatik onay denetiminin engeli nedeniyle silme gerçekleşmedi. Kullanıcıya
+doğrulamalı betiği elle çalıştırma komutu verildi; sonucu bekleniyor. Bu iş
+bitmeden hedef “tamamlandı” sayılmayacak. Kalıcı not budaması ise istenen
+**plan** olarak teslim edildi; uygulanması bu hedefin zorunlu işi değil.

@@ -1,5 +1,13 @@
 # Tasarım dersleri
 
+> **20.09 ek ders — denetim verisi de ürünü bozabilir:** Git'in yok saydığı
+> test klasörlerini Obsidian yine tarar. Önceki Astra testleri 178 sahte
+> BEYIN.md bıraktı. Test fixture'ı artık kasa dışındaki geçici alanda,
+> başarı/kurulum hatası/assertion hatasında `addCleanup` ile temizleniyor.
+> 28 test geçti, yeni kalıntı 0; eski klasör temizliği ayrı, onaylı işlemdir.
+> [[2026-09-20-toparlama-ve-sunum]].
+> (codex 01a0bc5c-f1c4 · 20.09 17:31)
+
 Eğitim videolarından çıkarılıp bu projede yaşananlarla sınanmış ilkeler.
 
 > Merkez: [[BEYIN]] · İlgili: [[ikinci-beyin-mimarisi]] · [[kapanis-ritueli]] · [[yasanan-hatalar]]

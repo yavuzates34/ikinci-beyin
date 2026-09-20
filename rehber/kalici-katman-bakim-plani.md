@@ -8,7 +8,8 @@ kullanıcının ayrıca onayı gerekir. Mevcut izin test klasörleriyle sınırl
 
 ## Ölçüm ve amaç
 
-16 kalıcı not **128,5 KB**. 100 KB bölme eşiği 28,5 KB aşılmış. Dosyaları
+Başlangıç ölçümü 16 kalıcı not **128,5 KB**; 17:31 yeniden ölçümü **129,1 KB**.
+100 KB bölme eşiği yaklaşık 29 KB aşılmış. Dosyaları
 yalnız ikiye bölüp ikisini de `notlar/` içinde tutmak toplamı azaltmaz.
 Amaç, güncel karar ve yöntemi kısa konu notunda; eski deneme, ölçüm dökümü
 ve değişen durumların tarihçesini `oturumlar/` içinde tutmak.
@@ -26,7 +27,7 @@ ve değişen durumların tarihçesini `oturumlar/` içinde tutmak.
 | `gece-derleyicisi.md` | 11,50 KB | ~5 KB | Güncel akış, görev koşulları, taslak yetkisi, hata görünürlüğü, yazma/silme sınırı | 18.09 üç ekleme ve eski testlerin ayrıntısı; değişmiş dedektör ve git iddiaları |
 
 Bu üç notta yaklaşık **32,5 KB** yer değişir; kalıcı toplam yaklaşık
-**96 KB** olur. Girişler ve bağlantılarla birlikte 100 KB altına sığması
+**96–97 KB** olur. Girişler ve bağlantılarla birlikte 100 KB altına sığması
 beklenir; hedef garanti değil, uygulama sonunda yeniden ölçülür.
 
 Hedef arşivler: `oturumlar/olcum-tarihcesi.md`,

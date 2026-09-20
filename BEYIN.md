@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 20.09.2026 05:55
+**Son güncelleme:** 20.09.2026 17:32
 
 ---
 
@@ -100,35 +100,22 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
 
-- **Astra denetimi yapıldı; güncel kanıt tablosu**
-  [[2026-09-20-astra-kontrol]] içinde. Eski “kapandı” satırları güncel kanıt
-  yerine kullanılmamalı. Codex %50 canlı doğrulandı; %70 ve PreCompact,
-  yeni görev ayarının gece sonucu, canlı 1M etkinleşmesi ölçülmedi.
-  Kalıcı katman budaması için önceki kullanıcı sınırı korunuyor.
-  Önemli düzeltmeler ve sınırlar: [[astra-denetim-bulgulari]].
-
-- **Codex hook'ları güven verildikten sonra çalışıyor** (20.09 01:28–01:32
-  ölçümü). Desktop'ta `SessionStart` ve `UserPromptSubmit`, normal `codex exec`
-  çağrısında da aynı iki taşıyıcı ham kayıtta `hooks.additional_context` olarak
-  doğrulandı. Codex %50 uyarısı 20.09 04:26'da canlı doğrulandı; %70 ve
-  `PreCompact` henüz ölçülmedi. [[astra-denetim-bulgulari]].
-
-- **Claude + Codex ortak onarım devri:** Sunum incelemesinde bulunan 13 açık,
-  kaynakları, test ölçütleri ve kullanıcı karar noktalarıyla
-  [[2026-09-19-sunum-onarim-listesi]] içinde. Önce sistem, sonra kalıcı notlar,
-  en son sunum düzeltilmeli.
-
-- **Kullanıcı rehberi (sunum, 14 slayt, 19.09):**
-  https://claude.ai/artifact/8dvtxX9Xw9EJFg65ZbSU1x — Claude, Codex ve
-  diğer ajanlarla tanımlama ve günlük kullanım. Sistem değişirse bu da
-  güncellenir; `AGENTS.md` ile çelişirse `AGENTS.md` geçerlidir.
-  Kaynağı `rehber/sunum/` altında; sunum değişirse orası da güncellenir.
-  Codex'le sesli inceleme için harita: [[codex-sunum-rehberi]]. İlk 10 slaytın
-  ilk maddesine kadar incelendi; sunum henüz değiştirilmedi. İnceleme 10.
-  slaytın kalanından sürebilir, fakat önce 13 açık için ortak onarım devri var:
-  [[2026-09-19-sunum-onarim-listesi]]. Kayıtlar:
-  [[2026-09-19-codex-sunum-ilk-alti-slayt]] ·
-  [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]].
+- **Toparlama ve sunum:** [[2026-09-20-toparlama-ve-sunum]]. Önceki
+  denetim dört commit'te kaydedildi; testler artık kasa dışında kendi geçici
+  verisini temizliyor. Eski 178 test klasörünün silinmesi kullanıcı tarafından
+  onaylandı, fakat otomatik onay denetimi engelledi; henüz silinmiş sayılmaz.
+  Doğrulamalı elle çalıştırma betiği `araclar/temizle-astra-testleri.ps1`.
+- **Kalıcı katman:** [[kalici-katman-bakim-plani]] yaklaşık 100 KB altına
+  iniş önerisi; henüz uygulanmadı, kullanıcı onayı gerekir.
+- **Sunumun yeni kaynağı:** `rehber/sunum/index.html`. 14 slayt önce amaç ve
+  sağlayıcıdan bağımsızlığı, sonra işleyişi anlatıyor. Yeni sıra ve kaynaklar
+  [[codex-sunum-rehberi]] içinde. Yerel görsel kontrol yapıldı. Kullanıcının
+  claude.ai hesabındaki yayına dokunulmadı.
+- **Astra denetimi:** [[2026-09-20-astra-kontrol]] ve
+  [[astra-denetim-bulgulari]]. Codex %50/%70 canlı doğrulandı; canlı
+  PreCompact ve yeni gece ayarının zamanlı sonucu ölçülmedi. Etkin Codex
+  penceresi yeniden başlatma sonrası 828.400; büyük pencerenin eşik/
+  compact geçişi ayrı testtir. Eski 1–16 durum tablosu tarihçe olarak durur.
 
 - **Kapanış ritüeli kurulu.** "Oturumu kapatalım" dendiğinde `AGENTS.md`'deki
   sırayı izle: önce `python araclar/omurga.py`, sonra yaz, sonra mekanik bakım.
