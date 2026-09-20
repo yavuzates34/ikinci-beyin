@@ -1,41 +1,6 @@
-<section id="ilke" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:32px">
-  <div style="display:flex; flex-direction:column; gap:16px">
-    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#B4410F">02 · ilke</p>
-    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Çekirdek ortak, adaptör uygulamaya göre</h2>
-  </div>
-  <p style="width:1560px; font-size:28px; line-height:1.4; color:#3E4A56">Kural dosyası her ajan için ortak. Onu kendiliğinden okumak, hook çalıştırmak ve bağlamı ölçmek ise modelin değil, uygulamanın yeteneği.</p>
-  <table style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#16202A; background:#FBFAF7; border:1px solid #E2DED5; border-radius:16px; padding:16px">
-    <tr>
-      <th style="width:18%; text-align:left">Uygulama</th>
-      <th style="width:34%; text-align:left">Kuralları nasıl okur</th>
-      <th style="width:28%; text-align:left">Oturum başı refleksleri</th>
-      <th style="width:20%; text-align:left">Arşive girer mi</th>
-    </tr>
-    <tr>
-      <td>Claude Code</td>
-      <td>CLAUDE.md üzerinden, kendiliğinden</td>
-      <td style="color:#0F6E66">Çalışıyor, ölçüldü</td>
-      <td style="color:#0F6E66">Evet</td>
-    </tr>
-    <tr>
-      <td>Codex CLI</td>
-      <td>AGENTS.md, kendiliğinden</td>
-      <td>Güven sonrası çalışıyor, ölçüldü</td>
-      <td style="color:#0F6E66">Evet</td>
-    </tr>
-    <tr>
-      <td>Codex Desktop</td>
-      <td>AGENTS.md, kendiliğinden (ölçüldü)</td>
-      <td style="color:#0F6E66">Çalışıyor, ölçüldü</td>
-      <td style="color:#0F6E66">Evet</td>
-    </tr>
-    <tr>
-      <td>Diğer uygulamalar</td>
-      <td>Kalıcı talimat yeri varsa bir satır; yoksa senin her oturumdaki ilk mesajın</td>
-      <td style="color:#B4410F">Ölçülmedi</td>
-      <td style="color:#B4410F">Hayır, okuyucu eklenene kadar</td>
-    </tr>
-  </table>
-  <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#6B7178">İkinci beyin · kullanım rehberi · 3</p>
-  <aside>Aynı sağlayıcının iki uygulaması farklı davranabilir: Codex CLI ile Codex Desktop'ın sürümü, arayüzü ve güven akışı ayrı. Bu yüzden tablo sağlayıcıya değil uygulamaya göre. Etiketler: ölçüldü (bu makinede ham kayıtla), belge, ölçülmedi. Tam tablo ve yeni uygulama tanıtma protokolü rehber/uygulama-adaptorleri.md içinde.</aside>
+<section id="ilke" data-transition="fade" aria-label="3. Bir sonraki oturuma kalan bilgi" style="box-sizing:border-box;position:relative;width:1920px;height:1080px;overflow:hidden;background:#F5F3EE;color:#16202A;font-family:'IBM Plex Sans',Arial,sans-serif;padding:108px 128px 115px;display:flex;flex-direction:column">
+  <h2 style="margin:0 0 64px;font-size:72px;font-weight:600;line-height:1.13;max-width:1660px">Bir sonraki oturuma kalan bilgi</h2>
+  <div style="display:flex;flex-direction:column;gap:0"><div style="display:grid;grid-template-columns:460px 1fr;gap:56px;padding:28px 0;border-top:1px solid #D1CBBF"><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">Karar ve gerekçesi</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">Ne seçtik, hangi ihtiyaca cevap veriyor? Gerekçe, aynı kararı yeniden tartışmayı önler.</p></div><div style="display:grid;grid-template-columns:460px 1fr;gap:56px;padding:28px 0;border-top:1px solid #D1CBBF"><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">Deneme ve karşı kanıt</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">Ne denedik, neden eledik? Başarısız yol da tekrar etmeyi önleyen bilgidir.</p></div><div style="display:grid;grid-template-columns:460px 1fr;gap:56px;padding:28px 0;border-top:1px solid #D1CBBF"><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">Açık iş ve kaynak</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">Ne eksik, nereden devam edilir? Tarih ve oturum adresi iddiayı yeniden incelemeyi sağlar.</p></div></div>
+  <p style="position:absolute;right:128px;bottom:48px;margin:0;font-size:24px;color:#707871">03 / 14</p>
+  <aside>AGENTS.md kapanışta bu üç soruyu zorunlu tutar; sabit bir boş şablon dayatmaz. Kalıcı notlara ölçüm, karar ve elenen fikir terfi eder. Günlük konuşmanın tamamı aynı ağırlıkta sıcak bağlama taşınmaz. Kaynak: AGENTS.md “Oturum kapanışı”; notlar/ikinci-beyin-mimarisi.md.</aside>
 </section>

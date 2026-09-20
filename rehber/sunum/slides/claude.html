@@ -1,30 +1,6 @@
-<section id="claude" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
-  <div style="display:flex; flex-direction:column; gap:16px">
-    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#B4410F">03 · tanımlama · Claude</p>
-    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Claude: zaten hazır</h2>
-  </div>
-  <div style="flex:1; display:flex; gap:40px">
-    <div style="flex:1; display:flex; flex-direction:column; gap:28px">
-      <div style="display:flex; gap:24px">
-        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:32px; font-weight:600; color:#B4410F">1</p>
-        <p style="font-size:30px; line-height:1.4; color:#16202A">Claude uygulamasında Code sekmesini aç, klasör olarak playground'u seç.</p>
-      </div>
-      <div style="display:flex; gap:24px">
-        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:32px; font-weight:600; color:#B4410F">2</p>
-        <p style="font-size:30px; line-height:1.4; color:#16202A">Başka ayar yok. Kurallar CLAUDE.md üzerinden AGENTS.md'den, refleksler .claude/settings.json'dan gelir.</p>
-      </div>
-      <div style="display:flex; gap:24px">
-        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:32px; font-weight:600; color:#B4410F">3</p>
-        <p style="font-size:30px; line-height:1.4; color:#16202A">İlk mesajını yaz. Ajan önce BEYIN.md'yi okur, sonra cevap verir.</p>
-      </div>
-    </div>
-    <div style="width:720px; display:flex; flex-direction:column; gap:20px; background:#FBFAF7; border:1px solid #E2DED5; border-radius:16px; padding:40px">
-      <h3 style="font-size:34px; font-weight:600; color:#16202A">Başlangıç kontrolü</h3>
-      <p style="font-size:26px; line-height:1.4; color:#3E4A56">Başlangıçta ajana oturum kimliği, saat ve varsa gece uyarıları gelir. İlk kontrol için sor:</p>
-      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; line-height:1.5; color:#16202A; background:#EFEBE3; border-radius:12px; padding:20px">Oturum kimliğin ne, başlangıçta sana ne geldi?</p>
-      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#6B7178">C:\Users\Anj\Desktop\desktop\playground</p>
-    </div>
-  </div>
-  <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#6B7178">İkinci beyin · kullanım rehberi · 4</p>
-  <aside>Claude tarafında kurulum ölçüldü. Ajanın cevabı tek başına kanıt değildir; ham kayıttaki hook eki doğrulanır. Klasör taşınırsa hafıza öksüz kalır; oturum kayıtları klasör yoluna göre gruplanıyor. O yüzden klasörün yeri sabit kalmalı.</aside>
+<section id="claude" data-transition="fade" aria-label="4. Tek ortak hafıza" style="box-sizing:border-box;position:relative;width:1920px;height:1080px;overflow:hidden;background:#F5F3EE;color:#16202A;font-family:'IBM Plex Sans',Arial,sans-serif;padding:108px 128px 115px;display:flex;flex-direction:column">
+  <h2 style="margin:0 0 64px;font-size:72px;font-weight:600;line-height:1.13;max-width:1660px">Tek ortak hafıza</h2>
+  <div style="display:flex;flex-direction:column;gap:0"><table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:30px;line-height:1.32;text-align:left"><colgroup><col style="width:36%"><col style="width:64%"></colgroup><thead><tr><th style="padding:0 26px 22px 0;border-bottom:2px solid #B8B1A5;font-size:25px;color:#B4410F;font-weight:600">Bu klasöre gelen uygulama</th><th style="padding:0 26px 22px 0;border-bottom:2px solid #B8B1A5;font-size:25px;color:#B4410F;font-weight:600">Ortak bilgiyi kullanma yolu</th></tr></thead><tbody><tr><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Claude Code</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">CLAUDE.md üzerinden ortak kuralları ve konu notlarını okur.</td></tr><tr><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Codex CLI / Desktop</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">AGENTS.md üzerinden aynı haritayı ve konu notlarını okur.</td></tr><tr><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Antigravity, yerel modeller, diğerleri</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Yerel erişim ve adaptör sınanmalı. Bu klasörde otomatik davranışları <b>ölçülmedi</b>.</td></tr></tbody></table><p style="margin:0;font-size:36px;line-height:1.42;color:#16202A;margin-top:48px">Ortak çekirdek: kurallar, Markdown notlar, arşiv ve araçlar.<br>Uygulamaya özel parça: bunları ne zaman çağırdığı ve kayıt biçimi.</p></div>
+  <p style="position:absolute;right:128px;bottom:48px;margin:0;font-size:24px;color:#707871">04 / 14</p>
+  <aside>Anthropic/OpenAI sağlayıcı, model ve uygulama aynı kavram değildir. Antigravity bir uygulama örneğidir; burada bir sağlayıcı diye sınıflandırılmıyor. Bağımsızlık, her uygulamanın otomatik olarak aynı yeteneğe sahip olması demek değildir. Kaynak: AGENTS.md; CLAUDE.md; rehber/uygulama-adaptorleri.md; araclar/kayit.py.</aside>
 </section>

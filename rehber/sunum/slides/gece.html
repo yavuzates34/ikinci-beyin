@@ -1,34 +1,6 @@
-<section id="gece" data-transition="fade" style="background:#16202A; color:#EDE9E1; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
-  <div style="display:flex; flex-direction:column; gap:16px">
-    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#F4A259">10 · gece</p>
-    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#EDE9E1">Gece 00:30: sonucu denetle</h2>
-  </div>
-  <div style="flex:1; display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:24px">
-    <div style="display:flex; flex-direction:column; gap:12px; background:#1F2C38; border-radius:16px; padding:32px">
-      <h3 style="font-size:32px; font-weight:600; color:#F4A259">Telafi</h3>
-      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">Telafi açık; oturum ve priz gerekir. Uykudan uyandırma kapalı.</p>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:12px; background:#1F2C38; border-radius:16px; padding:32px">
-      <h3 style="font-size:32px; font-weight:600; color:#F4A259">Dedektör</h3>
-      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">Kapanış satırı olmayan her oturumu listeler.</p>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:12px; background:#1F2C38; border-radius:16px; padding:32px">
-      <h3 style="font-size:32px; font-weight:600; color:#F4A259">Gece taslağı</h3>
-      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">6 saattir sessiz, kapanışsız oturuma taslak; en fazla 3. Notlara dokunmaz.</p>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:12px; background:#1F2C38; border-radius:16px; padding:32px">
-      <h3 style="font-size:32px; font-weight:600; color:#F4A259">İşaretçi denetimi</h3>
-      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">Notlardaki ve taslaklardaki her kaynak adresi kayıtta açılır.</p>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:12px; background:#1F2C38; border-radius:16px; padding:32px">
-      <h3 style="font-size:32px; font-weight:600; color:#F4A259">Raporlar</h3>
-      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">Her gece bakım adayları; haftalık faaliyet, aylık açık uç yaşı.</p>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:12px; background:#1F2C38; border-radius:16px; padding:32px">
-      <h3 style="font-size:32px; font-weight:600; color:#F4A259">Yedek</h3>
-      <p style="font-size:26px; line-height:1.4; color:#B9C3CC">Son gece commit oldu, sonra kesildi. Yeni ayarın gece sonucu bekleniyor.</p>
-    </div>
-  </div>
-  <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#8E9AA6">İkinci beyin · kullanım rehberi · 11</p>
-  <aside>20.09 04:26: görev gizli PowerShell ve 1 saat sınırıyla güncellendi; kuru çalışma geçti, zamanlanmış yeni yol henüz ölçülmedi. Gece taslağı kalıcı notlara dokunmaz ve oturumu kapatmaz. Temiz bağlamlı, araçsız bir model yazar; terfiyi ertesi oturum sizinle birlikte yapar. Varsayılan model Sonnet 5, istenirse başka bir sağlayıcıya çevrilebilir.</aside>
+<section id="gece" data-transition="fade" aria-label="11. Otomasyonun görevleri ve sınırları" style="box-sizing:border-box;position:relative;width:1920px;height:1080px;overflow:hidden;background:#F5F3EE;color:#16202A;font-family:'IBM Plex Sans',Arial,sans-serif;padding:108px 128px 115px;display:flex;flex-direction:column">
+  <h2 style="margin:0 0 64px;font-size:72px;font-weight:600;line-height:1.13;max-width:1660px">Otomasyonun görevleri ve sınırları</h2>
+  <div style="display:flex;flex-direction:column;gap:0"><table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:30px;line-height:1.32;text-align:left"><colgroup><col style="width:22%"><col style="width:44%"><col style="width:34%"></colgroup><thead><tr><th style="padding:0 26px 22px 0;border-bottom:2px solid #B8B1A5;font-size:25px;color:#B4410F;font-weight:600">Tetik</th><th style="padding:0 26px 22px 0;border-bottom:2px solid #B8B1A5;font-size:25px;color:#B4410F;font-weight:600">Yaptığı iş</th><th style="padding:0 26px 22px 0;border-bottom:2px solid #B8B1A5;font-size:25px;color:#B4410F;font-weight:600">Sınırı</th></tr></thead><tbody><tr><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Oturum başlangıcı</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Harita, kimlik ve mevcut uyarıları getirir.</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Uygulama desteği ve güven ayarı gerekir.</td></tr><tr><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Yeni kullanıcı mesajı</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">%50 / %70 dolulukta uyarır, kurtarma kaydı alır.</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Uzun tek turun içinde sürekli denetim yok.</td></tr><tr><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Compact öncesi</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Konuşma omurgasını kurtarmaya çalışır.</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Codex’te canlı zincir ölçülmedi.</td></tr><tr><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Gece 00:30 görevi</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Açıkları tarar, uygun oturuma taslak üretir, commit/push dener.</td><td style="padding:25px 26px 25px 0;border-bottom:1px solid #D1CBBF;vertical-align:top">Yeni görev ayarının gece sonucu ölçülmedi.</td></tr></tbody></table></div>
+  <p style="position:absolute;right:128px;bottom:48px;margin:0;font-size:24px;color:#707871">11 / 14</p>
+  <aside>Gerçek %50/%70 Claude ve Codex kayıtlarında görüldü. Codex ölçümleri eski 258.400 penceredeydi; son etkin pencere 828.400, yeni pencerenin eşik/compact geçişi ölçülmedi. Gece taslağı: kapanışsız, en az 6 saat sessiz, uygun oturum; gece başına en fazla 3. Model notlara otomatik terfi yapmaz. Görev için açık kullanıcı oturumu ve priz gerekir; telafi açık, uyandırma kapalı. Kaynak: araclar/baglam.py, gece_kayit.py, derle.py; onaylı görev ayarı; notlar/astra-denetim-bulgulari.md.</aside>
 </section>

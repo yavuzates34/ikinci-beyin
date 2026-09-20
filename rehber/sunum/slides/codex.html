@@ -1,33 +1,6 @@
-<section id="codex" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:40px">
-  <div style="display:flex; flex-direction:column; gap:16px">
-    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#B4410F">04 · tanımlama · Codex</p>
-    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Codex: CLI ve Desktop ayrı ölçülür</h2>
-  </div>
-  <div style="flex:1; display:flex; gap:40px">
-    <div style="flex:1; display:flex; flex-direction:column; gap:22px">
-      <div style="display:flex; gap:24px">
-        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:30px; font-weight:600; color:#B4410F">1</p>
-        <p style="font-size:28px; line-height:1.4; color:#16202A">Codex'i bu klasörde aç. AGENTS.md iki uygulamada da kendiliğinden yükleniyor <span style="color:#0F6E66">(ölçüldü)</span>.</p>
-      </div>
-      <div style="display:flex; gap:24px">
-        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:30px; font-weight:600; color:#B4410F">2</p>
-        <p style="font-size:28px; line-height:1.4; color:#16202A">Proje hook'ları .codex/hooks.json içinde: üç olay, dört komut. Aynı Python betiklerini çağırır.</p>
-      </div>
-      <div style="display:flex; gap:24px">
-        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:30px; font-weight:600; color:#B4410F">3</p>
-        <p style="font-size:28px; line-height:1.4; color:#16202A">Hook'lar <b>güven kaydı</b> ister. Terminalde codex açıp /hooks ile bir kez verilir. Güven yoksa hook'lar sessizce atlanır <span style="color:#B4410F">(ölçüldü)</span>.</p>
-      </div>
-      <div style="display:flex; gap:24px">
-        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:30px; font-weight:600; color:#B4410F">4</p>
-        <p style="font-size:28px; line-height:1.4; color:#16202A">Yeni bir oturumda sor: "Oturum başında sana ne geldi?" Kanıt ham kayıttır, elle çalıştırılan komut değil.</p>
-      </div>
-    </div>
-    <div style="width:620px; display:flex; flex-direction:column; gap:18px; background:#16202A; border-radius:16px; padding:36px">
-      <h3 style="font-size:32px; font-weight:600; color:#F4A259">Desktop'ta sayaç yok</h3>
-      <p style="font-size:25px; line-height:1.4; color:#B9C3CC">Arayüz bağlam yüzdesini göstermiyor. Bir Desktop oturumu uyarısız %83'e çıktı ve sıkıştırıldı.</p>
-      <p style="font-size:25px; line-height:1.4; color:#B9C3CC">Güven sonrası harita ve saat ölçüldü. %50 ve %70 uyarıları canlı geldi; PreCompact henüz ölçülmedi.</p>
-    </div>
-  </div>
-  <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#6B7178">İkinci beyin · kullanım rehberi · 5</p>
-  <aside>Durum etiketleri: ölçüldü = bu makinede ham kayıtla doğrulandı; belge = üreticinin belgesinde; ölçülmedi = bilinmiyor, çalışıyor varsayılmaz. Üç olay: oturum başı, kullanıcı mesajı, compact öncesi. Dört komut, çünkü kullanıcı mesajında saat ve devir kutusu ayrı çalışır. 20.09 04:26 güncellemesi: Desktop bu denetimde SessionStart, saat ve %50 eşik uyarısını gerçek hooks.additional_context olarak aldı. Eşikler kullanıcı mesajında denetlenir; uzun tek turun içinde kontrol yok. Tarihçe: sebep 20.09 00:48'de bulundu: codex exec normalde bağlam vermiyor, ama güven atlatılarak çalıştırılınca bağlam anında geliyor. Yani adaptör doğru, eksik olan güven kaydı. Daha önce 'çalışıyor' sanılmıştı; kayıttaki satırların tipi custom_tool_call_output çıktı, yani betikleri modelin kendisi çalıştırmıştı. Kanıt ham kayıttaki enjeksiyon tipidir.</aside>
+<section id="codex" data-transition="fade" aria-label="5. Bilgi neden dosyalarda?" style="box-sizing:border-box;position:relative;width:1920px;height:1080px;overflow:hidden;background:#F5F3EE;color:#16202A;font-family:'IBM Plex Sans',Arial,sans-serif;padding:108px 128px 115px;display:flex;flex-direction:column">
+  <h2 style="margin:0 0 64px;font-size:72px;font-weight:600;line-height:1.13;max-width:1660px">Bilgi neden dosyalarda?</h2>
+  <div style="display:flex;flex-direction:column;gap:0"><div style="display:grid;grid-template-columns:1.12fr 1fr;gap:100px"><div style="display:flex;flex-direction:column;gap:24px;"><h3 style="margin:0;font-size:60px;line-height:1.18;font-weight:600">Sahip olduğun<br>okunabilir kayıt</h3><p style="margin:0;font-size:39px;line-height:1.42;color:#495660;">Kararı bir uygulamanın kapalı hafızasına bırakmak yerine, kendi klasöründe metin olarak tutarsın.</p></div><div style="display:flex;flex-direction:column;gap:24px;"><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">Markdown</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">İnsan da ajan da okuyabilir ve düzenleyebilir.</p><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">Bağlar ve kaynaklar</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">İlgili notu ve kararın doğduğu konuşmayı bulmayı sağlar.</p><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">Git ve Obsidian</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">Git geçmişi korur. Obsidian dosyaları ve bağları gösterir.</p></div></div><p style="margin:0;font-size:29px;line-height:1.42;color:#495660;margin-top:64px">Bilgi taşınabilir; kayıt yolları, izinler ve uygulama adaptörleri yeni ortamda ayrıca doğrulanır.</p></div>
+  <p style="position:absolute;right:128px;bottom:48px;margin:0;font-size:24px;color:#707871">05 / 14</p>
+  <aside>Obsidian bir görüntüleyicidir; bağlar dosyaların içindedir. Git commit yerel geri dönüş noktasıdır, uzak yedek için ayrıca başarılı push gerekir. Klasör taşınması ham kayıtların eski yol anahtarlarıyla ilişkisini bozabilir; sadece klasörü taşımak bütün otomasyonu taşımaz. Kaynak: notlar/ikinci-beyin-mimarisi.md “Obsidian’ın yeri”; notlar/gece-derleyicisi.md; BEYIN.md taşınma notu.</aside>
 </section>

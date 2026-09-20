@@ -1,28 +1,6 @@
-<section id="diger" data-transition="fade" style="background:#F5F3EE; color:#16202A; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
-  <div style="display:flex; flex-direction:column; gap:16px">
-    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#B4410F">05 · tanımlama · diğer uygulamalar</p>
-    <h2 style="font-size:64px; font-weight:600; line-height:1.1; color:#16202A">Başka bir uygulama: önce yeteneğini tanı</h2>
-  </div>
-  <div style="flex:1; display:flex; gap:28px">
-    <div style="flex:1; display:flex; flex-direction:column; gap:18px; background:#FBFAF7; border:1px solid #E2DED5; border-radius:16px; padding:32px">
-      <h3 style="font-size:30px; font-weight:600; color:#16202A">Ön koşul</h3>
-      <p style="font-size:25px; line-height:1.4; color:#3E4A56">Uygulama yerel klasörü okuyup komut çalıştırabilmeli. Çalıştıramıyorsa beyin yalnızca okunur.</p>
-      <h3 style="font-size:30px; font-weight:600; color:#16202A">Kalıcı talimat yeri varsa</h3>
-      <p style="font-size:25px; line-height:1.4; color:#3E4A56">Bir kez, tek satır:</p>
-      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; line-height:1.5; color:#16202A; background:#EFEBE3; border-radius:12px; padding:16px">Önce AGENTS.md'yi oku ve ona uy.</p>
-    </div>
-    <div style="flex:1.3; display:flex; flex-direction:column; gap:18px; background:#FBFAF7; border:1px solid #E2DED5; border-radius:16px; padding:32px">
-      <h3 style="font-size:30px; font-weight:600; color:#16202A">Yoksa: senin ilk mesajın</h3>
-      <p style="font-size:25px; line-height:1.4; color:#3E4A56">Her oturumun başında sen gönderirsin:</p>
-      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; line-height:1.5; color:#16202A; background:#EFEBE3; border-radius:12px; padding:18px">Bu klasör bir ikinci beyin. AGENTS.md ve BEYIN.md'yi oku. Sonra python araclar/oturum_basi.py --bicim duz çalıştır ve çıktısını bana özetle.</p>
-    </div>
-    <div style="flex:1; display:flex; flex-direction:column; gap:18px; background:#16202A; border-radius:16px; padding:32px">
-      <h3 style="font-size:30px; font-weight:600; color:#F4A259">Sınırı</h3>
-      <p style="font-size:25px; line-height:1.4; color:#B9C3CC">Adaptör doğrulanana kadar saat ve erken devir çalışıyor sayılmaz.</p>
-      <p style="font-size:25px; line-height:1.4; color:#B9C3CC">Okuyucunun tanımadığı kayıtları arama bulamaz.</p>
-      <p style="font-size:25px; line-height:1.4; color:#B9C3CC">Kalıcı bağlamak için tanıtma protokolü: rehber/uygulama-adaptorleri.md</p>
-    </div>
-  </div>
-  <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-size:24px; color:#6B7178">İkinci beyin · kullanım rehberi · 6</p>
-  <aside>Tanıtma protokolü sekiz adım: ön koşul, kural dosyası sınaması (kapanış işaretinin adını sor), başlangıç bağlamı, hook desteği ve ince adaptör, kullanıcının verdiği güven, ham kayıt ve bağlam ölçüm kaynağı, yepyeni oturumda uçtan uca sınama, eksik refleksleri tabloda açık bırakma. Antigravity'nin AGENTS.md'yi okuyup okumadığı ölçülmedi.</aside>
+<section id="diger" data-transition="fade" aria-label="6. İki bilgi katmanı, bir giriş haritası" style="box-sizing:border-box;position:relative;width:1920px;height:1080px;overflow:hidden;background:#F5F3EE;color:#16202A;font-family:'IBM Plex Sans',Arial,sans-serif;padding:108px 128px 115px;display:flex;flex-direction:column">
+  <h2 style="margin:0 0 64px;font-size:72px;font-weight:600;line-height:1.13;max-width:1660px">İki bilgi katmanı, bir giriş haritası</h2>
+  <div style="display:flex;flex-direction:column;gap:0"><div style="display:grid;grid-template-columns:460px 1fr;gap:56px;padding:28px 0;border-top:1px solid #D1CBBF"><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">BEYIN.md</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">Giriş ve yön bulma: hangi konu hangi dosyada, sıradaki iş nerede?</p></div><div style="display:grid;grid-template-columns:460px 1fr;gap:56px;padding:28px 0;border-top:1px solid #D1CBBF"><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">notlar/</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">Güncel konu bilgisi: kararlar, yöntemler, ölçüm sınırları. Ajan haritadan gerekeni seçer.</p></div><div style="display:grid;grid-template-columns:460px 1fr;gap:56px;padding:28px 0;border-top:1px solid #D1CBBF"><h3 style="margin:0;font-size:36px;line-height:1.18;font-weight:600">oturumlar/</h3><p style="margin:0;font-size:32px;line-height:1.42;color:#495660;">Konuşmanın tarihçesi: ne yapıldı, ne değişti, neden? Gerektiğinde açılır.</p></div><p style="margin:0;font-size:31px;line-height:1.42;color:#16202A;margin-top:30px">Ham konuşma günlüğünü uygulama kendi dizininde tutar.<br>Arşiv araçları buradan kanıt okur; bu günlük Markdown özetiyle aynı şey değildir.</p></div>
+  <p style="position:absolute;right:128px;bottom:48px;margin:0;font-size:24px;color:#707871">06 / 14</p>
+  <aside>65 KB seçmeli okuma ve 100 KB bakım eşiği mekanik işaretlerdir; not kalitesinin ölçüsü değildir. Kalıcı katman şu anda eşiğin üstünde. Arşiv geçmişi, kalıcı not güncel kararı taşır; önceki iddiaya sonraki karşı kanıtla birlikte bakılır. Kaynak: AGENTS.md; BEYIN.md; araclar/bakim.py; araclar/kayit.py.</aside>
 </section>

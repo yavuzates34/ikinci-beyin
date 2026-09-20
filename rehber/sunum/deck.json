@@ -1,17 +1,53 @@
 {
   "v": 4,
-  "createdOnFiles": {"v": 1, "at": "2026-09-19T14:40:00Z"},
-  "title": "İkinci Beyin — Kullanım Rehberi",
-  "order": ["kapak", "parcalar", "ilke", "claude", "codex", "diger", "yasam", "uyarilar", "cumleler", "kapanis", "gece", "sinirlar", "komutlar", "son"],
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-09-19T14:40:00Z"
+  },
+  "title": "Sağlayıcıdan bağımsız ikinci beyin",
+  "order": [
+    "kapak",
+    "parcalar",
+    "ilke",
+    "claude",
+    "codex",
+    "diger",
+    "yasam",
+    "uyarilar",
+    "cumleler",
+    "kapanis",
+    "gece",
+    "sinirlar",
+    "komutlar",
+    "son"
+  ],
   "sections": {
-    "s1": {"description": "Beyin neyden oluşur ve neden her ajanla çalışır", "start": "kapak"},
-    "s2": {"description": "Bir ajanı projeye bir kerelik tanıtmak", "start": "claude"},
-    "s3": {"description": "Günlük kullanım: aç, dinle, çalış, kapat", "start": "yasam"},
-    "s4": {"description": "Gece, sınırlar ve başvuru kartı", "start": "gece"}
+    "s1": {
+      "description": "Sorun, amaç ve sağlayıcıdan bağımsızlık",
+      "start": "kapak"
+    },
+    "s2": {
+      "description": "Bilginin katmanları ve günlük çalışma",
+      "start": "diger"
+    },
+    "s3": {
+      "description": "Adaptörler, kapanış ve otomasyon",
+      "start": "cumleler"
+    },
+    "s4": {
+      "description": "Kanıt durumu, bakım ve devam",
+      "start": "sinirlar"
+    }
   },
   "faces": {
-    "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"},
-    "jetbrains-mono": {"family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"}
+    "ibm-plex-sans": {
+      "family": "IBM Plex Sans",
+      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"
+    }
   },
   "designSystems": []
 }
