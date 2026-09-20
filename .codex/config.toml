@@ -1,0 +1,7 @@
+# Kullanici istegi, 20.09.2026: bu projede Astra icin yaklasik 1M baglam.
+# API belgesindeki fiziksel sinir 1.050.000. Bu makinenin Codex katalogu
+# max_context_window=872000 ile sinirli; canli etkin pencere %95 = 828400.
+# Daha genis istek katalog sinirina kirpiliyor; katalog elle degistirilmez.
+model_context_window = 1050000
+# Etkin 828400 sinirindan once kurtarma/compact icin yer birak.
+model_auto_compact_token_limit = 750000
