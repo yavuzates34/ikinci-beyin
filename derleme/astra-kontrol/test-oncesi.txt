@@ -1,0 +1,172 @@
+test_ambiguous_lookup_does_not_select_first (__main__.OnarimTests.test_ambiguous_lookup_does_not_select_first) ... FAIL
+test_citation_invalid_id_not_silently_skipped (__main__.OnarimTests.test_citation_invalid_id_not_silently_skipped) ... FAIL
+test_closure_ignores_code_example_and_draft (__main__.OnarimTests.test_closure_ignores_code_example_and_draft) ... FAIL
+test_context_fallback_keeps_full_identity (__main__.OnarimTests.test_context_fallback_keeps_full_identity) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:81: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-e3gyc8c7\\01a0bb8e-2222-7000-8000-000000000002.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:317: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-e3gyc8c7\\01a0bb8e-2222-7000-8000-000000000002.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+test_context_unknown_window_is_reported (__main__.OnarimTests.test_context_unknown_window_is_reported) ... FAIL
+test_explicit_dry_run_never_calls_model (__main__.OnarimTests.test_explicit_dry_run_never_calls_model) ... ERROR
+test_failed_snapshot_is_retried (__main__.OnarimTests.test_failed_snapshot_is_retried) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:81: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-vx6g2p3o\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+test_legacy_ambiguous_closure_does_not_close_siblings (__main__.OnarimTests.test_legacy_ambiguous_closure_does_not_close_siblings) ... FAIL
+test_model_cannot_write_closure_marker_in_draft (__main__.OnarimTests.test_model_cannot_write_closure_marker_in_draft) ... C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:317: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-u2ex34m6\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+test_precompact_snapshots_do_not_overwrite_sibling (__main__.OnarimTests.test_precompact_snapshots_do_not_overwrite_sibling) ... C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:317: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-40lhj4x7\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:317: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-40lhj4x7\\01a0bb8e-2222-7000-8000-000000000002.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+test_precompact_without_path_uses_requested_session (__main__.OnarimTests.test_precompact_without_path_uses_requested_session) ... FAIL
+test_startup_does_not_emit_sibling_identity (__main__.OnarimTests.test_startup_does_not_emit_sibling_identity) ... FAIL
+test_token_zero_is_valid_measurement (__main__.OnarimTests.test_token_zero_is_valid_measurement) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:81: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3y4zvcdw\\01a00000-0000-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+
+======================================================================
+ERROR: test_explicit_dry_run_never_calls_model (__main__.OnarimTests.test_explicit_dry_run_never_calls_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 128, in test_explicit_dry_run_never_calls_model
+    gece_kayit.main()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\gece_kayit.py", line 236, in main
+    tamam, not_ = yazdir(o, a.cikti)
+    ^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+
+======================================================================
+FAIL: test_ambiguous_lookup_does_not_select_first (__main__.OnarimTests.test_ambiguous_lookup_does_not_select_first)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 51, in test_ambiguous_lookup_does_not_select_first
+    self.assertIsNone(kayit.oturum_bul('01a0bb8e'))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Oturum(kaynak='codex', kimlik='01a0bb8e-2222-7000-8000-000000000002', yol=WindowsPath('C:/Users/Anj/Desktop/desktop/playground/derleme/astra-kontrol/test-l1wh8cic/01a0bb8e-2222-7000-8000-000000000002.jsonl'), proje='test', an=datetime.datetime(2026, 9, 19, 21, 15, 51, 843328), boyut=514) is not None
+
+======================================================================
+FAIL: test_citation_invalid_id_not_silently_skipped (__main__.OnarimTests.test_citation_invalid_id_not_silently_skipped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 143, in test_citation_invalid_id_not_silently_skipped
+    self.assertEqual(total, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_closure_ignores_code_example_and_draft (__main__.OnarimTests.test_closure_ignores_code_example_and_draft)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 118, in test_closure_ignores_code_example_and_draft
+    self.assertEqual(kayit.kapanmis_kimlikler(), set())
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'01a0bb8e-1111'
+'01a0bb8e-2222'
+
+======================================================================
+FAIL: test_context_fallback_keeps_full_identity (__main__.OnarimTests.test_context_fallback_keeps_full_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 59, in test_context_fallback_keeps_full_identity
+    self.assertIn('60%', message)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: '60%' not found in "BAGLAM 80% (80 / 100 token, kaynak: codex ham kaydi). Esik %70 asildi - SON CAGRI.\nKurtarma icin omurga diske alindi: derleme/astra-kontrol/test-e3gyc8c7/snapshots/2026-09-20-0415-01a0bb8e-2222-esik70.md\nBu turun cevabinin SONUNDA kullaniciya tek cumleyle soyle: anlamli bir yerde 'devret' ya da 'oturumu kapatalim' diyebilir, devam etmek de serbest. Konuyu kesme. `kapanan-oturum:` yalnizca gercek gecis onayiyla yazilir (kullanici ya da yetkili orkestrator ajan). %70'i gectik: kapanis notunu yazacak yer daraliyor."
+
+======================================================================
+FAIL: test_context_unknown_window_is_reported (__main__.OnarimTests.test_context_unknown_window_is_reported)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 102, in test_context_unknown_window_is_reported
+    self.assertIsNotNone(message)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_failed_snapshot_is_retried (__main__.OnarimTests.test_failed_snapshot_is_retried)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 110, in test_failed_snapshot_is_retried
+    self.assertEqual(snap.call_count, 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2
+
+======================================================================
+FAIL: test_legacy_ambiguous_closure_does_not_close_siblings (__main__.OnarimTests.test_legacy_ambiguous_closure_does_not_close_siblings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 122, in test_legacy_ambiguous_closure_does_not_close_siblings
+    self.assertFalse(kayit.kapanmis_mi(self.a, {'01a0bb8e'}))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_model_cannot_write_closure_marker_in_draft (__main__.OnarimTests.test_model_cannot_write_closure_marker_in_draft)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 136, in test_model_cannot_write_closure_marker_in_draft
+    self.assertFalse(ok)
+    ~~~~~~~~~~~~~~~~^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_precompact_snapshots_do_not_overwrite_sibling (__main__.OnarimTests.test_precompact_snapshots_do_not_overwrite_sibling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 96, in test_precompact_snapshots_do_not_overwrite_sibling
+    self.assertEqual(len(list((self.root/'snapshots').glob('*.md'))), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2
+
+======================================================================
+FAIL: test_precompact_without_path_uses_requested_session (__main__.OnarimTests.test_precompact_without_path_uses_requested_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 86, in test_precompact_without_path_uses_requested_session
+    self.assertEqual(seen, [self.a.kimlik])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['01a0bb8e-2222-7000-8000-000000000002'] != ['01a0bb8e-1111-7000-8000-000000000001']
+
+First differing element 0:
+'01a0bb8e-2222-7000-8000-000000000002'
+'01a0bb8e-1111-7000-8000-000000000001'
+
+- ['01a0bb8e-2222-7000-8000-000000000002']
+?            ^^^^                      ^
+
++ ['01a0bb8e-1111-7000-8000-000000000001']
+?            ^^^^                      ^
+
+
+======================================================================
+FAIL: test_startup_does_not_emit_sibling_identity (__main__.OnarimTests.test_startup_does_not_emit_sibling_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 72, in test_startup_does_not_emit_sibling_identity
+    self.assertIn('kapanan-oturum: '+self.a.kisa, out.getvalue())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'kapanan-oturum: 01a0bb8e-1111' not found in '{"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": "[[acik-uclar]]\\n\\nGECE DERLEYICISI UYARISI (derleme/son-calisma.json):\\n  - son-calisma.json yok - gece derleyicisi hic calismamis olabilir\\nBunlari kullaniciya ilk cevapta soyle.\\n\\nBU OTURUMUN KIMLIGI: 01a0bb8e-1111-7000-8000-000000000001\\nAraclara kesin kimlik ver: python araclar/omurga.py 01a0bb8e-2222\\nKapanista arsiv dosyasina su satiri yaz: kapanan-oturum: 01a0bb8e-2222\\n\\nKAPANMAMIS OTURUMLAR: bu projede kapanis rituelinden gecmemis oturum var:\\n  - 01a0bb8e-2222 (codex, son yazma 19.09 21:15, 1 KB)\\nOrada konusulanlar kalici notlara (notlar/) islenmemistir ve haritada gorunmez. Ama ham kayit okunabilir:\\n  python araclar/omurga.py <id>          -> o oturumun iskeleti\\n  python araclar/oku.py <id> --saat SS:DD -> tam dokum\\nKullanici \'az once sunu konusmustuk\' derse ve notlarda yoksa, tahmin etme - bu kayitlari oku.\\nGECE TASLAGI olanlari kullaniciya soyle: taslak gozden gecirilir, terfi onerileri notlara islenir, dosya gercek arsiv kaydina cevrilir ve `kapanan-oturum:` yazilir (AGENTS.md)."}}\n'
+
+======================================================================
+FAIL: test_token_zero_is_valid_measurement (__main__.OnarimTests.test_token_zero_is_valid_measurement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Anj\Desktop\desktop\playground\araclar\test_onarim.py", line 148, in test_token_zero_is_valid_measurement
+    self.assertEqual(baglam.olc(o)['yuzde'], 0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -0.1 != 0
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.305s
+
+FAILED (failures=12, errors=1)

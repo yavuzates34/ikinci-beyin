@@ -78,3 +78,8 @@ parça içinde skorlar 0.53–0.68 bandına sıkışıyor; alakasız sonuç alak
 puan alabiliyor. Pratik kural: **`--kapsam` ile daralt.** Daha yüksek isabet
 gerekirse `anlam.py` içindeki `MODEL` sabitini `intfloat/multilingual-e5-large`
 yapıp `--kur --yenile` çalıştırmak yeterli (bedeli: 2.24 GB, daha yavaş sorgu).
+
+
+> **Astra denetim notu:** En büyük dosyayı seçen tekilleştirme üç Codex oturumunda 81 farklı mesajı gizliyordu. Okuyucu artık bütün parçaları birleştirir; belirsiz kimlik öneğini seçmez. Gömme indeksinin tazelenmesi bu ölçümün kapsamında değil.
+> Kanıtlar: [[astra-denetim-bulgulari]] · [[2026-09-20-astra-kontrol]].
+> (codex 01a0bc5c-f1c4 · 20.09 04:22)

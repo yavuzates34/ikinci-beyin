@@ -1,5 +1,12 @@
 # Uygulama adaptörleri — yetenek tablosu ve ilk oturum protokolü
 
+> **05:46 güncellemesi:** Codex %70 uyarısı da bu oturumda gerçek hook
+> kaydı ve kurtarma dosyasıyla doğrulandı. Önceki “%70 ölçülmedi” satırları
+> bu olaydan önceki durumdur. Canlı PreCompact ve yeni gece tetiklemesi ayrı
+> olarak ölçülmedi. Yeniden başlatma sonrası canlı Codex penceresi 828.400;
+> katalog üst sınırı 872.000 × %95. Compact ayarı 750.000.
+> [[2026-09-20-astra-kontrol]].
+
 Beyin tek bir çekirdektir: `AGENTS.md`, `notlar/`, `oturumlar/` ve
 `araclar/*.py`. Hook'lar ise bir **modelin** değil, somut bir **uygulamanın**
 (harness) yeteneğidir. Aynı sağlayıcının iki uygulaması farklı davranabilir;
@@ -13,6 +20,14 @@ Durum etiketleri:
 - **ölçülmedi:** bilinmiyor. Çalışıyor varsayılmaz.
 
 ## Yetenek tablosu
+
+**20.09 Astra denetim eki:** Desktop'ta harita/saat ve **%50 uyarısı** bu
+oturumda ham `hooks.additional_context` kaydıyla doğrulandı. %70 ve
+PreCompact hâlâ ölçülmedi. Kontrol yeni kullanıcı mesajında; uzun tek tur
+içinde yok. Claude'un 1M penceresi ölçülmüş pencere değil, kalibrasyon.
+Proje Codex ayarı 1.050.000 pencere/900.000 compact olarak yüklendi; açık
+oturumun canlı penceresi hâlâ 258.400. [[astra-denetim-bulgulari]].
+Resmî hook çıktısı alanları: [Codex hooks](https://learn.chatgpt.com/docs/hooks).
 
 | Yetenek | Claude Code (masaüstü, Code sekmesi) | Codex CLI 0.150 | Codex Desktop 0.155-alpha |
 |---|---|---|---|
@@ -40,9 +55,10 @@ olarak, durum etiketiyle yazılır.
 1. **Ön koşul:** uygulama yerel klasörü okuyabiliyor ve komut
    çalıştırabiliyor mu? Çalıştıramıyorsa beyin yalnızca okunur. Tabloya
    "salt okunur" yazılır, gerisi atlanır.
-2. **Kural dosyası:** `AGENTS.md` kendiliğinden yükleniyor mu? Sınama sorusu:
-   "Kapanış işaretinin tam adı ne?" Cevap `kapanan-oturum:` olmalı; uygulama
-   dosyayı okumadan bunu bilemez. Yüklenmiyorsa uygulamanın kalıcı proje
+2. **Kural dosyası:** `AGENTS.md` kendiliğinden yükleniyor mu? Sınama sorusu
+   ilk ipucudur, kanıt değildir: model cevabı eski bağlamdan veya elle
+   okumadan alabilir. Temiz oturumun ham kaydında otomatik enjeksiyonun
+   türünü ve dosya içeriğini doğrula; araç çıktısını ayır. Yüklenmiyorsa kalıcı proje
    talimatı yeri varsa oraya tek satır yazılır: "Önce AGENTS.md'yi oku." O da
    yoksa **kullanıcı** her oturumun ilk mesajında bunu söyler.
 3. **Başlangıç bağlamı:** `python araclar/oturum_basi.py --bicim duz` elle

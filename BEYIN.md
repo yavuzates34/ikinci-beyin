@@ -1,10 +1,17 @@
 # Beyin — giriş ve harita
 
+> **05:46 güncellemesi:** Codex %70 uyarısı da bu oturumda gerçek hook
+> kaydı ve kurtarma dosyasıyla doğrulandı. Önceki “%70 ölçülmedi” satırları
+> bu olaydan önceki durumdur. Canlı PreCompact ve yeni gece tetiklemesi ayrı
+> olarak ölçülmedi. Yeniden başlatma sonrası canlı Codex penceresi 828.400;
+> katalog üst sınırı 872.000 × %95. Compact ayarı 750.000.
+> [[2026-09-20-astra-kontrol]].
+
 Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilgi
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 20 Eylül 2026, 01:57
+**Son güncelleme:** 20.09.2026 05:55
 
 ---
 
@@ -24,11 +31,12 @@ için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu i�
 aktarır ve yalnızca Claude'a özel olanı ekler.
 
 Klasör bir **git deposu** ve private GitHub deposuna bağlı
-(`yavuzates34/ikinci-beyin`). Gece görevi her gece 00:30'da commit + push
-yapmak üzere kurulu, **ama güvenilir değil:** son dört gecenin ikisinde görev
-tetiklendiği hâlde konsol penceresi kapandığı için yarıda öldü ve commit
-adımına hiç gelmedi ([[olculmus-bulgular]] §16). Commit'siz dosya görürsen
-sebebi bu olabilir; düzeltilene kadar elle commit gerekebilir.
+(`yavuzates34/ikinci-beyin`). Gece görevi 00:30 için kurulu. **20.09 Astra
+denetiminde kullanıcı onayıyla** gizli PowerShell, anında log ve 1 saat süre
+sınırına geçirildi. Kuru çalışma geçti; yeni ayarın kendi gece tetiklemesi
+henüz ölçülmedi. Önceki “commit'e hiç gelmedi” iddiası yanlıştı: 20.09
+00:30:05'te `67779e9` commit'i var, sonra çalışma kesilmiş. O çalışmanın
+push sonucu ölçülmedi. Güncel kanıt: [[astra-denetim-bulgulari]].
 
 ## Kalıcı notlar
 
@@ -40,7 +48,8 @@ sebebi bu olabilir; düzeltilene kadar elle commit gerekebilir.
 | [[gece-derleyicisi]] | Her gece çalışan dedektör ve git: ne ölçer, ne ölçmez |
 | [[arac-izle]] | Video/sesi modele okutma: izle.py |
 | [[ortam-kurulum]] | Makinede neyin nereye kurulduğu: ffmpeg, yt-dlp, Python paketleri, kalıcı ayarlar |
-| [[olculmus-bulgular]] | Tahmin değil ölçüm. Yeniden ölçmeye gerek yok |
+| [[olculmus-bulgular]] | Ölçüm tarihçesi; güncel denetim notlarını birlikte oku |
+| [[astra-denetim-bulgulari]] | Üçüncü göz: 81 gizli mesaj, yanlış kapanış/kimlik, gece görevi, canlı %50 ve 1M ayarının sınırları |
 | [[iki-ajan-calismasi]] | Claude ve Codex aynı klasörde: yöntem, denetim, asimetri |
 | [[yasanan-hatalar]] | Bir kez düşülmüş tuzaklar |
 | [[tasarim-dersleri]] | Geri besleme, ölçümün kalite şartları, komut mu doküman mı |
@@ -65,6 +74,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-09-19-codex-sunum-yedi-on-ve-onarim-devri]] | 19.09 19:16 – 20:04 | 7–10. slaytlar incelendi; bulgular 13'e çıktı, erken devir P0 hibrit tasarıma bağlandı ve Claude + Codex ortak onarım devri yazıldı |
 | [[2026-09-18-saglayici-bagimsizligi-ve-erken-devir]] | 18.09 04:37 – 20.09 00:40 | **25 mesaj, 44 saat.** Sağlayıcıdan bağımsız çekirdek (AGENTS.md, kapanış işareti, Codex adaptörü), erken devir (%50/%70), bakım döngüsü, 14 slaytlık kullanım rehberi ve 15 açıklık ortak onarım turu |
 | [[2026-09-19-sunum-onarim-listesi]] | — | Oturum kaydı değil: 15 açıklık onarım turunun iş belgesi ve durum tablosu (19–20.09). Astra turu bunun üzerinden yürür |
+| [[2026-09-20-astra-kontrol]] | 20.09 04:10 – 20.09 05:55 | Bağımsız 16 madde denetimi, yeni açıklar, kod/not/sunum kaynağı düzeltmeleri, onaylı gece görevi ve proje 1M ayarı |
 | [[2026-09-20-codex-hook-guven-oncesi-denetimi]] | 20.09 00:25 – 00:35 | Desktop'ta güven öncesi hook denetimi; model beyanı ile gerçek `hooks.additional_context` kaydının ayrımı |
 | [[2026-09-20-codex-hook-guveni-ve-testlerin-kapanisi]] | 20.09 00:45 – 01:39 | Güven öncesi/sonrası beş Codex test kaydı; Desktop ve normal CLI zinciri doğrulandı, tüm açık Codex oturumları kapatıldı |
 | [[acik-uclar-tarihce]] | — | Oturum kaydı değil: açık uçlardan kapanan ve devredilen maddeler, metniyle (19.09 bakımında taşındı) |
@@ -89,20 +99,18 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
 
-- **SIRADAKI IS — Astra turu (Codex Desktop'ta, kullanıcı başlatır; CLI Astra'yı çalıştıramıyor).** Claude ve Codex'in onarım turu bitti. Üçüncü
-  göz denetimi için kullanıcı bir Astra oturumu açıp `/goal` verecek. Denetim
-  haritası, açık bırakılan **beş** madde ve Claude'un kendi zayıf noktaları:
-  `rehber/astra-kontrol.md`. Açık maddelerin durumu:
-  [[2026-09-19-sunum-onarim-listesi]] → "Durum" tablosu.
-  **Ortam 20.09 01:55'te hazırlandı** (claude 96517e26): ağaç commit'lendi,
-  durum tablosunun madde 5 ve 7 satırları güven ölçümüne göre tazelendi,
-  gece görevi bulgusu 16. madde olarak eklendi.
+- **Astra denetimi yapıldı; güncel kanıt tablosu**
+  [[2026-09-20-astra-kontrol]] içinde. Eski “kapandı” satırları güncel kanıt
+  yerine kullanılmamalı. Codex %50 canlı doğrulandı; %70 ve PreCompact,
+  yeni görev ayarının gece sonucu, canlı 1M etkinleşmesi ölçülmedi.
+  Kalıcı katman budaması için önceki kullanıcı sınırı korunuyor.
+  Önemli düzeltmeler ve sınırlar: [[astra-denetim-bulgulari]].
 
 - **Codex hook'ları güven verildikten sonra çalışıyor** (20.09 01:28–01:32
   ölçümü). Desktop'ta `SessionStart` ve `UserPromptSubmit`, normal `codex exec`
   çağrısında da aynı iki taşıyıcı ham kayıtta `hooks.additional_context` olarak
-  doğrulandı. `PreCompact` ve Codex'teki gerçek %50/%70 uyarısı henüz canlı
-  ölçülmedi. Ayrıntı: [[olculmus-bulgular]] §14.2.
+  doğrulandı. Codex %50 uyarısı 20.09 04:26'da canlı doğrulandı; %70 ve
+  `PreCompact` henüz ölçülmedi. [[astra-denetim-bulgulari]].
 
 - **Claude + Codex ortak onarım devri:** Sunum incelemesinde bulunan 13 açık,
   kaynakları, test ölçütleri ve kullanıcı karar noktalarıyla

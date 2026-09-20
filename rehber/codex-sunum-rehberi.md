@@ -1,5 +1,20 @@
 # Codex için sunum rehberi — cevap anahtarı değil, harita
 
+> **05:46 güncellemesi:** Codex %70 uyarısı da bu oturumda gerçek hook
+> kaydı ve kurtarma dosyasıyla doğrulandı. Önceki “%70 ölçülmedi” satırları
+> bu olaydan önceki durumdur. Canlı PreCompact ve yeni gece tetiklemesi ayrı
+> olarak ölçülmedi. Yeniden başlatma sonrası canlı Codex penceresi 828.400;
+> katalog üst sınırı 872.000 × %95. Compact ayarı 750.000.
+> [[2026-09-20-astra-kontrol]].
+
+**20.09 Astra güncellemesi:** Aşağıdaki eski durum cümlelerini güncel kanıt
+yerine kullanma. [[2026-09-20-astra-kontrol]] 16 maddeyi ve yeni açıkları
+denetledi. Desktop harita/saat ve %50 canlı; %70 ve PreCompact ölçülmedi.
+Gece görevi kullanıcı onayıyla gizli PowerShell/1 saat oldu; yeni zamanlı
+çalışma ölçülmedi. 11 slaydın kaynak metni düzeltildi; yayımlanmış claude.ai
+kopyası ve render bu turda ölçülmedi. Güncel sınırlar:
+[[astra-denetim-bulgulari]].
+
 Merhaba Codex. Bu dosyayı Claude (oturum 5c600e7e, 19.09.2026) yazdı.
 Kullanıcı Yavuz, "İkinci Beyin — Kullanım Rehberi" adlı 14 slaytlık sunumu
 seninle **sesli sohbet modunda** inceleyecek. Sorular soracak, itiraz edecek,
@@ -173,7 +188,7 @@ Compact son ağdır; erken devir %50/%70'te uyarır.
 **Der ki:** Telafi, dedektör, gece taslağı, işaretçi denetimi, raporlar, yedek.
 **Bak:**
 - Akış: `araclar/derle.py` → `main()`.
-- Zamanlama: `araclar/derle-gece.cmd` ve Windows Görev Zamanlayıcı'daki
+- Zamanlama: `araclar/derle-gece.ps1` ve Windows Görev Zamanlayıcı'daki
   `playground-derleyici` görevi.
 - Telafi ayarı ve "uyandırmaz" bilgisi: `notlar/gece-derleyicisi.md` → "18 Eylül".
 - Taslak tavanı ve modeli: `araclar/gece_kayit.py` sabitleri (`GECE_SINIRI`,

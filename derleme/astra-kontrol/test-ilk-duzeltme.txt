@@ -1,0 +1,41 @@
+test_ambiguous_lookup_does_not_select_first (__main__.OnarimTests.test_ambiguous_lookup_does_not_select_first) ... UYARI: belirsiz oturum '01a0bb8e'; tam kimlik ver: 01a0bb8e-2222-7000-8000-000000000002, 01a0bb8e-1111-7000-8000-000000000001
+ok
+test_citation_invalid_id_not_silently_skipped (__main__.OnarimTests.test_citation_invalid_id_not_silently_skipped) ... ok
+test_closure_ignores_code_example_and_draft (__main__.OnarimTests.test_closure_ignores_code_example_and_draft) ... ok
+test_context_fallback_keeps_full_identity (__main__.OnarimTests.test_context_fallback_keeps_full_identity) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:83: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-luw898ox\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:323: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-luw898ox\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_context_unknown_window_is_reported (__main__.OnarimTests.test_context_unknown_window_is_reported) ... ok
+test_explicit_dry_run_never_calls_model (__main__.OnarimTests.test_explicit_dry_run_never_calls_model) ... ok
+test_failed_snapshot_is_retried (__main__.OnarimTests.test_failed_snapshot_is_retried) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:83: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-vqamppr5\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_legacy_ambiguous_closure_does_not_close_siblings (__main__.OnarimTests.test_legacy_ambiguous_closure_does_not_close_siblings) ... UYARI: belirsiz oturum '01a0bb8e'; tam kimlik ver: 01a0bb8e-2222-7000-8000-000000000002, 01a0bb8e-1111-7000-8000-000000000001
+ok
+test_model_cannot_write_closure_marker_in_draft (__main__.OnarimTests.test_model_cannot_write_closure_marker_in_draft) ... C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:323: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-fpbvv12k\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_precompact_snapshots_do_not_overwrite_sibling (__main__.OnarimTests.test_precompact_snapshots_do_not_overwrite_sibling) ... C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:323: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-hr1kd0j9\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:323: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-hr1kd0j9\\01a0bb8e-2222-7000-8000-000000000002.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_precompact_without_path_uses_requested_session (__main__.OnarimTests.test_precompact_without_path_uses_requested_session) ... ok
+test_startup_does_not_emit_sibling_identity (__main__.OnarimTests.test_startup_does_not_emit_sibling_identity) ... ok
+test_token_zero_is_valid_measurement (__main__.OnarimTests.test_token_zero_is_valid_measurement) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:83: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-tnpcjyos\\01a00000-0000-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.224s
+
+OK

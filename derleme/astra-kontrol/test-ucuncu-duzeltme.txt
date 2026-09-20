@@ -1,0 +1,53 @@
+test_ambiguous_lookup_does_not_select_first (__main__.OnarimTests.test_ambiguous_lookup_does_not_select_first) ... UYARI: belirsiz oturum '01a0bb8e'; tam kimlik ver: 01a0bb8e-2222-7000-8000-000000000002, 01a0bb8e-1111-7000-8000-000000000001
+ok
+test_citation_invalid_id_not_silently_skipped (__main__.OnarimTests.test_citation_invalid_id_not_silently_skipped) ... ok
+test_closure_ignores_code_example_and_draft (__main__.OnarimTests.test_closure_ignores_code_example_and_draft) ... ok
+test_context_fallback_keeps_full_identity (__main__.OnarimTests.test_context_fallback_keeps_full_identity) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:83: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_6z875pf\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:326: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_6z875pf\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_context_unknown_window_is_reported (__main__.OnarimTests.test_context_unknown_window_is_reported) ... ok
+test_dedup_preserves_messages_unique_to_smaller_file (__main__.OnarimTests.test_dedup_preserves_messages_unique_to_smaller_file) ... C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:326: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3wj9g8up\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:326: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3wj9g8up\\small-copy.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_explicit_dry_run_never_calls_model (__main__.OnarimTests.test_explicit_dry_run_never_calls_model) ... ok
+test_failed_nightly_writer_is_visible_at_startup (__main__.OnarimTests.test_failed_nightly_writer_is_visible_at_startup) ... ok
+test_failed_push_cannot_be_masked_by_local_tracking_ref (__main__.OnarimTests.test_failed_push_cannot_be_masked_by_local_tracking_ref) ... ok
+test_failed_snapshot_is_retried (__main__.OnarimTests.test_failed_snapshot_is_retried) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:83: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_3eotw63\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_git_commit_failure_cannot_report_success (__main__.OnarimTests.test_git_commit_failure_cannot_report_success) ... ok
+test_legacy_ambiguous_closure_does_not_close_siblings (__main__.OnarimTests.test_legacy_ambiguous_closure_does_not_close_siblings) ... UYARI: belirsiz oturum '01a0bb8e'; tam kimlik ver: 01a0bb8e-2222-7000-8000-000000000002, 01a0bb8e-1111-7000-8000-000000000001
+ok
+test_model_cannot_write_closure_marker_in_draft (__main__.OnarimTests.test_model_cannot_write_closure_marker_in_draft) ... C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:326: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-apnfwil9\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_monthly_ratio_uses_only_this_sessions_archive (__main__.OnarimTests.test_monthly_ratio_uses_only_this_sessions_archive) ... ok
+test_parallel_context_updates_are_preserved (__main__.OnarimTests.test_parallel_context_updates_are_preserved) ... ok
+test_precompact_snapshots_do_not_overwrite_sibling (__main__.OnarimTests.test_precompact_snapshots_do_not_overwrite_sibling) ... C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:326: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-19_b0f_1\\01a0bb8e-1111-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\Anj\Desktop\desktop\playground\araclar\kayit.py:326: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-19_b0f_1\\01a0bb8e-2222-7000-8000-000000000002.jsonl' mode='r' encoding='utf-8'>
+  for satir in io.open(yol, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_precompact_without_path_uses_requested_session (__main__.OnarimTests.test_precompact_without_path_uses_requested_session) ... ok
+test_startup_does_not_emit_sibling_identity (__main__.OnarimTests.test_startup_does_not_emit_sibling_identity) ... ok
+test_token_zero_is_valid_measurement (__main__.OnarimTests.test_token_zero_is_valid_measurement) ... C:\Users\Anj\Desktop\desktop\playground\araclar\baglam.py:83: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3lql3h5h\\01a00000-0000-7000-8000-000000000001.jsonl' mode='r' encoding='utf-8'>
+  for satir in open(yol, encoding="utf-8", errors="replace"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.971s
+
+OK

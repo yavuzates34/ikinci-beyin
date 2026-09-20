@@ -1,0 +1,317 @@
+{
+  "an": "2026-09-20T04:13:17.795265",
+  "oturum_sayisi": 214,
+  "ilk8_cakismalar": {
+    "01a0bb8e": [
+      "01a0bb8e-de58-7863-90bf-9ae51cd02ec7",
+      "01a0bb8e-4631-72e2-9ae9-0b55850e5534"
+    ],
+    "01a0b215": [
+      "01a0b215-c66d-7432-aabf-8655c260f209",
+      "01a0b215-499e-7fb1-8663-68b2af85f32c",
+      "01a0b215-88ed-74d2-89af-122c5d663c75"
+    ],
+    "01a0a8b5": [
+      "01a0a8b5-9c89-7680-99bd-e51b984e198d",
+      "01a0a8b5-0e40-73b0-96ac-0a3f83d8b2fc"
+    ],
+    "01a076b1": [
+      "01a076b1-a554-73b2-846d-124a8b191b03",
+      "01a076b1-23c1-7b90-b9cc-e08d3fddfe06"
+    ],
+    "01a0484a": [
+      "01a0484a-e726-70d1-999b-63e8d6a819de",
+      "01a0484a-d85b-7f33-a898-bb5b319c0aef",
+      "01a0484a-d0d7-7282-8576-bbd080d61773"
+    ],
+    "01a04845": [
+      "01a04845-5d70-79f3-bf33-41bba883d2bc",
+      "01a04845-6cd4-7281-88aa-3a1bc7ae433d",
+      "01a04845-7c9d-7d91-851d-be0705582eca"
+    ],
+    "01a04849": [
+      "01a04849-36c1-71f1-872a-93ce59351f65",
+      "01a04849-0c93-73b1-b723-8242bb38e61b"
+    ],
+    "01a0482a": [
+      "01a0482a-9aa0-71f2-b416-1c09b912b3a8",
+      "01a0482a-8b21-7743-bb3a-985441b588dc",
+      "01a0482a-aa88-7ca0-8130-c0078ad75672",
+      "01a0482a-7d8c-7920-a24d-7d930b33e37b"
+    ],
+    "01a0483d": [
+      "01a0483d-2ccf-75e2-aac5-b46a19f9e0af",
+      "01a0483d-138f-7812-8acd-b39a8778f904"
+    ],
+    "01a0483b": [
+      "01a0483b-7815-72d3-ab77-76da3ecf316a",
+      "01a0483b-5c26-73b3-80e0-b095448e9fe5",
+      "01a0483b-39fa-7c40-9f4a-dc416696600e"
+    ],
+    "01a04837": [
+      "01a04837-ecfb-7b83-a4df-bb635b00b4c2",
+      "01a04837-8e2c-7e72-970f-8b5e358ef8e5"
+    ],
+    "01a04832": [
+      "01a04832-2e8d-7293-91aa-6bc1b621a3ce",
+      "01a04832-13dd-7380-ac37-df60e632fcea"
+    ],
+    "01a04831": [
+      "01a04831-f940-7dd3-bfef-76f1414b815e",
+      "01a04831-9ccd-7191-a8bf-aa35dd028902",
+      "01a04831-348e-7c00-ab40-f49b49a720c4"
+    ],
+    "01a0481b": [
+      "01a0481b-ff01-7b30-adbf-36d5f5eebd39",
+      "01a0481b-d117-7b32-8f85-5d1439eed64f",
+      "01a0481b-66dc-7bf0-a7de-9085811cfd08",
+      "01a0481b-1923-7a80-bb74-515f301132b0"
+    ],
+    "01a04806": [
+      "01a04806-2b13-74f2-8c2b-543988ccd8ac",
+      "01a04806-121c-78e1-a8db-d6b00838c4cc",
+      "01a04806-0e77-7c72-9f0a-14581959895b",
+      "01a04806-1da3-7181-9dae-8cae732d2270"
+    ],
+    "019fc3f8": [
+      "019fc3f8-ca8e-72e2-8b0a-f42cf1ba8999",
+      "019fc3f8-baa9-71e3-bee9-09cdec3dbadc",
+      "019fc3f8-a92b-7172-88d8-479acf2a5eae"
+    ],
+    "019eaef2": [
+      "019eaef2-fe2f-7312-9bf2-44c237a921db",
+      "019eaef2-1e77-7961-8345-1331f45844e1"
+    ],
+    "019eaef6": [
+      "019eaef6-37f6-7283-96c5-11a5f657a8bb",
+      "019eaef6-8a8b-7183-9cdc-1532cf6dce3f"
+    ]
+  },
+  "belirsiz_kapanislar": {},
+  "bakim": {
+    "notlar_kb": 121.2,
+    "esik": "bolme",
+    "buyuk": [
+      "olculmus-bulgular (22 KB)",
+      "kapanis-ritueli (16 KB)"
+    ],
+    "haritasiz": [],
+    "acik_uclar_kapanmis_kb": 0.0,
+    "yetim_taslak": []
+  },
+  "kayitlar": [
+    {
+      "id": "01a0bbc6-b6f6-71d0-b381-0421674889c5",
+      "dosya": "C:\\Users\\Anj\\.codex\\archived_sessions\\rollout-2026-09-20T01-25-57-01a0bbc6-b6f6-71d0-b381-0421674889c5.jsonl",
+      "olcum": {
+        "token": 138338,
+        "pencere": 258400,
+        "not": null,
+        "kaynak": "codex",
+        "yuzde": 0.535
+      },
+      "hook_kaniti": [
+        {
+          "satir": 9,
+          "an": "2026-09-19T22:28:33.400Z",
+          "tip": "response_item",
+          "rol": "developer",
+          "kind": null,
+          "harita": true,
+          "saat": false,
+          "esik": false,
+          "uzunluk": 3479
+        },
+        {
+          "satir": 12,
+          "an": "2026-09-19T22:28:34.305Z",
+          "tip": "response_item",
+          "rol": "developer",
+          "kind": null,
+          "harita": false,
+          "saat": true,
+          "esik": false,
+          "uzunluk": 55
+        },
+        {
+          "satir": 200,
+          "an": "2026-09-19T22:37:05.428Z",
+          "tip": "response_item",
+          "rol": "developer",
+          "kind": null,
+          "harita": false,
+          "saat": true,
+          "esik": false,
+          "uzunluk": 55
+        }
+      ],
+      "claude_esik": [],
+      "meta": {
+        "originator": "codex-tui",
+        "source": "cli",
+        "cli_version": "0.150.1"
+      }
+    },
+    {
+      "id": "01a0bbcc-8818-7b52-9db1-15bd56a495a0",
+      "dosya": "C:\\Users\\Anj\\.codex\\sessions\\2026\\09\\20\\rollout-2026-09-20T01-32-18-01a0bbcc-8818-7b52-9db1-15bd56a495a0.jsonl",
+      "olcum": {
+        "token": 24303,
+        "pencere": 258400,
+        "not": null,
+        "kaynak": "codex",
+        "yuzde": 0.094
+      },
+      "hook_kaniti": [
+        {
+          "satir": 9,
+          "an": "2026-09-19T22:32:23.382Z",
+          "tip": "response_item",
+          "rol": "developer",
+          "kind": null,
+          "harita": true,
+          "saat": false,
+          "esik": false,
+          "uzunluk": 3558
+        },
+        {
+          "satir": 12,
+          "an": "2026-09-19T22:32:24.258Z",
+          "tip": "response_item",
+          "rol": "developer",
+          "kind": null,
+          "harita": false,
+          "saat": true,
+          "esik": false,
+          "uzunluk": 55
+        }
+      ],
+      "claude_esik": [],
+      "meta": {
+        "originator": "codex_exec",
+        "source": "exec",
+        "cli_version": "0.150.1"
+      }
+    },
+    {
+      "id": "01a0bc5c-f1c4-7002-a761-c9d3dec8e7f1",
+      "dosya": "C:\\Users\\Anj\\.codex\\sessions\\2026\\09\\20\\rollout-2026-09-20T04-10-03-01a0bc5c-f1c4-7002-a761-c9d3dec8e7f1.jsonl",
+      "olcum": {
+        "token": 89706,
+        "pencere": 258400,
+        "not": null,
+        "kaynak": "codex",
+        "yuzde": 0.347
+      },
+      "hook_kaniti": [
+        {
+          "satir": 10,
+          "an": "2026-09-20T01:10:09.925Z",
+          "tip": "response_item",
+          "rol": "developer",
+          "kind": null,
+          "harita": true,
+          "saat": false,
+          "esik": false,
+          "uzunluk": 3190
+        },
+        {
+          "satir": 13,
+          "an": "2026-09-20T01:10:12.283Z",
+          "tip": "response_item",
+          "rol": "developer",
+          "kind": null,
+          "harita": false,
+          "saat": true,
+          "esik": false,
+          "uzunluk": 55
+        }
+      ],
+      "claude_esik": [],
+      "meta": {
+        "originator": "Codex Desktop",
+        "source": "vscode",
+        "cli_version": "0.155.0-alpha.2.6"
+      }
+    },
+    {
+      "id": "01a0bb8e-de58-7863-90bf-9ae51cd02ec7",
+      "dosya": "C:\\Users\\Anj\\.codex\\archived_sessions\\rollout-2026-09-20T00-24-57-01a0bb8e-de58-7863-90bf-9ae51cd02ec7.jsonl",
+      "olcum": {
+        "token": 48259,
+        "pencere": 258400,
+        "not": null,
+        "kaynak": "codex",
+        "yuzde": 0.187
+      },
+      "hook_kaniti": [],
+      "claude_esik": [],
+      "meta": {
+        "originator": "Codex Desktop",
+        "source": "vscode",
+        "cli_version": "0.155.0-alpha.2.6"
+      }
+    },
+    {
+      "id": "01a0bb8e-4631-72e2-9ae9-0b55850e5534",
+      "dosya": "C:\\Users\\Anj\\.codex\\sessions\\2026\\09\\20\\rollout-2026-09-20T00-24-18-01a0bb8e-4631-72e2-9ae9-0b55850e5534.jsonl",
+      "olcum": {
+        "token": 98501,
+        "pencere": 258400,
+        "not": null,
+        "kaynak": "codex",
+        "yuzde": 0.381
+      },
+      "hook_kaniti": [],
+      "claude_esik": [],
+      "meta": {
+        "originator": "codex_exec",
+        "source": "exec",
+        "cli_version": "0.150.1"
+      }
+    },
+    {
+      "id": "5c600e7e-e250-433a-9cb4-f4647f21e2ab",
+      "dosya": "C:\\Users\\Anj\\.claude\\projects\\C--Users-Anj-Desktop-desktop-playground\\5c600e7e-e250-433a-9cb4-f4647f21e2ab.jsonl",
+      "olcum": {
+        "token": 814060,
+        "pencere": 1000000,
+        "model": "claude-opus-5",
+        "not": null,
+        "kaynak": "claude",
+        "yuzde": 0.814
+      },
+      "hook_kaniti": [],
+      "claude_esik": [
+        {
+          "satir": 1476,
+          "an": "2026-09-19T17:31:35.030Z",
+          "tip": "attachment",
+          "alt_tip": null,
+          "toolUseResult": false
+        },
+        {
+          "satir": 2106,
+          "an": "2026-09-19T21:36:54.305Z",
+          "tip": "attachment",
+          "alt_tip": null,
+          "toolUseResult": false
+        }
+      ]
+    },
+    {
+      "id": "96517e26-5948-4d47-8014-6e69edc7d0c3",
+      "dosya": "C:\\Users\\Anj\\.claude\\projects\\C--Users-Anj-Desktop-desktop-playground\\96517e26-5948-4d47-8014-6e69edc7d0c3.jsonl",
+      "olcum": {
+        "token": 169978,
+        "pencere": 1000000,
+        "model": "claude-opus-5",
+        "not": null,
+        "kaynak": "claude",
+        "yuzde": 0.17
+      },
+      "hook_kaniti": [],
+      "claude_esik": []
+    }
+  ]
+}

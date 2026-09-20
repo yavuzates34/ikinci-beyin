@@ -1,5 +1,12 @@
 # Açık uçlar
 
+> **05:46 güncellemesi:** Codex %70 uyarısı da bu oturumda gerçek hook
+> kaydı ve kurtarma dosyasıyla doğrulandı. Önceki “%70 ölçülmedi” satırları
+> bu olaydan önceki durumdur. Canlı PreCompact ve yeni gece tetiklemesi ayrı
+> olarak ölçülmedi. Yeniden başlatma sonrası canlı Codex penceresi 828.400;
+> katalog üst sınırı 872.000 × %95. Compact ayarı 750.000.
+> [[2026-09-20-astra-kontrol]].
+
 Karar bekleyenler, yapılmamış testler, sıralanmış yol haritası. **Yalnızca açık
 olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
 [[acik-uclar-tarihce]] dosyasına taşınır, silinmez (kullanıcı kararı, 19.09).
@@ -9,6 +16,17 @@ olanlar burada durur.** Kapanan ya da devredilen madde metniyle birlikte
 ---
 
 ## Açık — sistem
+
+**Astra sonrası güncel okuma (20.09):** Tarihsel maddelerdeki iddiaların
+düzeltmeleri [[astra-denetim-bulgulari]] içinde. Madde 1'in Codex **%50**
+ayağı canlı doğrulandı; **%70**, canlı PreCompact ve uzun tek tur kontrolü
+açık. Madde 6'nın görev ayarı kullanıcı onayıyla düzeltildi; yeni gece
+tetiklemesi ölçülmedi. “Commit hiç çalışmadı” iddiası yanlış. Madde 5'in
+üçüncü göz/kod/kaynak metin denetimi yapıldı; yayımlanan claude.ai sunumu
+ölçülmedi. Bakım taşımaları yapılmadı. Yeni 1M Codex ayarı dosyada ve
+yapılandırma okuyucusunda doğrulandı; açık Desktop oturumuna uygulanması
+henüz doğrulanmadı.
+(codex 01a0bc5c-f1c4 · 20.09 05:33)
 
 1. **Erken devir: Claude'da iki eşik canlı; Codex'te eşik olayı bekleniyor.**
    %50 (19.09 20:31) ve %70 (20.09 00:36) uyarıları gerçek hook zinciriyle

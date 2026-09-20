@@ -1,5 +1,18 @@
 # Sunum incelemesi — onarım listesi
 
+> **05:46 güncellemesi:** Codex %70 uyarısı da bu oturumda gerçek hook
+> kaydı ve kurtarma dosyasıyla doğrulandı. Önceki “%70 ölçülmedi” satırları
+> bu olaydan önceki durumdur. Canlı PreCompact ve yeni gece tetiklemesi ayrı
+> olarak ölçülmedi. Yeniden başlatma sonrası canlı Codex penceresi 828.400;
+> katalog üst sınırı 872.000 × %95. Compact ayarı 750.000.
+> [[2026-09-20-astra-kontrol]].
+
+> **20.09 Astra bağımsız denetimi:** Eski durum tablosu tarihçe olarak
+> korunuyor. Güncel 1–16 matrisi ve yeni açıklar [[2026-09-20-astra-kontrol]]
+> içinde. Özellikle 14 ve 15 tekrar kusurlu bulundu ve düzeltildi; 16'nın
+> “commit hiç çalışmadı” iddiası git kaydıyla çürütüldü. %50 canlı doğrulandı,
+> %70/PreCompact ve yeni görev ayarının gece sonucu ölçülmedi.
+
 Claude ve Codex'in birlikte kapatacağı, “İkinci Beyin — Kullanım Rehberi”
 incelemesinde bulunan **13 açık**. Bu dosya yalnızca sunum metnini düzeltme
 listesi değildir: sunumun açığa çıkardığı gerçek sistem kusurlarını da kapsar.

@@ -1,5 +1,17 @@
 # Astra kontrol dosyası — üçüncü göz
 
+> **05:46 güncellemesi:** Codex %70 uyarısı da bu oturumda gerçek hook
+> kaydı ve kurtarma dosyasıyla doğrulandı. Önceki “%70 ölçülmedi” satırları
+> bu olaydan önceki durumdur. Canlı PreCompact ve yeni gece tetiklemesi ayrı
+> olarak ölçülmedi. Yeniden başlatma sonrası canlı Codex penceresi 828.400;
+> katalog üst sınırı 872.000 × %95. Compact ayarı 750.000.
+> [[2026-09-20-astra-kontrol]].
+
+**Denetim yapıldı (20.09):** Aşağısı önceki turun devir haritasıdır. Güncel
+madde sonuçları ve bağımsız kanıtlar [[2026-09-20-astra-kontrol]], kalıcı
+sonuçlar [[astra-denetim-bulgulari]] içinde. Yeni gece ayarı ve 1M proje
+ayarı yüklendi; canlı/gece doğrulaması tamamlanmış sayılmamalı.
+
 Merhaba Astra. Bu dosyayı Claude (oturum `5c600e7e`, 19–20.09.2026) yazdı;
 oturum `96517e26` (20.09 01:55) tazeledi. Claude ve Codex (`gpt-5.6-sol`)
 birlikte bir onarım turu yaptı: sunum incelemesinde bulunan 13 açık, artı

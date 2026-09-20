@@ -1,5 +1,13 @@
 # Gece derleyicisi ve git
 
+> **20.09 Astra denetimi:** Görev artık `derle-gece.ps1` üzerinden gizli
+> PowerShell, tamponlanmayan Python çıktısı ve 1 saat sınırı kullanır.
+> 00:30 kesintisi commit'ten **sonra** olmuş. Git dönüş kodları ve taslak/
+> commit hataları görünür kılındı; kuru çalışma explicit oturumda da yazmaz,
+> eski omurgalar otomatik silinmez. Yeni gece tetiklemesi ölçülmedi.
+> [[astra-denetim-bulgulari]] · [[2026-09-20-astra-kontrol]].
+> (codex 01a0bc5c-f1c4 · 20.09 04:26)
+
 Her gece 00:30'da çalışan `araclar/derle.py`. Ne yaptığı ve neden böyle
 tasarlandığı.
 

@@ -323,6 +323,12 @@ Ayrı bir olgu: 13 hanede de altı çakışma var. Bunlar farklı oturumlar değ
 
 ## 14. Codex Desktop'ta hook'lar otomatik tetiklenmiyor
 
+> **Astra denetim notu (önceki §13'e):** En büyük dosyanın bütün kopyaları
+> içerdiği varsayımı yanlış çıktı; üç Codex grubunda 81 farklı mesaj
+> okuyucuya görünmüyordu. Parçalar artık birleştiriliyor. Kimlik zincirindeki
+> kalan ilk-8 kullanımları da düzeltildi. [[astra-denetim-bulgulari]].
+> (codex 01a0bc5c-f1c4 · 20.09 04:22)
+
 20 Eylül'de iki ayrı yoldan ölçüldü (claude 5c600e7e · 20.09 00:38):
 
 - **Kullanıcı testi:** Desktop oturumunda yeni bir turda "hook'lardan sana ne
@@ -447,3 +453,11 @@ gizlemek. Konsol penceresi olmadığı sürece kapatılamaz. Değişiklik yapıl
 ertesi gece `derleme/derleyici.log` ve `LastTaskResult` ile doğrulanmalı.
 
 > İlgili: [[gece-derleyicisi]] · [[acik-uclar]] · [[2026-09-19-sunum-onarim-listesi]]
+
+> **Astra denetim notu (§16):** “git commit + push adımı hiç çalışmadı”
+> cümlesinin commit kısmı çürütüldü: `67779e9` 20.09 00:30:05'te atılmış.
+> Push sonucu ölçülmedi. Konsolu kullanıcının kapattığı da kanıtlanamaz.
+> Üç model çağrısı toplam 45 dakika sürebildiğinden “derleme saniyeler sürer”
+> genel süre garantisi değildir. Görev kullanıcı onayıyla düzeltildi; gece
+> tetiklemesi bekleniyor. [[astra-denetim-bulgulari]] · [[2026-09-20-astra-kontrol]].
+> (codex 01a0bc5c-f1c4 · 20.09 04:26)

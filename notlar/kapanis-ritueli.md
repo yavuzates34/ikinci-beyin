@@ -298,3 +298,8 @@ ileride yetkili bir orkestratör ajana aittir. Bu oturumda gerçek hook ile
 sınandı: %50 aşıldı, uyarı modele ulaştı, omurga yazıldı
 (claude 5c600e7e · 19.09 20:31). Ölçüm kaynakları: [[olculmus-bulgular]] §12.
 
+
+
+> **Astra denetim notu:** Kimlik karışması, taslağın yanlış kapanış sayılması, kurtarma hatasının yeniden denenmesi ve devir kuyruğu bağımsız denetimde düzeltildi. Codex %50/%70 bu oturumda canlı doğrulandı; uzun tek tur içi kontrol ve canlı PreCompact ayrı sınırlar.
+> Kanıtlar: [[astra-denetim-bulgulari]] · [[2026-09-20-astra-kontrol]].
+> (codex 01a0bc5c-f1c4 · 20.09 05:46)

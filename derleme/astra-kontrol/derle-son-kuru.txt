@@ -1,0 +1,92 @@
+# Derleme - 20.09.2026 05:53
+  !! SAGLIK: onceki calisma (2026-09-20 00:30) TAMAMLANMADAN kesildi
+
+===== derleme\gunluk\2026-09-20.md =====
+# Gunluk derleme - 20.09.2026
+
+Bu projede son 24 saatte yazilan oturum kaydi: **14**
+Diger projelerde: 0 oturum (kendi derleyicisi olanlar dahil, dedektor kapsam disi)
+
+## KAPANMAMIS OTURUMLAR
+
+Arsivde `kapanan-oturum:` satiri yok - kapanis rituelinden gecmemis.
+Son 6 saatte yazilan muhtemelen hala acik; eskiler kapanissiz kalmis.
+
+- `01a0bc5c-f1c4` | codex | son yazma 20.09 05:53 | 2598 KB | muhtemelen hala acik
+  - oku: `python araclar/omurga.py 01a0bc5c-f1c4`
+- `96517e26` | claude | son yazma 20.09 04:38 | 1250 KB | muhtemelen hala acik
+  - oku: `python araclar/omurga.py 96517e26`
+
+## Kalici katman bakimi
+
+notlar/: **128.5 KB** | esik: bolme (65 KB secmeli okuma, 100 KB bolme). Silme yok; adaylar oturum basinda kullaniciya soylenir.
+
+- KALICI KATMAN BAKIM ESIGINI ASTI: notlar/ 128.5 KB (100 KB bolme esigi). En buyukler: olculmus-bulgular (22 KB), kapanis-ritueli (16 KB). Budama adaylarini kullaniciyla gozden gecir; silme yok, tarihce oturumlar/ altina
+
+## PreCompact
+
+Son 24 saatte alinan omurga anlik goruntusu: **4** (agin devreye girdigi an sayisi)
+30 gunden eski bakim adayi: 0 (silinmedi; kullanici onayi gerekir)
+
+## Son 24 saatte degisen dosyalar (git)
+
+- `.codex/hooks.json`
+- `.obsidian/graph.json`
+- `AGENTS.md`
+- `BEYIN.md`
+- `CLAUDE.md`
+- `araclar/baglam.py`
+- `araclar/bakim.py`
+- `araclar/codex-run-python.ps1`
+- `araclar/codex-time.ps1`
+- `araclar/derle.py`
+- `araclar/devir.py`
+- `araclar/gece_kayit.py`
+- `araclar/kayit.py`
+- `araclar/omurga.py`
+- `araclar/oturum-basi.md`
+- `araclar/oturum_basi.py`
+- `araclar/precompact.py`
+- `derleme/baglam-durum.json`
+- `derleme/gunluk/2026-09-20.md`
+- `derleme/son-calisma.json`
+- `notlar/acik-uclar.md`
+- `notlar/gece-derleyicisi.md`
+- `notlar/iki-ajan-calismasi.md`
+- `notlar/kapanis-ritueli.md`
+- `notlar/kullanici-baglami.md`
+- `notlar/olculmus-bulgular.md`
+- `notlar/sunum-incelemesi-onarim-listesi.md`
+- `oturumlar/2026-08-30-birinci-oturum.md`
+- `oturumlar/2026-09-07-ikinci-oturum.md`
+- `oturumlar/2026-09-17-agentic-yapi-ve-denetim.md`
+- `oturumlar/2026-09-18-saglayici-bagimsizligi-ve-erken-devir.md`
+- `oturumlar/2026-09-19-codex-sunum-ilk-alti-slayt.md`
+- `oturumlar/2026-09-19-codex-sunum-yedi-on-ve-onarim-devri.md`
+- `oturumlar/2026-09-19-sunum-onarim-listesi.md`
+- `oturumlar/2026-09-20-codex-hook-guven-oncesi-denetimi.md`
+- `oturumlar/2026-09-20-codex-hook-guveni-ve-testlerin-kapanisi.md`
+- `oturumlar/acik-uclar-tarihce.md`
+- `oturumlar/oto-01a0bb8e-de58.md`
+- `rehber/astra-kontrol.md`
+- `rehber/codex-sunum-rehberi.md`
+- `rehber/sunum/deck.json`
+- `rehber/sunum/slides/claude.html`
+- `rehber/sunum/slides/codex.html`
+- `rehber/sunum/slides/cumleler.html`
+- `rehber/sunum/slides/diger.html`
+- `rehber/sunum/slides/gece.html`
+- `rehber/sunum/slides/ilke.html`
+- `rehber/sunum/slides/kapak.html`
+- `rehber/sunum/slides/kapanis.html`
+- `rehber/sunum/slides/komutlar.html`
+- `rehber/sunum/slides/parcalar.html`
+- `rehber/sunum/slides/sinirlar.html`
+- `rehber/sunum/slides/son.html`
+- `rehber/sunum/slides/uyarilar.html`
+- `rehber/sunum/slides/yasam.html`
+- `rehber/uygulama-adaptorleri.md`
+
+  isaretci: 80 isaretcinin hepsi dogrulandi
+# Islenmemis oturum: 2
+# Derleme tamamlandi
