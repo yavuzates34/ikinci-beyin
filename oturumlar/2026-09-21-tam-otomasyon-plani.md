@@ -261,6 +261,12 @@ incelemek istiyor. Kararlar:
   (VPS-3 yenileme 161,36 ₺ vs VDS-3 134,61 ₺). VDS'te RAM kullanılmasa bile
   kullanıcıya atanır; paylaşımlı VPS'te Node tabanlı ajan swap'a düşebilir
   (claude 96517e26 · 21.09 01:05).
+- **Kullanıcının kararı (21.09 01:16): VDS-3 değil VDS-4.** 4 core / 6 GB DDR4
+  ECC / 90 GB NVMe, 185,86 ₺/ay. Üstteki VDS-3 satırı önerinin kendisidir,
+  kayıt olarak duruyor. **İşletim sistemi: Ubuntu 24.04 LTS 64 Bit** —
+  sağlayıcının listesindeki en yeni Ubuntu LTS bu (26.04 sunulmuyor; en yeni
+  Debian 12). Gerekçe: Python 3.12 hazır gelir, Node tabanlı CLI ajanları için
+  en iyi desteklenen taban. Oturum kaydı: [[2026-09-21-otomasyon-lab-ve-vds]].
 - **Alımdan önce:** 1 günlük demo iste; yenileme fiyatını destekten teyit et
   (VPS sayfası yenileme tablosunu gösteriyor, **VDS sayfası göstermiyor**).
 - Sağlayıcı kalitesi hakkında bağımsız kanıt **yok** — yalnız kendi pazarlama

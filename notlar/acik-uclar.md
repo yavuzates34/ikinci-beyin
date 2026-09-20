@@ -78,6 +78,13 @@ henüz doğrulanmadı.
    denetimi, sağlık/eskime alarmı.
    (claude 96517e26 · 21.09 01:11)
 
+8. **Omurga sıkıştırma özetini kullanıcı mesajı sayıyor.** `/compact` sonrası
+   uygulamanın enjekte ettiği özet `omurga.py` çıktısına gerçek bir kullanıcı
+   mesajı gibi giriyor: aynı oturumda 41 mesaj / 19,5 KB → 43 mesaj / 44,2 KB.
+   Ritüelin "hatırlamaya değil okumaya dayan" garantisini sıkıştırmadan sonra
+   bozuyor. Ölçüm ve önerilen düzeltme: [[olculmus-bulgular]] §17.
+   (claude 96517e26 · 21.09 02:48)
+
 ## Ertelenenler
 
 - **Gelen kutusu** (mobilden not düşme) ve **mem0** (kullanıcı, 16.09).

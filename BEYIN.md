@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 01:15
+**Son güncelleme:** 21.09.2026 02:50
 
 ---
 
@@ -75,6 +75,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-09-18-saglayici-bagimsizligi-ve-erken-devir]] | 18.09 04:37 – 20.09 00:40 | **25 mesaj, 44 saat.** Sağlayıcıdan bağımsız çekirdek (AGENTS.md, kapanış işareti, Codex adaptörü), erken devir (%50/%70), bakım döngüsü, 14 slaytlık kullanım rehberi ve 15 açıklık ortak onarım turu |
 | [[2026-09-19-sunum-onarim-listesi]] | — | Oturum kaydı değil: 15 açıklık onarım turunun iş belgesi ve durum tablosu (19–20.09). Astra turu bunun üzerinden yürür |
 | [[2026-09-21-tam-otomasyon-plani]] | — | Oturum kaydı değil: **tam otomasyon iş belgesi.** Kapanış yerine eşik ritüeli, compaction tasarımı, 7 açık (3 küme), kabul edilen politikalar, ölçülecekler ve lab/VDS kararı. **Sıradaki işin kaynağı** |
+| [[2026-09-21-otomasyon-lab-ve-vds]] | 20.09 20:28 – **sürüyor** | **Ara kayıt, oturum kapanmadı.** Astra'nın işinin salt okunur denetimi, iki yanlış iddiamın düzeltmesi, tam otomasyon kararı, Avenox lab'ı ve VDS-4 / Ubuntu 24.04 seçimi |
 | [[2026-09-20-astra-kontrol]] | 20.09 04:10 – 20.09 05:55 | Bağımsız 16 madde denetimi, yeni açıklar, kod/not/sunum kaynağı düzeltmeleri, onaylı gece görevi ve proje 1M ayarı |
 | [[2026-09-20-toparlama-ve-sunum]] | 20.09 06:06 – 20.09 17:37 | Önceki denetimin commitleri, test kirliliğinin giderilmesi, bakım planı ve sağlayıcıdan bağımsız sunumun yeniden yazımı |
 | [[2026-09-20-codex-hook-guven-oncesi-denetimi]] | 20.09 00:25 – 00:35 | Desktop'ta güven öncesi hook denetimi; model beyanı ile gerçek `hooks.additional_context` kaydının ayrımı |

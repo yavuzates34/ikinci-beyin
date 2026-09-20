@@ -461,3 +461,45 @@ ertesi gece `derleme/derleyici.log` ve `LastTaskResult` ile doğrulanmalı.
 > genel süre garantisi değildir. Görev kullanıcı onayıyla düzeltildi; gece
 > tetiklemesi bekleniyor. [[astra-denetim-bulgulari]] · [[2026-09-20-astra-kontrol]].
 > (codex 01a0bc5c-f1c4 · 20.09 04:26)
+
+## 17. Sıkıştırma özeti omurgaya "kullanıcı mesajı" olarak giriyor
+
+Kapanış ritüelinin dayanağı `omurga.py`: ham kayıttan **yalnız kullanıcının
+gerçek mesajlarını** çıkarır, çünkü ritüel hatırlamaya değil okumaya
+dayanmalıdır. Ölçüm, bu garantinin sıkıştırmadan sonra bozulduğunu gösteriyor.
+
+21.09 02:42'de elle `/compact` çalıştırıldı. PreCompact anlık görüntüsü
+(sıkıştırmadan hemen önce, aynı oturum):
+
+```
+41 mesaj, 19.5 KB
+```
+
+Sıkıştırmadan sonra aynı oturumun omurgası:
+
+```
+43 kullanici mesaji, 44.2 KB omurga
+```
+
+Aradaki fark tek bir girdiden geliyor: 42 numaralı "mesaj", uygulamanın
+oturuma enjekte ettiği **kendi sıkıştırma özeti** (`This session is being
+continued from a previous conversation…`). Omurga bunu kullanıcı konuşması
+sayıyor: ~24 KB, yani omurganın yarıdan fazlası.
+
+**Neden önemli.** Bu, `AGENTS.md`'nin özellikle engellemek istediği hal:
+modelin kendi kayıplı özeti, kullanıcının sözü gibi görünüyor. Sıkıştırma
+sonrası kapanış yazan bir ajan "ham kaydı okudum" derken aslında bir özeti
+okumuş olur ve bunu ayırt edemez. Ayrıca özet, önceki turda düzeltilmiş
+yanlış iddiaları da taşıyabilir — bu oturumda taşıdı.
+
+**Düzeltme (uygulanmadı):** `omurga.py` kullanıcı mesajını süzerken
+sıkıştırma enjeksiyonunu tanıyıp ya dışlamalı ya da ayrı bir bölüme
+`[uygulama özeti]` diye almalı. Kayıtta ayırt edici alan aranmalı; metin
+desenine bakmak son çare, çünkü kullanıcı aynı cümleyi yazabilir.
+Tam otomasyon planında eşik ritüeli sıkıştırmadan **önce** çalışacağı için
+bu kusur oradaki ana yolu bozmaz, ama yedek yolu (sıkıştırma sonrası yazma)
+bozar.
+(claude 96517e26 · 21.09 02:48)
+
+> İlgili: [[kapanis-ritueli]] · [[2026-09-21-tam-otomasyon-plani]] ·
+> [[2026-09-21-otomasyon-lab-ve-vds]] · [[acik-uclar]]
