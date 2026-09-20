@@ -1,0 +1,401 @@
+[
+ {
+  "dosya": "olculmus-bulgular.md",
+  "kb": 22.45,
+  "bolumler": [
+   {
+    "baslik": "4. Arşiv arkeolojisi — 4–7 Eylül boşluğu",
+    "kb": 2.23
+   },
+   {
+    "baslik": "5. Kare çıkarma ölçümü — mpdecimate elendi, algısal hash seçildi",
+    "kb": 2.6
+   },
+   {
+    "baslik": "6. Side chat kaydı diskte yok — kör nokta ölçüldü",
+    "kb": 1.09
+   },
+   {
+    "baslik": "7. Oturum süresi ölçümü — takvim, boşluk, aktif",
+    "kb": 0.6
+   },
+   {
+    "baslik": "8. Kaynak işaretçisi denetimi — ilk örnekleme",
+    "kb": 0.81
+   },
+   {
+    "baslik": "9. Arayüz \"gidip geldi\" — sessiz güncelleme, oturum kaydında iz yok",
+    "kb": 0.96
+   },
+   {
+    "baslik": "10. Omurga mesaj sayıları şişkindi — harness işaretleri",
+    "kb": 1.09
+   },
+   {
+    "baslik": "11. Codex Desktop kapanan oturumu başka klasöre taşıyor",
+    "kb": 0.45
+   },
+   {
+    "baslik": "12. Bağlam doluluğu ham kayıttan ölçülebiliyor",
+    "kb": 0.72
+   },
+   {
+    "baslik": "13. Codex oturum kimliklerinin ilk 8 hanesi çakışıyor",
+    "kb": 1.15
+   },
+   {
+    "baslik": "14. Codex Desktop'ta hook'lar otomatik tetiklenmiyor",
+    "kb": 3.37
+   },
+   {
+    "baslik": "15. Astra alt ajan olarak çağrılamıyor: CLI sürümü yetmiyor",
+    "kb": 0.88
+   },
+   {
+    "baslik": "16. Gece derleyicisi tetikleniyor ama konsolu kapanınca ölüyor",
+    "kb": 3.38
+   }
+  ]
+ },
+ {
+  "dosya": "kapanis-ritueli.md",
+  "kb": 16.6,
+  "bolumler": [
+   {
+    "baslik": "Sorun: köprünün bir ayağı yoktu",
+    "kb": 0.32
+   },
+   {
+    "baslik": "Neden hook ile çözülmedi",
+    "kb": 0.4
+   },
+   {
+    "baslik": "İki durum ayrımı",
+    "kb": 0.73
+   },
+   {
+    "baslik": "Asıl tasarım kararı: determinizm çıktıya değil, girdiye",
+    "kb": 0.78
+   },
+   {
+    "baslik": "İkinci sabit: yargı değil, bakım",
+    "kb": 0.33
+   },
+   {
+    "baslik": "Değişmeyen üç soru",
+    "kb": 0.27
+   },
+   {
+    "baslik": "Kaynak gösterme kuralı (16 Eylül)",
+    "kb": 0.49
+   },
+   {
+    "baslik": "PreCompact: güvenlik ağı (16 Eylül'de kuruldu)",
+    "kb": 0.86
+   },
+   {
+    "baslik": "Devir kutusu: PreCompact modele konuşamıyor",
+    "kb": 3.14
+   },
+   {
+    "baslik": "Arşiv kaydında tarih kuralı",
+    "kb": 2.43
+   },
+   {
+    "baslik": "SessionEnd boşluğu ve compact'in yeri",
+    "kb": 3.27
+   },
+   {
+    "baslik": "Kapanış işareti (19 Eylül)",
+    "kb": 0.59
+   },
+   {
+    "baslik": "Erken devir boşluğu (19 Eylül Codex incelemesi)",
+    "kb": 2.33
+   }
+  ]
+ },
+ {
+  "dosya": "yasanan-hatalar.md",
+  "kb": 11.82,
+  "bolumler": []
+ },
+ {
+  "dosya": "gece-derleyicisi.md",
+  "kb": 11.5,
+  "bolumler": [
+   {
+    "baslik": "Tek ilke: ölçer, yazmaz",
+    "kb": 0.5
+   },
+   {
+    "baslik": "Üç çıktı",
+    "kb": 0.47
+   },
+   {
+    "baslik": "Dedektör nasıl çalışır",
+    "kb": 0.84
+   },
+   {
+    "baslik": "Gece taslağı: ilkenin tek istisnası (19 Eylül)",
+    "kb": 3.02
+   },
+   {
+    "baslik": "Damıtma kalitesi göstergesi",
+    "kb": 0.42
+   },
+   {
+    "baslik": "Açık uçların yaşı",
+    "kb": 0.33
+   },
+   {
+    "baslik": "Git",
+    "kb": 0.98
+   },
+   {
+    "baslik": "Zamanlama",
+    "kb": 0.27
+   },
+   {
+    "baslik": "18 Eylül 2026: üç ekleme — telafi, denetim, sağlık",
+    "kb": 3.64
+   }
+  ]
+ },
+ {
+  "dosya": "kullanici-baglami.md",
+  "kb": 10.22,
+  "bolumler": []
+ },
+ {
+  "dosya": "agentic-yapi.md",
+  "kb": 10.14,
+  "bolumler": [
+   {
+    "baslik": "Üç katman, tek \"ben\" yok",
+    "kb": 0.7
+   },
+   {
+    "baslik": "Bekleme kimde",
+    "kb": 0.98
+   },
+   {
+    "baslik": "Codex nasıl çağrıldı",
+    "kb": 1.08
+   },
+   {
+    "baslik": "Tanım",
+    "kb": 0.79
+   },
+   {
+    "baslik": "Ne değildir",
+    "kb": 0.41
+   },
+   {
+    "baslik": "Bağlam penceresi — ölçülmüş sayılar",
+    "kb": 0.89
+   },
+   {
+    "baslik": "En önemli incelik: okumak ≠ eşit ağırlık",
+    "kb": 0.93
+   },
+   {
+    "baslik": "Diskteki bilgi bağlama nasıl döner — üç kademe",
+    "kb": 2.14
+   },
+   {
+    "baslik": "Devir kutusu: bir hook'un söyleyemediğini başka bir hook söyler",
+    "kb": 1.8
+   }
+  ]
+ },
+ {
+  "dosya": "arac-izle.md",
+  "kb": 7.6,
+  "bolumler": [
+   {
+    "baslik": "Dört katmanlı hat — 17 Eylül 2026 kurulumu",
+    "kb": 4.51
+   },
+   {
+    "baslik": "Video verilince SOR: şema var mı?",
+    "kb": 1.52
+   }
+  ]
+ },
+ {
+  "dosya": "ikinci-beyin-mimarisi.md",
+  "kb": 7.05,
+  "bolumler": [
+   {
+    "baslik": "İki katmanlı not yapısı (16 Eylül kararı)",
+    "kb": 1.23
+   },
+   {
+    "baslik": "Katmanlar: \"bana dair her şey olmalı\" reddedildi",
+    "kb": 1.15
+   },
+   {
+    "baslik": "Elenen: diğer projelerin loglarını okutmak",
+    "kb": 0.43
+   },
+   {
+    "baslik": "mem0: yeri ve sırası",
+    "kb": 0.74
+   },
+   {
+    "baslik": "Obsidian'ın yeri",
+    "kb": 0.26
+   },
+   {
+    "baslik": "Avenox'un ikinci beyin sistemi — değerlendirme (16 Eylül)",
+    "kb": 1.2
+   },
+   {
+    "baslik": "Paralel oturumlar: kalıcı katmanın kör noktası (16 Eylül)",
+    "kb": 1.58
+   }
+  ]
+ },
+ {
+  "dosya": "iki-ajan-calismasi.md",
+  "kb": 6.75,
+  "bolumler": [
+   {
+    "baslik": "Ortak olan dosyalardır, bağlam değil",
+    "kb": 0.92
+   },
+   {
+    "baslik": "Asıl değer: birbirini denetlemek",
+    "kb": 0.97
+   },
+   {
+    "baslik": "Neden işe yaradı — üç şart",
+    "kb": 0.85
+   },
+   {
+    "baslik": "Asimetriyi gizleme",
+    "kb": 1.32
+   },
+   {
+    "baslik": "Pratik: nasıl çağrılır",
+    "kb": 0.98
+   },
+   {
+    "baslik": "19–20 Eylül: ortak onarım turundan üç ders",
+    "kb": 1.19
+   }
+  ]
+ },
+ {
+  "dosya": "tasarim-dersleri.md",
+  "kb": 5.94,
+  "bolumler": []
+ },
+ {
+  "dosya": "acik-uclar.md",
+  "kb": 5.28,
+  "bolumler": [
+   {
+    "baslik": "Açık — sistem",
+    "kb": 3.09
+   },
+   {
+    "baslik": "Ertelenenler",
+    "kb": 0.46
+   },
+   {
+    "baslik": "Karar bekleyenler",
+    "kb": 0.2
+   },
+   {
+    "baslik": "Yapılmamış testler",
+    "kb": 0.53
+   },
+   {
+    "baslik": "Uzun vade",
+    "kb": 0.08
+   }
+  ]
+ },
+ {
+  "dosya": "astra-denetim-bulgulari.md",
+  "kb": 4.62,
+  "bolumler": [
+   {
+    "baslik": "Arşiv ve kapanış",
+    "kb": 1.28
+   },
+   {
+    "baslik": "Kurtarma ve gerçek otomasyon",
+    "kb": 1.19
+   },
+   {
+    "baslik": "Gece ve yedek",
+    "kb": 1.03
+   },
+   {
+    "baslik": "Bu projenin yeni Codex bağlam ayarı",
+    "kb": 0.74
+   }
+  ]
+ },
+ {
+  "dosya": "arac-arsiv.md",
+  "kb": 3.92,
+  "bolumler": [
+   {
+    "baslik": "Üç basamak (izle.py ile aynı mantık)",
+    "kb": 0.56
+   },
+   {
+    "baslik": "Neden ham grep yetmiyor",
+    "kb": 0.24
+   },
+   {
+    "baslik": "Mimari: tek okuyucu, dört araç",
+    "kb": 0.68
+   },
+   {
+    "baslik": "Kronoloji: en güncel veri kuralı",
+    "kb": 0.74
+   },
+   {
+    "baslik": "anlam.py: anlamsal arama",
+    "kb": 1.33
+   }
+  ]
+ },
+ {
+  "dosya": "proje-egemenligi.md",
+  "kb": 2.23,
+  "bolumler": [
+   {
+    "baslik": "Kural",
+    "kb": 0.45
+   },
+   {
+    "baslik": "Nar Ajans örneği — kuralın doğduğu yer",
+    "kb": 0.69
+   },
+   {
+    "baslik": "Neden böyle",
+    "kb": 0.48
+   },
+   {
+    "baslik": "Sınır nerede",
+    "kb": 0.41
+   }
+  ]
+ },
+ {
+  "dosya": "ortam-kurulum.md",
+  "kb": 1.5,
+  "bolumler": []
+ },
+ {
+  "dosya": "capraz-arac-baglam.md",
+  "kb": 1.46,
+  "bolumler": []
+ }
+]

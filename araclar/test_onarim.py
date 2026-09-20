@@ -1,7 +1,9 @@
-"""Bağımsız onarım regresyonları. Test verisi derleme/astra-kontrol altında kalır.
+"""Bağımsız onarım regresyonları. Test verisi işletim sisteminin geçici alanında.
 
 Gerçek ham kayıtlar, görev ayarları, git uzak deposu veya kullanıcı dosyaları
 değiştirilmez. Model çağrıları sahtedir. Sentetik test canlı hook kanıtı değildir.
+Her test kendi geçici ağacını başarıda ve hatada temizler; Obsidian kasasına
+sahte BEYIN.md yazılmaz. Ani süreç öldürülse bile kalıntı kasa dışında kalır.
 """
 import contextlib
 import io
@@ -23,13 +25,13 @@ import kayit
 import oturum_basi
 import precompact
 
-ARTIFACTS = kayit.PROJE_KOKU / 'derleme' / 'astra-kontrol'
-ARTIFACTS.mkdir(parents=True, exist_ok=True)
-
-
 class OnarimTests(unittest.TestCase):
     def setUp(self):
-        self.root = Path(tempfile.mkdtemp(prefix='test-', dir=ARTIFACTS))
+        self._temp = tempfile.TemporaryDirectory(prefix='playground-onarim-')
+        self.addCleanup(self._temp.cleanup)  # setUp da hata verse çalışır
+        self.root = Path(self._temp.name).resolve()
+        assert self.root.parent == Path(tempfile.gettempdir()).resolve()
+        assert not self.root.is_relative_to(kayit.PROJE_KOKU.resolve())
         (self.root / 'oturumlar').mkdir()
         (self.root / 'notlar').mkdir()
         (self.root / 'BEYIN.md').write_text('[[acik-uclar]]', encoding='utf-8')
@@ -295,6 +297,32 @@ baglam.kontrol(sys.argv[4],sys.argv[5])
         self.assertEqual(kayit._blok_metni([block]),'')
         real={'type':'input_text','text':'/goal Bu klasoru denetle.'}
         self.assertEqual(kayit._blok_metni([real]),real['text'])
+
+    def test_fixture_is_cleaned_even_when_setup_fails(self):
+        created=[]
+        class BrokenSetup(OnarimTests):
+            def setUp(inner):
+                super().setUp()
+                created.append(inner.root)
+                raise RuntimeError('denetimli setUp hatasi')
+            def runTest(inner):
+                pass
+        result=unittest.TestResult()
+        BrokenSetup('runTest').run(result)
+        self.assertEqual(len(result.errors),1)
+        self.assertEqual(len(created),1)
+        self.assertFalse(created[0].exists())
+
+    def test_fixture_is_cleaned_when_assertion_fails(self):
+        created=[]
+        class BrokenAssertion(OnarimTests):
+            def runTest(inner):
+                created.append(inner.root)
+                inner.fail('denetimli assertion hatasi')
+        result=unittest.TestResult()
+        BrokenAssertion('runTest').run(result)
+        self.assertEqual(len(result.failures),1)
+        self.assertFalse(created[0].exists())
 
 
 if __name__ == '__main__':

@@ -1,0 +1,4621 @@
+{
+  "created_at": "2026-09-20T06:10:37.571589",
+  "allowed_root": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol",
+  "directories": [
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-0n_8n71s",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "67feef22a2b995a4ff5a85e05eecd5fd0183043eea764255ba0dc44ed05f5acc"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "8dbdbdfab12d569a5532a6e8cbcb3ec391ac104033f1726b25be33e8b0e5c133"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-0qb1agg7",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "548e8baedb24e1251fdcd34de08481aeaca8ee40ce61ca9e85fd4afef477c689"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "d470c71e689704e6965f744e9864ca08e12dc46c669bd374b5fe960adb7db645"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "b4ede08367914aa17a5ac8ff108320fea050a13aef78f46bde2264855593e2d2"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-0zli47ft",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "cbab311b7193e67ae7ceeb08e99e8ef328d197511f82ce97b19fdf61fc53afd4"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "eae027e9357a550aff40670b735f7c671edef7b4870f7e2591badfb0cab0cff4"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-19_b0f_1",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "b0b837aa86b55c7dc6281d9a6fca34b1ad5fc8267b5cbd1dc86d4055afa5b6d5"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "974a193973306c7221e4a2d0f0aa442f3d0e0fc9c272796c3838955beda11a3c"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042351-143164-01a0bb8e-1111-7000-8000-000000000001.md",
+          "bytes": 299,
+          "sha256": "7dd40c54697b6ef95da2e983d26b89e1d6db2b6eaa91c0131c26c2ee7a45abcf"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042351-154964-01a0bb8e-2222-7000-8000-000000000002.md",
+          "bytes": 299,
+          "sha256": "f3575543449f6d2b62b6b31caef270d09c660dc448bd4ef88c3ce9fc76133f16"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-1c8nor4d",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "bdd76e944d77516dd210663e9801b580e7ddb5f634a6fa5fbe19a40203eb838e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "5dffe6bdd37c4fd2fc52a6c1017dd186a1f0b6b5b48d348f626ca07a543566c5"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-1h5472pb",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "e297ea4144e33aa1b1845319fd464108d5d846db1df702ef86d2200019de82a4"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ac043ae526d15491baa416db44dd11251d1aac9e7cdc9cb254ca795022761374"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "queue.json",
+          "bytes": 26,
+          "sha256": "0fd4ec45f638b7d3b1d98aedbfcdba31aad14557cf8637ebf03a946d88560cb5"
+        },
+        {
+          "path": "queue.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-1jjlup_b",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "84eddf651bee5e4447d5fe3ce39f4e84d9098bccf9aebc286b50ebf0b489c97c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "8f2a3d361d9e9af22d3c3db047ff2499c5cfe993c94a55f9fc65b7bc4a8f5089"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-1km7wn64",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f9d84b7f744c3f8645ead63f0bc02df4f98b960152755bb044be95b376ec2e95"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "3c7e7cd8f3652cac2e62ebffc514c43833190ca519b98100a7d84d8dbf6eb8b2"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "parallel.json",
+          "bytes": 285,
+          "sha256": "ee6355ee18aab6a392672a9a378127e7205e98f83c3ba6dabc1093e7b0cb030d"
+        },
+        {
+          "path": "parallel.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-042350-855673-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-042351-087320-01a0bb8e-2222-7000-8000-000000000002-esik70.md",
+          "bytes": 136,
+          "sha256": "533fabc5d94b964e048a530b16023a67def3f7b10c36d5ff0d2ca53822483fe6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-1kslgf62",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f081629c14e111bb3548c7290511e99235c7c729e9ecd91958364848b2bbac2b"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "46d57797ee6a09c4d8763de5a2dd52da0142bf253b7a9547e60a178fe969f547"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "34ddb4ee9233a95600b7337b65e2927178d0177c6ac47f9fc23c32fa7a55145e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-1v79kx6z",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "da5ad93b768c65551ce6c983b24bda2a9768a4ef2be94150213d9cf83b423214"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "4db23ba19de4557b9255f68141450ef4ccb56df152ea5bf53af7c12d847de91e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-1xjf1k_n",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f1d947dbecfdeb1f1de8ad07e20d5860d2db0bc900a73d45ca1256c036e001f6"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a5380ab67f8c8d350a3a356645fbf3e893f8aa2080c96c26ab591f9a64cb0a96"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-1z3ej_w1",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "3fe588c6ce9a06dd56e938cd977d0f9da3b33d083a8355638275f04d7e824414"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ea0a0f82fd47a572164e7e4423f6fb2768b89ce70d86ef40398c5b94fa7f73ef"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 137,
+          "sha256": "98cab88806fd4e920ad4388fd8cbbd668cc7c6ef1aa17bfabc2a91d9f1a0b9b1"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-26kgqxso",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "ac91c6c52c4b74f1bb272fcf0d03fc250204dc0df8e7b709cbef39e7249dd2c3"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "68ff37a0191fcf6560ffbd7d0e84daa60446d7eb9ac7f1ba9a9e171e302ef284"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-2daujbwc",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7757957279cc0b8004337756ec54cebee65a9c4441f6a7d483d3f09a974f5d95"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "22c24763435fc94355139e6191d90a70478017c43218d299d39c7d096df2648e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "753f69c51347804fd2c72aacbeea9436fc6ec3e10648b132b87c86ac5efce029"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-2eishjxb",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "99304f67ea64d2e053988cc8ffd61be58d3c944128054e2c521f73802f59aabf"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9081bdacc21761396925aa868845a5a36c9884605474c59f5b2a3a10f04cd1ae"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "b4ede08367914aa17a5ac8ff108320fea050a13aef78f46bde2264855593e2d2"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-2t4_zaz1",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "e786054779a11c3f4ea33ba32d674efca1514f24eb3423c9560a53f5873b9686"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ea525373bfa6ff5e167583ee0b5786c6a7cdd181780ac0ac94c3d83c68638c0a"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-2vpu0jki",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "ea1821ccf10b5fd258a5961921c2b465739140fe82e7ccc16e5cf79335b2a082"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "c3b236c715be03c8cf7acc984e4da7fba5ac45a520bb8e41a9f7d461cf208368"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042920-574205-01a0bb8e-1111-7000-8000-000000000001.md",
+          "bytes": 299,
+          "sha256": "29dd6738b5bcf4e55980a519ff38c63a0f0999f3375cc1cc698689cd75da7ec8"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042920-585134-01a0bb8e-2222-7000-8000-000000000002.md",
+          "bytes": 299,
+          "sha256": "080aac067d85584af5ff7096e3ec9d9ec14b16089220ca6a0a38962c1cfb079a"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3_5vav4_",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "8d84aa0b9a64813efdf3e5bf0d4391c8e0f6c9b862e14c8cf3a59f49a03ffbd4"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "be14884096aab11762e414d8a66fd62a9b2331b39135962a76a7d575431a4335"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "queue.json",
+          "bytes": 26,
+          "sha256": "0fd4ec45f638b7d3b1d98aedbfcdba31aad14557cf8637ebf03a946d88560cb5"
+        },
+        {
+          "path": "queue.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3lql3h5h",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "4ed3186ab0cf5299a64c516b8af17bc25710c81444a0a9def73ebe52808cdd53"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "bddcc2b0499b7875af01df0aeed688bf4a59e0a51b829d85790d516fddaad069"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "6d51b7148cde8b325556d035abf58baadfc3b90501b273b7d0b5bd06ca1c2eea"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3wj9g8up",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "ec5f96c34d3ee9a2420619991cad6237474678204a4bc056b07b502252566c1f"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "26f340334ac4ff4e962a9e62ea98bccacc5d2824b9dd2ba676f8c6b4c117f068"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "small-copy.jsonl",
+          "bytes": 362,
+          "sha256": "76b00f18272ba89e18a3199db016ecac68b55fb285e8cf1c6c3c9dd68aa8efc9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3y4zvcdw",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "6a86d941e7d9ff15e3f1e934c29ae115038703a8332c014871def4dc9e1771dc"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "c3f21359cd312e026ec639468c9f766bca5631ad9e088696f42d408af7b02237"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "33a1c5a263fea7b9bfc245f90eebfd0bc6cda484d665827c3246c3416fba3bd2"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-3y8g65af",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "81f7e4065ae31c22861587274026e780fe328b6c27fa942608d4790b85963419"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "3ec80a89567f7b47f1fa87fb2b55341f01fd944c9c995fe626b7c4c48e3c062e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-40lhj4x7",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "8820361301cb61bc9f40c981a91fe794a64ddf94dc259bbe3a143eaf3f8d6da8"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "066a4de1e457d13dd84ec9a520b41018c012c53046c2c64f3aca9e472d96f886"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-0415-01a0bb8e.md",
+          "bytes": 299,
+          "sha256": "e361af46de5ebb4bb505d7f7df710ba7997588f3065369284d9ca30cbba39051"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-45v83h6v",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "1e90afd2671ec2e8f27b02a3ad4d449c96fc6703679ee7a8c2f7c3e0c005fbfe"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f68431e417cec9cfcc437ae25e2ab5a806ed9fd0bb3e9b391a6f98cf8eb43ab8"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\a.md",
+          "bytes": 41,
+          "sha256": "221dd6ac2ee89242fac03fcf343849841787f143c052a951ffb0ed5272147acb"
+        },
+        {
+          "path": "oturumlar\\b.md",
+          "bytes": 20036,
+          "sha256": "5fc669982f7746606ed404b5a0a72dde1cf5443238ea68bea7413542f228049b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-4i57me_c",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "ba8fbf44593e8b6411d12764fc3d458bfd713d37f7a1f6a4b36f933fcc39fc5a"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "e5d10c5a35703dd4d6df028fd980c90f6c48ee3954bfc0691bdab5051f0aa281"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-4nosxo0s",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "351d5caec856f24335a847312d62946893b8f23c64a0567f454a1fbf3688e79d"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ae1cff04d8b21dfb80a48d5e68ee01ed3e5982ab33852dc4530ba7308d113984"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-4wwi_tsh",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "3d7fc036ec93bd1923a729dfcde7bb1312147af99ef7a153b4bef583a69e4b5d"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9993c79facd3b5b909ae85281088d0500081f55cfd6249e15a8914e5e0a340d5"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-56b8d0q7",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7372c65e63e41d5e919086c422cfefec1dbd86528d155ecd64d3eabc920fab1d"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "e76057f58f90947ccdd34c8bdb77742181411b4de56cd22f6982cf56c49ef7e2"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-58bh0blf",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "0680422892c5643fe6c9576b029e918a4e4b9bb017f9d0cc7a0cdc8224111155"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "43477136a8b989618f848d3fbbe4cfc4215a2d5f637a8115c5bfcfd89323e899"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "parallel.json",
+          "bytes": 285,
+          "sha256": "656dcde73de369230a789a4f6cc8aa14cee857322015390db36eb8eea7580ad1"
+        },
+        {
+          "path": "parallel.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-042737-181488-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-042737-427143-01a0bb8e-2222-7000-8000-000000000002-esik70.md",
+          "bytes": 136,
+          "sha256": "533fabc5d94b964e048a530b16023a67def3f7b10c36d5ff0d2ca53822483fe6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-59r76hl4",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "68b29eabbc0c5020a1dee09e783dbc9a14cd0fb3b043b8525221b0394e58b7d6"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "4771cd0ccf6938e04bde5794c91e9a4004e6a1834e227bc0b245366f92752049"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-5cfa5uc2",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "bb7852a5922efd2ac10a9be4f696549917f52b8c8087f93bb328a0f9fd9bf207"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "194e7dbbd3cca32dcfaddb634ff7f4c22d525e9aed6070b42caf43d44ac11131"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-62xgcfk9",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "d8819e3203fc07aad4e12a81b72ed05fcae993358d256aad58d08822b0721052"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "d35ffbf58c3abd85fc593610db66798505823c09ab4b27b65d4787857d48f73e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-646n5k7_",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7bcaa6e922528eeb489b77a84072b170d26f3ba988258af488893ce8cd01bfc8"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "cdec577cfb774322e19cf4d5adf7f6b26ea3fa7aa80dda567932341161f825e5"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-6awsdiqx",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "fbae54b5631eb19f208a4a38880d403dfa034bbcde23a58235995633a14777d8"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f0fccf0be50c6097d20d4769835cb814936b41d23d2f7773979678e905c5b509"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-6bicz04l",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "86b1a3dc34ae5a4684deda74b2fc752b15b7d8a38b9fb8cb0ef1a3609092082c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "169e6857a2356ae2a63940d090a0bc4e73cf62b4d1b27c3666bde18b7825acb6"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-6qhtwzup",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "41209362b9bf6b780c0230566f7f8f24d9bbddb67324412bf28ff1d90f7698b0"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "923bc9843b0baa62db8d20c563efca73c1c63a698c064beef975a8e276623965"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "parallel.json",
+          "bytes": 272,
+          "sha256": "c7e0c4ec46754a77d4793281f129c2d9809c3d9a4174392f3adcc01628854dec"
+        },
+        {
+          "path": "parallel.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-055318-591872-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-055318-826984-01a0bb8e-2222-7000-8000-000000000002-esik70.md",
+          "bytes": 136,
+          "sha256": "533fabc5d94b964e048a530b16023a67def3f7b10c36d5ff0d2ca53822483fe6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-6saad53n",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "13ab35c355b6dbeb6c7e660f73a3c88432ec9d74ca8757589b06bc826cb59491"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "759a8bb7bdaebdd00154a51ee92083638e2a2d0669e8d078eaee335aca4063a0"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "4e98a01d6d4c63fbad9e125174932ce3d225da6d13f1c7079b9202a0838db2a0"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snapshots\\2026-09-20-055141-690185-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-71977iek",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "cca5885158940af1d890dc3952b0a9063a3bf1f711d7d36ca114a75d8777363c"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "855e2edfde3064fd24514e969d8a1d57bce53e89cf1a5003361cc402468a1e64"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "760f67e20d22e279c07a554e754cae602b7077c0196c11518d4341d401d7b026"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-75if39fm",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "64e3c3a328df4aeee4d0eeb265ee50dc850d3c10e1e4cec9a31302c9f18256eb"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "22476f92a6142bc5e77cd34a4de7c47ea8dd9c0b42df8a424464028fc9b31181"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 45,
+          "sha256": "1fab29f0acb6f23764e3020e71f51dfe512455929d9c3a146ce741f4e4b622c0"
+        },
+        {
+          "path": "notlar\\acik-uclar.md",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "notlar\\aliased.md",
+          "bytes": 1,
+          "sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+        },
+        {
+          "path": "notlar\\missing.md",
+          "bytes": 1,
+          "sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 6,
+          "sha256": "49d7c344aac08132cc6ecf4a91b514d30ab7a603c7fe3a52a3eb474c10f229c4"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-7eaxms8m",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "c0452f8dfb7321f92d3244edcce9fbfd1ca322d1669f3e84b6928153b9be4f74"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "900d16dfda4f09aaf651cac5163ffc0690d93896dc05b94427cc4efd2b554741"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-7jrpn6j7",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a46cd6b15263071428a25e3654bd4f838826b342530a920b7847a677812abfd7"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "33274f2ad7f884a6e656c861d5c8399905d2425b37ea5e7f1993c163b8d04887"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-7t7jywt3",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a50d8e6bd58140622647ed17331f5a3a44d25f60ca52983884ae29e4a4d725b6"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "be03e85deb6b535b7d44d4b31effe1791ec5b36718fbba295588a8244dfb82db"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-7t84w3ev",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a814bbd6b878500862218cd47126900e4619a021a5a0d7c146bb98f4a6d99bda"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "b5693392c5bb9d99bb0ef3efbb2ea4d56fd828a53bea9e28f199842a508cb601"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-7wolisus",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "d4d08e14a7db3d4f66c293e836518b7363023bd109a9e34435b416171d4c2429"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "65edac252289d82d10593b5026167505ed617db102ffa13c5781cdeb6ffc0951"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "013e7d54d3dc3aef75042dd07257224167dbfd9a9d49fae9cf4aeb37f9c99078"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042736-528547-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-8h6r386l",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7395f73b43673caeb7465716ef8714597b57de56d1e2e71ceaae59261337aeb6"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f7e98a099593b3784ce29573d108e3a402a5d907211d07bb28fb1f2233feefcb"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-8kear9_o",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "e872b7389fe91ecef2365af6c6f577db05d4d8e1f386f7402aa754e6d2983303"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "632c93ff4896e86e79f9bf777becf208c204cee7bf90bca416b7f6efb9c08191"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-8z2m8qmo",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2866e0c9c25e382ffae8af856d7784ccbcc7f05f1c93b1b59c8af10e4289f46c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "91f612dd7d8c533174ece759c8e90880c488245c167fcbf71b363b914908fb0f"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-9c1sibdf",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2a10d3a540228c7a6aa2a734db3a2a7d85e15bf8655fb69a224359fe2e1ab021"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1ca2108683857edd7156d46627f61ecb36412d12c1994bf7fe5a9f1f55bd8de9"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\a.md",
+          "bytes": 41,
+          "sha256": "221dd6ac2ee89242fac03fcf343849841787f143c052a951ffb0ed5272147acb"
+        },
+        {
+          "path": "oturumlar\\b.md",
+          "bytes": 20036,
+          "sha256": "5fc669982f7746606ed404b5a0a72dde1cf5443238ea68bea7413542f228049b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-9fxavbgg",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "9f33c496f70a356d9f819d317ee2434b1edb9e4c75dc0e4c5b2582161003d1fa"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "0ed47e651ae737e2a5c2f45d0fa01839bb8be8cc403fb45735474c8eb67ab491"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "b4ede08367914aa17a5ac8ff108320fea050a13aef78f46bde2264855593e2d2"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_3eotw63",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "77cb745fc5580abcd334c27f0df01a89526bef3b5b554ca6d77db4f436d99914"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a24415dbc2f3e45e6b2650b1e4ecb1040d3855147a145b79dd7ad70b880f7ce4"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "1f30973a3997549a42d532d4b9f29752560913071c9924b586f9b75448ca7cff"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_3o2itjg",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "e36ec48c6c0469e11239b1257b40a0a9ffc97f09352f586e44893a5865fcd4d3"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a31f8499bdc2ff8ad52a1b867ced5f70cae7153dbe8cd80acf39fc9d8ac5bf66"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\a.md",
+          "bytes": 41,
+          "sha256": "221dd6ac2ee89242fac03fcf343849841787f143c052a951ffb0ed5272147acb"
+        },
+        {
+          "path": "oturumlar\\b.md",
+          "bytes": 20036,
+          "sha256": "5fc669982f7746606ed404b5a0a72dde1cf5443238ea68bea7413542f228049b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_4_yuw6i",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "eaa9faa7ea607b08c913b41c5c2f99e1ac2a51a377cef57fc72569a96b71acb8"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "454d73c5f3ee75d01b36759060fbbb44762b9418fd76e3533532b7fc3572bdbf"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_6z875pf",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "4dc7d2ab4fcdd407b3804e65a750b4a9466da7edbacc609ac39469c22b2b27f0"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9ce8b2c3788b51fe7beb6523f6bd7c24ccc170a89e9b13cde5a650a92c154d86"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "1f30973a3997549a42d532d4b9f29752560913071c9924b586f9b75448ca7cff"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042350-278630-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_cf73yhu",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2d49540b9f3c0dd74439c2fb399af8cdd99df52c1958caa2a78efbe5c772f37e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9f9f604e3f5aeb7d0e78a399e0c4994108e52af62583002cf63ba2b637560fb3"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_hhj00n8",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "932164ede5a8d7e437d2c2733dd59f1e1c5ffd4fdb85a4607a109e2b313d72b5"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "8b2b23d9d29c2fb56031cd039699b10eaa66ce1938ee1cb0731fee3cc31462b9"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_j146a49",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "0c83b060090edc43f24048092441910f67ede7f8c419a4791ec38f78352106f5"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "6a68d7328a25f735966cf0ed068c61ffb18111fb25d2c5fd53687f34cc9e5b85"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "a23406a00dec3d93cca90f2a2e4d038655cb29075b9e47a832e0fae8ad46d8da"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_mzopt4g",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "eb00ead0466745c0b298741b68c34beb7f2636a15ed40e9d6423d3efb51c6545"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "071ed3641e4260358cbefcdfe997e98cab879a474c16161b63068fc693a314aa"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-_se46ghy",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "787526bd1fa9e69992bc6645f3bfd56413bdb7a8aaa648d18dabfa4a207fb948"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "5ff4a543f27a120b67d38b93fed557fa1ddd34ae6b5051ad3a41860476509ede"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\a.md",
+          "bytes": 41,
+          "sha256": "221dd6ac2ee89242fac03fcf343849841787f143c052a951ffb0ed5272147acb"
+        },
+        {
+          "path": "oturumlar\\b.md",
+          "bytes": 20036,
+          "sha256": "5fc669982f7746606ed404b5a0a72dde1cf5443238ea68bea7413542f228049b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-a4a_ag0h",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2c1dbaf0a7f02bc28b4456a93674c11906fffc599d460da25d7717715c1940ba"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "47acf94e471c69a1bcebeffadae7151136fcac2746df369c584e9af27dd6e03a"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-af3zx2pv",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a73d0d11609e327b5129268329490d8e289cbd1c151845237d0330f4a34d22a6"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "afba286e26570c5cd1145ec8e3315a923b91056b096c7fa99cd73dcdae70e0c6"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\a.md",
+          "bytes": 41,
+          "sha256": "221dd6ac2ee89242fac03fcf343849841787f143c052a951ffb0ed5272147acb"
+        },
+        {
+          "path": "oturumlar\\b.md",
+          "bytes": 20036,
+          "sha256": "5fc669982f7746606ed404b5a0a72dde1cf5443238ea68bea7413542f228049b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-apnfwil9",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "8e88dc852b54ca6902251167e6ff2870d711885009ea561ee108591e40adbb2c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "036c6f2b28cc97c1812dc3b8600b3811c21abe7a5f673b07a6de1ee288888096"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-awanvjr4",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "055edfdf243e5429b8ffc978672fea28bb2806de36f79ff6f57a68d98d094c7c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "09e6d1a3505e6a6752fb551cd20f5d2523bb5c53802135cd10bc23711742cbf2"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042737-474151-01a0bb8e-1111-7000-8000-000000000001.md",
+          "bytes": 299,
+          "sha256": "71b18b8e73797edd44cefe300333f0d5b893844e585c99f01074327a18b323f7"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042737-489269-01a0bb8e-2222-7000-8000-000000000002.md",
+          "bytes": 299,
+          "sha256": "c45745d1083fd03c619a2b20712d95319ab966982fd3352d710df70da60b088e"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-b24hfwlp",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "3e1d491d61ed8e9cc050a6e32ceae8a4046c01581886b80494fc191610a01009"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "70a06dbee4fef2b9c7edf72cf1693bda8f700cf998f07239002a835b6c50d479"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 41,
+          "sha256": "32ec43432ab455aa1beb26e7c5cbce75a71b6a7bef5bd2b136d2c6b192f7beb9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-bacljpd5",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7bf9c239d3cab078133c52b3ed7900248872259a383d090d6960f2ffb8f6432f"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "60bc0830ef0169bfe41659feee3183ed5eb0ffcc51381fc7a6faf6c4c01f7738"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "sequence.json",
+          "bytes": 137,
+          "sha256": "0c25943d0e6fafc719619c3a41a6a5129cfce200a3da24a0937a6c80f1c8a10c"
+        },
+        {
+          "path": "sequence.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-055318-984647-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-055319-015226-01a0bb8e-1111-7000-8000-000000000001-esik70.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-055319-071642-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-bn5wwhd5",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a757dddb32883a2766911f9de652e48384c07651ed810df69236520464fbafa7"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f3496dabe6ba5e99c2f99d7e933ba966e9389334a97cf025e8937d9490c859a4"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "sequence.json",
+          "bytes": 144,
+          "sha256": "6504c81a82d51662c850ad6de488744d9c670116a29a7bf203c1a51eb66b9724"
+        },
+        {
+          "path": "sequence.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-042920-657806-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-042920-710896-01a0bb8e-1111-7000-8000-000000000001-esik70.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-042920-789114-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-c385r20p",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a7b7f99c0b259dc3691af3ce6c80815e62e3f2568e9969b7fab51438c86e08a6"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f7286a10d1afa5abba745406df12bd3c675f6bc074035b4e4e37fd0eee80fb7e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "draft.md",
+          "bytes": 852,
+          "sha256": "56289887e4b7dd5dc56cecf821f200395a575276a49daed20f989325ae6e14c3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-c5bulm12",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "92b5b24811344dafa217ef6c6807c09ea0e6f1909ad2132d9357c3dc898a7ff2"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9b11b15d755bb5aa8ea25b94cc373ae6d9e56d40e78f71a071901685a3907b9d"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-c9pfq96v",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "e796d9944ae42a630e447faa71ffa43ebd39270d4471a631c5657be086fb65bf"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "02747fd62d58eed683b69f52dcc8ccda77803c28cad605d979ffe736054909ac"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ccas6_lf",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "079d87d0a4d5aeb0b6039ac5306fde96742ec76d5a3b8e1df42cbfd155494ea0"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f4ad8e590f37db7dbb89d15119eac87e75635a0293e51bd9a7e0d9318d084ee8"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-cfg892wb",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a772423563ef601f5253ef5a2c8f29f67a1ffdcd14856b420d47062a6071936c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9c3211dbdcc623ede743e890479d8347a5f59bfe3c67fa97c757b65ca29a668f"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-cia71vmo",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "e8b5f84dc736cc37009d0948c86a2ddacd4da2acae92a39f83821ed93a3f7234"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "fce0e4ee8a5758a5b8e4f49dec9de7d317678451c3a831823256e7f036facc98"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "draft.md",
+          "bytes": 852,
+          "sha256": "b36d6540b16d9a108edf7153cf75d653060dbc268aa7747bcc193415ca7f20f3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ckwuui45",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "1caf79264d7157bd2a19d7aacd59a9a4d09fe0be213b085cfb7b102d1c98e6a9"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "7695df15f8bfcdca79b830231c5da88c9c7167d306f8f42e089366e11e73a537"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-cru0m88d",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "970a9a04ca27932062aa714efd6010ba2468e151c372de5a626094a8d52ad9f2"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "b07a7ec316a9102dd4b475510db5797f0eeff404c7f2f18c7694faa68d81d9db"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "ffe0cf8f357c12b496c0ef9c40152db695779006688e6b624b1f700ec56fbd15"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-cxcu4psu",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "5573cd0320790ed7bc661797cc48c3d4f0eab3523d1f8cd31d68fab0579cb620"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "aefd401058bf6479a54f37209f3bcc4eca6e569771236c4fc10493faa650043c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "5d1e1110ddb98a76bc693009439f9882b123917753db52349f0e2cc24b4a725f"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-czf_otbq",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "0f0933dc18474670cd58e41d6b0d1f5d7bbf5c398952d958f6c2ed2d083b6ad6"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "5e8d4c241c732be436177b055d0fa4a17f7eec1f26dce7bdf4a775a8f67fc80c"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-dknn7zf5",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "3babf90e33210a7d9f46bae70e4a38a9595fc9656674a988b97ca2dabae3f69e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "3bf16e5122a50162695b3c2f5dfa8e0badcb4e88ad05c4a63b07c22120da91f1"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-e0c3h6cv",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "da9c520aa02f2334386c39eaefc15138ecbb3ae9e7dad591e28f7f5f571e6c50"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "545d822b1262f5681cc5b9559367b19c7676657ca3b84048d174e963ce33c75a"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "parallel.json",
+          "bytes": 285,
+          "sha256": "fd155321aacc7adf68843d78390d441914ea5f3427ce8932228575172e2bf11a"
+        },
+        {
+          "path": "parallel.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-055142-379201-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-055142-611620-01a0bb8e-2222-7000-8000-000000000002-esik70.md",
+          "bytes": 136,
+          "sha256": "533fabc5d94b964e048a530b16023a67def3f7b10c36d5ff0d2ca53822483fe6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-e3gyc8c7",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "70b81fcf033703ad618d0bbba288ec4baacb629117d9cca3ad0ad09053b54f96"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "2afc3631f4d9169b61a11f96a97ef0a4e0e462d3b2bb3046823ca8b8c428f4fa"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "7b37d898323d61840d6a786dc457966c0ace0d92c7c546797d69c74b897bf527"
+        },
+        {
+          "path": "snapshots\\2026-09-20-0415-01a0bb8e-2222-esik70.md",
+          "bytes": 136,
+          "sha256": "533fabc5d94b964e048a530b16023a67def3f7b10c36d5ff0d2ca53822483fe6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ebrc9oyf",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "ca66f5b8ad270fcb89b97f8728b9b0edaf5cf31c8dbfa8e78f0d12cd740ca87f"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "d4804dbae22b21aef5fd3980a4be3b5317135c9cf01f41fb6b901d86aabcc791"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "queue.json",
+          "bytes": 26,
+          "sha256": "0fd4ec45f638b7d3b1d98aedbfcdba31aad14557cf8637ebf03a946d88560cb5"
+        },
+        {
+          "path": "queue.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-f2j_2x5k",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "b2a7360c4ac91b364b5c25a77feda8cb575bcdd1d55fc7a784ce3b729c112029"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "66caa52ea9871ca5ae9f530066cabd4e72e989205ce1e6136ce69b5815e7ddff"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-fczokvjv",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "551d2aa7332d9c009165bed62ae5046440656d00c7200b7a0f1f15d337a618c7"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f72b8dc88835459ee66686b67fdce27b8efebe00d75d4d0456b6dca45b1dd4df"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-fdceqxcq",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "39c2fc5a3ee763281efb732e7a3d3eb6c073ff945637fd5a050601de49cbc9a7"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "69757f3e8bc244b504f65112d868167f87beb7e6ecb12e0f67d076d4e4ce8885"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-fpbvv12k",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "3ba87df768cf2110b8a32a6ec882f605b0637b33892cc98b1d9c0c1825d23038"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "5202e41c82066699b6e4f39b185a86c3aff8b94428c7b193d50a8981b576c298"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ft8v7f4d",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "6bdd684067ec59c6bfeef5a65b5eded01791a0473bf3a64b68dc34a868bbb2c2"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ff18a68ef677ccb90e771c6d1c345f2e8ec0cd5e34f644fc88e583a1eac7c08b"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-fvq_qyn4",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "1c40719feee74ff1c3ebff50b2d20e3368111d16b96f2555f0e00c6703172e16"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "47237809fe5fa55b1799cc042b736ae5993ec69f98a1c865581bed74a0b890fb"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-g4ln_3ml",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "551c70b2136e479c9e002d601a89e24ae5cd21bf88df3bbce291733d5ea21c41"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "4f30e4c4afa6f7bc138fef8ede23403829a887862d54f50f7eaa7279ba605805"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "b4ede08367914aa17a5ac8ff108320fea050a13aef78f46bde2264855593e2d2"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-g5klyr4p",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "382579e411c7f9625aa88f9080e667625eae909afc9295518080d8908b9b76ff"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a7089324d438544843ecec6287b323008bed5ec9304360d659fba0087a26c9da"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-gaj0vrzz",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2971d884bce40c37206837b60785cc6cea19eb63f61ae248c26426bea8edbf8e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "8b663c9cd29b84468a394ec49f6adadff317a16e27fbbfed968050dc33eacf66"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-gtq6hz5a",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "8ac06b103ee9541d5de1a68824409f05d5a78f0d1c553738eca09ac6d3d5a8f5"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "18858502d30d762476c194de9f95b06a28c24dcb148b7580a206f0caace0ca0d"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "parallel.json",
+          "bytes": 285,
+          "sha256": "e2b15c395f588c052ed95fe03e9e497df8f8cdb28237c2c926ef97b2ec8299fc"
+        },
+        {
+          "path": "parallel.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-042029-237992-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-042029-484129-01a0bb8e-2222-7000-8000-000000000002-esik70.md",
+          "bytes": 136,
+          "sha256": "533fabc5d94b964e048a530b16023a67def3f7b10c36d5ff0d2ca53822483fe6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-hr1kd0j9",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2befcc75b4c4559f55a909626e161818776fc10386b5241dae685571f3848773"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "b8c0b97dfd52ed872da28ad87235faaea79470b8ae745a2f82096e659068f0bc"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-041838-435984-01a0bb8e-1111-7000-8000-000000000001.md",
+          "bytes": 299,
+          "sha256": "992ecd2954571e41f49052006379600fb96374442640893ca64d6e26af66f665"
+        },
+        {
+          "path": "snapshots\\2026-09-20-041838-450213-01a0bb8e-2222-7000-8000-000000000002.md",
+          "bytes": 299,
+          "sha256": "9759abe1f9612b35e5a54fadeada48224b4b059446d3f4ebec8edead3484c94b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-hxctyhxp",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "443ec6a361af5c86886ce0299638a6dcae12dfd3139c2b753781298f6809599e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1140fb5aeb345178f37887ebeb27ae7d3dace81060bebe6081471a00d08e47ec"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-i40fh1zd",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "556dc08905bbb8619fd876bb284c946fca9573ef5225f279842601303cc4831d"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "c27fd1ab5c4c4c2ae67086761f3dcd6fd55ca56f6ed36d3bf108075b2a981dd6"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-i5jxlto0",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "acd66fb56511430d6c602afd938ef35a4c4b33a3f8f30fcf52782bc8637f3804"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "976ed2b3ba36e170396f0c3ccf063bc89a344197d6ab951481138d16af13e15e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "small-copy.jsonl",
+          "bytes": 362,
+          "sha256": "7213875b85c4b2a1ea5ffd0f227ca5873897d7bf91f87c136c3412f1fe5fe4a5"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ifkae2ag",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7a6c1d9c4d7a54ea51245d1ab60b979f2cbbab71d29a84573ca3368b9ed7bb61"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "c2aafbe42bc69a016be18094d329040061ea7e4ea68a19c8e101eb9512eaab60"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042029-531599-01a0bb8e-1111-7000-8000-000000000001.md",
+          "bytes": 299,
+          "sha256": "10d7a004c578653071a1b68bcfc5d6773759e64eae20aaac94a62e245b5f652e"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042029-544885-01a0bb8e-2222-7000-8000-000000000002.md",
+          "bytes": 299,
+          "sha256": "a1ee4f95caf3687901494b11d45eb307b2dbea2de35122e663d93663b2abe69b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ign0tud9",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "b0881d4e0ae1f262aea92ff8f0905054bfded10cdfde52e262df2921cda4f7b4"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "78cf2d60eec14889d07b444b056a668a5bd0fa5ed2f742aec9af53751a6e0558"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 6,
+          "sha256": "49d7c344aac08132cc6ecf4a91b514d30ab7a603c7fe3a52a3eb474c10f229c4"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-jaiz4woy",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f83178271eb996a3f6a28b5857fab8bdb594e5dfb7e96d52c81c005963ae9d2e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9576ce1c38de06f878f7baf40a9a0dbcf8871fdda299803194161f24488c1f36"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "queue.json",
+          "bytes": 26,
+          "sha256": "0fd4ec45f638b7d3b1d98aedbfcdba31aad14557cf8637ebf03a946d88560cb5"
+        },
+        {
+          "path": "queue.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-jg19vdtc",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "c6fe8acb5a417db86afc4d7c3eca7d0544d72ac0be41342e875e5cfdacc141fa"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "263a2fe0ff4de9dc7138b564845b308e51e5a38f0994e1f0556952652d9e4599"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-jtryde4p",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "8d2345f65e50a94414a930326275d41f03ab2ec7e9e1c59f4e5ab5a7f8ed59c3"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9cd03020991b63ab1e9e8765589e41a63ab49a3671980edc3a0a92d0ac6f955b"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-jwhxtinc",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "c81fabf7cdfc7b5dd63f520207f4e70772deec459d44b0be258731995d989b1b"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "2ccfd1c01360824560600ee538ac213e441e32b1d2fa7a1ed87aa774f8aabe85"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-k0zh85a4",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "bf584826abb05551dd4b454fc2d7d926c9283176206bfecf1a1090550890df30"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "91421bedbbfc86e51efdddc0779c7128e45178ddc1df197a2d107d315cb4ee2e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-k8m99c21",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "b5dc8134be7b7037c3699178164cf4c29cb08f210b98412ba6b4319a5ace88e9"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1a8a06c6fc5d171ffc6548e6c8268dc84a2e553518140219715257d265cf863e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "status.json",
+          "bytes": 117,
+          "sha256": "27eabdbd09a91b4079d2aff2815c13805d816cf1a65b5843e4371c05ee10780a"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-kkq7uhlf",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "c5de641c2114be27ae6ac035d33c331d373c7f77f35a395e227c2468cedd7d30"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "45f69be48573e04e4e4d725d5b09b8dfb1a5ec2f0ef696b2cb83a9a348435535"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-l1wh8cic",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "1b519ebcd385c3944c4672226c618897aaa8579cc038ad2fd100c6d913789077"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "4b8f39b20b628fa3ef4e344237c85b6a8230857a653d9ff8fa265a6bd5351927"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-liwy6g3t",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "787dfcbc4e815cc7436f1c50dfb5cc54ffd2d08bfcf597e77daccb57f92b336b"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "dc7c3366c408813f987ffb6f14555fe60ded2b4161f2493d0598ba14fadb30b9"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-lp0hpdg3",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "96b466f862a2034aba6f87b4d579c343e36211046a668162af9dfe1e8e8506cd"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "d2491ea4da6ce0a472cd09a6383e713e0f384670d7bb5441546e4b57a84cdff2"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\a.md",
+          "bytes": 41,
+          "sha256": "221dd6ac2ee89242fac03fcf343849841787f143c052a951ffb0ed5272147acb"
+        },
+        {
+          "path": "oturumlar\\b.md",
+          "bytes": 20036,
+          "sha256": "5fc669982f7746606ed404b5a0a72dde1cf5443238ea68bea7413542f228049b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-lsxy9urw",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a55167f2d7b8df3eabe5d5725270611eb94998ffb177709004a15b75ee4d3f7e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ccb894398979b3112b1c993eb2480b05b0fc2686cb6a55d6aba800841d2fe973"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-luw898ox",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "3ad3e7f55a1461b4dc9c803a690239676c7de1649c8e70416dea16b9dca244c2"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1d03d12f7779acd42779e2eaf865d6d50ff60e9ebdb399dbc856ef9b41c12a70"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "b3c55d7584c2b8bcf966b3ed0e7edf1e568f514ffaf307f6e42cc0a7f9c9c36c"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snapshots\\2026-09-20-041838-325726-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-lzwkdv6q",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "c014da98aa573e6fb9c46723c14061d4a566230d041503ea6d3b39b8896c3b9c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "72cb515d84aa2d6e9072b80382d2c5e5194f07714b91bfa8e52969e81ed18401"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-m8hwm19o",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f41aa9873e1a696aa7d6602f906306190b88be11b355e6449e645f37be33374b"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "2f885d95062cf5b964574a01b34a9d02fc4c13f3cb2e2df21c16848138cf93cf"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 6,
+          "sha256": "49d7c344aac08132cc6ecf4a91b514d30ab7a603c7fe3a52a3eb474c10f229c4"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-mhc5im_0",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "99a6a000528b52877cfd2b2bbb71cc6ea45d0c758c3efa2541a60743e757a856"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "2fc875a3d1be7fa4f76290ddad5350817cdbc03266c7424f82124504c6e2bbb3"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\a.md",
+          "bytes": 41,
+          "sha256": "221dd6ac2ee89242fac03fcf343849841787f143c052a951ffb0ed5272147acb"
+        },
+        {
+          "path": "oturumlar\\b.md",
+          "bytes": 20036,
+          "sha256": "5fc669982f7746606ed404b5a0a72dde1cf5443238ea68bea7413542f228049b"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-mkzjuqm0",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2e85a43376b5bbbde60f2953b2a1fd69ad67fb2ec8c2a5a919a30a406f9d8d4b"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1ed09cd360418be93e12f6ed8afeb840155f9ec531b2e92fa5bfe0dd3e6e29ad"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-msmjsbo2",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7dc80d4bdb93823627aac9978e3bbac9e8bdbc757aea0433aee91341cdb2145a"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "608a5c988244dc72f66a1729e800498ef716cb84f7e557f3fba5d59b59e19ca3"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "ffe0cf8f357c12b496c0ef9c40152db695779006688e6b624b1f700ec56fbd15"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042146-548497-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-n4696k79",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "37466882e6e4ae1def92c17a4d72396a8b375926a0295b3cfb8b39e176861ac3"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a962a470786ffc108f8da42d4358c82b0379fbf17201d8887dfff4fd37acc09e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-n4ylyoip",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a32010e3adaee275fa1c09f899c307adb52a7ffd96d0be150fc8fd759ade6bd4"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "80892b345dcc9826eb9f16f964e85e2dcea374c2fdd45ba43754fe6945a51227"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "status.json",
+          "bytes": 117,
+          "sha256": "086708de5a3dffde30878fcfdbf229a95df70582edfe9336c24ddbd3f14ec28e"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-nrxaybrf",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "8d6abaaeaa0778528e32ce021003b047e4821d7d0c59e4d9543f43922b080ab6"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "645a6c1efe01a1efc0c02bcaa9634cccb69ed74261a525a3c781f97142cc977b"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "8d8f6b1082e2071bb339f59262df4d4c54e217b6282a2282f7bf86c27b4a9ea9"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-o7hd7tc7",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "0bf1f299e2c4ec81bc476aa168a3c13fbdfb83f7969e90265d63fd089fbdc059"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "b14e4dc6d5509a517c56b6e9ac829dd164b950e7899ea53fe0d86f7ce099bd16"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 6,
+          "sha256": "49d7c344aac08132cc6ecf4a91b514d30ab7a603c7fe3a52a3eb474c10f229c4"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-oas0bzxf",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "014265e99b3e0a26b217e52ef9762fdc3bee2f502825cfe2e60835ad8c7f4671"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "66e710a95538594cf701678ee6d275bac833c77d5e1776d6e0454375624a0736"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "parallel.json",
+          "bytes": 285,
+          "sha256": "a1040ea4fbdc1e215466082db455193d8a48c82b6817a213e146a11327fb11a4"
+        },
+        {
+          "path": "parallel.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-042920-287536-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-042920-531930-01a0bb8e-2222-7000-8000-000000000002-esik70.md",
+          "bytes": 136,
+          "sha256": "533fabc5d94b964e048a530b16023a67def3f7b10c36d5ff0d2ca53822483fe6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-offfbixk",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "43c4ae2081e8cc54513de0468a82757b6152c0e67908623a86633e84095e3762"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f2c5e184f5bc664e215f28f8106da886fad4945ed16211135c0961de824366c8"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ol3ko19n",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "916bacef041b4054e8f68910a57b36a2f3dac853857ed0aba0ebd65321350c04"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "292d3f74e262229a16171c5e5e28c95c868d664abd4de0c607b6e9d7fac8aaed"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "status.json",
+          "bytes": 117,
+          "sha256": "21d8a6d31cdd0a321d9125607a114a4ac0ddb16075c0d8c96dd367e0683ea520"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-p7gs__c4",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "5899a78932a8bbd3816b31faf44d3db9fcf36e08206651a97e0cb2ebac821306"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1e5da3490415f3ca2f89b65bb2e4cdfc7792ec4e04ad4e73a60857687d047110"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 45,
+          "sha256": "1fab29f0acb6f23764e3020e71f51dfe512455929d9c3a146ce741f4e4b622c0"
+        },
+        {
+          "path": "notlar\\acik-uclar.md",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "notlar\\aliased.md",
+          "bytes": 1,
+          "sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+        },
+        {
+          "path": "notlar\\missing.md",
+          "bytes": 1,
+          "sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 6,
+          "sha256": "49d7c344aac08132cc6ecf4a91b514d30ab7a603c7fe3a52a3eb474c10f229c4"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-pghmrrd9",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "b823e27773c0c331ae3d48ecf45f30476ae8f43e690881fae76a1352411073a9"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "e9a142da9eb0eb4f89e55b981709ab8c017c23a8769f201b59ce384ea23225c1"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-pl3vl8n5",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "157880fcfa0e95b74eb7c87c0de914d2bfe0696ba129bc9ee52decca68e529b3"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "647e4970b4b91620bc38b5f701668537402dcd5ae87e5b4b45bd641b9f1e58f5"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ppdz92i6",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "31cab9a5c49c5fab538e7163b0d20446453c688468dd1d5f4314f8839dadf9d7"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "e39a7c00b2e27f524da4984308950dab102fb74eb5edbbc4f41c1c3540c50903"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-py9orkca",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "de53d7f2a2fabe574786a5dfb8cc0b546d566e586dbcd3080931d36861d3361d"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "5de92e2e7e3cde19acb4d9318486ad5ff45f4f841843b2287ef26d2778f54395"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-q2d72w84",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "c8c3f1560bab16d47308fd6b6b381c907b289da27629c7c6edf884f1dba7fadb"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "da47c16533548dd89039190b23e812ae59b2a2ae4c10baa80d00ba2039f493b0"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-qyh3zkjv",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f70d155e9dfd3426033f186fd42cff3a56677d5822f59e4f7b2ee247be3ae062"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "6f4a1f6166b6737ba8fcf95bf63cd0356eeb325ee0d15aef5405c52db43567f8"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "status.json",
+          "bytes": 117,
+          "sha256": "fb0ebfbb6d188c14a59e55b67d01f80739de671a4346136daefb088071ef2fb6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-rbx78_ct",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "13ca2c01ef227e01ebc088c3957e25a4c6b1874c6134f126e29a40fa02a6a447"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "f6df58101b5d472db223d7d92765c002535a31960799c35ab11011b9338c70dc"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "parallel.json",
+          "bytes": 285,
+          "sha256": "38b9c5e9023aa5fc910b32befa080a48d0a9b62dee9980de2e0feff4560955a3"
+        },
+        {
+          "path": "parallel.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-042147-101375-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-042147-346950-01a0bb8e-2222-7000-8000-000000000002-esik70.md",
+          "bytes": 136,
+          "sha256": "533fabc5d94b964e048a530b16023a67def3f7b10c36d5ff0d2ca53822483fe6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-sb0oysrz",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "0da551d8a82ba996748d91bbe113727e4150c7f41d1a8e83151ec370328576c3"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "012fe54c4e5ec80655d74ca1a695ad782a24298ec66d54d1b630991e48368474"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 45,
+          "sha256": "1fab29f0acb6f23764e3020e71f51dfe512455929d9c3a146ce741f4e4b622c0"
+        },
+        {
+          "path": "notlar\\acik-uclar.md",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "notlar\\aliased.md",
+          "bytes": 1,
+          "sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+        },
+        {
+          "path": "notlar\\missing.md",
+          "bytes": 1,
+          "sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 6,
+          "sha256": "49d7c344aac08132cc6ecf4a91b514d30ab7a603c7fe3a52a3eb474c10f229c4"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-sej7ft0k",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "b151d0983a932fae1ce66d0fb6fb70689da6038431178be0976cf8a7c756e125"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "00ca30de137ccdc3dcd10af73a723af5de8efd14a5f147218865b8f920623a60"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "b4ede08367914aa17a5ac8ff108320fea050a13aef78f46bde2264855593e2d2"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-sqswy69t",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "70a83f99bb2f782258a8e3152296624426887c2c648e21c4016d8319fb6fb05e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "3a262d2305a171a7b6a5f16962c6e063dcc079ec8aff8e43da8008b35b7c2a77"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-sxs_adx9",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "4ae36b04603766f3f332751e6998fa46a7703c981b4d3064ab5f7f4044b4294e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "6933a499c0e9c910a714d0f7bec4120c780316e347f2998ba36834449ca186da"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "b4ede08367914aa17a5ac8ff108320fea050a13aef78f46bde2264855593e2d2"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-tc2vmwae",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "8dba9f5f78729ef224845f98e93c5b735bf1000c6cc649a30af99340c4bd1ccb"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "fbde619dfe91330ac745732c919dfa002808eb189284d9bd0a91103d1da3f049"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ae23009635806791e9aeb6aea8a8d7d3c956b92799aafbad27c92ef5d4d447f5"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-tculjoqs",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "fe91b61da55595dd436a2ba0107094c8f70467065698d5b2e220287b814fcdce"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "2c79dc8e0e154868adb2a8666fa39c0a394c4bc52658cc574f67a390b0ad1b4e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-tkvj65g5",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "03dcb19bcb86848875dca58c1662a25f853c372755a429061f670414ddcce0e3"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "55ef2d78244558e978721fd5c3792bc20101da7fcea19c4f7d45ebe42883a37c"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-tnpcjyos",
+      "files": [
+        {
+          "path": "01a00000-0000-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "1da3a8ef0d67958c46ff3fc94fdf49ea51ae77d7847697de6b9ffbc728db4f74"
+        },
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "475f875f3f7c7a9511bb66c8458b0023828e046cbc06583c69bc0e3d99a646d9"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ce8fb22369fe4f1395ec72490910af265ef2897f3d9a88807f529174f109a150"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-tsx5j7_j",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f405c312d787a401f8decef0a804627d3ad46ab40dad30aaea5f9078aeb0eda2"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "846fec76d04074da42c0e9a0587edd93e900576aab9ae99a0891bfe8a21b4ce1"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "b4ede08367914aa17a5ac8ff108320fea050a13aef78f46bde2264855593e2d2"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ttsdwhab",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "5de57ee3c96619de58bb5f3e49fb95e4bd31f628f3a9edcf66469e8428843114"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "01cd52a3c3ed49b8633c262de5336efec41972a99871380f27b7a13bbeef7429"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "4e98a01d6d4c63fbad9e125174932ce3d225da6d13f1c7079b9202a0838db2a0"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-tu9ft77i",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "6b28863370417f48cdde79169bd603fd6ee90cb404671cb284a1577c07780cee"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a16b62a0c0e04bf6a98aa9bb9d942f07cd4aa9467fad1ec18ca0136a5e93dadc"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ty_olb7b",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "a0d018c4690824e021633908e5777ffe9a8f6230dfd5204111dd8c4b2cd7cd4d"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "ea09f3f6b4e6fadd09f5e16bd35fd02f82f82a7284a6d2c4323a20c9d7e645df"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "small-copy.jsonl",
+          "bytes": 362,
+          "sha256": "8cc255d3c678fe0a5574e54eb86780b72208c15cdf06445e8f2a09d8fbee74a6"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-u2ex34m6",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "c603b8bc42bd5a5bd7ca7589620c056406111df2f0d9078e221650b1f6900096"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a2cb0258416d51a71707da10ddefb62b8475386adbda8d71a14b9a59f7c6aea2"
+        },
+        {
+          "path": "bad-draft.md",
+          "bytes": 645,
+          "sha256": "7b4eff885d1a88f7f82ff8de581eada5b40d503bb02ea5b32b234f1e67456950"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-u44h1lv8",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "fa1e6a0b7955e4b95f905713190e21e7b43ea6a3008853d5e63a9f817d9754e2"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "282d618485e0033803cc9f44dceaac8f722c1d22c388079f1fa364c165b88695"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-uff9ekgb",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7c66423000dbe4d78bfef4cb7f9233416741da583cc8f03115d9c1a9d06aef39"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "c053d53a1733cb529b720db21538be3eb190e652c76475c0604a95851959399f"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-unydgmiq",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "4aa1824c54a0b333ec8c7c391914a4cd49b22e95c16d5168be489ea45c24723d"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1140c07e3a122d516e60e0b79ee5892f0bcb891368b7d0c7e1edb709bbe45f28"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "small-copy.jsonl",
+          "bytes": 362,
+          "sha256": "826e6a88d19eeb0373072f8363d6d3f75e2ec20f681896b38723d86115fc6e27"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-uokubflb",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "6db4da407e2b477e106bfa13756e5226373ca62667aecd6451a353858bd02911"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "53e0ae998e24d7014c3f68f7faeeda6829528c2794fa3550496564ea1cddd88d"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 86,
+          "sha256": "be953e676a8839b7615f55430b589c354c576f89baa3c4164ac6b6b22be06c17"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-uze9f5w5",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "03f136ebc210b5231f8fbd878fdb9f95aa3261c61eca0e515ff0d6e485b59339"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "df6e24a317fec3afc265cb79cdcbc1f18232f4350cc586e079f2a5a6063350a6"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-veccjkf_",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "bdaf45347e7d1dbaea4ef75caf29be3716eeb5ac2063eb2dc62f5e0fb3240e39"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a681558955e92cc1de3af47a2b079f811dfc58b970774c8203ecc249c15ea02d"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-vigpifa_",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2d3beaab3f23bad19a79fb7345c9f44ac4582cd5296836169d4fb0b1274be363"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "d867b8c2dcf4d41c3731fc9ec01e08a69489a53baae2cf48f61d6589c9a54081"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "small-copy.jsonl",
+          "bytes": 362,
+          "sha256": "b9a859e0593e057287d9624e5b489f625ea4dbc5673eff142427adee318aac5e"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-vqamppr5",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2e91c4659e97f26b744606ba7929d0b66496622eb1ef9389014b410bf322c02e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "2f5a36f1c6ccfa1d7de01d96097502837be994289b99fbd7a0cfa7065289fb0a"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "b3c55d7584c2b8bcf966b3ed0e7edf1e568f514ffaf307f6e42cc0a7f9c9c36c"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-vx6g2p3o",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "4ae5ad064ec0cfec90876975a87adf64c0c76a69c93546b5f310b3bfa9e6816b"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "5fbc0fe35905f015cc72fddeb2c5034fbd816adb9e0985c46519dbd3d63b6412"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 90,
+          "sha256": "a6115a26cfb44e7bd7242da271e2929777ed1f5ecc060e15941e596ebd8a9cf2"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-w1eub1rq",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "d3a515a8e3bd9a5e0e4f53a1c8a06326addd41ecae94dffdb7d536ffc3455323"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "51c0280982bcfc2e6141e8956f88010ab464aa6e8bdb2c7c97a0fcb7cff0fbae"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-waryspl8",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7957b78294fa48fad81ce9956b1f43e1ae904476d0dcfe9f3412a7e4aa0c70e6"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "51a4cf59ac2a347023374940241502a9f4263e1fae35594cecaecb2d845d5f67"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "status.json",
+          "bytes": 117,
+          "sha256": "4d91358c945051de97928b9e6af16713930367e908110934123bf61fc4f26ca0"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-wsl_pvlr",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "d536c9b241b6d6d98a60549123e3cd9a63ec3e024c27e64abfabf584848ffeb8"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "955c8b7b496bf67faa326c0e36a118cb8e661c3e69c4d130593ff9439946ed6d"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "e2519d3d8bc886f2d25222180b6e2180efaf6a8f4be915fb8d5a220cb6b84b4c"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042919-562486-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-wuvobnwh",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "35016818e418600a0d557b729fe6c55522cb3ee43c66f5ef7ecb96f23334c197"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "66de9c2fb50dbe5eb1e392d1264efe119028eaf7971379c5f1083f905f65936a"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-wvz4_qc4",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "e3a3796c7fa29bc080f14635f3a0afcf8b22f1013a1bef0092c33be205b94e93"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "6106b80883d6a85d38310536817671f0b70f85b7c1807b1d87e5a8590f193f56"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 41,
+          "sha256": "fa796035b558bdcf2f9e45c5379378f79789abf1a9599fd6982738995567050f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-wy3bp5td",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "91c7e693734a5fa25e6d0e22fe42a53c7c1dce182ca1bea012476403254a30aa"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "abdd62eaf7ed2e72b1d0236e019bf0173f37fa02fcd474080d3473ef99b28d47"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 137,
+          "sha256": "98cab88806fd4e920ad4388fd8cbbd668cc7c6ef1aa17bfabc2a91d9f1a0b9b1"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snapshots\\2026-09-20-055317-863781-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-x3n146lh",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "787d1b088fad8ead74671540e9687ed63de91f927b4103677f5d9142fe965a8e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "0c8e35ce206dfb1a81d82ecdf1f86ccee8b3010d23c813139570e22dd68bbbba"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-x5o3c2kb",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "bfe318c610dbe9c158915e4801fdf541ffdddb78fa31a7d1e27d87d745034f0b"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "bf02cbc0ae5889d1d632850875925ce5fcad339876f47e556c419cda28e30d7e"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-055318-886275-01a0bb8e-1111-7000-8000-000000000001.md",
+          "bytes": 299,
+          "sha256": "c860d610812e88095fa0545772de0357058da55dfb471949cefb78f7ae5643c4"
+        },
+        {
+          "path": "snapshots\\2026-09-20-055318-898804-01a0bb8e-2222-7000-8000-000000000002.md",
+          "bytes": 299,
+          "sha256": "2b49f66873c3e9b42057e82a91391d867831d925c2da41518a7b1af460ccc3f7"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-x7tkkh0j",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "aa8a4ea21d4d0f1ad12099093ef103653f5beafcc367a4a1267a244b2c2ce5b7"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1cc459de00f227190594abc1c3e27921338210cda4d596e72999e52b646da243"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\example.md",
+          "bytes": 51,
+          "sha256": "694b877356a06d72ec2548fabb326625f5adc44e4da4b0297846641a4ddd4768"
+        },
+        {
+          "path": "oturumlar\\oto-test.md",
+          "bytes": 39,
+          "sha256": "b2821af5f53a333120303a67ab80cccb1ef7e87674c1d920a4adcbb7fb8738ab"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-x_o5bm9t",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "44d849e6c67de2c22c558fc51745cb761bdf38b761b85a6b9e36b39771cacfaa"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "d0e660ba711831f89da5bc84c5373872ac8e019c8400ae7e11331fb1bd83dda1"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-x_oufrjy",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "89e556a14ac2be08a77fb51b91a0f8615af83dbea6be867fe17cd2a71120668e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "34a48fc3de48e7284cf82af4eda0caa7d7ee10e5e7a5ca73e8eb22cdbf5ffa66"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-xapcc7qw",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "fb9adcc3c44a653e5d105f4859b27c176397bed2f04da5a8bddcbc1714f000f7"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "c588982483c4213dbc38bfad49c690adb2be72d675af263adbfa61f078490d19"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-xdcgp9kr",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "e457a5a614828144dee685f15f97cac47dc38aa2dadc4afc4c274fe8165ae58a"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "5acbbb48668c3dc7442f8698117f40ee6351ed73725f49d0f0896e8530148e10"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-xmq0sg7d",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "fd64d4a982d66b19e6c5fec29386e0df43c5653e98fed27316806429b09818b5"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "7e20e23f5e9b18084717b171cb64348ec2bde221ec512c7a075221204866e1ec"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-055142-655963-01a0bb8e-1111-7000-8000-000000000001.md",
+          "bytes": 299,
+          "sha256": "f94dcb20ca49e406d73805ca8482d239d40413bf91a69ced45c1365968f69d40"
+        },
+        {
+          "path": "snapshots\\2026-09-20-055142-665788-01a0bb8e-2222-7000-8000-000000000002.md",
+          "bytes": 299,
+          "sha256": "30166ff8048e960b4b31c2845774caabe04d25c0a69d05b2dea2bcd110df65f4"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-xud2xr6q",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "5c3bc898b1a4a83f703f90125d51e8744a89ae3643c7dc6841a37786db11c0d3"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "3afbfdec07f6d15da0645f261b35c5015639d3799ea5adff6a59770c30cfae73"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-y63vshr_",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "abb4643ce2e1af7884a68acfc77d660b0c2965d8b361361ea85e0ad4576be482"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "e289e24b5abd79513983aedbb54d36d24b50058e42f0b9174c417337990cc4f9"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042147-394093-01a0bb8e-1111-7000-8000-000000000001.md",
+          "bytes": 299,
+          "sha256": "24a76c2d3f7c5ecf2d0e613bb0fcef5371fada20b574e7fd39aa30c768fe32f3"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042147-405180-01a0bb8e-2222-7000-8000-000000000002.md",
+          "bytes": 299,
+          "sha256": "d16932c0bd830fc57915503914e3817674f40f446b46a95695950149dd1859ce"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-y7xi3s9a",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "ade167c4df85cfa50c824ab2960420e988924a94b56ddd1a9a952b35b0041485"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "74c88d9e104bb18325b9d6bb0364db42169614bedb9bb27cc330cbcb4e6f58dc"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-yb5mph5m",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "9eb3b11fc4fef3de6287439aae5cd508225ba7f9b7c17c3f1bb3e7789bfe9d2c"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "7bd11771f6a495032488da1ffdc72384a8dbec0b265a73ca9f4882483218064b"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "e2519d3d8bc886f2d25222180b6e2180efaf6a8f4be915fb8d5a220cb6b84b4c"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ybk5h6an",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f484c6da0b0715e463205c839c585d0fed734f0699f22dc887f996c29856859a"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "6271c715ec412ae8e6852c73d77f1d3da89d75601646be031d63659e18593a14"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "013e7d54d3dc3aef75042dd07257224167dbfd9a9d49fae9cf4aeb37f9c99078"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-yee09xqx",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "4cfe0a8380c93eba9cc2993056e88464410fe4be48b9bfdbda99a06e5e403557"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a1e8ce11e03f0cafa3357ddf984ab8812d84f556edf4b809494ad6279ea27b4f"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-yma_z0lj",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "f5ae41907314b970b70f82118e5f9b8ad094a717060138a730a5ef591562252d"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "8bab5685bf4d9c7d72e17684539721036b342a4d0575c34aba1d2714d32c8fb4"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "draft.md",
+          "bytes": 852,
+          "sha256": "e8442bdd7a2fc750ef2f65628cd002dd88cb1ef6107a4676ef5f10517cc307a5"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-ymhcgan6",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "4394788cd81dcea6ffa2020d75025847e1a1448908e2376b963e7c1f19db4d58"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "a219d45ccc86530de422483db3c9fd48657a8291197b1534feee5a94496ce7dc"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "citation.md",
+          "bytes": 26,
+          "sha256": "aa887a31c1fdf3aac38e0fdb677d57d0840522cbb6fc702d325ea4c132f408cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-yn880ylp",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "8e1be7f34988702df2f7d40a1df6dead804b872678a78fe3bdc40b4994aaac1b"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "b1acb8aa955f1a6af7805de94b4e2cc5925c93157f11e8702bd21e076f9b8fd9"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-yxdot_e5",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "9d7f5d0a7d301ffca913476a1a9d31c727f04349c64c1a7ab83336977c4d8498"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "9fbda3f010975d6ebd0ff897662a4798d6131d540b5cd6da3382f7cc2edeeac7"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "status.json",
+          "bytes": 117,
+          "sha256": "df7ecf895ae3411706f4bd05128ea6f5ce29fde62f68b0ebd8336f08ac25b6cd"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-z_jpbs6m",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "7a14e32bb113b175f0863c69671f2fd26e3d9e429d8571358c0e8fb7e15e0383"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "d54765d61292edac957175735e98afcaf83c990249668b3570c8419180f38711"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "oturumlar\\oto-01a0bb8e-1111.md",
+          "bytes": 41,
+          "sha256": "0fb24de1ba3695ad133585902506d10797658ea94ec90d1be479501643bd9940"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-zn4fyz_u",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "02152400022aa08a68a29bb5ac59181369b3cd22f0a1b4b80e1808f3d245aba2"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "4d514cfa39b49831cf59b4f5cf4978bf061206d188742569fb793e97a3f92b06"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "sequence.json",
+          "bytes": 144,
+          "sha256": "c3f119af404773fc57d5db019b3a9837835da290fa2ae9e004107e24062986d0"
+        },
+        {
+          "path": "sequence.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snaps\\2026-09-20-055142-742641-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-055142-784684-01a0bb8e-1111-7000-8000-000000000001-esik70.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        },
+        {
+          "path": "snaps\\2026-09-20-055142-846812-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-zrdinx4y",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "fc9062d18c9fa84e2515fc1477f8d16771b27eb4fa3c0bc7b8b90bb97907e456"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "d0e9cef3fff1e6b0635fc97663db95f5639230a5e58c27328057dc88c2a6f43a"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "state.json",
+          "bytes": 144,
+          "sha256": "a23406a00dec3d93cca90f2a2e4d038655cb29075b9e47a832e0fae8ad46d8da"
+        },
+        {
+          "path": "state.lock",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "snapshots\\2026-09-20-042028-682068-01a0bb8e-1111-7000-8000-000000000001-esik50.md",
+          "bytes": 136,
+          "sha256": "39321ac2599b573c83f638ce04c33f06862487ada73abae0ca9cf9aefc08004f"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-zvk590v7",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "59a51e66703239550df1d0db6b175fd74a367134b13651b3b1d54ea9a612347e"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "1e5041beeb564d43ece6da58894815001ab506e44777ce5009b9a4fb4acf5aee"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\Anj\\Desktop\\desktop\\playground\\derleme\\astra-kontrol\\test-zzbnolle",
+      "files": [
+        {
+          "path": "01a0bb8e-1111-7000-8000-000000000001.jsonl",
+          "bytes": 514,
+          "sha256": "2b04043a2f3d6b5a9fb7588d4c881e28c23709b7dc543acf18940f43ea8f86f8"
+        },
+        {
+          "path": "01a0bb8e-2222-7000-8000-000000000002.jsonl",
+          "bytes": 514,
+          "sha256": "85bd10f7e3f3cb5c5dc2ad0ea5853b1ac3a932a23af64708bceef3bf0e09d237"
+        },
+        {
+          "path": "BEYIN.md",
+          "bytes": 14,
+          "sha256": "7bb50120d5ae6c113b5732351e5083f160163e4e426390b18284aa6b760617d3"
+        },
+        {
+          "path": "status.json",
+          "bytes": 117,
+          "sha256": "58572024808fb64c288fb37203cd64c226a2297b1ca1069178802e7f25e931a6"
+        }
+      ]
+    }
+  ]
+}
