@@ -127,6 +127,62 @@ arasında okuyor, dolduran şeyse turun kendisi.
 `SessionEnd`). Yani Claude'da Katman 1 kurulsa bile Codex'te `Stop`'la
 yetinmek gerekebilir. `AGENTS.md`'ye ve sunuma açıkça yazılsın, gizlenmesin.
 
+## Avenox ölçümü: eşiğin anlamı değişti (21.09 05:48)
+
+Lab'da Avenox v3.1.0 kuruldu ve hook bağlantıları ölçüldü. İki bulgu bu
+planın çekirdeğini değiştiriyor.
+
+**Ölçüm 1 — altı olay, sıfır eşik.** Hem Claude hem Codex tarafında altı
+olaya birden bağlanmışlar: `SessionStart`, `UserPromptSubmit`, `PostToolUse`,
+`Stop`, `PreCompact`, `SessionEnd`. `PreCompact` listede var ama orada özel
+bir kurtarma mantığı yok — sadece kuyruğu boşaltmak için bir fırsat daha.
+Ve bağlam doluluğu ölçümü **hiç yok**; eşik kavramı kodda geçmiyor
+(`CONTEXT_LIMIT = 4000` alıntı penceresiyle ilgili, bağlam penceresiyle değil).
+
+**Ölçüm 2 — neden ihtiyaçları yok.** Sürekli yazıyorlar: `PostToolUse` ve
+`Stop` ile her turda makbuz düşüyor. Biriktirmedikleri için kaybedecek
+birikmiş bir şeyleri yok.
+
+**Çıkarım.** Bizim kapanış ritüelimiz var çünkü anlamı oturum boyunca
+biriktirip sonunda yazıyoruz. Biriktirmek bir **teslim tarihi** yaratır;
+compaction'ın tehdit ettiği şey o teslim tarihidir. Onlarda teslim tarihi
+olmadığı için compaction bir olay, karar değil. Yani "oturum mu değiştirmeli,
+compaction mı yapmalı" sorusu onların mimarisinde **sorulmuyor**. Bizde
+sorulmasının sebebi bir tasarım tercihinin yan etkisi.
+(claude 96517e26 · 21.09 05:48)
+
+### Birleştirme: üç katman
+
+Kod tabanları birleştirilmez — iki sistem tek kasada iki doğruluk kaynağı
+demektir. Alınacak olan mekanizma.
+
+1. **Sürekli makbuz (onlardan).** Emniyet ağı. Olay bazında, kaynağıyla
+   birlikte ham olgu yazılır. Model gerektirmez. Tek işi hiçbir olgunun
+   kaybolmaması.
+2. **Dönemsel sentez (bizden).** Makbuz yığını şunu asla vermez: hangi karar
+   alındı ve **neden**, ne denendi ve **elendi**. Elenen fikir hiçbir makbuzda
+   iz bırakmaz, çünkü olmayan şeydir. Onu ancak bağlamın tamamına bakan
+   yazabilir.
+3. **Bayatlama işareti (onlardan, uyarlanarak).** Onların hash'i "alıntıladığım
+   kaynak dosya değişti mi" sorusunu çözer. Bizim işaretçimiz ham oturum
+   kaydına bakar ve **ham kayıt değişmez**, yalnız eklenir — yani o problem
+   bizde yok. Bizim bayatlama problemimiz başka: *"19.09'da ölçtüğüm şey bugün
+   hâlâ doğru mu?"* Çözüm, hash'i konuşmaya değil **anlatılan şeye** takmak:
+   `derle.py` davranışına dair bulgu `derle.py`'nin hash'ini taşısın, dosya
+   değişince bulgu kendini "ölçüm eskimiş olabilir" diye işaretlesin. Bugün
+   böyle bir şey yok; bayatlamış ölçümü yalnız insan fark ediyor.
+
+Alınmayacaklar: sqlite, kendi CLI'ları, kasa düzeni, `receipts/` klasörü.
+Bizde kalacaklar: bağlam doluluğu ölçümü, gece derleyicisi, arşiv arama.
+
+### Eşik artık kurtarma değil, sentez zamanı
+
+Yukarıdaki "Tasarımın çekirdeği" bölümü eşiği **acil kayıt** olarak yazıyor:
+*bağlam %50'ye gelince her şeyi yaz, yoksa kaybolur.* Makbuz katmanı gelirse
+bu gerekçe düşer — kaybolacak ham malzeme kalmaz. Eşiğin yeni anlamı:
+*"karar ve gerekçeleri damıtmak için bağlam hâlâ yeterince temiz."*
+Kaçırılması felaket değil, gecikme. Önceki metin kayıt olarak duruyor.
+
 ## Kabul edilen politikalar
 
 **1. Kural `AGENTS.md`'de, uygulanışı adaptörde.** Sözleşme ortak dosyada
