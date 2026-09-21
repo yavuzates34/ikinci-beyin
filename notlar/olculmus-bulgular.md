@@ -1092,12 +1092,20 @@ hedeften ayrı kilit dosyasında `flock` + çatışmada hedefe dokunmama.
 | Claude `Edit` / `Write` | reddeder (okunan hâli izliyor) |
 | betik: `read_text()` → `write_text()` | **sessizce ezer** |
 | koşullu yazıcı (lab) | reddeder, yeniden hazırlatır |
-| Codex `apply_patch` | **ölçülmedi** |
+| Codex `apply_patch` | farklı bölge: uygular, **iki etki korunur** · aynı çapa: *"verification failed: Failed to find expected lines"* |
 
-Astra'nın "port gereksiz" şartı: *mevcut bütün izinli yazma yolları aynı
-sözleşmeyi zaten sağlıyorsa ikinci katman gerekmez.* Claude'un araçları
-sağlıyor, betikler sağlamıyor, Codex bilinmiyor. Karar Codex ölçülünce.
-Adım 4–5 (gerçek ajanlarla kapıyı aşma, süreç ölümü, yanıt kaybı) açık.
+Codex ölçümü: `gpt-5.6-sol`, A'nın değişiklikleri önceden dosyada, orijinale
+göre yazılmış yamalar **aynen** uygulatıldı — bayat bilgiyle yazma, aracın
+kendisi sınandı; sonuç dışarıdan `grep` ile doğrulandı. (İlk koşu stdin açık
+kaldığı için girdi bekleyip zaman aşımına düştü; `< /dev/null` ile tekrarlandı.)
+
+**Sonuç beklediğimden farklı:** iki ajanın **kendi araçları** sözleşmeyi metin
+düzeyinde zaten sağlıyor — çapa ya da okunan hâl değiştiyse reddediyorlar.
+Korumasız tek yol **betikle yazmak**. Astra'nın "port gereksiz" şartına göre
+bu, yeni bir kilit katmanı değil, betik yolunun kapatılması demek. Açık kalan:
+anlamsal çelişki (farklı bölgedeki düzenleme metni korur ama anlamı
+bozabilir) hiçbir araçta çözülmüyor; adım 4–5 (kapıyı aşma, süreç ölümü, yanıt
+kaybı) yalnız koşullu yazıcı benimsenirse gerekir. Hüküm Astra'da.
 (claude 96517e26 · 21.09 22:53)
 
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]
