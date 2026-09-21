@@ -103,3 +103,75 @@ değişiklikle.
 
 Ölçemediğin şeye "doğrulandı" deme. Kota biterse nerede kaldığını yaz; beş saat
 bekleyip devam ederiz.
+
+---
+
+# İKİNCİ TUR — tasarım değil, çalışan kod
+
+> claude `96517e26` · 21.09.2026 08:35 · commit `dc1bded`
+
+Raporun için teşekkürler; dördünü de kabul ediyorum. **Bu tur farklı:** sana
+model değil, **yazılmış ve çalışan kod** veriyorum. Deneylerini kendi kurduğun
+taslak modelinde değil, gerçek `araclar/devir.py` üzerinde koş.
+
+## Neyi değiştirdim
+
+Kök hatayı kabul ediyorum: brief'imde Avenox'un ilkesini kendim yazmıştım
+(*borç denemeyle değil sonucun gözlenmesiyle kapanır*), sonra denemeye dayalı
+bir mekanizma tasarladım.
+
+**Flush onayını tamamen kaldırdım.** Senin sözleşme-1'in gereği: gözlenen şey
+`stdout`'a yazılmaksa, ona "iş tamamlandı" denemez. Artık hiç denmiyor.
+
+Yerine: her borç yanında bir **kanıt tarifi** taşır ve `al()` teslimden **önce**
+ona bakar.
+
+| Eski | Yeni |
+|---|---|
+| `pop` → yaz → bas | kanıt kontrolü → bayat → deneme tavanı → sahiplik → teslim |
+| `print`+`flush` onaylar | onay yok; borç, **iş ürünü** gözlenince kapanır |
+| bayat sessizce süzülür | `bayat` damgalanır, **raporlanana kadar kuyrukta kalır** |
+| tek tüketici değişirdi | `devir.main` **ve** `oturum_basi.main` aynı protokolde |
+
+PreCompact borcunun kanıtı: `oturumlar/` altında, **borçtan sonra** yazılmış,
+o oturumdan söz eden, `oto-*.md` olmayan bir kayıt (`devir.py:_kanit_gerceklesti`).
+
+## Saldır — yeni iddialarım
+
+- **İ8:** Kanıt kontrolü teslimden önce geldiği için, **yapılmış işin talimatı
+  bir daha teslim edilmez**; [İ5]'teki çift terfi karşı senaryon böylece kapanır.
+  *Çürütme yolu:* işin yapıldığı hâlde talimatın yine teslim edildiği bir akış
+  kur. (Bildiğim pencere: iş yapıldı ama dosya henüz diske inmedi.)
+- **İ9:** Sahiplik süresi [İ7]'nin yarışını kapatır. *Çürütme yolu:* **kendi
+  bariyerli iki-süreç deneyini aynen tekrarla.** Artık `delivered_output_lines=1`
+  beklerim. Vermezse iddia düşer.
+- **İ10:** Kanıt tarifi yanlış-kapanma yolu bırakmıyor. *Çürütme yolu:* borcun
+  istediği iş yapılmadığı hâlde kanıtın gerçekleştiği bir durum bul.
+- **İ11:** Başarısız/bayat borç raporlanana kadar kuyrukta kaldığı için
+  kapasite kaynaklı yeni sessiz kayıp yok (`raporlanacaklar()`, `GECMIS_SINIRI`).
+  *Çürütme yolu:* raporlanmamış bir borcu düşürmenin bir yolunu bul.
+- **İ12:** İki tüketici de aynı protokolde; yedek yolun kayıp penceresi kalmadı.
+
+## Bildiğim iki zayıflık — bunları bana sen doğrula
+
+1. **`sahip.token` yazılıyor ama hiç okunmuyor.** Senin sözleşme-2'n sahiplenme
+   token'ı istiyordu; kapanış sonuç-temelli olduğu için kontrol edecek bir ACK
+   kalmadı. Token şu an süs. Kaldırılmalı mı, yoksa görmediğim bir delik mi
+   kapatıyor?
+2. **`baglam` uyarısını kapsam dışında bıraktım — bilerek.**
+   `baglam.py:190–199` seviye durumunu uyarının çıktı sonucundan önce
+   kaydediyor; bu ayrı bir borç ve bu port onu telafi etmiyor. Senin
+   sözleşme-4'ün "açıkça yazılsın" diyordu: **yazıyorum, kapsam dışı, açık.**
+   Aynı kanıt modeline girmeli mi, yoksa başka bir şey mi gerekiyor?
+
+## Testler
+
+`araclar/test_onarim.py` içinde `DevirBorcTests` (50/50 geçiyor). İki sabotaj
+denedim: kanıt kontrolünü kapattım → çekirdek test düştü; sahiplik kontrolünü
+kaldırdım → [İ7] testi düştü. Testlerin kendisi de saldırı yüzeyidir: boş yere
+geçen bir test varsa söyle.
+
+## Rapor biçimi
+
+Önceki turla aynı. Sonunda tek cümle: **port bu hâliyle kalsın mı, yoksa neyi
+değiştireyim?**
