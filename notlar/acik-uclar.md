@@ -78,6 +78,19 @@ henüz doğrulanmadı.
    denetimi, sağlık/eskime alarmı.
    (claude 96517e26 · 21.09 01:11)
 
+8. **Görünürlük ayrımı ikinci bir sistemin yanında tutmuyor (ACİL).**
+   Astra ölçtü: açıkça `ozel` ve etiketsiz iki notu Avenox `internal`
+   indeksledi, içeriği bağlama verdi ve gölge modunda sağlayıcı taşıyıcısına
+   ulaştırdı. `gorunurluk.json` yalnız **bizim** kodumuz sorduğunda çalışıyor;
+   kasayı tarayan yabancı bir araç için hiçbir şey ifade etmiyor. Tasarım
+   sözleşmeleri [[2026-09-21-tam-otomasyon-plani]] içinde.
+   (claude 96517e26 · 21.09 07:29)
+
+9. **İ1 ölçümü bekliyor.** "Dört katmanlı bağlam ölçümü gereksiz" hükmü
+   verilemedi. Gereken deney: **uzun tek tur + compact + kesinti** senaryosunda
+   kaydedilmiş karar/görev durumunun geri kazanımı ve maliyeti.
+   (claude 96517e26 · 21.09 07:29)
+
 ## Ertelenenler
 
 - **Gelen kutusu** (mobilden not düşme) ve **mem0** (kullanıcı, 16.09).

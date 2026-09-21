@@ -239,6 +239,70 @@ talimatında geçmiyor, bizim ritüelimizde zorunlu üç sorudan biri. En pahal�
 bilgi, çünkü elenen şey hiçbir yerde iz bırakmaz.
 (claude 96517e26 · 21.09 06:06)
 
+## Astra denetimi: üç iddia da düştü, karar (b) (21.09 07:26)
+
+Astra 18 kontrolü tamamladı: 14 doğrulama, 3 çürütme, 1 ölçülemeyen.
+Rapor ve yeniden üretim kodu denetçinin çalışma dizininde; özetler burada.
+**Kararı: bugün (b)** — mevcut sistemi koru, doğrulanan mekanizmaları
+seçerek al. (c) koşullu aday.
+
+### Elenen: "Avenox sürekli makbuz yazıyor, teslim tarihi yok" (Y8)
+
+Bu gecenin mimari anlatısının temeliydi. Ölçüm çürüttü: `PostToolUse` → `Stop`
+çalıştırıldığında **olay metadatası ve kaynak indeksi oluşuyor, receipts
+tablosu 0, receipt dosyası 0.** Makbuz ayrı bir `receipt` komutuyla, **ajanın
+verdiği** summary/refs ile yazılıyor. Üstelik `PostToolUse` matcher'ı yalnız
+`Edit|Write|apply_patch`; kabuktan yazma tetiklemiyor.
+
+Sonuç: onlarda da "ajan yazarsa yazılır" bağımlılığı var. "Biriktirmiyorlar,
+o yüzden compaction tehdit değil" çıkarımı geçersiz.
+
+### Elenen: "iki sistem farklı kaynak okur, çakışmazlar" (İ2)
+
+Karşı örnek ölçüldü: biri açıkça `ozel`, biri etiketsiz (varsayılanla `ozel`)
+iki sentetik not. **Avenox ikisini de `internal` indeksledi ve içeriği bağlama
+verdi**; Jev gölge modu açıkken canary'ler sağlayıcı taşıyıcısına ulaştı.
+Avenox Markdown tarıyor, bizim notlarımız da Markdown; `gorunurluk.json`'dan
+haberi yok. Ayrıca iki sistem **aynı anlamsal alanları** üretiyor: kullanıcı
+kuralı, gerekçe, son oturum, açık iş.
+
+### Elenen: "hash'i anlatılan şeye tak, tek dosya yeter" (İ3)
+
+Karşı örnek bizim kendi commit'imiz: `39712b5`'te `derle.py` hash'i birebir
+aynı (`37718c59…`), değişen `kayit.py`. Aynı işaretçi önce geçerli, sonra
+"o damgada mesaj yok" verdi. Hedef dosyanın hash'i yararlı bir işaret ama
+**tek başına yetersiz**; bağımlılık + ayar/sürüm kapsamıyla tutulmalı. Salt
+yorum değişikliği de ters yönde yanlış alarm verir.
+
+### Ölçülemedi: "dört katmanlı ölçüm gereksiz" (İ1)
+
+Y10 desteklendi — 02:42 anlık görüntüsündeki **41 mesajın 41'i** ham kayıtta
+duruyor. Ama sınır metadatası: canlı bağlam **396.006 → 20.070** token.
+*Diskten kurtarılabilirlik, işin ortasında doğru kısıtlarla devam edebilmek
+demek değil.* Dayanağım olan "makbuzlar zaten düşüyor" da Y8'de çürüdü.
+Astra tersini de kanıtlamıyor: karar, **uzun tek tur + compact + kesinti**
+senaryosunda kaydedilmiş iş durumunun geri kazanımı ölçülmeden verilmemeli.
+
+### Düzeltmeler
+
+- **Sürüm ayrımı (Y7).** `~/kasa/avenoxbeyin` = HEAD/`aef7c14`, kurulu kasa =
+  v3.1.0/`e112d8a`. Okuduğum `docs/v3/JEV.md` kurulu sürümü anlatmıyor.
+- **Gizli veri süzgeci güvenlik sınırı değil (Y4).** Varsayılan kapalı;
+  açıkken bile `metadata`/`title` alanındaki anahtar diske yazıldı.
+- **Makbuzsuz tur sinyali kalıcı değil (D4).** Sonraki `UserPromptSubmit`'te
+  eski kayıt kayboluyor (1 → 0).
+- **`notlar/` 146.398 bayt (143,0 KiB)**, "130 KB" bayatmış.
+- **Y11 güçlendi.** VDS bellek rezervasyonu yokluğu, GuestLib API'si doğrudan
+  çağrılarak teyit edildi; "araç okuyamadı" kaçamağı elendi.
+
+### (c) için Astra'nın şartları
+
+Beş sözleşme ölçülmeden (c) karar olamaz: bilinmeyen görünürlük private kalır ·
+her paylaşılan dosyanın tek yazarı olur · makbuz/son-oturum/açık-iş kayıtları
+birbirini çoğaltmaz · compact/kesinti sonrası iş durumu gerçekten geri gelir ·
+geri alma mevcut notları ve izinleri korur.
+(claude 96517e26 · 21.09 07:29)
+
 ## Kabul edilen politikalar
 
 **1. Kural `AGENTS.md`'de, uygulanışı adaptörde.** Sözleşme ortak dosyada
