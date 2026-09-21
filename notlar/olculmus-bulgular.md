@@ -998,4 +998,51 @@ belirsizliği yüzünden reddediliyordu — alt sınırı kaldıran sabotaj kaç
 Sonuç: **12 sabotajın 12'si yakalanıyor**, 66/66. Açık bırakılanlar bilerek:
 uyarı yorgunluğu, açık borca `iptal`, işlenme makbuzunun etkiye bağlanması.
 
+## 25. Y1 kabul edildi; Y2'de hoca yöntemi verdi
+
+### Y1: dar port kabul edildi
+
+Astra dördüncü turda v4.1'i kendi deneyleriyle yeniden koştu: B1 kapandı,
+kaçan dört sabotajın dördü yakalanıyor, 66/66. Hükmü: **dar Y1 portu kabul
+edilebilir.** Dört sürüm, dört Astra turu — her turda benim iddialarım düştü ve
+her düşüş kodu iyileştirdi (§21–24).
+
+Kabulün kapsamı dar ve öyle kalmalı: *kaydedilmiş devir borcu sessizce
+kaybolmaz ve doğru kimlikle kapatılabilir.* Kapsamda **olmayanlar:** hiç
+tetiklenmeyen tur içi hook (N6) · `baglam` uyarısının ayrı teslim sorunu ·
+ortak notlarda eşzamanlı yazma (Y2). Açık bırakılan üç iş (uyarı yorgunluğu,
+açık borca `iptal`, makbuzun etkiye bağlanması) kabulü engellemiyor — ama
+**tam bir kez etki** vaat edilirse sonuncusu zorunlu olur.
+
+### Y2: hoca turu — yöntem
+
+İlk kez Astra'ya tasarımdan **önce** gidildi (sözleşme: [[iki-ajan-calismasi]]).
+Tam cevap: [[astra-y2-kilit]]. Özü:
+
+- **Doğru sözleşme koşullu yazma:** "okuduğum sürüm hâlâ geçerliyse uygula."
+  Karşılaştırma ve değiştirme, **bütün yazıcıların geçtiği** tek kısa kritik
+  bölümde. LLM düşünürken kilit tutulmaz; sürüm denetimi bayat taslağı
+  reddeder, kısa kilit kontrol–yazma yarışını kapatır — ikisi birbirinin
+  alternatifi değil.
+- **Git HEAD kontrolü yetmez.** İki ajan aynı commit'te aynı notu okur, A commit
+  etmeden yazar, B eski taslakla ezer — HEAD hiç değişmemiştir.
+- **Kapı zorunlu değilse garanti yok.** Harness bunu zorlayamıyorsa dürüst
+  alternatif: ajan başına ayrı worktree + ortak sonuca tek entegrasyon yolu.
+- **Ölçüt:** reddedilen öneri kayıp değildir; *uygulanmış diye bildirilen
+  etkinin sessizce silinmesi* temel başarısızlıktır. İki `exit 0` iki etkinin
+  korunduğunu göstermez — son içerik gösterir.
+
+Beş adımlı lab deneyi önerdi; plan belgesine işlendi
+([[2026-09-21-tam-otomasyon-plani]]).
+
+### İki düzeltme
+
+- **Astra lab'e ulaşamıyor.** Sandbox'ı `~/.ssh/config`'i okuyamadı (izin
+  hatası). Lab deneylerini ben koşarım, sonuçları ona getiririm.
+- **§22'deki iddiam fazla kesindi.** "Geçmişteki kayıp güncelleme geriye dönük
+  ölçülemez" demiştim. Astra daralttı: commit geçmişi kaybı göstermeyebilir,
+  ama korunmuş eski içerikler ve araç izleri varsa tekil olaylar yeniden
+  kurulabilir. Doğru cümle: *kayıt yokluğu, kayıp yokluğunu kanıtlamaz.*
+  (claude 96517e26 · 21.09 22:13)
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]

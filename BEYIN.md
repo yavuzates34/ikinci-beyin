@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 20:32
+**Son güncelleme:** 21.09.2026 22:15
 
 ---
 
@@ -112,14 +112,16 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
   `ic` sayıyor. Nar Ajans dahil başka projelerin kayıtları `ozel` kalıyor.
   Ayrıntı: [[acik-uclar]] madde 8, [[olculmus-bulgular]] §20.
 
-- **ŞU AN: (b) portu, Y1 üçüncü turda (21.09 20:30).** Devir kutusu dört
-  sürümden geçti; her birini Astra kırdı, sırayla: pop teslimden önce
-  siliyordu → flush onayı yanlış katmanı onaylıyordu → buluşsal kanıt üç
-  yoldan yanlış kapattı ve rapor yolu K1'in aynısını tekrarladı. **v4:** kanıt
-  açık kayıt (`--tamamlandi <kimlik>`), listeleme onay değil, yarış iki gerçek
-  süreçle sınanıyor. Astra üçüncü turda v4'ü kırmaya çalışıyor. Geçerse Y1
-  kapanır, sıra Y2'ye gelir — maruziyeti ölçüldü, karar Astra'da.
-  Ayrıntı: [[olculmus-bulgular]] §21–23 · brief: [[astra-y1-kuyruk]].
+- **SIRADAKİ İŞ: Y2 lab deneyi (21.09 22:13).** Astra hoca olarak yöntemi
+  verdi: koşullu yazma, bütün yazıcıların geçtiği kısa kritik bölüm; git HEAD
+  yetmez. Beş adım plan belgesinde ([[2026-09-21-tam-otomasyon-plani]], Y2).
+  Astra lab'e ulaşamıyor (sandbox `~/.ssh/config`'i okuyamıyor) — deneyi ben
+  koşarım, sonucu ona götürürüm. Tam cevap: [[astra-y2-kilit]].
+
+- **Y1 kapandı (21.09 22:06).** Devir kutusu dört sürüm, dört Astra turu
+  geçirdi; dar port kabul edildi. Kanıt açık kayıt (`--tamamlandi <kimlik>`),
+  bildirim tam kimlik gösteriyor, 12 sabotajın 12'si yakalanıyor.
+  [[olculmus-bulgular]] §21–25 · brief: [[astra-y1-kuyruk]].
 
 - **Görünürlük sızıntısı: kapı + yansıma + bulucu kuruldu (21.09 07:57).**
   `araclar/disari.py`. Astra'nın İ2 deneyi kalıcı regresyon testi oldu

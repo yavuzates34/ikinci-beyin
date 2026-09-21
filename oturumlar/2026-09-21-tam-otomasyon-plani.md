@@ -498,6 +498,11 @@ Windows süreci aynı talimatı bastı — damga kilit değildir), [İ5] ölçü
 [İ6] çürütüldü. **N6 ≠ Y1:** tur içi ölçüm açığı ayrı bir şey, kuyruk onu
 kapatmaz. Ayrıntı ve dört sözleşme: [[olculmus-bulgular]] §21.
 
+**KAPANDI (21.09 22:06).** Dört sürüm, dört Astra turu; dar Y1 portu kabul
+edildi — kaydedilmiş devir borcu sessizce kaybolmaz ve doğru kimlikle
+kapatılabilir. Kapsam dışı: N6, `baglam` uyarısı, eşzamanlı yazma.
+[[olculmus-bulgular]] §21–25.
+
 ### Y2 — iyimser kilit (henüz ölçülmedi)
 
 İki mekanizma **farklı katmanlarda duruyor**; bu yüzden "bizde zaten var"
@@ -523,7 +528,27 @@ Ama commit edilmemiş pencerede koruma yok — ve iki ajan aynı klasörde
 `notlar/acik-uclar.md`. Bizi şu an koruyan şey tasarım değil **düzenleme
 aracının biçimi**: dize değiştiren düzenleme çakışmada başarısız olur, bütün
 dosyayı yazan yol sessizce ezer. Geçmişteki kayıp güncelleme geriye dönük
-ölçülemez. Ayrıntı: [[olculmus-bulgular]] §22. Karar Astra'ya açık.
+ölçülemez. Ayrıntı: [[olculmus-bulgular]] §22.
+
+**Hoca turu yapıldı (21.09 22:10) — SIRADAKİ İŞ.** Astra'nın yöntemi
+[[astra-y2-kilit]] içinde; özeti §25. Lab'de beş adım (Astra lab'e
+ulaşamıyor; deneyleri ben koşarım, sonuçları ona götürürüm):
+
+1. Sentetik üç dosya (`BEYIN.md`, konu notu, açık işler), iki kontrollü
+   istemci, bütün yazma yollarının listesi. İki istemcinin **aynı sürümü**
+   okuduğu bariyerle kanıtlanır — `sleep` değil, hazır işareti.
+2. Mevcut yollar: `Write`, kabukta oku→değiştir→yaz, `Edit` aynı/farklı bölge.
+   A→B ve B→A. Kayıp, ret ve korunan etki ayrı sayılır. HEAD'in değişmediği
+   karşı örnek özellikle dahil.
+3. Ortak koşullu yazıcı aynı senaryoda: ilk bayat denemede bir uygulama + bir
+   açık çatışma; yeniden hazırlamadan sonra iki etki. **İki sabotaj** deneyi
+   düşürmeli: sürüm denetimini kaldır · kontrol–uygulama kilidini kaldır.
+4. Gerçek Claude ve Codex araçlarıyla geçiş; kapıyı `Write`/kabukla aşma
+   denemesi, replace öncesi/sonrası süreç ölümü, yanıt kaybı. Korumasız yol
+   ortak dosyayı değiştirebiliyorsa **genel güvence reddedilir**.
+5. Sessiz kayıp 0, bypass 0, çatışmada hedef değişikliği 0 → sürtünme
+   ölçümleriyle port kararı. Yerel hook entegrasyonu **kullanıcı onayıyla**,
+   sonra. Linux lab sonucu Windows yerel davranışı sayılmaz.
 
 ### D3 — kaynak doğrulaması (henüz ölçülmedi)
 
