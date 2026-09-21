@@ -183,6 +183,62 @@ bu gerekçe düşer — kaybolacak ham malzeme kalmaz. Eşiğin yeni anlamı:
 *"karar ve gerekçeleri damıtmak için bağlam hâlâ yeterince temiz."*
 Kaçırılması felaket değil, gecikme. Önceki metin kayıt olarak duruyor.
 
+### Elenen fikir: dört katmanlı tur içi bağlam ölçümü
+
+**Karar: planlanan iş olmaktan çıkarıldı** (kullanıcı, 21.09 06:06).
+Yukarıdaki "Çözüm dört katmanlı" listesi — `PostToolUse` kapısı, uygulama
+başına "konuşabilir mi" ölçümü, `Stop` yedeği, dış gözcü — kayıt olarak
+duruyor ama yapılacak iş değil.
+
+**Gerekçe: dayandığı varsayım ölçümle çürüdü.** Korku şuydu: *"compaction
+gelirse oturumda biriken şey kaybolur."* 21.09 02:42'de elle `/compact`
+yapıldı ve sonrasında omurga okundu: 39, 40, 41 numaralı kullanıcı mesajları
+zaman damgalarıyla yerinde duruyordu. Compaction **diskteki ham kaydı
+silmiyor**, modelin çalışma belleğini sıkıştırıyor ve dosyaya özeti *ekliyor*.
+§17'de ölçülen kusur da buydu: özet eklendi, orijinaller silinmedi. Ritüel
+zaten diskten okumak üzere kurulu (`AGENTS.md`: *"kapanış hatırlamaya değil
+okumaya dayanmalı"*). Yani korunan kayıp büyük ölçüde gerçekleşmiyor.
+
+**Yerine kalan, ucuz olan.** Zaten elde olan noktalarda (`UserPromptSubmit`,
+`Stop`) bir sayı ölçülür. Amacı kaybı önlemek değil, *"sentez için iyi bir an
+mı"* sorusuna cevap vermek. Maliyeti sıfır, kod zaten yazılı.
+
+**Elenmeyen, gerçek kalan üç şey.** (a) §17 kusuru gerçek ama çaresi bağlamı
+düşük tutmak değil, `omurga.py`'nin sıkıştırma özetini tanıyıp ayırması.
+(b) Sentez kalitesinin yüksek bağlamda düşmesi makul ama **ölçülmedi**.
+(c) Alt ajan yöneten orkestratörün alan ihtiyacı gerçek — ama o bellek değil,
+**canlı koordinasyon durumu** problemidir; ayrı iş.
+
+**Asıl teşhis.** Bağlam koruma çabası, makbuz katmanının yokluğunu telafi
+ediyordu. Biriktirip sonda yazdığımız için teslim tarihimiz var; teslim tarihi
+olduğu için ona zırh icat ettik. Sürekli yazılırsa teslim tarihi kalkar ve
+zırh gereksizleşir. Otomasyon tarafında da aynı: saatlerce kendi kendine
+çalışan bir sistemde doğru savunma "bağlamı düşük tut" değil, **iş durumunu
+adım adım diske yazmak.**
+
+**Yeni sıra:** (1) `omurga.py` §17 düzeltmesi, (2) sürekli makbuz katmanı,
+(3) telafi kuyruğu, (4) bayatlama işareti.
+
+**Dürüstlük notu.** Dört katmanlı çözüm 21.09 gecesi bu oturumda tasarlandı ve
+aynı oturumda, birkaç saat sonra elendi. Aradaki fark Avenox ölçümüdür.
+Tasarım yanlış değildi; dayandığı varsayım yanlıştı.
+(claude 96517e26 · 21.09 06:06)
+
+### Düzeltme: onlarda da sentez katmanı var
+
+Yukarıda "makbuz yığını karar ve gerekçe vermez, o bizim katmanımız" denmişti.
+Ölçüm bunu kısmen çürütüyor: `Last-Session.md`'nin kendi talimatı
+*"Anlamlı çalışma sonunda **sonuç, gerekçe, açık kalan adım** ve kaynak
+bağlantılarını buraya yaz"* diyor; `Threads.md` açık konuları tutuyor;
+`SessionStart` enjeksiyonu ajana *"bitmemiş iş için Last-Session/Threads'e
+bak"* diye başlıyor. Yani sentez onlarda da var, yalnız teslim tarihine bağlı
+değil.
+
+Gerçekten bize özgü kalan tek şey: **"ne denendi ve elendi".** Onların
+talimatında geçmiyor, bizim ritüelimizde zorunlu üç sorudan biri. En pahalı
+bilgi, çünkü elenen şey hiçbir yerde iz bırakmaz.
+(claude 96517e26 · 21.09 06:06)
+
 ## Kabul edilen politikalar
 
 **1. Kural `AGENTS.md`'de, uygulanışı adaptörde.** Sözleşme ortak dosyada
