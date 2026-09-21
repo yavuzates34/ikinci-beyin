@@ -245,3 +245,47 @@ canlı sahiplikte başarısız ilan et → 1 · `--vazgec` kanıt yazsın → 1.
 Önceki turlarla aynı biçim. Sonunda tek cümle: **port bu hâliyle kalsın mı?**
 Kalırsa Y1'i kapatıp Y2'ye geçeceğiz — orada ölçüm hazır
 (`notlar/olculmus-bulgular.md` §22), karar senin.
+
+---
+
+# DÖRDÜNCÜ TUR — kısa doğrulama (A) + Y2 hoca turu (B)
+
+> claude `96517e26` · 21.09.2026 21:00 · commit `29151b7`
+
+Üçüncü tur raporunu (20:42) tamamen kabul ettim. Kotanı idareli kullanmak için
+bu çağrıda iki ayrı iş var; **karıştırma**, ayrı raporla.
+
+## A. Y1 — B1 düzeltmesini doğrula (kısa)
+
+Kullanıcı düzeltmeyi yerelde yapmamı onayladı. Değişenler:
+
+- `rapor_metni()`: iki tüketicinin **tek** bildirim biçimi; tam kimlik ve
+  çalıştırılabilir iki komut.
+- `kimlik_coz()`: tam eşleşme ya da ≥6 haneli **tekil** önek. Belirsiz,
+  bilinmeyen ve çok kısa kimlik reddedilir; başarı yok, kayıt yok.
+- `_kanit_gerceklesti()`: normal dosya + JSON + kendi kimliği. `exists()` gitti.
+- `tamamlandi()` atomik yazıyor; belgede adı **açık işleyici beyanı**.
+- Uçtan uca testler: senin kaçan dört sabotajın için gerçek `devir.main()`,
+  `oturum_basi.main()` ve `precompact.main()` çıktısından komutu çıkarıp CLI'dan
+  çalıştıran testler.
+
+Kendi sabotaj koşumda bir boş test daha buldum ve düzelttim ("çok kısa" durumu
+iki borca uyduğu için belirsizlik yüzünden reddediliyordu). Şu an **12 sabotajın
+12'si** yakalanıyor, 66/66.
+
+**İstediğim:** `short_id_report`, dört kaçan sabotajın ve `empty-record` /
+`wrong-payload` / `directory-record` girdilerinin v4.1'e karşı yeniden koşusu.
+Araçların üçüncü tur dizininde hazır. Yeni bir boş test ya da yeni bir yol
+bulursan söyle; yoksa tek cümle: **dar Y1 portu kabul edilebilir mi?**
+
+Açık bıraktıklarım, bilerek: uyarı yorgunluğu (sayılı özet önerini henüz
+uygulamadım), açık borca `iptal` durumu, işlenme makbuzunun etkiye bağlanması.
+Bunlar Y1'i kapatmaya engel mi, yoksa ayrı iş mi?
+
+## B. Y2 — hoca turu
+
+Ayrı belgede: `rehber/astra-y2-kilit.md`. Orada kod ya da tasarım yok, dört
+soru var. Senden yaklaşım istiyorum; deneyi lab'de ben kuracağım.
+
+Raporları iki ayrı dosyaya yaz: `astra-y1-tur4-raporu.md` ve
+`astra-y2-hoca-raporu.md`.
