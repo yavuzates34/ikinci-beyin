@@ -147,3 +147,15 @@ Kullanıcı sorunca fark ettim.
 5. **Kasaya yazmaz; tespit, önleme değil.** Her çağrıdan önce kasanın commit'i
    ve kirli dosya sayısı kaydedilir, sonra karşılaştırılır. Üç turda da kasa
    temiz çıktı.
+6. **Hoca, öğrettiği sistemi görmeli.** Astra'nın sandbox'ı lab'e ulaşamıyor
+   (`~/.ssh/config` okunamıyor). Y2 hoca turunda Avenox'u yalnız benim tarifimden
+   bildi ve raporunda bunu açıkça söyledi: *"brief'in tarifine dayanıyor."*
+   Tarifimde yalnız görev kilidi vardı, notların korumasız olduğu yoktu — o
+   yüzden "Avenox bunu nasıl çözüyor, çözmesi gerekiyor mu?" sorusu hiç
+   sorulamadı. Kullanıcı yakaladı (claude 96517e26 · 21.09 23:37).
+   Artık her brief, çalışan kurulumla **hash'i doğrulanmış** yerel kopyayı
+   gösterir ve hocadan önce Avenox'un o konuda **gerçekte ne yaptığını**
+   kurmasını ister. Kopya: ilk denetimin `lab-snapshot/kurulu-kasa/` dizini,
+   17/17 betik ve `AGENTS.md` lab'le aynı (21.09 23:40'ta doğrulandı). Aynı
+   dizindeki `avenoxbeyin/` **kaynak deposudur**, kurulum değil (12/17) —
+   karıştırılmaz. SSH anahtarı sandbox'a açılmaz; kimlik bilgisidir.
