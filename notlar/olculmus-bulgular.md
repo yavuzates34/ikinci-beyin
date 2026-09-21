@@ -398,6 +398,28 @@ Bu, 16 Eylül'de Nar Ajans'ta ölçülen "model adı değişti, kurulu CLI yeni 
 çalıştıramadı" bulgusunun hâlâ geçerli olduğunu gösteriyor: **model adı
 varsayılmaz, sürüm uyumu ölçülür.**
 
+
+> **Güncelleme (21.09 06:53): bu bulgu artık geçerli değil.** CLI `0.150.1`'den
+> `0.155.1`'e güncellendi ve `codex exec -m gpt-6-astra` **çalıştı**
+> (oturum `01a0c21a`, 20.624 token, istenen tek kelimeyi döndürdü). Yani Astra
+> artık alt ajan olarak çağrılabiliyor; üçüncü göz denetimi için kullanıcının
+> Desktop oturumu **zorunlu değil**. Bulgunun kendisi silinmedi: 20.09'daki
+> ölçüm o günün doğrusuydu ve dersi hâlâ geçerli — *model adı varsayılmaz,
+> sürüm uyumu ölçülür.* Bu güncelleme de o dersin ikinci yarısı: **ölçüm
+> bayatlar, yeniden ölçülür.**
+>
+> **Yeni bulgu — denetçinin varsayılanı yanlış yönde.** Aynı çağrının başlığı
+> `approval: never`, `sandbox: danger-full-access` gösterdi. Yani alt ajan
+> olarak çağrılan Astra, onay sormadan tam disk erişimiyle çalışıyor.
+> Denetçinin yazma yetkisi olmamalı; çağrı yapılırken sandbox salt okunur
+> kısıtlanmalı. Henüz uygulanmadı.
+>
+> **Yan gözlem (ölçülmedi, takip edilecek):** aynı çağrıda `UserPromptSubmit`
+> hook'u günlükte **iki kez** göründü (`hook: UserPromptSubmit` ×2, ardından
+> `Completed` ×2). Tek tetiklemenin çift kaydı mı, gerçek çift çalıştırma mı
+> ayrılmadı.
+> (claude 96517e26 · 21.09 06:53)
+
 ## 16. Gece derleyicisi tetikleniyor ama konsolu kapanınca ölüyor
 
 20 Eylül 01:50'de ölçüldü (claude 96517e26 · 20.09 01:50). Bu gecenin
