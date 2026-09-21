@@ -9,6 +9,7 @@ import contextlib
 import io
 import json
 import os
+import re
 import sys
 import tempfile
 import time
@@ -660,11 +661,170 @@ class DevirBorcTests(unittest.TestCase):
         os.utime(p, (time.time() + 1, time.time() + 1))
         self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
 
-    def test_her_borcun_kimligi_var(self):
-        """Kanıtsız borç kalmadı: yedek PreCompact yolu da kimlik taşır."""
+    def test_birak_verilen_kimligi_kuyruga_yazar(self):
+        """`birak()` dönüşü kuyruktaki kimlikle aynı. Yalnız bu kadar.
+
+        Eski adı "yedek PreCompact yolu da kimlik taşır" diyordu ama PreCompact'ı
+        hiç çağırmıyordu; Astra yedek yolun bağını koparınca test yine geçti
+        (21.09 20:42). O iddianın asıl testi
+        `test_yedek_precompact_yolunun_kimligi_mesajla_ayni`.
+        """
         olay = devir.birak('KAYIT BULUNAMADI', 'oturum-a')
         self.assertTrue(olay)
         self.assertEqual(self.durum(olay)['event_id'], olay)
+
+    # --- uçtan uca: üretici -> tüketici çıktısı -> komut ------------------
+    #
+    # Astra üçüncü turda dört sabotajın 16/16 testten geçtiğini gösterdi:
+    # iki tüketici raporu düşürebiliyor, yedek PreCompact yolu kimliği
+    # kaybedebiliyor, `--tamamlandi` hiçbir şey yazmadan başarı basabiliyordu.
+    # Ortak kök: ajanın GERÇEKTE gördüğü metin ve çalıştıracağı komut hiç
+    # sınanmıyordu. Bu testler o zinciri gerçek fonksiyonlardan geçirir.
+
+    def dusur(self, metin='DUSTU', oturum='oturum-a', event_id=None):
+        olay = devir.birak(metin, oturum, event_id=event_id)
+        with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
+            for _ in range(devir.MAX_DENEME + 1):
+                devir.al(oturum)
+        return olay
+
+    def cli(self, *arg):
+        with patch.object(sys, 'argv', ['devir.py', *arg]), \
+             contextlib.redirect_stdout(io.StringIO()) as out, \
+             contextlib.redirect_stderr(io.StringIO()) as err:
+            kod = devir.main()
+        return kod, out.getvalue(), err.getvalue()
+
+    def kanca(self, session_id='baska-oturum'):
+        """UserPromptSubmit: gerçek `devir.main()`, gerçek JSON çıktısı."""
+        with patch.object(sys, 'argv', ['devir.py']), \
+             patch.object(sys, 'stdin', io.StringIO(json.dumps({'session_id': session_id}))), \
+             patch.object(baglam, 'kontrol', return_value=None), \
+             contextlib.redirect_stdout(io.StringIO()) as out:
+            devir.main()
+        ham = out.getvalue().strip()
+        return json.loads(ham)['hookSpecificOutput']['additionalContext'] if ham else ''
+
+    def test_bildirimdeki_komutla_borc_gercekten_kapanir(self):
+        """Astra B1: bildirim 8 hane gösteriyordu; o kimlikle `--tamamlandi`
+        başarı basıp yetim kayıt yazıyor, asıl borç sonsuza kadar kalıyordu."""
+        olay = self.dusur()
+        cikti = self.kanca()
+        self.assertIn(olay, cikti, 'bildirim TAM kimligi gostermeli')
+        komut = re.search(r'--tamamlandi (\S+)', cikti).group(1)
+        self.assertEqual(komut, olay)
+        kod, _, _ = self.cli('--tamamlandi', komut)
+        self.assertEqual(kod, 0)
+        devir.al('oturum-a')
+        self.assertEqual(self.durum(olay)['durum'], devir.KAPANDI)
+        self.assertEqual(self.kanca(), '', 'kapanan borc bir daha soylenmemeli')
+
+    def test_bildirimdeki_vazgec_komutu_borcu_arsivler(self):
+        olay = self.dusur()
+        komut = re.search(r'--vazgec (\S+)', self.kanca()).group(1)
+        kod, _, _ = self.cli('--vazgec', komut)
+        self.assertEqual(kod, 0)
+        self.assertEqual(devir.raporlanacaklar(), [])
+
+    def test_oturum_basi_tam_kimligi_ve_komutlari_basar(self):
+        """İkinci tüketici: SessionStart. Astra onun raporu düşürmesini de
+        16/16 testten geçirdi."""
+        olay = self.dusur()
+        (self.root / 'BEYIN.md').write_text('# harita', encoding='utf-8')
+        with patch.object(kayit, 'oturumlar', return_value=[]), \
+             patch.object(oturum_basi, 'YONERGE', self.root / 'BEYIN.md'), \
+             patch.object(oturum_basi, 'DURUM', self.root / 'yok.json'), \
+             patch.object(bakim, 'KOK', self.root), \
+             patch.object(sys, 'stdin', io.StringIO(json.dumps({'session_id': 'baska'}))), \
+             patch.object(sys, 'argv', ['oturum_basi.py', '--bicim', 'duz']), \
+             contextlib.redirect_stdout(io.StringIO()) as out:
+            oturum_basi.main()
+        cikti = out.getvalue()
+        self.assertIn(f'--tamamlandi {olay}', cikti)
+        self.assertIn(f'--vazgec {olay}', cikti)
+
+    def test_yedek_precompact_yolunun_kimligi_mesajla_ayni(self):
+        """Astra: yedek yolda `event_id=olay` kaldırılınca mesaj bir kimlik
+        gösterip kuyruğa başkasını yazıyordu; gösterilen komut kapatmıyordu."""
+        with patch.object(kayit, 'oturum_bul', return_value=None), \
+             patch.object(precompact, 'ANLIK', self.root / 'derleme' / 'omurga-anlik'), \
+             patch.object(sys, 'stdin', io.StringIO(json.dumps({'session_id': 'kayip'}))), \
+             patch.object(sys, 'argv', ['precompact.py']), \
+             contextlib.redirect_stdout(io.StringIO()):
+            precompact.main()
+        (borc,) = self.durum()
+        komut = re.search(r'--tamamlandi (\S+)', borc['metin']).group(1)
+        self.assertEqual(komut, borc['event_id'])
+        self.assertEqual(self.cli('--tamamlandi', komut)[0], 0)
+        devir.al('kayip')
+        self.assertEqual(self.durum(borc['event_id'])['durum'], devir.KAPANDI)
+
+    def test_normal_precompact_yolunun_kimligi_mesajla_ayni(self):
+        yol = self.root / 'oturum.jsonl'
+        yol.write_text('\n'.join(json.dumps(r) for r in (
+            {'type': 'session_meta', 'payload': {'id': 'normal', 'cwd': str(self.root)}},
+            {'type': 'response_item', 'timestamp': '2026-09-21T17:00:00Z',
+             'payload': {'type': 'message', 'role': 'user',
+                         'content': [{'type': 'input_text', 'text': 'Karar verdik'}]}})),
+            encoding='utf-8')
+        with patch.object(precompact, 'ANLIK', self.root / 'derleme' / 'omurga-anlik'), \
+             patch.object(sys, 'stdin', io.StringIO(json.dumps(
+                 {'session_id': 'normal', 'transcript_path': str(yol)}))), \
+             patch.object(sys, 'argv', ['precompact.py', '--bicim', 'codex']), \
+             contextlib.redirect_stdout(io.StringIO()):
+            precompact.main()
+        (borc,) = self.durum()
+        komut = re.search(r'--tamamlandi (\S+)', borc['metin']).group(1)
+        self.assertEqual(komut, borc['event_id'])
+
+    def test_cli_tamamlandi_gercekten_kayit_yazar(self):
+        """Astra: `--tamamlandi` yalnız başarı basacak şekilde bozulunca
+        16/16 test geçiyordu; testler `devir.tamamlandi()`yı doğrudan çağırıyordu."""
+        olay = devir.birak('SIMDI YAZ', 'oturum-a')
+        kod, cikti, _ = self.cli('--tamamlandi', olay)
+        self.assertEqual(kod, 0)
+        self.assertTrue((self.tamam / f'{olay}.json').is_file())
+        self.assertIsNone(devir.al('oturum-a'))
+
+    # --- kimlik çözümleme ---------------------------------------------------
+
+    def test_tekil_kisa_kimlik_cozulur_yetim_kayit_olusmaz(self):
+        olay = self.dusur()
+        self.assertEqual(self.cli('--tamamlandi', olay[:8])[0], 0)
+        self.assertTrue((self.tamam / f'{olay}.json').is_file())
+        self.assertFalse((self.tamam / f'{olay[:8]}.json').exists(),
+                         'kisa kimlikle yetim kayit yazilmamali')
+
+    def test_belirsiz_bilinmeyen_ve_cok_kisa_kimlik_reddedilir(self):
+        self.dusur('A', 'oturum-a', event_id='abcdef11' + '0' * 24)
+        self.dusur('B', 'oturum-b', event_id='abcdef22' + '0' * 24)
+        tek = self.dusur('C', 'oturum-c', event_id='f00d9999' + '0' * 24)
+        # 'f00d' TEKIL eslesir ama alt sinirin altinda. Onceki surum burada
+        # 'abcd' kullaniyordu; o iki borca uydugu icin BELIRSIZ diye
+        # reddediliyordu, kisaligi yuzunden degil - alt siniri kaldiran sabotaj
+        # bu yuzden testten kaciyordu (kendi sabotaj kosum, 21.09).
+        for verilen, neden in (('abcdef', 'belirsiz'), ('deadbeef00', 'bilinmeyen'),
+                               (tek[:4], 'cok kisa')):
+            with self.subTest(verilen=verilen):
+                kod, _, hata = self.cli('--tamamlandi', verilen)
+                self.assertEqual(kod, 1)
+                self.assertIn('REDDEDILDI', hata)
+                self.assertIn(neden, hata)
+        yazilan = list(self.tamam.glob('*.json')) if self.tamam.exists() else []
+        self.assertEqual(yazilan, [], 'reddedilen kimlik hicbir sey yazmamali')
+
+    def test_gecersiz_tamamlama_kaydi_borcu_kapatmaz(self):
+        """Astra: yalnız `exists()` bakılırken boş dosya, yanlış içerik, hatta
+        bir DİZİN borcu kapatıyordu."""
+        for ad, bozuk in (('bos', lambda p: p.write_text('', encoding='utf-8')),
+                          ('yanlis', lambda p: p.write_text('{"event_id": "baska"}',
+                                                             encoding='utf-8')),
+                          ('dizin', lambda p: p.mkdir())):
+            with self.subTest(ad):
+                olay = devir.birak(f'IS {ad}', f'oturum-{ad}')
+                self.tamam.mkdir(parents=True, exist_ok=True)
+                bozuk(self.tamam / f'{olay}.json')
+                self.assertEqual(devir.al(f'oturum-{ad}'), f'IS {ad}')
 
     # --- sahiplik ve yeniden teslim ---------------------------------------
 

@@ -120,21 +120,71 @@ def _yaz(kuyruk: list[dict], gecmis: list[dict]) -> None:
 # ------------------------------------------------------------------- kanit
 
 
+KISA_KIMLIK_ALT_SINIR = 6  # daha kisa onek tekil olsa bile kabul edilmez
+
+
+def kimlik_coz(verilen: str) -> tuple[str | None, str]:
+    """Verilen kimligi kuyruk + gecmisteki TAM kimlige cozer: (tam, hata).
+
+    Tam eslesme ya da en az KISA_KIMLIK_ALT_SINIR haneli TEKIL onek kabul
+    edilir; belirsiz ya da bilinmeyen kimlik reddedilir. Eskiden bildirim
+    kimligi 8 haneye kisaltiyordu, `--tamamlandi <8 hane>` ise basari basip
+    YETIM bir kayit yaziyordu - asil borc sonsuza kadar acik kaliyordu
+    (Astra B1, 21.09 20:42). Bilinmeyen kimlik icin basari yok, kayit yok.
+    """
+    try:
+        kuyruk, gecmis = _oku()
+    except (OSError, ValueError, KeyError):
+        return None, "devir kutusu okunamadi"
+    hepsi = [b["event_id"] for b in kuyruk + gecmis]
+    if verilen in hepsi:
+        return verilen, ""
+    adaylar = sorted({k for k in hepsi if k.startswith(verilen)})
+    if len(adaylar) == 1 and len(verilen) >= KISA_KIMLIK_ALT_SINIR:
+        return adaylar[0], ""
+    if len(adaylar) > 1:
+        return None, f"belirsiz kimlik: {len(adaylar)} borc '{verilen}' ile basliyor"
+    if adaylar:
+        return None, (f"kimlik cok kisa: en az {KISA_KIMLIK_ALT_SINIR} hane ya da "
+                      f"tam kimlik ver")
+    return None, f"bilinmeyen kimlik: '{verilen}' hicbir borca ait degil"
+
+
 def tamamlandi(event_id: str) -> Path:
     """Borcun istedigi isin yapildigini KAYDA GECIRIR.
 
-    Bunu is biten taraf calistirir. Tek kanit budur; bulussal cikarim yok.
+    Bunu is biten taraf calistirir. Bu bir ACIK ISLEYICI BEYANIDIR, bagimsiz
+    dogrulama degil: "kalici olan dogru secildi" bu kayitla kanitlanamaz
+    (Astra, 21.09 20:42). Bilinmeyen kimlik ValueError atar ve hicbir sey
+    yazmaz; kayit atomik yazilir.
     """
+    tam, hata = kimlik_coz(event_id)
+    if tam is None:
+        raise ValueError(hata)
     TAMAMLANAN.mkdir(parents=True, exist_ok=True)
-    p = TAMAMLANAN / f"{event_id}.json"
-    p.write_text(json.dumps({"event_id": event_id,
-                             "an": _simdi().isoformat(timespec="seconds")},
-                            ensure_ascii=True), encoding="utf-8", newline="\n")
-    return p
+    hedef = TAMAMLANAN / f"{tam}.json"
+    gecici = hedef.with_name(hedef.name + "." + uuid.uuid4().hex + ".tmp")
+    gecici.write_text(json.dumps({"event_id": tam,
+                                  "an": _simdi().isoformat(timespec="seconds")},
+                                 ensure_ascii=True), encoding="utf-8", newline="\n")
+    os.replace(gecici, hedef)
+    return hedef
 
 
 def _kanit_gerceklesti(borc: dict) -> bool:
-    return (TAMAMLANAN / f"{borc['event_id']}.json").exists()
+    """Tamamlama kaydi GECERLI mi: normal dosya, JSON, ve kendi kimligini tasir.
+
+    Yalniz `exists()` bakilirken bos dosya, yanlis icerik, hatta bir DIZIN
+    borcu kapatiyordu - sozlesme fiilen "bu adda bir yol var"di (Astra,
+    21.09 20:42)."""
+    p = TAMAMLANAN / f"{borc['event_id']}.json"
+    if not p.is_file():
+        return False
+    try:
+        veri = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    return isinstance(veri, dict) and veri.get("event_id") == borc["event_id"]
 
 
 def _sahip_canli(borc: dict, simdi: datetime) -> bool:
@@ -256,9 +306,22 @@ def raporlanacaklar() -> list[tuple[str, str]]:
         return [("?", "DEVIR KUTUSU OKUNAMADI; kurtarma dosyalari denetlenmeli.")]
     return [(b["event_id"],
              f"{b['durum'].upper()} devir borcu ({b['an'][:16]}, "
-             f"{b['deneme']} deneme, kimlik {b['event_id'][:8]}): "
-             f"{b['metin'][:120]}")
+             f"{b['deneme']} deneme): {b['metin'][:120]}")
             for b in kuyruk if b["durum"] in RAPORLANACAK]
+
+
+def rapor_metni(dusen: list[tuple[str, str]]) -> str:
+    """Iki tuketicinin de bastigi TEK bicim. Her borc icin TAM kimlik ve
+    dogrudan calistirilabilir iki komut. Bicim tek yerde durur ki iki tuketici
+    birbirinden ayrilmasin; ayrilirsa biri kimligi yine kisaltir."""
+    satir = ["TESLIM EDILEMEYEN DEVIR BORCU:"]
+    for kimlik, metin in dusen:
+        satir += [f"  - {metin}",
+                  f"      kimlik: {kimlik}",
+                  f"      isi yaptiysan:      python araclar/devir.py --tamamlandi {kimlik}",
+                  f"      artik gerekmiyorsa: python araclar/devir.py --vazgec {kimlik}"]
+    satir.append("Bunlari kullaniciya soyle.")
+    return "\n".join(satir)
 
 
 def rapor_onayla(event_idler: list[str]) -> int:
@@ -291,10 +354,14 @@ def main() -> int:
             if i >= len(sys.argv):
                 print(f"{bayrak} <event_id> ister", file=sys.stderr)
                 return 2
+            tam, hata = kimlik_coz(sys.argv[i])
+            if tam is None:
+                print(f"REDDEDILDI: {hata}. Hicbir sey yazilmadi.", file=sys.stderr)
+                return 1
             if bayrak == "--tamamlandi":
-                print(f"tamamlandi: {tamamlandi(sys.argv[i])}")
+                print(f"tamamlandi: {tamamlandi(tam)}")
                 return 0
-            n = rapor_onayla([sys.argv[i]])
+            n = rapor_onayla([tam])
             print(f"vazgecildi: {n} borc" if n else
                   "vazgecilecek borc yok (yalniz basarisiz/bayat borc kapatilir)")
             return 0 if n else 1
@@ -308,12 +375,7 @@ def main() -> int:
         parcalar.append(metin)
     dusen = raporlanacaklar()
     if dusen:
-        parcalar.append(
-            "TESLIM EDILEMEYEN DEVIR BORCU:\n"
-            + "\n".join("  - " + d for _, d in dusen)
-            + "\nBunlari kullaniciya soyle. Kapatmanin iki yolu var:\n"
-            + "  isi yaptiysan:        python araclar/devir.py --tamamlandi <kimlik>\n"
-            + "  artik gerekmiyorsa:   python araclar/devir.py --vazgec <kimlik>")
+        parcalar.append(rapor_metni(dusen))
     # Erken devir: tur sinirinda baglam dolulugu (bkz. araclar/baglam.py).
     # Hata yutulur; devir kutusu teslimi hicbir kosulda bozulmamali.
     try:

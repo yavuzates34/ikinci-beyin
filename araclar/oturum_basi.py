@@ -136,11 +136,9 @@ def main() -> int:
     # kadar her turda tekrar soylenir. Gurultu, sessiz kayiptan iyidir.
     dusen = devir.raporlanacaklar()
     if dusen:
-        ek.append("TESLIM EDILEMEYEN DEVIR BORCU:" + chr(10)
-                  + chr(10).join("  - " + d for _, d in dusen)
-                  + chr(10) + "Bunlari kullaniciya ilk cevapta soyle."
-                  + chr(10) + "Isi yaptiysan: python araclar/devir.py --tamamlandi <kimlik>"
-                  + chr(10) + "Artik gerekmiyorsa: python araclar/devir.py --vazgec <kimlik>")
+        # Bicim devir.rapor_metni'nde tek yerde: iki tuketici ayrilirsa biri
+        # kimligi yine kisaltir (Astra B1, 21.09 20:42).
+        ek.append(devir.rapor_metni(dusen))
 
     uyarilar = derleyici_uyarilari(simdi)
     if uyarilar:
