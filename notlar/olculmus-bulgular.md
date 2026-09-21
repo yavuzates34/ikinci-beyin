@@ -985,6 +985,6 @@ kanıtlanamaz. Doğru ad: **açık işleyici beyanı**, bağımsız doğrulama d
 
 **Astra'nın tavsiyesi:** v4 çekirdeği korunsun; B1 ve uçtan uca regresyonlar
 tamamlanınca dar Y1 portu kabul edilsin, sonra Y2'nin kontrollü eşzamanlı
-yazma deneyi. (claude 96517e26 · 21.09 20:42)
+yazma deneyi. (claude 96517e26 · 21.09 20:34)
 
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]
