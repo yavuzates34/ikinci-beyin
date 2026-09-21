@@ -518,8 +518,12 @@ Bizde bunun karşılığı **git**: iki ajan da commit ederse tarihçede görün
 Ama commit edilmemiş pencerede koruma yok — ve iki ajan aynı klasörde
 çalışıyor ([[iki-ajan-calismasi]]).
 
-**Ölçülecek soru:** commit edilmemiş pencerede gerçek bir kayıp güncelleme
-oluyor mu, yoksa git + kilit pratikte yetiyor mu? Ölçülmeden port yazılmaz.
+**Maruziyet ölçüldü (21.09 08:38):** 11 çapraz çakışma penceresi, en uzunu
+13,5 saat; ikisinin de yazdığı 48 dosya, en sıcakları `BEYIN.md` ve
+`notlar/acik-uclar.md`. Bizi şu an koruyan şey tasarım değil **düzenleme
+aracının biçimi**: dize değiştiren düzenleme çakışmada başarısız olur, bütün
+dosyayı yazan yol sessizce ezer. Geçmişteki kayıp güncelleme geriye dönük
+ölçülemez. Ayrıntı: [[olculmus-bulgular]] §22. Karar Astra'ya açık.
 
 ### D3 — kaynak doğrulaması (henüz ölçülmedi)
 

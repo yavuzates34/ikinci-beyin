@@ -782,4 +782,65 @@ borçlarını da kapsıyor; yalnız devir mesajı portu o işi bitirmez.
 
 (claude 96517e26 · 21.09 08:24)
 
+## 22. Y2 maruziyeti ölçüldü: çakışma gerçek, koruma kazara
+
+Y2 (iyimser kilit) portunun gerekli olup olmadığına karar vermek için önce
+**maruziyet** ölçüldü. Soru: iki ajan gerçekten aynı anda aynı dosyaya
+yazıyor mu, yoksa risk teorik mi?
+
+### Çakışma: 11 pencere, en uzunu 13,5 saat
+
+Arşivdeki 20 oturumun her biri için `[ilk mesaj, son mesaj]` penceresi
+çıkarıldı ve kesişimler sayıldı (`y2_cakisma.py`, çalışma dizininde):
+
+```
+20 oturum penceresi | claude 7, codex 13
+CAPRAZ cakisma (claude <-> codex): 11
+  13:25:30 | 20.09 04:10 | claude 96517e26 <-> codex 01a0bc5c-f1c4
+   0:50:51 | 19.09 19:16 | claude 5c600e7e <-> codex 01a0ba74-3f5f
+   0:35:37 | 19.09 18:40 | claude 5c600e7e <-> codex 01a0ba53-479d
+   ...
+AYNI kaynak cakismasi: 5 (en uzunu 5 gun 9:38)
+```
+
+### Ortak yazma yüzeyi: 48 dosya
+
+82 commit, `Co-Authored-By: Claude` taşıyanla taşımayan diye ayrıldı (62 / 20)
+ve dokundukları dosyalar karşılaştırıldı. **İkisinin de yazdığı 48 dosya var**,
+üstelik en sıcak olanlar:
+
+| dosya | claude | codex |
+|---|---|---|
+| `BEYIN.md` | 28 | 8 |
+| `notlar/acik-uclar.md` | 23 | 6 |
+| `notlar/olculmus-bulgular.md` | 14 | 4 |
+| `notlar/kapanis-ritueli.md` | 8 | 3 |
+| `araclar/derle.py` | 6 | 4 |
+
+Yani maruziyet teorik değil: uzun çakışma pencereleri ve yüksek trafikli
+ortak dosyalar birlikte duruyor.
+
+### Kazara koruma — ve nerede bitiyor
+
+Beklemediğim şey: bizi şu an koruyan şey tasarlanmış değil, **düzenleme
+aracının biçimi.** Dize değiştiren bir düzenleme (`Edit`), hedef metin
+değişmişse **başarısız olur** — yani iyimser kilidin yaptığı işi kazara yapar.
+Ama bütün dosyayı yazan bir yol (`Write`, ya da `read_text()` → `write_text()`
+deseni) hiçbir şey sormaz ve sessizce ezer. Bu oturumda ben o deseni defalarca
+kullandım.
+
+**Koruma araca bağlı, sözleşmeye değil.** Ajan hangi yolu seçerse o kadar
+korunuyoruz.
+
+### Ne ölçülemedi
+
+Geçmişte gerçekten bir kayıp güncelleme olup olmadığı **geriye dönük
+ölçülemez**: kaybolan yazma hiçbir yerde iz bırakmaz, git yalnız commit'lenmiş
+hâlleri görür. Bu yüzden "olmadı" da denemez, "oldu" da. Y2 kararı arkeolojiyle
+değil, ileriye dönük bir deneyle verilmeli: iki ajanın aynı dosyayı
+çakışan pencerede güncellediği kontrollü bir koşu.
+
+**Şimdilik hüküm yok.** Maruziyet ölçüldü ve büyük; koruma kısmi ve kazara.
+Port gerekli mi sorusu Astra'ya açık. (claude 96517e26 · 21.09 08:31)
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]

@@ -192,3 +192,17 @@ Bir kez düşülmüş tuzaklar. Tekrar keşfedilmesin diye yazıldı.
     tarih hatasının aynı kökü: etiketsiz sayı. Orada "hangi tarih" eksikti,
     burada "hangi birim". Dosya ≠ oturum ≠ konuşma; arada fork ve mükerrer
     kayıt var. Ölçüm: [[olculmus-bulgular]] §4.
+
+21. **Tur içindeyken "şimdi"yi işaretçi yaptım; o an henüz diskte yoktu.**
+    §22 ölçümünü yazarken işaretçiye `21.09 08:38` koydum — ölçümün gerçek
+    saati. Denetim reddetti: *"o damgada mesaj yok"*. Sebep basit ama ilk
+    bakışta görünmüyor: **işaretçi ham kayda bakar, ham kayıt ise turun
+    sonunda yazılır.** Tur ortasındayken kendi bulunduğum dakika henüz hiçbir
+    yerde kayıtlı değil, dolayısıyla adreslenemez. `DAMGA_TOLERANS` 3 dakika;
+    22 dakikalık boşluk bunu aşıyordu.
+
+    **Kural:** işaretçi bir saat değil bir **adrestir**. Tur içinde yazarken
+    diskteki en yakın gerçek ana bağlanır (`python araclar/omurga.py <id>` son
+    damgayı verir). Aynı denetim gece taslaklarında uydurma damgayı da bu
+    yüzden yakalıyor — mekanizma çalıştı, ben yanlış kullandım.
+    (claude 96517e26 · 21.09 08:31)
