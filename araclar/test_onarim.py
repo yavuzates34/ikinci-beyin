@@ -141,11 +141,13 @@ class OnarimTests(unittest.TestCase):
                             return_value=disari.Karar(True, 'model', (), ()))
 
     def test_gece_yazicisi_kapiyi_sormadan_model_cagirmaz(self):
-        """Ham oturum kaydı `ozel`dir; gece yazıcısı onu modele veremez.
+        """Tanınmayan ham kayıt `ozel`dir; gece yazıcısı onu modele veremez.
 
         19.09'dan 21.09'a kadar her gece veriyordu ve hiçbir yer sormuyordu
-        (claude 96517e26 · 21.09 07:52). Model çağrısının HİÇ yapılmadığını
-        ölçer: kapı, isteği göndermeden önce durdurmalı.
+        (claude 96517e26 · 21.09 07:52). Kullanıcı 21.09 20:29'da BU KASANIN
+        kayıtlarını açtı (`dis_kaynaklar`); fikstür kaydı kasanın kayıt
+        klasöründe değil, bu yüzden kapalı kalır. Model çağrısının HİÇ
+        yapılmadığını ölçer: kapı, isteği göndermeden önce durdurmalı.
         """
         with patch.object(gece_kayit, 'istem', return_value='fixture'), \
              patch.object(gece_kayit.subprocess, 'run') as cagri:
@@ -519,6 +521,52 @@ class SizintiTests(unittest.TestCase):
         k = disari.dene([disarisi], hedef='model')
         self.assertFalse(k.gecti)
         self.assertIn('proje kokunun disinda', k.engel[0].neden)
+
+    def dis_kaynakli_manifesto(self, acik=True):
+        m = json.loads((self.root / 'gorunurluk.json').read_text(encoding='utf-8'))
+        if acik:
+            m['dis_kaynaklar'] = [{'tur': 'oturum-kaydi', 'duzey': 'ic'}]
+        (self.root / 'gorunurluk.json').write_text(json.dumps(m), encoding='utf-8')
+
+    def sahte_ev(self):
+        """Bu kasanın ve başka bir projenin oturum kayıtları, sahte bir evde."""
+        ev = self.disa / 'ev'
+        buraya = ev / '.claude' / 'projects' / kayit.proje_adi(self.root)
+        baska = ev / '.claude' / 'projects' / 'C--Users-Anj-Desktop-Nar-Ajans'
+        for d in (buraya, baska):
+            d.mkdir(parents=True)
+            (d / 'oturum.jsonl').write_text('{}', encoding='utf-8')
+        cx = ev / '.codex' / 'sessions' / '2026' / '09' / '21'
+        cx.mkdir(parents=True)
+        for ad, cwd in (('bizim.jsonl', self.root), ('onlarin.jsonl', self.disa)):
+            (cx / ad).write_text(json.dumps({'type': 'session_meta', 'payload': {
+                'cwd': str(cwd)}}) + '\n', encoding='utf-8')
+        return ev, buraya / 'oturum.jsonl', baska / 'oturum.jsonl', \
+            cx / 'bizim.jsonl', cx / 'onlarin.jsonl'
+
+    def test_dis_kaynak_yalniz_bu_kasanin_oturum_kaydini_acar(self):
+        """Kullanıcı kararı 21.09 20:29: gece derleyicisi lokalde açık kalır.
+
+        Kural bu kasanın ham kayıtlarını `ic` yapar — ama `~/.claude/projects`
+        Nar Ajans'ın kayıtlarını da tutar ve Codex projeye göre klasörlemez.
+        Başka projenin kaydı `ozel` kalmalı; müşteri malzemesi orada.
+        """
+        self.dis_kaynakli_manifesto()
+        ev, claude_bizim, claude_baska, codex_bizim, codex_baska = self.sahte_ev()
+        with patch.object(Path, 'home', return_value=ev):
+            self.assertEqual(gorunurluk.duzey(claude_bizim), 'ic')
+            self.assertEqual(gorunurluk.duzey(codex_bizim), 'ic')
+            self.assertEqual(gorunurluk.duzey(claude_baska), 'ozel')
+            self.assertEqual(gorunurluk.duzey(codex_baska), 'ozel')
+            self.assertEqual(gorunurluk.duzey(self.disa / 'rastgele.jsonl'), 'ozel')
+
+    def test_dis_kaynak_kurali_yoksa_bu_kasanin_kaydi_da_ozel(self):
+        """Varsayılan güvenli taraf korunur: kasayı açan kuralın kendisidir."""
+        self.dis_kaynakli_manifesto(acik=False)
+        ev, claude_bizim, _, codex_bizim, _ = self.sahte_ev()
+        with patch.object(Path, 'home', return_value=ev):
+            self.assertEqual(gorunurluk.duzey(claude_bizim), 'ozel')
+            self.assertEqual(gorunurluk.duzey(codex_bizim), 'ozel')
 
     def test_yansima_kasanin_icine_yazilamaz(self):
         o = disari.yansit(self.root / 'yansima', hedef='model')

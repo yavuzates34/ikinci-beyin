@@ -104,12 +104,12 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
 
-- **KULLANICI KARARI BEKLİYOR: gece yazıcısı kapalı (21.09 07:57).**
-  Görünürlük kapısı kuruldu ve ilk iş olarak **kendi kodumuzu** durdurdu:
-  `gece_kayit.py` 19.09'dan beri her gece ham omurgayı (`ozel`) bir modele
-  veriyordu. Artık vermiyor. İki seçenek var, ikisi de kullanıcının:
-  (1) `gorunurluk.json`'a "ham oturum kaydı `ic`'tir" kuralı gir — gece
-  yazıcısı çalışsın; (2) kapalı bıraksın — gece taslağı üretilmesin.
+- **Gece derleyicisi lokalde açık kalıyor (kullanıcı, 21.09 20:29).** Lab'in
+  amacı tam da bunu görmek: gece derleyicisine ve cron'a ihtiyaç kalmıyorsa
+  lab'de görülecek, sistem ona göre entegre edilecek. O zamana kadar yerel
+  sistem çalışır. Görünürlük kapısı gece yazıcısını durdurmuştu; artık
+  `gorunurluk.json` → `dis_kaynaklar` **yalnız bu kasanın** ham kayıtlarını
+  `ic` sayıyor. Nar Ajans dahil başka projelerin kayıtları `ozel` kalıyor.
   Ayrıntı: [[acik-uclar]] madde 8, [[olculmus-bulgular]] §20.
 
 - **ŞU AN: (b) portu, Y1 üçüncü turda (21.09 20:30).** Devir kutusu dört

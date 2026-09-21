@@ -84,17 +84,53 @@ def _eslesir(desen: str, yol: str) -> bool:
     return fnmatch.fnmatchcase(yol, desen)
 
 
+def bu_projenin_oturum_kaydi(yol) -> bool:
+    """Ham oturum kaydi mi, ve BU KASANIN mi.
+
+    `~/.claude/projects` butun projelerin kayitlarini tutar - Nar Ajans'inki
+    dahil. Codex ise projeye gore klasorlemez; hangi kasaya ait oldugu kaydin
+    ilk satirindaki `cwd`'dedir. Dis kaynak istisnasi YALNIZ bu soruya evet
+    cevabi veren yola uygulanir; baska projenin kaydi `ozel` kalir.
+    """
+    p = Path(yol)
+    if p.suffix.lower() != ".jsonl":
+        return False
+    try:
+        p = p.resolve()
+    except OSError:
+        return False
+    ev = Path.home()
+    claude = (ev / ".claude" / "projects" / kayit.proje_adi(KOK)).resolve()
+    if p.parent == claude:
+        return True
+    codex = (ev / ".codex").resolve()
+    if codex in p.parents:
+        return kayit._codex_cwd(p) == str(KOK).lower()
+    return False
+
+
+def _dis_duzey(yol, m: dict) -> str:
+    """Kasa disindaki yolun duzeyi. Varsayilan 'ozel' - disarisi hakkinda soz
+    veremeyiz. Tek istisna manifestoda ADIYLA gecen dis kaynak turu, o da
+    yalniz bu kasaya aitse."""
+    for kural in m.get("dis_kaynaklar", []):
+        if kural.get("tur") == "oturum-kaydi" and bu_projenin_oturum_kaydi(yol):
+            return kural["duzey"]
+    return "ozel"
+
+
 def duzey(yol) -> str:
     """Dosyanin gorunurluk duzeyi. Ilk eslesen kural kazanir.
 
     Eslesme yoksa manifestodaki varsayilan doner ('ozel'). Proje kokunun
-    disindaki bir yol da 'ozel' sayilir - disarisi hakkinda soz veremeyiz.
+    disindaki bir yol da 'ozel' sayilir, `dis_kaynaklar` acikca aksini
+    soylemedikce (bkz. `_dis_duzey`).
     """
     m = _manifesto()
     try:
         bagil = _bagil(yol)
     except ValueError:
-        return "ozel"
+        return _dis_duzey(yol, m)
     for kural in m["kurallar"]:
         if _eslesir(kural["desen"], bagil):
             return kural["duzey"]

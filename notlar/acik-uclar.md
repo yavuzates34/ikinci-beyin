@@ -91,14 +91,18 @@ henüz doğrulanmadı.
    regresyon testi oldu (`SizintiTests`, negatif kontrolüyle birlikte).
    Ölçüm ve tasarım gerekçesi: [[olculmus-bulgular]] §20.
 
-   **Açık kalan — kullanıcı kararı.** Kapı kurulunca ilk durdurduğu şey
-   Avenox değil, **kendi gece yazıcımız** oldu: `gece_kayit.py` 19.09'dan beri
-   her gece ham omurgayı (`ozel`) bir modele veriyordu. Etiketle davranış
-   birbirinden habersiz konmuş, çelişki bugüne kadar sessizdi. İki seçenek:
-   **(1)** `gorunurluk.json`'a "ham oturum kaydı `ic`'tir" kuralı girilir,
-   gece yazıcısı çalışır; **(2)** kapalı bırakılır, gece taslağı üretilmez.
-   Seçim kullanıcının: `ozel` etiketi "makineden çıkmaz" diyor, gece yazıcısı
-   ise tam olarak onu çıkarıyordu. (claude 96517e26 · 21.09 07:57)
+   **Kapı kurulunca ilk durdurduğu şey** Avenox değil, **kendi gece
+   yazıcımız** oldu: `gece_kayit.py` 19.09'dan beri her gece ham omurgayı
+   (`ozel`) bir modele veriyordu. Etiketle davranış birbirinden habersiz
+   konmuş, çelişki bugüne kadar sessizdi. (claude 96517e26 · 21.09 07:57)
+
+   **Karar: seçenek (1), dar kapsamla.** Gece derleyicisi lokalde açık kalır;
+   lab gece derleyicisine ve cron'a gerek olmadığını gösterirse sistem ona göre
+   entegre edilir (kullanıcı, claude 96517e26 · 21.09 20:29). Uygulama:
+   `gorunurluk.json` → `dis_kaynaklar`, `oturum-kaydi` → `ic`. Kural **yalnız
+   bu kasanın** kayıtlarına işler: `~/.claude/projects` Nar Ajans'ın kayıtlarını
+   da tutuyor ve Codex projeye göre klasörlemiyor. Canlı ölçüldü: bu projenin
+   Claude ve Codex kaydı geçiyor, Nar Ajans kaydı kapıda kalıyor.
 
    **Kapanmayan kısım.** Üç katman da, bir aracın kasayı kendi başına
    taramasını **engellemez**. Onu ancak dosya izinleri engeller. Lab'de

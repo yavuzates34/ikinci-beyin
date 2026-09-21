@@ -149,7 +149,10 @@ Astra'ya açık. [[olculmus-bulgular]] §22.
 
 ## Açık kalan — sıradaki iş
 
-1. **KULLANICI KARARI: gece yazıcısı şu an kapalı.** Ya `gorunurluk.json`'a
+1. ~~Gece yazıcısı kapalı~~ **Karar verildi (20:29):** gece derleyicisi
+   lokalde açık kalır, lab sonucuna göre bakılır. `dis_kaynaklar` yalnız bu
+   kasanın ham kayıtlarını `ic` yapar. Eski madde:
+   **KULLANICI KARARI: gece yazıcısı şu an kapalı.** Ya `gorunurluk.json`'a
    "ham oturum kaydı `ic`'tir" kuralı girilecek ve gece yazıcısı çalışacak,
    ya da kapalı kalıp gece taslağı üretilmeyecek. [[acik-uclar]] madde 8.
 2. **İ1 ölçümü.** Uzun tek tur + compact + kesinti senaryosunda kaydedilmiş iş

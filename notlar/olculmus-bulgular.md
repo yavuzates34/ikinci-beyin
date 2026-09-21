@@ -706,9 +706,11 @@ ayrım yerelde kurulmadı, çünkü kendi araçlarımızı da kilitlerdi. Bulucu
 özetlenmiş, çevrilmiş ya da yeniden yazılmış içeriği yakalamaz — bu bir **kanıt**
 aracıdır, garanti değil.
 
-**Açık karar kullanıcıda:** gece yazıcısı şu an kapalı. Ya ham oturum kaydı
-`ic` ilan edilecek, ya da gece taslağı üretilmeyecek. [[acik-uclar]] madde 8.
-(claude 96517e26 · 21.09 07:57)
+**Karar (21.09 20:29):** gece derleyicisi lokalde açık kalır, lab sonucuna
+göre yeniden bakılır. Ham oturum kaydı `ic` sayıldı — ama yalnız bu kasanın:
+`dis_kaynaklar` kuralı yolu `~/.claude/projects/<bu proje>/` ile, Codex
+kaydını ilk satırındaki `cwd` ile sınırlar. Nar Ajans'ın kaydı canlı denendi,
+kapıda kaldı. [[acik-uclar]] madde 8. (claude 96517e26 · 21.09 20:29)
 
 ## 21. Y1 portu: tasarımım kırıldı, iki kusur doğrulandı
 
