@@ -921,4 +921,70 @@ kaldırılması dahil**, ki önceki sınıf onu kaçırıyordu.
 etmiyor. Tur içinde hook'un hiç tetiklenmemesi (N6) da ayrı problem.
 (claude 96517e26 · 21.09 12:11)
 
+## 24. Y1 üçüncü tur: çekirdek tuttu, zincir kopuk
+
+v4'ü Astra'ya verdim (§23). Dört iddiadan **üçü doğrulandı** — ilk kez bir
+turda çoğunluk ayakta kaldı.
+
+| iddia | hüküm |
+|---|---|
+| İ13 buluşsal yanlış kapanmanın üç yolu kapandı | **DOĞRULANDI** |
+| İ14 çıktı öncesi ölüm bildirimi kaybettirmiyor | **DOĞRULANDI** (kendi üç kesinti deneyiyle) |
+| İ15 canlı son deneme ve geç kanıt düzeldi | **DOĞRULANDI** |
+| İ16 testlerde boş yere geçen koruma kalmadı | **ÇÜRÜTÜLDÜ** |
+
+Kilit sabotajı artık yakalanıyor: kilitsiz yarış testi **12 bağımsız koşuda
+12 kez** çift teslimi yakaladı. İkinci turdaki "kilidi kaldır, bütün sınıf
+yine geçsin" sonucu geçersiz.
+
+### B1 — bildirimdeki kimlikle borç kapatılamıyor
+
+`raporlanacaklar()` kimliği metinde `event_id[:8]` diye gösteriyor; iki
+tüketici de tam kimliği atıyor (`for _, d in dusen`). Gerçek PreCompact borcu
+bayatlatılıp iki gerçek tüketicinin çıktısı alındı:
+
+```
+Kuyruktaki olay:           4d7877d28ea84d07812f4e325a94dbd1
+Bildirimin gösterdiği:     4d7877d2
+--tamamlandi 4d7877d2  ->  exit 0; tamamlanan/4d7877d2.json oluştu
+sonraki al()           ->  asıl borç hâlâ bayat, hâlâ raporlanıyor
+```
+
+Sorun işin yapılmaması değil: **yanlış kimliğe başarıyla kayıt üreten bir
+kullanıcı akışı.** Dürüst ajan gösterileni kopyalar, başarı görür, borç
+sonsuza kadar tekrarlanır.
+
+### Dört sabotaj testlerden kaçtı
+
+Her biri 16/16 geçti; davranışı değiştirdikleri ayrıca ölçüldü:
+`devir.main()` raporu düşürür · SessionStart raporu düşürür · yedek PreCompact
+yolu `event_id` vermez (mesaj bir kimlik gösterir, kuyruğa başkası yazılır) ·
+`--tamamlandi` yalnız başarı basar, kayıt yazmaz. Ortak kök: **üretici →
+tüketici çıktısı → ajana verilen komut** bağı hiç sınanmıyor.
+`test_her_borcun_kimligi_var` docstring'inde "yedek PreCompact yolu" diyor ama
+PreCompact'ı hiç çağırmıyor.
+
+### Kanıtın gerçek adı
+
+`_kanit_gerceklesti` yalnız `exists()` bakıyor. Boş dosya, yanlış içerik, hatta
+**bir dizin** borcu kapattı. Bugünkü sözleşme fiilen "bu adda bir yol var".
+Astra'nın önerisi: normal dosya + geçerli şema + doğru tam kimlik + atomik
+yazım denetlenebilir; ama "kalıcı olan doğru seçildi" bu metadata ile
+kanıtlanamaz. Doğru ad: **açık işleyici beyanı**, bağımsız doğrulama değil.
+
+### Bilinen zayıflıklara yanıtlar
+
+- **İşlenme makbuzu:** değerli, ama etkiye bağlanmalı. Terfi bloğu
+  `(event_id, adım)` taşımalı ve tekrarda aynı blok güncellenmeli. Etkiden
+  *sonra* ayrı makbuz yazmak "terfi yazıldı → süreç öldü → makbuz yok"
+  aralığını bırakır. Bu Y2'ye bağlanıyor.
+- **Uyarı yorgunluğu:** onaysız borç korunsun, ama her tur tam metin değil
+  sayılı özet + birkaç tam kimlik + ayrıntı komutu. Erteleme başarı sayılmasın.
+- **Açık borca `--vazgec`:** veri kaybı deliği değil, operasyonel eksik.
+  Gerekçesi kaydedilen ayrı bir `iptal` durumu olabilir.
+
+**Astra'nın tavsiyesi:** v4 çekirdeği korunsun; B1 ve uçtan uca regresyonlar
+tamamlanınca dar Y1 portu kabul edilsin, sonra Y2'nin kontrollü eşzamanlı
+yazma deneyi. (claude 96517e26 · 21.09 20:42)
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]
