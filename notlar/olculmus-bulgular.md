@@ -1149,4 +1149,31 @@ Avenox'un kopyası olarak değil: ya **bütün yolları kapsayan zorunlu koşull
 yazma kapısı**, ya da **eşdeğer tek yazıcı mimarisi**. Hangisi, kullanıcının
 kararı. (claude 96517e26 · 21.09 22:53)
 
+**Karar: tek yazıcı, role göre** — kasaya aynı anda tek ajan yazar, denetçi
+ve hoca ajanlar salt okur. Kural `AGENTS.md`'de. Ağır seçenekler lab / Avenox
+kararına ertelendi. (kullanıcı, claude 96517e26 · 21.09 23:34)
+
+### Avenox v3 bu sorunu çözmüş mü? — kaynağa göre, hayır
+
+Kullanıcı sordu (23:34). Lab'deki kaynak okundu (çalıştırılmadı):
+
+| Katman | Avenox v3'te | Kaynak |
+|---|---|---|
+| **Notlar** (Markdown) | **korumasız** — ajanlar kendi araçlarıyla doğrudan yazar; motor yalnız okur, taradığı dosya tarama sırasında değişirse o dosyayı atlar | `beyin_v3_sync.py:227–262` |
+| **Görevler** | `update_task(id, expected_revision)` + `BEGIN IMMEDIATE` — ama **gönüllü**: ajana "görevleri beklenen revizyonla güncelle" diye talimat veriliyor, doğrudan düzenleme kilidi atlar | `beyin_v3.py:255–271`, kasa `AGENTS.md:27` |
+| **Üretilmiş görünümler** | kendi yazdığının hash'ini tutar; elle düzenlenmişse ezmez, çatışma bildirir. Kendi yorumu: *"remote writers still require reconciliation"* | `beyin_v3_projections.py:60–84` |
+
+Yani Avenox dosya türüne göre **sahiplik bölüyor** — üretilmiş dosyaların
+yazarı motor, görevlerin kapısı CLI, notlarınki ajan — ve notlarda iki ajanın
+çakışmasını ele almıyor. Örtük varsayımı: **aynı anda tek yazıcı**. Bizim
+kararımızla aynı. Ölçtüğümüz araç delikleri (`apply_patch` ile `Add File`,
+girinti, `Move to`; betikler) Avenox'un notları için de geçerli, çünkü o
+notları aynı araçlar yazıyor.
+
+**Kendi çerçeveleme hatam:** Y2'yi "Avenox'tan porte edilecek mekanizma" diye
+açtım. Oysa Avenox'un iyimser kilidi bizde olmayan bir şeyi — veritabanındaki
+görev kayıtlarını — koruyor. 08:16'da iki mekanizmanın farklı katmanlarda
+olduğunu görmüştüm; "Avenox'un **notları** korunuyor mu?" sorusunu sormadım.
+Sorsaydım Y2 baştan "ikimizde de ortak olan açık" diye çerçevelenirdi.
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]

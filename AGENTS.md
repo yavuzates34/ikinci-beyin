@@ -98,6 +98,30 @@ verilmez**; yansıma verilir. Kasanın yolunu veren, üç katmanı da atlamış 
 Hiçbiri, bir aracın kasayı kendi başına taramasını engellemez — onu ancak
 işletim sistemi izinleri engeller.
 
+## Aynı anda tek yazıcı
+
+Kasaya **aynı anda yalnız bir ajan yazar** (kullanıcı kararı, 21.09.2026).
+Diğerleri o sırada okur, denetler, önerir; önerisini yazan ajan uygular.
+
+Neden: iki ajanın kendi düzenleme araçları bayat yazmayı güvenilir biçimde
+reddetmiyor. Ölçüldü: Codex `apply_patch` var olan dosyaya `Add File` ile
+içeriği siliyor, girintisi değişmiş satırı bayat yamayla eski hâline
+döndürüyor, dolu hedefe `Move to` ile eziyor; betikle yazmak hiçbir şey
+sormuyor. Claude'un `Write`'ı bayat yazmayı reddetti, `Edit`'i değişikliğin
+yerine göre kabul ya da ret verdi. Ayrıntı: `notlar/olculmus-bulgular.md` §26–27.
+
+- **Denetçi ya da hoca olarak çağrılan ajan kasaya yazmaz.** Çalışma dizini
+  kasanın dışındadır; sandbox bunu zorlar (`codex exec -C <dizin>`).
+- **İki ajan aynı kasada birlikte çalışıyorsa** yazan hangisiyse o yazar,
+  öteki salt okur. Rol değişecekse önce yazan **commit eder** — devir noktası
+  temiz bir taban olsun.
+- **Ortak nota betikle yazma.** Düzenleme aracını kullan. Betik zorunluysa,
+  yazmadan hemen önce okuduğun içeriğin değişmediğini kontrol et.
+
+Bu bir **kural, zorlama değil** — bugün tek yazıcıyı hiçbir şey zorlamıyor.
+Ağır seçenekler (zorunlu koşullu yazma kapısı, ajan başına ayrı worktree)
+lab / Avenox kararına kadar ertelendi.
+
 ## Arşivde arama
 
 Bir şeyin daha önce konuşulup konuşulmadığından emin değilsen **tahmin etme, ara.**
