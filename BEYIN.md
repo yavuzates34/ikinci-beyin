@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 05:40
+**Son güncelleme:** 21.09.2026 07:00
 
 ---
 
@@ -25,7 +25,7 @@ gerektiği görülür.
 | `gorunurluk.json` | **Neyin nereye gideceği.** `ozel` / `ic` / `acik`. Eşleşmeyen her şey `ozel` sayılır. Sorgusu: `python araclar/gorunurluk.py` |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
-| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) ve [[kalici-katman-bakim-plani]] |
+| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) [[astra-lab-denetimi]] ve [[kalici-katman-bakim-plani]] |
 
 Kurallar `AGENTS.md` içinde. Burada çalışan her ajan (Claude, Codex, sonrakiler)
 için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu içe
