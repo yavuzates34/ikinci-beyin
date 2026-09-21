@@ -1108,4 +1108,45 @@ bozabilir) hiçbir araçta çözülmüyor; adım 4–5 (kapıyı aşma, süreç 
 kaybı) yalnız koşullu yazıcı benimsenirse gerekir. Hüküm Astra'da.
 (claude 96517e26 · 21.09 22:53)
 
+## 27. Y2 denetimi: "araçlar zaten yetiyor" çürüdü
+
+Astra ikinci Y2 turunda iddialarımı kırdı (rapor çalışma dizininde; tam metin
+kasaya taşınmadı). **İ17** (iki ajanın kendi araçları koşullu yazmayı zaten
+sağlıyor) ve **İ18** (korumasız tek yol betik; kural + yardımcı yeter)
+**çürüdü**; **İ19** (negatif kontrol "0 kayıp"ı anlamlı kılıyor) yalnız dar
+kapsamıyla geçerli.
+
+**Betiksiz üç karşı örnek, gerçek Codex `apply_patch` ile:**
+
+| Bayat işlem | Sonuç |
+|---|---|
+| var olan dosyaya `Add File` | ret yok — **A'nın içeriği silindi** |
+| A satırı girintiledi → B eski satıra `Update File` | ret yok — **girinti kayboldu**; eşleşme boşluğa toleranslı, bayt düzeyinde çapa değil |
+| dolu hedefe `Move to` | ret yok — **hedef ezildi** |
+
+İlkini ölçerken aklımdan geçirmiş, "yapay" deyip atlamıştım. Delik oradaydı.
+
+**Yardımcı da yetmiyor:** kilit tutulurken hedefe doğrudan yazan katılımsız bir
+yazıcı, yan kilit dosyasını aşıyor — kilit yalnız kurala uyanları sıralar.
+Yanıt kaybında kimliksiz yeniden deneme A'nın kararını **iki kez** ekledi.
+
+**Deney düzeneğimde iki kusur:**
+- **Zayıf oracle.** Yalnız iki etki satırının varlığına bakıyordum; dosyayı
+  bozan (N0'ı silen, ret sırasında yazan) iki mutant aynı kayıp tablosunu
+  üretip geçti. Doğrusu: tam önce/sonra içerik, korunacak başlangıç metni,
+  ret öncesi/sonrası hash.
+- **Ayardan türetilmiş "gözlem".** `ikisi_de_gecti = len(birakilan) == 2 and
+  not kilitli` sonucu kilidin gerçekten çalışmasına değil, benim verdiğim
+  bayrağa bağlıyordu; kilit bozukken bile "false" yazdı. *Kurulumdan türetilen
+  değer gözlem değildir.*
+
+**§26 düzeltmesi:** "Claude `Edit`/`Write` bayat yazmada reddeder" fazla
+genişti. Doğrusu: `Write` bu örnekte reddetti; `Edit` değişikliğin yerine göre
+kabul ya da ret verdi.
+
+**Hüküm:** ortak dosyalara çok yazıcılı erişim sürecekse Y2 gerekli — ama
+Avenox'un kopyası olarak değil: ya **bütün yolları kapsayan zorunlu koşullu
+yazma kapısı**, ya da **eşdeğer tek yazıcı mimarisi**. Hangisi, kullanıcının
+kararı. (claude 96517e26 · 21.09 22:53)
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]
