@@ -1,97 +1,96 @@
-# Tam otomasyon, lab kararı ve VDS — 20–21 Eylül 2026
+# Tam otomasyon, lab, Avenox denetimi — 20–21 Eylül 2026
 
-**Ara kayıt. Oturum kapanmadı.** Bağlam 21.09 02:42'de *elle* sıkıştırıldı
-(`/compact`, PreCompact tetiklendi). `kapanan-oturum:` satırı bilerek yoktur:
-oturum bitmedi, sadece sıkıştı. Konuşma aynı oturumda sürüyor.
-
-Oturum kimliği: `96517e26-5948-4d47-8014-6e69edc7d0c3` (claude).
-Sıkıştırma öncesi omurga diske alındı:
-`derleme/omurga-anlik/2026-09-21-024230-463898-96517e26-…md`
-(41 kullanıcı mesajı, 19,5 KB). Sıkıştırmadan etkilenmedi; bu kaydın
-kaynağı odur.
+**Ara kayıt. Oturum kapanmadı.** `kapanan-oturum:` satırı bilerek yoktur.
+Oturum `96517e26-5948-4d47-8014-6e69edc7d0c3` (claude), 20.09 20:28'den beri
+açık. İkinci kez sıkıştırılıyor (ilki 21.09 02:42).
 
 > Merkez: [[BEYIN]] · İş belgesi: [[2026-09-21-tam-otomasyon-plani]] ·
-> İlgili: [[acik-uclar]] · [[olculmus-bulgular]] · [[agentic-yapi]] ·
-> [[astra-denetim-bulgulari]] · [[2026-09-19-sunum-onarim-listesi]]
+> İlgili: [[acik-uclar]] · [[olculmus-bulgular]] · [[arac-izle]] ·
+> [[astra-lab-denetimi]] · [[agentic-yapi]]
 
 ---
 
-## Oturumun seyri
+## Evreler
 
-Üç evre: (1) Astra'nın yarıda kalan turlarını **salt okunur** denetlemek,
-(2) tam otomasyon tasarımını konuşmak, (3) lab ve sunucu kararı.
+**1. Salt okunur denetimler (20.09).** Astra'nın yarıda kalan turları iki kez
+"hiçbir şey değiştirme" talimatıyla okundu. Astra'nın işi doğrulandı. Benim
+iki yanlış iddiam Astra tarafından yakalandı: "gece görevinde commit hiç
+çalışmadı" (çalışmış, `67779e9`) ve "derleme saniyeler sürer" (ölçmeden
+söylenmiş). Ders: **anlatı kurunca kayda bakmayı unutuyorum.**
 
-### 1. Salt okunur denetimler
+**2. Tam otomasyon kararı.** Kullanıcı sistemin tam otomatik çalışmasına karar
+verdi; kapanış ritüeli yerine eşik ritüeli. Tasarım ayrı iş belgesinde.
 
-Kullanıcı iki kez, Astra kullanım limitine takıldığı için, "sadece okuma yap,
-hiçbir şey değiştirme" diyerek durum raporu istedi. Okunanlar: gece görevi
-ölçümü, test kirliliği kaynağı (`araclar/test_onarim.py`), Obsidian grafik
-patlaması, sunum kaynağı, commit geçmişi.
+**3. VDS ve lab.** AltunHOST VDS-4, Ubuntu 24.04. Kurulum, ölçüm ve
+sıkılaştırma yapıldı. Avenox v3.1.0 ayrı bir kullanıcının (`avenox`, sudo yok)
+altında kuruldu ve çalıştırıldı.
 
-Sonuç: Astra'nın işi doğrulandı — 10 commit, temiz ağaç, 83/83 işaretçi,
-1 `BEYIN.md`, 0 test klasörü, 7 kanıt logu korunmuş, sunum sağlayıcı
-bağımsızlığı teziyle yeniden yazılmış ve "ölçülmedi" sınırları dürüstçe
-etiketlenmiş.
+**4. Videolar.** Taha'nın iki videosu dört kaynakla çözümlendi.
 
-**Benim iki yanlış iddiam ve düzeltmeleri** (ders olarak kalsın):
+**5. Astra denetimi.** Üç iddiam da düştü. Karar: (b).
 
-- *"Gece görevinde git commit + push adımı hiç çalışmadı."* **Yanlış.**
-  `git show --format=fuller --stat 67779e9` → `AuthorDate: Sun Sep 20
-  00:30:05 2026`. Commit çalıştı; çalışmayan sadece log satırı ve tamamlanma
-  işaretiydi. Kurduğum nedensellik de yanlıştı: commit'lenmemiş 11 dosya
-  00:45–01:39 arasında değişmişti, yani commit'ten *sonra*.
-- *"Derleme saniyeler sürer, süre sınırına takılmaz."* **Ölçmeden söyledim.**
-  Astra çürüttü: 3 aday × model çağrısı başına 900 s bütçe, 15 dakikalık
-  pencereye karşı.
+## Kararlar ve gerekçeleri
 
-İkisini de Astra yakaladı. Proje kuralı gereği (*denetçi rapor eder,
-düzeltmez*) iddianın altına not düştü, metni yeniden yazmadı.
-(claude 96517e26 · 21.09 02:48)
+- **Lab ayrı vault + ayrı git + ayrı makine** (kullanıcı). Bizim kasayla
+  karışmaması şart. Sunucuda `avenox` kullanıcısının sudo'su yok.
+- **VDS-4 / Ubuntu 24.04** (kullanıcı, 21.09 01:16). Listedeki en yeni Ubuntu
+  LTS; Python 3.12 hazır gelir.
+- **Görünürlük ayrımı kuruldu** (kullanıcı, 21.09 05:35): `ozel` / `ic` /
+  `acik`, `gorunurluk.json` + `araclar/gorunurluk.py`. Çekirdek kural:
+  **eşleşmeyen her şey `ozel` sayılır** — manifesto bayatlarsa dosya sızmaz,
+  fazladan kapalı kalır ve rapor edilir.
+- **Video işi lokalde yapılır** (kullanıcı, 21.09 06:28). GPU'da 4 dakika,
+  sunucu CPU'sunda tahmini 68 dakika.
+- **Astra alt ajan olarak çağrılır** (kullanıcı, 21.09 07:03). CLI 0.155.1'e
+  güncellendi, çalıştı. Keşif kısıtı kaldırıldı.
+- **Karar: (b)** — mevcut sistemi koru, doğrulanan mekanizmaları seçerek al.
+  Astra'nın hükmü, 21.09 07:26.
 
-### 2. Tam otomasyon kararı
+## Ne denendi ve elendi
 
-Kullanıcının gerekçesi ve tasarımın tamamı ayrı iş belgesinde:
-[[2026-09-21-tam-otomasyon-plani]]. Burada yalnız kararın kendisi durur.
+**"Avenox sürekli makbuz yazıyor, o yüzden teslim tarihi yok."** Bu gecenin
+mimari anlatısının temeliydi; **Y8'de çürüdü.** `PostToolUse`/`Stop` olay
+metadatası yazıyor, receipts tablosu 0. Makbuzu ajan kendisi yazıyor.
 
-Kullanıcı 20.09 20:28'de sistemin **tam otomatik** olmasına karar verdi.
-Kapanış ritüelinin tetikleyicisi (kullanıcının "kapatalım" demesi) bu hedefle
-çelişiyor; yerine **eşik ritüeli** gelecek. Karar gerekçesi: sistem
-uygulamanın arayüzünde oturum açıp kapatamaz — bu harness yeteneğidir, model
-yeteneği değil.
+**"İki sistem farklı kaynak okur, çakışmazlar."** **İ2'de çürüdü.** `ozel` ve
+etiketsiz notlar Avenox tarafından `internal` indekslendi.
 
-### 3. Lab ve sunucu
+**"Hash'i anlatılan şeye tak, tek dosya yeter."** **İ3'te çürüdü.** Karşı örnek
+bizim kendi commit'imiz `39712b5`.
 
-- **Lab kararı (kullanıcı, 21.09).** Avenox'un (Taha) v2 ikinci beyin sistemi,
-  bizim kasadan **tamamen ayrı bir vault ve ayrı bir git deposunda**
-  incelenecek. Karışma yasak. Laboratuvarda oynayan Claude olacak.
-  Egemenlik kuralı lab'lar için esnetilebilir (kullanıcı kararı).
-- **Sunucu kararı.** Lab lokal sanal makine yerine kiralık sunucuda kurulacak.
-  AltunHOST araştırıldı: aynı özelliklerde **VDS, VPS'ten ucuza yenileniyor**
-  (VPS-3 yenileme 161,36 ₺ / VDS-3 134,61 ₺) ve üstüne ayrılmış RAM, DDR4 ECC,
-  adı verilen veri merkezi geliyor. Kullanıcı **VDS-4**'ü alıyor:
-  4 çekirdek / 6 GB DDR4 ECC / 90 GB NVMe, 185,86 ₺/ay.
-  (claude 96517e26 · 21.09 01:05, 01:16)
-- **İşletim sistemi: Ubuntu 24.04 LTS 64 Bit.** Sağlayıcının listesindeki en
-  yeni Ubuntu LTS bu; 26.04 sunulmuyor, en yeni Debian ise 12. Server sürümü,
-  masaüstü değil. Gerekçe: Python 3.12 hazır gelir (Avenox kurulumunun
-  ihtiyacı), Node tabanlı CLI ajanları için en iyi desteklenen taban.
-- **Sınır:** IP ve SSH kullanıcı adı bana verilecek, giriş **anahtarla**
-  kurulacak. Parola, panel girişi, ödeme bilgisi bana gelmeyecek.
+**"Dört katmanlı bağlam ölçümü gereksiz."** **İ1: ölçülemedi.** Y10 tuttu
+(41/41 mesaj diskte) ama canlı bağlam 396.006 → 20.070 token. Gerekçem
+Y8'e dayanıyordu, o düştü.
 
-## Kaynak işaretçisi ve devir
+**"Keşfe token harcama" kısıtı** (benim brief'imdeki) — kullanıcı kaldırdı.
 
-Bu oturumun asıl çıktısı [[2026-09-21-tam-otomasyon-plani]] ve
-[[acik-uclar]] madde 7'dir; ikisi de `04c43e9` ile commit'lendi ve push
-edildi. Plan belgesi Astra'ya devredilecek işin kaynağıdır.
+**"Kurayım" teklifi (video araçları)** — gereksizdi, `araclar/izle.py` zaten
+vardı ve D:\AI altında her şey kurulu. Teklif etmeden `--kontrol`
+çalıştırmalıydım.
 
-## Açık kalan
+## Yapılan işler
 
-- VDS kurulumu bekleniyor; kurulumdan sonraki ilk iş **ölçüm** (gecikme, disk,
-  RAM gerçekten ayrılmış mı, çalışma süresi), sonra lab kurulumu.
-- `notlar/` 130,4 KB — 100 KB bölme eşiğinin üstünde. Budama planı
-  [[kalici-katman-bakim-plani]] içinde, **onay bekliyor**. Silme yok; tarihçe
-  `oturumlar/` altına taşınır.
-- Sıkıştırma sonrası `oturum_basi.py` kaynak ayrımı yapmıyor: `source` bilgisi
-  okunmadığı için sıkıştırma sonrası da jenerik harita bloğu geliyor,
-  "kaldığın yer" değil. Bu turda BEYIN'deki "sıradaki iş" notu bu boşluğu
-  kapattı; kalıcı çözüm plan belgesinde.
+| İş | Sonuç |
+|---|---|
+| VDS kurulumu | Ubuntu 24.04, çekirdek 6.8.0-139, ufw + fail2ban + otomatik yama, anahtarla SSH |
+| İlk ölçüm | Disk 580 MB/s yazma / 1,1 GB/s okuma; ağ 106 MB/s; gecikme 10 ms; **RAM rezervasyonu yok** |
+| Avenox kurulumu | v3.1.0, `~/lab/vault`, 37 dosya, `doctor` çalışıyor |
+| Video çözümleme | İki video × dört kaynak, lab deposunda `23d1e68` |
+| Görünürlük sistemi | `226cb11` — 63 ozel / 49 ic / 4 acik |
+| Omurga §17 düzeltmesi | `39712b5` — `isCompactSummary` süzgeci, regresyon testi 29/29 |
+| Astra denetimi | 18 kontrol, rapor denetçinin çalışma dizininde |
+
+## Açık kalan — sıradaki iş
+
+1. **Görünürlük sızıntısı (ACİL).** `gorunurluk.json` yalnız bizim kodumuz
+   sorduğunda çalışıyor. Kasayı tarayan yabancı araç için hiçbir şey ifade
+   etmiyor. [[acik-uclar]] madde 8.
+2. **İ1 ölçümü.** Uzun tek tur + compact + kesinti senaryosunda kaydedilmiş iş
+   durumunun geri kazanımı. [[acik-uclar]] madde 9.
+3. **Doğrulanmış mekanizmaları porte et:** kuyruk telafisi (Y1), iyimser kilit
+   (Y2), kaynak doğrulaması (D3), danışman çitleri (Y7).
+4. **(c) rafta.** Astra'nın beş sözleşmesi ölçülmeden karar olamaz.
+
+**Ölçülmemiş kalanlar:** Jev'in gerçek kalitesi ve gecikmesi · beş istemcinin
+uçtan uca çalışması · tam kasa göçü · `izle.py`'nin `--kare`/`--ocr` ayağı ·
+gece görevinin yeni tetiklemesi.

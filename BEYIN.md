@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 07:00
+**Son güncelleme:** 21.09.2026 07:40
 
 ---
 
@@ -103,11 +103,22 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
 
-- **SIRADAKİ İŞ DEĞİŞTİ — tam otomasyon.** Kullanıcı 20.09 gecesi sistemin
-  tam otomatik olmasına karar verdi: kapanış ritüeli yerine **eşik ritüeli**,
-  compaction'ın yapılandırmayla tetiklenmesi, telafi kuyruğu, sağlık alarmı.
-  Tasarım, 7 açık ve lab/VDS kararı: [[2026-09-21-tam-otomasyon-plani]].
-  Astra'ya devredilecek işin kaynağı orası; önceki onarım listesi değil.
+- **SIRADAKİ İŞ: görünürlük sızıntısı (21.09 07:40).** Astra ölçtü: açıkça
+  `ozel` ve etiketsiz iki notu Avenox `internal` indeksledi ve içeriği bağlama
+  verdi. `gorunurluk.json` yalnız **bizim** kodumuz sorduğunda çalışıyor;
+  kasayı tarayan yabancı bir araç için hiçbir şey ifade etmiyor. Bu, Avenox
+  kurulmasa da açık. [[acik-uclar]] madde 8. Sonraki: İ1 ölçümü (madde 9),
+  sonra doğrulanmış mekanizmaların portu.
+
+- **Astra denetimi bitti, karar (b).** Üç iddiam da düştü; "Avenox sürekli
+  makbuz yazıyor" yanlış çıktı, iki sistemin çakışmayacağı çürüdü, tek dosya
+  hash'i yetersiz. Gerekçeler ve elenenler:
+  [[2026-09-21-tam-otomasyon-plani]]. Denetim belgesi: [[astra-lab-denetimi]].
+  Oturum kaydı: [[2026-09-21-otomasyon-lab-ve-vds]].
+
+- **Tam otomasyon tasarımı** [[2026-09-21-tam-otomasyon-plani]] içinde duruyor;
+  eşik ritüeli, işlenme damgası, compaction ayarı. Elenen fikirler de orada,
+  gerekçeleriyle.
 
 
 - **Toparlama ve sunum:** [[2026-09-20-toparlama-ve-sunum]]. Önceki
