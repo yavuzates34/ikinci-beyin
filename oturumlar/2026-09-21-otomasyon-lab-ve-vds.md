@@ -1,8 +1,12 @@
 # Tam otomasyon, lab, Avenox denetimi — 20–21 Eylül 2026
 
-**Ara kayıt. Oturum kapanmadı.** `kapanan-oturum:` satırı bilerek yoktur.
-Oturum `96517e26-5948-4d47-8014-6e69edc7d0c3` (claude), 20.09 20:28'den beri
-açık. İkinci kez sıkıştırılıyor (ilki 21.09 02:42).
+kapanan-oturum: 96517e26, 01a0c21a-4a60
+
+Oturum `96517e26-5948-4d47-8014-6e69edc7d0c3` (claude), 20.09 20:28 – 22.09
+00:18. İki kez sıkıştırıldı (21.09 02:42 ve 07:41), üçüncüsünden önce kullanıcı
+kararıyla kapatıldı: bağlam %65'teydi ama haftalık kota %98'e dayanmıştı.
+`01a0c21a-4a60`: bu oturumun Astra'nın çalışıp çalışmadığını sınamak için
+açtığı tek mesajlık Codex alt oturumu (21.09 06:55).
 
 > Merkez: [[BEYIN]] · İş belgesi: [[2026-09-21-tam-otomasyon-plani]] ·
 > İlgili: [[acik-uclar]] · [[olculmus-bulgular]] · [[arac-izle]] ·
@@ -211,9 +215,17 @@ Avenox iddialarımı doğrulatıp sonra ortak plan istedim; kotaya takıldı,
 
 ## Açık kalan — sıradaki iş
 
-0. **Astra'nın ortak plan turu (03:00).** A: beş Avenox iddiamın doğrulaması.
-   B: sıradaki iş — (b)'yi sürdürmek mi, (c)'nin sözleşmelerini ölçmek mi.
-   [[astra-birlikte-plan]].
+0. **Astra'nın ortak plan turu — yeni oturumda yeniden başlatılacak.** 03:00
+   koşusu kapanışta iptal edildi: rapor dizini de doğrulanmış Avenox kopyası da
+   bu oturumun geçici karalama dizinindeydi. Kopyayı yeniden alma tarifi
+   brief'te. A: beş Avenox iddiamın doğrulaması. B: sıradaki iş — (b)'yi
+   sürdürmek mi, (c)'nin sözleşmelerini ölçmek mi. [[astra-birlikte-plan]].
+00. **Omurga kullanıcı kararlarının bir kısmını görmüyor.** Kapanışta
+   okunurken fark edildi: tur ortasında gönderilen mesajlar (20:31, 23:34,
+   23:35, 23:41) ve `AskUserQuestion` cevapları (B1'i yerelde düzelt, tek
+   yazıcı, oturumu kapat) `omurga.py` çıktısında yok — araç sonucunun içinde
+   geliyorlar, `kayit.py` onları kullanıcı mesajı saymıyor. İşaretçi denetimi
+   yine geçti, çünkü aynı dakikada model mesajı var. [[acik-uclar]] madde 10.
 
 1. ~~Gece yazıcısı kapalı~~ **Karar verildi (20:29):** gece derleyicisi
    lokalde açık kalır, lab sonucuna göre bakılır. `dis_kaynaklar` yalnız bu

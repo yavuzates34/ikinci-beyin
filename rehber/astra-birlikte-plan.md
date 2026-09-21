@@ -19,11 +19,19 @@ okuyabildin, ölçebildin. Doğrulanmamış olan, Avenox hakkındaki her iddiam.
 
 ## Artık Avenox'u görebilirsin
 
-Hash'i çalışan kurulumla doğrulanmış yerel kopya (21.09 23:40):
+Hash'i çalışan kurulumla doğrulanmış yerel kopya. **Yolu çağıran oturum
+verir** — kopya o oturumun geçici karalama dizinindedir ve oturumla gider.
+96517e26'daki ilk kopya kapanışla gitti; yeni oturum Astra'yı çağırmadan önce
+şu tarifle yeniden alır ve **17/17 doğrulanmadan Astra çağrılmaz:**
 
+```bash
+K=<karalama>/avenox-kurulu && mkdir -p "$K"
+ssh avenox 'cd ~/lab/vault && tar cf - AGENTS.md CLAUDE.md .claude .codex .opencode .agents' | tar xf - -C "$K"
+ssh avenox 'cd ~/lab/vault/.claude/scripts && sha256sum *.py' > "$K/lab.sha256"
+(cd "$K/.claude/scripts" && sha256sum -c ../../lab.sha256)   # 17 satır OK olmalı
 ```
-C:/Users/Anj/AppData/Local/Temp/claude/C--Users-Anj-Desktop-desktop-playground/96517e26-5948-4d47-8014-6e69edc7d0c3/scratchpad/astra/lab-snapshot/kurulu-kasa/
-```
+
+Tasarım belgeleri kaynak deposunda: `ssh avenox 'ls ~/lab/avenoxbeyin-git/docs/v3/'`.
 
 - `.claude/scripts/*.py` — **17/17** lab'deki çalışan kurulumla aynı. Sürüm `3.1.0`.
 - `AGENTS.md` — lab'dekiyle aynı. `.codex/`, `.opencode/`, `.agents/` da içinde.

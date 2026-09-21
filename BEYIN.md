@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 23:45
+**Son güncelleme:** 22.09.2026 00:24
 
 ---
 
@@ -77,7 +77,7 @@ oturumun açılışıdır, kapanışı değil.
 | [[2026-09-18-saglayici-bagimsizligi-ve-erken-devir]] | 18.09 04:37 – 20.09 00:40 | **25 mesaj, 44 saat.** Sağlayıcıdan bağımsız çekirdek (AGENTS.md, kapanış işareti, Codex adaptörü), erken devir (%50/%70), bakım döngüsü, 14 slaytlık kullanım rehberi ve 15 açıklık ortak onarım turu |
 | [[2026-09-19-sunum-onarim-listesi]] | — | Oturum kaydı değil: 15 açıklık onarım turunun iş belgesi ve durum tablosu (19–20.09). Astra turu bunun üzerinden yürür |
 | [[2026-09-21-tam-otomasyon-plani]] | — | Oturum kaydı değil: **tam otomasyon iş belgesi.** Kapanış yerine eşik ritüeli, compaction tasarımı, 7 açık (3 küme), kabul edilen politikalar, ölçülecekler ve lab/VDS kararı. **Sıradaki işin kaynağı** |
-| [[2026-09-21-otomasyon-lab-ve-vds]] | 20.09 20:28 – **sürüyor** | **Ara kayıt, oturum kapanmadı.** Tam otomasyon kararı, VDS-4 ve Avenox v3.1.0 lab'ı, iki video, görünürlük kapısı (sızıntı bizdeydi), **Y1 dört turda kapandı**, **Y2 ölçüldü → tek yazıcı kararı**, Astra'nın Avenox'u hiç görmediğinin fark edilmesi ve elenen fikirler |
+| [[2026-09-21-otomasyon-lab-ve-vds]] | 20.09 20:28 – 22.09 00:18 | **28 saat, iki sıkıştırma.** Tam otomasyon kararı, VDS-4 ve Avenox v3.1.0 lab'ı, iki video, görünürlük kapısı (sızıntı bizdeydi), **Y1 dört turda kapandı**, **Y2 ölçüldü → tek yazıcı kararı**, Astra'nın Avenox'u hiç görmediğinin fark edilmesi ve elenen fikirler |
 | [[2026-09-20-astra-kontrol]] | 20.09 04:10 – 20.09 05:55 | Bağımsız 16 madde denetimi, yeni açıklar, kod/not/sunum kaynağı düzeltmeleri, onaylı gece görevi ve proje 1M ayarı |
 | [[2026-09-20-toparlama-ve-sunum]] | 20.09 06:06 – 20.09 17:37 | Önceki denetimin commitleri, test kirliliğinin giderilmesi, bakım planı ve sağlayıcıdan bağımsız sunumun yeniden yazımı |
 | [[2026-09-20-codex-hook-guven-oncesi-denetimi]] | 20.09 00:25 – 00:35 | Desktop'ta güven öncesi hook denetimi; model beyanı ile gerçek `hooks.additional_context` kaydının ayrımı |
@@ -112,11 +112,13 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
   `ic` sayıyor. Nar Ajans dahil başka projelerin kayıtları `ozel` kalıyor.
   Ayrıntı: [[acik-uclar]] madde 8, [[olculmus-bulgular]] §20.
 
-- **ŞU AN: Astra ile birlikte plan (21.09 23:45).** Astra bugünkü altı turun
-  hiçbirinde Avenox'un çalışan kodunu görmedi — sandbox'ı lab'e ulaşamıyor;
-  Avenox hakkındaki her iddia yalnız Claude'un okumasıydı ([[yasanan-hatalar]]
-  madde 22). Artık hash'i doğrulanmış yerel kopyayı görüyor. Önce o iddiaları
-  doğruluyor, sonra sıradaki işi birlikte kuruyoruz: [[astra-birlikte-plan]].
+- **SIRADAKİ İŞ: Astra ile birlikte plan (oturum 22.09 00:18'de kapandı).**
+  İlk iş: Avenox kopyasını [[astra-birlikte-plan]] içindeki tarifle al,
+  **17/17 doğrula**, sonra Astra'yı o brief'le çağır — önce beş Avenox
+  iddiasını doğrulasın, sonra sıradaki işi birlikte kuralım. Ortak öneri
+  kullanıcının onayından geçmeden işe başlanmaz. Neden: Astra önceki altı
+  turun hiçbirinde Avenox'u görmedi ([[yasanan-hatalar]] madde 22).
+  Kota notu: Claude haftalık %98'de kapandı (yenileme Çarşamba 21:00).
 
 - **Y2 karara bağlandı: tek yazıcı, role göre (21.09 23:34).** Kural
   `AGENTS.md`'de. İki ajanın kendi araçları bayat yazmayı güvenilir biçimde

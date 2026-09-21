@@ -155,7 +155,8 @@ Kullanıcı sorunca fark ettim.
    sorulamadı. Kullanıcı yakaladı (claude 96517e26 · 21.09 23:37).
    Artık her brief, çalışan kurulumla **hash'i doğrulanmış** yerel kopyayı
    gösterir ve hocadan önce Avenox'un o konuda **gerçekte ne yaptığını**
-   kurmasını ister. Kopya: ilk denetimin `lab-snapshot/kurulu-kasa/` dizini,
-   17/17 betik ve `AGENTS.md` lab'le aynı (21.09 23:40'ta doğrulandı). Aynı
-   dizindeki `avenoxbeyin/` **kaynak deposudur**, kurulum değil (12/17) —
-   karıştırılmaz. SSH anahtarı sandbox'a açılmaz; kimlik bilgisidir.
+   kurmasını ister. Kopya geçici karalama dizininde durur ve oturumla gider;
+   her oturum onu lab'den yeniden alır ve **17/17 doğrulamadan Astra'yı
+   çağırmaz** — tarif [[astra-birlikte-plan]] içinde. Kaynak deposu
+   (`avenoxbeyin-git`) kurulum değildir (12/17), karıştırılmaz. SSH anahtarı
+   sandbox'a açılmaz; kimlik bilgisidir.

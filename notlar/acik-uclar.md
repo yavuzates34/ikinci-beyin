@@ -114,6 +114,17 @@ henüz doğrulanmadı.
    kaydedilmiş karar/görev durumunun geri kazanımı ve maliyeti.
    (claude 96517e26 · 21.09 07:29)
 
+10. **Omurga, kullanıcı kararlarının bir kısmını görmüyor.** Kapanış ritüeli
+    "hatırlamaya değil okumaya dayan" der; okuma aracı eksik okuyor. Tur
+    ortasında gönderilen kullanıcı mesajları ve `AskUserQuestion` cevapları ham
+    kayıtta **araç sonucunun içinde** duruyor; `kayit.py` onları kullanıcı
+    mesajı saymıyor. 96517e26'nın kapanışında ölçüldü: 20:31, 23:34, 23:35,
+    23:41 mesajları ve üç karar cevabı (B1'i yerelde düzelt, tek yazıcı,
+    oturumu kapat) omurgada yok. İşaretçi denetimi bunu yakalamıyor, çünkü
+    aynı dakikada bir model mesajı bulunuyor. Etkisi: kapanış kaydı, gece
+    taslağı ve PreCompact anlık görüntüsü kullanıcının **kararlarını**
+    kaçırabilir. (claude 96517e26 · 22.09 00:18)
+
 ## Ertelenenler
 
 - **Gelen kutusu** (mobilden not düşme) ve **mem0** (kullanıcı, 16.09).
