@@ -105,6 +105,48 @@ Yansıma daha güçlü: uyması gereken bir kural bırakmaz, içeriği bırakmaz
 araç yansımayı da tarar. Sızıntı kapanmaz, bir kopya daha olurdu. Kod bunu
 artık reddediyor.
 
+## (b) portu başladı: Y1, dört sürüm, üç Astra turu
+
+Kullanıcı 08:06'da "başlayın" dedi, sonra uyudu; akşam 20:22'de döndü ve
+"devam edin" dedi. İş bölümü: Astra hoca/denetçi, ben uygulayıcı. Her tur aynı
+düzen: ben yazarım, Astra çürütmeye çalışır.
+
+| Tur | Ne verdim | Ne düştü | Kök hata |
+|---|---|---|---|
+| 1 (08:22) | Tasarım: pop yerine işaretle, flush'ta onayla | [İ7] iki süreç aynı talimatı bastı · [İ6] N6 ≠ Y1 · flush modele ulaşmayı kanıtlamıyor | Avenox'un ilkesini brief'e **kendim yazıp** denemeye dayalı tasarladım |
+| 2 (12:11) | Kod v3: buluşsal kanıt | 5 iddiadan 4'ü; `nullcontext` ile 11/11 test geçti | Kanıtı buluşsal yaptım; rapor yolunda K1'i **yeniden kurdum** |
+| 3 (20:30) | Kod v4: açık tamamlama kaydı | koşuyor | — |
+
+Astra 08:31'de kotaya takıldı, 11:55'te yenilendi; arada bekleyen bir görev
+kurdum, yenilenince ikinci tur kendiliğinden başladı.
+
+**Elenen: flush onayı.** Çıktı baytlarını tüketip modele hiç eklemeyen bir
+alıcıda gönderici başarı gördü, bağlama 0 mesaj girdi. Flush, üç katman aşağıyı
+onaylıyor.
+
+**Elenen: buluşsal kanıt.** "Kimlikten söz eden yeni dosya" üç yoldan yanlış
+kapattı: *"Work has NOT been done"* yazan bir not, üç işten yalnız birinin
+yapılması, saniyeye kırpılmış damga. "İşten söz edildi" ≠ "iş yapıldı".
+
+**Elenen: aynı süreçte sıralı çağrıyla kilit testi.** Kilidi hiç sınamıyordu.
+Yerine iki gerçek süreç.
+
+### Y2 maruziyeti ölçüldü (Astra beklenirken)
+
+11 çapraz çakışma penceresi (en uzunu 13,5 saat), ikisinin de yazdığı 48
+dosya, en sıcakları `BEYIN.md` ve `notlar/acik-uclar.md`. Bizi koruyan şey
+tasarım değil **düzenleme aracının biçimi**: dize değiştiren düzenleme
+çakışmada başarısız olur, bütün dosyayı yazan yol sessizce ezer. Hüküm yok,
+Astra'ya açık. [[olculmus-bulgular]] §22.
+
+### Bu arada düştüğüm iki hata
+
+- İşaretçiye tur içindeki "şimdi"yi yazdım; o an henüz diskte yoktu, denetim
+  reddetti. [[yasanan-hatalar]] madde 21.
+- Bir kabuk komutu dosya içeriğini komut olarak çalıştırıp kasada altı boş dosya
+  bıraktı (satır başındaki `>` yönlendirme oldu). Silindi; biri Windows'un
+  sondaki nokta tuzağına takıldı. `2026-09-17.md`'ye dokunulmadı.
+
 ## Açık kalan — sıradaki iş
 
 1. **KULLANICI KARARI: gece yazıcısı şu an kapalı.** Ya `gorunurluk.json`'a

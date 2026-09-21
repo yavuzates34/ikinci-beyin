@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 07:57
+**Son güncelleme:** 21.09.2026 20:32
 
 ---
 
@@ -26,7 +26,7 @@ gerektiği görülür.
 | `araclar/disari.py` | **Dışarı çıkan her şeyin tek kapısı.** `--kapi` (gönderimi durdurur) · `--yansit` (yabancı araca verilecek filtreli kopya) · `--denetle` (sızıntı bulucu) |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
-| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) [[astra-lab-denetimi]] ve [[kalici-katman-bakim-plani]] |
+| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) [[astra-lab-denetimi]], [[astra-y1-kuyruk]] ve [[kalici-katman-bakim-plani]] |
 
 Kurallar `AGENTS.md` içinde. Burada çalışan her ajan (Claude, Codex, sonrakiler)
 için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu içe
@@ -112,11 +112,19 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
   yazıcısı çalışsın; (2) kapalı bıraksın — gece taslağı üretilmesin.
   Ayrıntı: [[acik-uclar]] madde 8, [[olculmus-bulgular]] §20.
 
+- **ŞU AN: (b) portu, Y1 üçüncü turda (21.09 20:30).** Devir kutusu dört
+  sürümden geçti; her birini Astra kırdı, sırayla: pop teslimden önce
+  siliyordu → flush onayı yanlış katmanı onaylıyordu → buluşsal kanıt üç
+  yoldan yanlış kapattı ve rapor yolu K1'in aynısını tekrarladı. **v4:** kanıt
+  açık kayıt (`--tamamlandi <kimlik>`), listeleme onay değil, yarış iki gerçek
+  süreçle sınanıyor. Astra üçüncü turda v4'ü kırmaya çalışıyor. Geçerse Y1
+  kapanır, sıra Y2'ye gelir — maruziyeti ölçüldü, karar Astra'da.
+  Ayrıntı: [[olculmus-bulgular]] §21–23 · brief: [[astra-y1-kuyruk]].
+
 - **Görünürlük sızıntısı: kapı + yansıma + bulucu kuruldu (21.09 07:57).**
   `araclar/disari.py`. Astra'nın İ2 deneyi kalıcı regresyon testi oldu
-  (`SizintiTests`, 39/39). Yabancı araca artık kasa değil **yansıma** verilir.
-  Sonraki: İ1 ölçümü ([[acik-uclar]] madde 9), sonra doğrulanmış
-  mekanizmaların portu.
+  (`SizintiTests`). Yabancı araca artık kasa değil **yansıma** verilir.
+  Sonraki: İ1 ölçümü ([[acik-uclar]] madde 9).
 
 - **Astra denetimi bitti, karar (b).** Üç iddiam da düştü; "Avenox sürekli
   makbuz yazıyor" yanlış çıktı, iki sistemin çakışmayacağı çürüdü, tek dosya
