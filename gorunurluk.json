@@ -140,6 +140,11 @@
     {
       "desen": "rehber/astra-lab-denetimi.md",
       "duzey": "ic"
+    },
+    {
+      "desen": "rehber/astra-y1-kuyruk.md",
+      "duzey": "ic",
+      "not": "Astra'ya verilmek uzere yazildi; kasa yollari gecer, sir gecmez"
     }
   ]
 }
