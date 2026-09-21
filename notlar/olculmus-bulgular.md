@@ -1064,4 +1064,40 @@ Beş adımlı lab deneyi önerdi; plan belgesine işlendi
   kurulabilir. Doğru cümle: *kayıt yokluğu, kayıp yokluğunu kanıtlamaz.*
   (claude 96517e26 · 21.09 22:13)
 
+## 26. Y2 lab deneyi: koşullu yazıcı tuttu, korumasız yollar kaybetti
+
+Astra'nın hoca raporundaki adım 1–3 lab'de kuruldu (`~/y2/y2_deney.py`,
+`avenox` kullanıcısı, 3 saniye). İki istemci süreç; aynı sürümü okudukları her
+senaryoda hazır işaretiyle kanıtlandı (`ayni_surum_okundu: true`), `sleep` yok.
+
+| Senaryo | Sessiz kayıp | Not |
+|---|---|---|
+| bütün dosya yazma A→B / B→A | **1 / 1** | A→B'de **HEAD değişmedi** — Astra'nın karşı örneği |
+| geçici dosya + `os.replace` A→B / B→A | **1 / 1** | atomik replace kaybı önlemiyor |
+| koşullu yazıcı A→B / B→A | **0 / 0** | ikinci istemci çatışma → taze oku → yeniden hazırla → iki etki de var |
+| koşullu yazıcı, yarış (kilitli) | **0** | ikinci istemci kilitte bekledi, kontrolü geçemedi |
+| S1 sürüm denetimi yok | **1** | sabotaj yakalandı |
+| S2 kilit yok + yarış | **1** | ikisi de kontrolü geçti, sonra biri ezdi |
+| S3 taze token + **eski** taslak | **1** | Astra'nın yasakladığı kurtarma: kaybı geri getiriyor |
+
+Ölçüt Astra'nınki: *uygulandı diye bildirilen etkinin son içerikte olmaması.*
+Korumasız yolların kayıp göstermesi **negatif kontrol**: deney o aralığı
+gerçekten zorluyor. Koşullu yazıcı = içerik hash'i (aynı okumanın baytları) +
+hedeften ayrı kilit dosyasında `flock` + çatışmada hedefe dokunmama.
+
+**Birleşik tablo — gerçek araçlar dahil (§22 düzeltmesiyle):**
+
+| Yazma yolu | Bayat yazmada |
+|---|---|
+| Claude `Edit` / `Write` | reddeder (okunan hâli izliyor) |
+| betik: `read_text()` → `write_text()` | **sessizce ezer** |
+| koşullu yazıcı (lab) | reddeder, yeniden hazırlatır |
+| Codex `apply_patch` | **ölçülmedi** |
+
+Astra'nın "port gereksiz" şartı: *mevcut bütün izinli yazma yolları aynı
+sözleşmeyi zaten sağlıyorsa ikinci katman gerekmez.* Claude'un araçları
+sağlıyor, betikler sağlamıyor, Codex bilinmiyor. Karar Codex ölçülünce.
+Adım 4–5 (gerçek ajanlarla kapıyı aşma, süreç ölümü, yanıt kaybı) açık.
+(claude 96517e26 · 21.09 22:53)
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]
