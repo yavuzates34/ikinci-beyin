@@ -34,10 +34,15 @@ Bu yüzden:
 - Kontroller **numaralı ve bağımsız**. Sırayla git, her birinin sonucunu
   tamamlayınca yaz. Kota ortada biterse sonraki pencerede **kaldığın
   numaradan** devam edilir, baştan başlanmaz.
-- **Keşfe token harcama.** Dosyaların tam yolları aşağıda. `find`/`ls` ile
-  ortamı tanımaya çalışma; gereken yol yazılı değilse onu eksik say ve
-  raporla.
-- Uzun dosyayı baştan sona okuma; aşağıda satır aralığı verilen yerleri aç.
+- **Keşif serbest** (kullanıcı, 21.09 07:03). Lab'daki sistemi kendin gez,
+  kur, çalıştır, kurcala. Aşağıdaki yollar sana **zaman kazandırmak** için
+  var, seni kısıtlamak için değil. Verilen bir yol yanlışsa ya da eksikse,
+  bunu bulgu say ve raporla.
+- Kota biterse sorun değil; 5 saat beklenir, kaldığın numaradan devam edilir.
+  Bu yüzden **ilerlemeni yaz**: her kontrolün sonucunu tamamlandığı anda
+  rapora ekle, sona saklama.
+- Uzun dosyayı gereksiz yere baştan sona okuma; satır aralığı verilen yerleri
+  aç. Ama gerekiyorsa tamamını oku — karar senin.
 
 ## 3. Ortam — nerede ne var
 
