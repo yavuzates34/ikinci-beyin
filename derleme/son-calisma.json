@@ -1,23 +1,4 @@
 {
- "baslangic": "2026-09-21 00:30",
- "tamamlandi": true,
- "islenmemis_oturum": 1,
- "commit": "tamam",
- "push": "tamam",
- "oto_kayit": [],
- "bakim": {
-  "notlar_kb": 129.7,
-  "esik": "bolme",
-  "buyuk": [
-   "olculmus-bulgular (22 KB)",
-   "kapanis-ritueli (17 KB)"
-  ],
-  "haritasiz": [],
-  "acik_uclar_kapanmis_kb": 0.0,
-  "yetim_taslak": []
- },
- "isaretci_toplam": 82,
- "isaretci_kusurlu": [],
- "isaretci_denetlenemeyen": [],
- "onceki_kesinti": "onceki calisma (2026-09-20 00:30) TAMAMLANMADAN kesildi"
+ "baslangic": "2026-09-22 00:30",
+ "tamamlandi": false
 }
