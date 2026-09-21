@@ -1,0 +1,45 @@
+{
+  "aciklama": "Hangi dosyanin icerigi nereye kadar gidebilir. Eslesmeyen her sey 'ozel' sayilir - varsayilan guvenli tarafa duser. Karar: kullanici, 21.09.2026 05:35. Olcum ve gerekce: notlar/olculmus-bulgular.md (Avenox private/internal/public ayrimi).",
+  "varsayilan": "ozel",
+  "duzeyler": {
+    "ozel": "Makineden cikmaz. Dis modele gonderilmez, yayimlanmaz.",
+    "ic": "Bizim sectigimiz bir modele/servise islenmek uzere gidebilir. Yayimlanmaz.",
+    "acik": "Yayimlanabilir."
+  },
+  "kurallar": [
+    {"desen": "rehber/sunum/**", "duzey": "acik", "not": "Sunum zaten yayimlanmak icin yazildi"},
+    {"desen": "AGENTS.md", "duzey": "acik", "not": "Saglayicidan bagimsiz ortak kural dosyasi"},
+    {"desen": "CLAUDE.md", "duzey": "acik", "not": "Claude'a ozel kurallar, sir icermez"},
+
+    {"desen": "notlar/kullanici-baglami.md", "duzey": "ozel", "not": "Kullanicinin kisisel baglami"},
+    {"desen": "dinleme/**", "duzey": "ozel", "not": "Sesli dinleme metinleri"},
+    {"desen": "oturumlar/**", "duzey": "ozel", "not": "Ham arsiv; icinde her konu gecebilir"},
+    {"desen": "derleme/**", "duzey": "ozel", "not": "Omurga anlik goruntuleri ham kullanici mesaji tasir"},
+
+    {"desen": "BEYIN.md", "duzey": "ic", "not": "Harita; dosya adlari ve proje yapisi"},
+    {"desen": "araclar/**", "duzey": "ic", "not": "Kendi kodumuz, sir icermiyor"},
+    {"desen": "gorunurluk.json", "duzey": "ic"},
+
+    {"desen": "notlar/acik-uclar.md", "duzey": "ic"},
+    {"desen": "notlar/agentic-yapi.md", "duzey": "ic"},
+    {"desen": "notlar/arac-arsiv.md", "duzey": "ic"},
+    {"desen": "notlar/arac-izle.md", "duzey": "ic"},
+    {"desen": "notlar/astra-denetim-bulgulari.md", "duzey": "ic"},
+    {"desen": "notlar/capraz-arac-baglam.md", "duzey": "ic"},
+    {"desen": "notlar/gece-derleyicisi.md", "duzey": "ic"},
+    {"desen": "notlar/iki-ajan-calismasi.md", "duzey": "ic"},
+    {"desen": "notlar/ikinci-beyin-mimarisi.md", "duzey": "ic"},
+    {"desen": "notlar/kapanis-ritueli.md", "duzey": "ic"},
+    {"desen": "notlar/olculmus-bulgular.md", "duzey": "ic", "not": "Lab sunucusunun IP'si burada gecer; yayimlanamaz"},
+    {"desen": "notlar/ortam-kurulum.md", "duzey": "ic"},
+    {"desen": "notlar/proje-egemenligi.md", "duzey": "ic"},
+    {"desen": "notlar/tasarim-dersleri.md", "duzey": "ic"},
+    {"desen": "notlar/yasanan-hatalar.md", "duzey": "ic"},
+    {"desen": "notlar/acik-uclar-tarihce.md", "duzey": "ic"},
+
+    {"desen": "rehber/astra-kontrol.md", "duzey": "ic"},
+    {"desen": "rehber/codex-sunum-rehberi.md", "duzey": "ic"},
+    {"desen": "rehber/kalici-katman-bakim-plani.md", "duzey": "ic"},
+    {"desen": "rehber/uygulama-adaptorleri.md", "duzey": "ic"}
+  ]
+}

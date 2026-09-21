@@ -503,3 +503,97 @@ bozar.
 
 > İlgili: [[kapanis-ritueli]] · [[2026-09-21-tam-otomasyon-plani]] ·
 > [[2026-09-21-otomasyon-lab-ve-vds]] · [[acik-uclar]]
+
+## 18. Lab VDS'i: ilanla ölçüm arasındaki fark
+
+AltunHOST SSD VDS-4, `89.144.20.133`, Ubuntu 24.04 LTS. Kurulum ve ölçüm
+21.09 03:01–03:23 arası, SSH üzerinden.
+
+| Ne | Ölçülen | İlanla ilişkisi |
+|---|---|---|
+| CPU | Xeon E5-2699 v4 @ 2,2 GHz, 4 vCPU | Çekirdek sayısı doğru; yonga **2016 Broadwell** |
+| RAM | 6.067.600 kB | 6 GB iddiasıyla uyumlu |
+| Disk | 90 GB, dönmeyen. Yazma 580 MB/s, okuma 1,1 GB/s (`oflag=direct`) | NVMe sınıfı **doğrulandı** |
+| Ağ | 106 MB/s (~850 Mbit/s, cachefly) | Hızlı |
+| Gecikme | 10 ms (kullanıcının PC'sinden, 10 paket, %0 kayıp) | İstanbul iddiasıyla tutarlı |
+| Swap | 1,9 GB kurulu geldi | — |
+
+**"Ayrılmış RAM" iddiası doğrulanamadı.** VDS'i VPS'e tercih etme
+gerekçelerimden biri şuydu: *"VDS'te RAM kullanılmasa bile kullanıcıya
+atanır"* (claude 96517e26 · 21.09 01:05). Makinedeki ölçüm bunu
+desteklemiyor:
+
+```
+vmware-toolbox-cmd stat memres    → 0 MB          (rezervasyon tanımlı degil)
+vmware-toolbox-cmd stat memlimit  → 4294967295 MB (sinir yok)
+lsmod | grep balloon              → vmw_balloon yuklu, su an 0 MB geri alinmis
+```
+
+Yani hipervizör tarafında bize ayrılmış bellek rezervasyonu **yok** ve balon
+sürücüsü yüklü. Şu an kimse RAM geri almıyor, ama almasını engelleyen bir şey
+de yok. Tek kaçamak yorum: aracın `memres`'i okuyamayıp 0 basması — ancak
+`memlimit` gerçek değer döndürdüğü için zayıf ihtimal. **Karar iptal
+edilmedi** (lab yükü hafif, 5,4 GB boşta), ama gerekçelerden biri düştü.
+
+**Teslim edilen güvenlik durumu.** Sunucu `PermitRootLogin yes` ve parolayla
+SSH **açık** halde geldi; çekirdek `6.8.0-31` (GA, yamasız) idi. Sağlayıcı
+varsayılanı güvenli değil, kurulumdan sonra sıkılaştırma şart.
+
+**`apt upgrade` çekirdeği yükseltmez.** Düz `upgrade` yeni paket kurmayı
+gerektiren yükseltmeyi atlar; `6.8.0-31` → `6.8.0-139` ancak `full-upgrade`
+ile geldi. Ara raporumda "çekirdek yamalandı" dedim, yanlıştı; `uname -r`
+ölçümü düzeltti. Ders: yükseltme komutunun çıktısı değil, **sürümün kendisi**
+ölçülür.
+(claude 96517e26 · 21.09 03:23)
+
+> İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[2026-09-21-otomasyon-lab-ve-vds]] · [[acik-uclar]]
+
+## 19. Jev ve görünürlük ayrımı: Avenox'tan alınan tasarım
+
+**Jev nedir (ölçülmedi, satıcı ve basın iddiası).** TypeSafe AI'ın 15.09.2026'da
+çıkardığı "System One" modeli. Paragraf üretmez; dağınık program durumunu alıp
+**tipli, olasılıklı karar** döndürür. İddialar: sınır modellere göre 40–200 kat
+hız, milyon girdi token'ı 0,042 $, çıktı ücretsiz, "matematiksel olarak
+halüsinasyon ve tip hatası üretemez". Son iddia dikkatli okunmalı: çıktı şemaya
+zorlandığı için **geçersiz tipte** bir şey üretemez; bu yanılmaz olmak değildir.
+Kurucu CEO Diogo Almeida, InstructGPT ortak yazarı.
+
+**Neden bizi ilgilendiriyor.** Planımızdaki üç iş — örneklemeli içerik
+denetimi, sağlık/eskime alarmı, eşik ritüelinde "bu kalıcı mı" ayıklaması —
+tipli karar işidir. Kullanıcının itirazı buydu: *"10 gün boyunca hiç ikinci
+beyni kullanmadım, boşu boşuna Claude kotamdan mı yiyecek?"* Ucuz bir karar
+modeli bu hesabı değiştirir.
+
+**Avenox'un çit tasarımı (okundu, `docs/v3/JEV.md`, 258 satır).** Asıl
+alınacak şey modelin kendisi değil, etrafındaki çit: varsayılan **kapalı**;
+üç mod `off/shadow/on` (gölge = çalışır, sonucu etkilemez, yani kalibrasyon);
+özellik bazlı anahtar; `BEYIN_JEV_DISABLE=1` kill-switch; ve çağrı kaydı
+**içeriksiz** — sorgu metni, aday metni, yanıt ve anahtar yazılmıyor, yalnız
+sayaç. `--key` seçeneği bilerek yok. Bir denetçiye güvenmeden önce gölge
+modunda çalıştırıp haklılığını ölçmek, bizim "denetçi rapor eder, düzeltmez"
+kuralımızın bir üst basamağı.
+
+**Kurulan ayrım (kullanıcı kararı, 21.09 05:35).** Avenox notları
+private/internal/public olarak ayırıyor ve `private` olanı sağlayıcıya hiç
+göndermiyor. Aynı ayrım bizde de kuruldu: `gorunurluk.json` +
+`araclar/gorunurluk.py`. Düzeyler `ozel` / `ic` / `acik`.
+
+Tasarımın tek önemli kararı: **etiket dosyaların içine gömülmedi.** Proje
+bilerek şablondan kaçınıyor ve 42 dosyanın hiçbirinde frontmatter yok. Etiket
+ayrı manifestoda durur, bedeli bayatlamadır, ve bedeli kabul edilebilir kılan
+kural şudur: **eşleşmeyen her şey `ozel` sayılır.** Manifesto bayatlayınca yeni
+dosya sessizce sızmaz, gereksiz yere kapalı kalır ve rapor edilir. Hata yönü
+güvenli tarafta. Bu yüzden `notlar/*` gibi toplu desen kullanılmadı — toplu
+desen yeni dosyayı da kapsar ve varsayılanı bozar.
+
+İlk tarama: **63 ozel · 48 ic · 4 acik**, 4 etiketsiz. Doğrulandı:
+`notlar/kullanici-baglami.md` → `ozel` (modele gitmez),
+`notlar/olculmus-bulgular.md` → `ic` (lab IP'si burada geçtiği için
+yayımlanamaz), `AGENTS.md` → `acik`, olmayan bir dosya → `ozel`.
+
+**Yan bulgu.** Tarama, kökte **`2026-09-17.md`** adlı boş ama git'te takipli
+bir dosya buldu. `AGENTS.md` kök dizinde günlük dosyası açmayı yasaklıyor.
+Silinmedi; karar kullanıcının.
+(claude 96517e26 · 21.09 05:35)
+
+> İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]

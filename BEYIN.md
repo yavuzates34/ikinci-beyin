@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 02:50
+**Son güncelleme:** 21.09.2026 05:40
 
 ---
 
@@ -22,6 +22,7 @@ gerektiği görülür.
 | `notlar/`    | **Kalıcı katman.** Konuya göre bölünmüş, birbirine bağlı notlar. Oturumla eskimez                              |
 | `oturumlar/` | **Arşiv katmanı.** Oturum başına bir kayıt. Her oturumda okunmaz, sorulunca okunur                             |
 | `araclar/`   | Python araçları ve Whisper sözlüğü                                                                             |
+| `gorunurluk.json` | **Neyin nereye gideceği.** `ozel` / `ic` / `acik`. Eşleşmeyen her şey `ozel` sayılır. Sorgusu: `python araclar/gorunurluk.py` |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
 | `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) ve [[kalici-katman-bakim-plani]] |

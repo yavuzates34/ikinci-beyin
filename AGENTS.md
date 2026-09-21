@@ -60,6 +60,28 @@ akışıma göre değil, kullanıcının takvimine göre kullan.
 **Boyut eşiği:** `notlar/` toplamı **65 KB**'ı geçerse "hepsini oku"dan
 "haritayı oku, gerekeni aç"a geç. Haftalık derleme bu eşiği ölçüp raporluyor.
 
+## Görünürlük: neyin nereye gideceği
+
+Kasadaki her dosyanın bir görünürlük düzeyi vardır. **`ozel`** makineden
+çıkmaz; **`ic`** bizim seçtiğimiz bir modele işlenmek üzere gidebilir ama
+yayımlanmaz; **`acik`** yayımlanabilir. Düzeyler `gorunurluk.json` içinde
+durur, dosyaların içine gömülmez.
+
+**Eşleşmeyen her şey `ozel` sayılır.** Yeni açtığın not, kimse etiketlemediği
+için dışarı çıkamaz — manifesto bayatlarsa zarar değil, fazladan kapalılık
+olur. Bu yüzden `notlar/*` gibi toplu desen yazılmaz; toplu desen yeni dosyayı
+da kapsar ve varsayılanı bozar.
+
+Bir dosyanın içeriğini modele ya da dışarı göndermeden önce **koddan sor**:
+
+```
+python araclar/gorunurluk.py --dosya <yol>     # tek dosya
+python araclar/gorunurluk.py                    # tablo + etiketsizler
+```
+
+Kuralın burada yazılı olması yetmez: kural, ancak kod ona sorduğunda kuraldır.
+Model çağıran her yol `gorunurluk.disari_cikabilir()` üzerinden geçer.
+
 ## Arşivde arama
 
 Bir şeyin daha önce konuşulup konuşulmadığından emin değilsen **tahmin etme, ara.**
