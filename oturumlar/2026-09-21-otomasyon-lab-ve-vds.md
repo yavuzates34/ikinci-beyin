@@ -80,11 +80,36 @@ vardı ve D:\AI altında her şey kurulu. Teklif etmeden `--kontrol`
 | Omurga §17 düzeltmesi | `39712b5` — `isCompactSummary` süzgeci, regresyon testi 29/29 |
 | Astra denetimi | 18 kontrol, rapor denetçinin çalışma dizininde |
 
+## Görünürlük sızıntısı: kapı kuruldu, ilk durdurduğu biz olduk
+
+Sıkıştırma sonrası ilk iş buydu. Ölçüm sırası önemli: önce
+`disari_cikabilir()`'in kaç çağıranı olduğuna bakıldı — **sıfır**. `AGENTS.md`
+ise "model çağıran her yol bundan geçer" diyordu. Sonra kendi kodumuzda
+modele içerik gönderen tek yol arandı ve bulundu: `gece_kayit.yazdir()` her
+gece **ham omurgayı** (`ozel`) bir modele veriyordu. Avenox kurulmasaydı da
+sızıntı duruyordu (claude 96517e26 · 21.09 07:52).
+
+Kurulan: `araclar/disari.py` — **kapı** (gönderimi durdurur), **yansıma**
+(yabancı araca kasa değil filtreli kopya verilir), **bulucu** (sızıntıyı
+sonradan yakalar). Taşıyıcı katman yansımadır; diğer ikisi rica eder, o
+bayta çevirir. Astra'nın İ2 deneyi kalıcı regresyon testi oldu
+(`SizintiTests`, negatif kontrolüyle). Üç sabotaj denendi, üçü de yakalandı.
+Ayrıntı: [[olculmus-bulgular]] §20.
+
+**Elenen: dosyanın içine etiket gömmek.** Frontmatter yabancı aracın
+*görebileceği* tek yer, ama görmesi uyacağı anlamına gelmez; üstelik proje 42
+dosyanın hiçbirinde frontmatter tutmuyor ("zorunlu başlık boş başlık üretir").
+Yansıma daha güçlü: uyması gereken bir kural bırakmaz, içeriği bırakmaz.
+
+**Elenen: yansımayı kasanın içine yazmak.** Kolay olurdu; ama kasayı tarayan
+araç yansımayı da tarar. Sızıntı kapanmaz, bir kopya daha olurdu. Kod bunu
+artık reddediyor.
+
 ## Açık kalan — sıradaki iş
 
-1. **Görünürlük sızıntısı (ACİL).** `gorunurluk.json` yalnız bizim kodumuz
-   sorduğunda çalışıyor. Kasayı tarayan yabancı araç için hiçbir şey ifade
-   etmiyor. [[acik-uclar]] madde 8.
+1. **KULLANICI KARARI: gece yazıcısı şu an kapalı.** Ya `gorunurluk.json`'a
+   "ham oturum kaydı `ic`'tir" kuralı girilecek ve gece yazıcısı çalışacak,
+   ya da kapalı kalıp gece taslağı üretilmeyecek. [[acik-uclar]] madde 8.
 2. **İ1 ölçümü.** Uzun tek tur + compact + kesinti senaryosunda kaydedilmiş iş
    durumunun geri kazanımı. [[acik-uclar]] madde 9.
 3. **Doğrulanmış mekanizmaları porte et:** kuyruk telafisi (Y1), iyimser kilit

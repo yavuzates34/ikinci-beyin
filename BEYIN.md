@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 07:40
+**Son güncelleme:** 21.09.2026 07:57
 
 ---
 
@@ -23,6 +23,7 @@ gerektiği görülür.
 | `oturumlar/` | **Arşiv katmanı.** Oturum başına bir kayıt. Her oturumda okunmaz, sorulunca okunur                             |
 | `araclar/`   | Python araçları ve Whisper sözlüğü                                                                             |
 | `gorunurluk.json` | **Neyin nereye gideceği.** `ozel` / `ic` / `acik`. Eşleşmeyen her şey `ozel` sayılır. Sorgusu: `python araclar/gorunurluk.py` |
+| `araclar/disari.py` | **Dışarı çıkan her şeyin tek kapısı.** `--kapi` (gönderimi durdurur) · `--yansit` (yabancı araca verilecek filtreli kopya) · `--denetle` (sızıntı bulucu) |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
 | `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) [[astra-lab-denetimi]] ve [[kalici-katman-bakim-plani]] |
@@ -103,12 +104,19 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
 
 ## Bir sonraki oturuma not
 
-- **SIRADAKİ İŞ: görünürlük sızıntısı (21.09 07:40).** Astra ölçtü: açıkça
-  `ozel` ve etiketsiz iki notu Avenox `internal` indeksledi ve içeriği bağlama
-  verdi. `gorunurluk.json` yalnız **bizim** kodumuz sorduğunda çalışıyor;
-  kasayı tarayan yabancı bir araç için hiçbir şey ifade etmiyor. Bu, Avenox
-  kurulmasa da açık. [[acik-uclar]] madde 8. Sonraki: İ1 ölçümü (madde 9),
-  sonra doğrulanmış mekanizmaların portu.
+- **KULLANICI KARARI BEKLİYOR: gece yazıcısı kapalı (21.09 07:57).**
+  Görünürlük kapısı kuruldu ve ilk iş olarak **kendi kodumuzu** durdurdu:
+  `gece_kayit.py` 19.09'dan beri her gece ham omurgayı (`ozel`) bir modele
+  veriyordu. Artık vermiyor. İki seçenek var, ikisi de kullanıcının:
+  (1) `gorunurluk.json`'a "ham oturum kaydı `ic`'tir" kuralı gir — gece
+  yazıcısı çalışsın; (2) kapalı bıraksın — gece taslağı üretilmesin.
+  Ayrıntı: [[acik-uclar]] madde 8, [[olculmus-bulgular]] §20.
+
+- **Görünürlük sızıntısı: kapı + yansıma + bulucu kuruldu (21.09 07:57).**
+  `araclar/disari.py`. Astra'nın İ2 deneyi kalıcı regresyon testi oldu
+  (`SizintiTests`, 39/39). Yabancı araca artık kasa değil **yansıma** verilir.
+  Sonraki: İ1 ölçümü ([[acik-uclar]] madde 9), sonra doğrulanmış
+  mekanizmaların portu.
 
 - **Astra denetimi bitti, karar (b).** Üç iddiam da düştü; "Avenox sürekli
   makbuz yazıyor" yanlış çıktı, iki sistemin çakışmayacağı çürüdü, tek dosya

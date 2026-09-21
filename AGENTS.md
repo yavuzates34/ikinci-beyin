@@ -77,10 +77,26 @@ Bir dosyanın içeriğini modele ya da dışarı göndermeden önce **koddan sor
 ```
 python araclar/gorunurluk.py --dosya <yol>     # tek dosya
 python araclar/gorunurluk.py                    # tablo + etiketsizler
+python araclar/disari.py --kapi <yol> <yol>     # bir gönderimin tamamı
 ```
 
 Kuralın burada yazılı olması yetmez: kural, ancak kod ona sorduğunda kuraldır.
-Model çağıran her yol `gorunurluk.disari_cikabilir()` üzerinden geçer.
+Bu satır 21.09 07:52'ye kadar yalan söylüyordu — `disari_cikabilir()`
+fonksiyonunun **sıfır çağıranı** vardı ve gece yazıcısı her gece ham omurgayı
+(yani `ozel` içeriği) modele veriyordu.
+
+**Dışarı üç kapıdan çıkılır**, güçlüden zayıfa:
+
+| Katman | Komut | Neyi bağlar |
+|---|---|---|
+| **Kapı** | `disari.kapi(yollar)` | Bizim kodumuzu. Geçmezse gönderim olmaz. |
+| **Yansıma** | `disari.py --yansit <dizin>` | Yabancı aracı. Ona kasa değil, yalnız çıkabilenlerin kopyası verilir — yasak içerik orada **yoktur**. |
+| **Bulucu** | `disari.py --denetle <dizin>` | Hiçbirini. Sızıntıyı sonradan yakalar: birebir kopya, imza satırı, yol. |
+
+Yabancı bir araca (Avenox, bir eklenti, başka bir ajan) **kasanın yolu
+verilmez**; yansıma verilir. Kasanın yolunu veren, üç katmanı da atlamış olur.
+Hiçbiri, bir aracın kasayı kendi başına taramasını engellemez — onu ancak
+işletim sistemi izinleri engeller.
 
 ## Arşivde arama
 

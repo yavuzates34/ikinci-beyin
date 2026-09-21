@@ -78,13 +78,32 @@ henüz doğrulanmadı.
    denetimi, sağlık/eskime alarmı.
    (claude 96517e26 · 21.09 01:11)
 
-8. **Görünürlük ayrımı ikinci bir sistemin yanında tutmuyor (ACİL).**
+8. **Görünürlük sızıntısı — mekanizma kuruldu, BİR KARAR bekliyor.**
    Astra ölçtü: açıkça `ozel` ve etiketsiz iki notu Avenox `internal`
    indeksledi, içeriği bağlama verdi ve gölge modunda sağlayıcı taşıyıcısına
    ulaştırdı. `gorunurluk.json` yalnız **bizim** kodumuz sorduğunda çalışıyor;
    kasayı tarayan yabancı bir araç için hiçbir şey ifade etmiyor. Tasarım
    sözleşmeleri [[2026-09-21-tam-otomasyon-plani]] içinde.
    (claude 96517e26 · 21.09 07:29)
+
+   **Yapıldı (21.09 07:57):** `araclar/disari.py` — kapı, yansıma, bulucu.
+   Yabancı araca artık kasa değil yansıma verilir. Astra'nın İ2 deneyi kalıcı
+   regresyon testi oldu (`SizintiTests`, negatif kontrolüyle birlikte).
+   Ölçüm ve tasarım gerekçesi: [[olculmus-bulgular]] §20.
+
+   **Açık kalan — kullanıcı kararı.** Kapı kurulunca ilk durdurduğu şey
+   Avenox değil, **kendi gece yazıcımız** oldu: `gece_kayit.py` 19.09'dan beri
+   her gece ham omurgayı (`ozel`) bir modele veriyordu. Etiketle davranış
+   birbirinden habersiz konmuş, çelişki bugüne kadar sessizdi. İki seçenek:
+   **(1)** `gorunurluk.json`'a "ham oturum kaydı `ic`'tir" kuralı girilir,
+   gece yazıcısı çalışır; **(2)** kapalı bırakılır, gece taslağı üretilmez.
+   Seçim kullanıcının: `ozel` etiketi "makineden çıkmaz" diyor, gece yazıcısı
+   ise tam olarak onu çıkarıyordu. (claude 96517e26 · 21.09 07:57)
+
+   **Kapanmayan kısım.** Üç katman da, bir aracın kasayı kendi başına
+   taramasını **engellemez**. Onu ancak dosya izinleri engeller. Lab'de
+   `avenox` kullanıcısının sudo'su yok; aynı ayrım yerelde kurulmadı, çünkü
+   kendi araçlarımızı da kilitlerdi.
 
 9. **İ1 ölçümü bekliyor.** "Dört katmanlı bağlam ölçümü gereksiz" hükmü
    verilemedi. Gereken deney: **uzun tek tur + compact + kesinti** senaryosunda

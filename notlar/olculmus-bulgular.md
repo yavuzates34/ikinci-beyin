@@ -628,4 +628,86 @@ bir dosya buldu. `AGENTS.md` kök dizinde günlük dosyası açmayı yasaklıyor
 Silinmedi; karar kullanıcının.
 (claude 96517e26 · 21.09 05:35)
 
+## 20. Görünürlük kapısının sıfır çağıranı vardı — ve sızıntı bizdeydi
+
+**Ölçüm (21.09 07:52).** `disari_cikabilir()` fonksiyonunun kasada kaç çağıranı
+olduğu sayıldı:
+
+```
+grep -rn "gorunurluk" --include=*.py .   ->  yalnız gorunurluk.py'nin kendisi
+```
+
+**Sıfır.** Oysa `AGENTS.md` şunu yazıyordu: *"Model çağıran her yol
+`gorunurluk.disari_cikabilir()` üzerinden geçer."* Kural yazılıydı, kurulu
+değildi. Bu, §17'deki dersin aynısı: anlatı kurulunca kayda bakmak unutuluyor.
+
+**Asıl bulgu: sızıntı Avenox'ta değil, bizdeydi.** Kendi kodumuzda modele
+içerik gönderen tek yol arandı. `anlam.py` yerel ONNX ile gömüyor (fastembed,
+ağ yok). Geriye tek yol kaldı: `gece_kayit.yazdir()` →
+`subprocess.run(["claude", "-p", ...], input=istem(o, omurga))`. İstemin
+içindekiler:
+
+| Parça | Düzey | Durum |
+|---|---|---|
+| `AGENTS.md` | `acik` | sorun yok |
+| `BEYIN.md` | `ic` | sorun yok (`hedef=model`) |
+| **tam omurga** (ham kullanıcı + model mesajları, 600 KB'a kadar) | **`ozel`** | **çıkmamalıydı** |
+
+Omurganın kaynağı ham oturum kaydı; o dosya proje kökünün dışında durur, yani
+`duzey()` ona `ozel` der. `derleme/**` altındaki anlık görüntüleri de manifesto
+açıkça `ozel` sayıyor ("omurga anlık görüntüleri ham kullanıcı mesajı taşır").
+Yani sistem, kendi yazdığı kuralı her gece çiğniyordu — 19.09'dan 21.09'a.
+Avenox kurulmasaydı da sızıntı duruyordu.
+
+**Kuralla davranış birbirinden habersiz konmuştu.** Etiketler 21.09 05:35'te
+kullanıcı kararıyla girildi; gece yazıcısı 19.09'da yazıldı. İkisini kimse
+karşılaştırmadı, çünkü karşılaştıracak kod yoktu. *Sözleşmenin ihlali,
+sözleşmeyi soran bir kod olmadan görünmez.*
+
+### Kurulan: üç katman, güçten zayıfa
+
+`araclar/disari.py`.
+
+1. **Kapı** (`dene`, `kapi`). Gönderimdeki **bütün** yolları birden denetler —
+   tek tek değil, çünkü istem bölünemez: bir dosya bile çıkamıyorsa istemin
+   tamamı çıkamaz. `gece_kayit.yazdir()` artık ilk iş bunu soruyor.
+2. **Yansıma** (`yansit`). Yabancı araca kasanın yolu değil, yalnız
+   çıkabilenlerden oluşan bir kopya verilir. **Tek taşıyıcı katman bu:**
+   diğer ikisi rica eder, bu bayta çevirir — yasak içerik orada yoktur.
+   Ölçüldü: `hedef=model` → 54 dosya alındı / 64 bırakıldı; `hedef=yayin` →
+   4 / 114. Kasanın **içine** yazmayı reddeder (yazsa sızıntı kapanmaz, bir
+   kopya daha olurdu) ve yazdıktan sonra çıktıyı yeniden tarayıp her dosyanın
+   kapıdan geçtiğini doğrular; geçmeyen varsa çıktıyı siler.
+3. **Bulucu** (`denetle`). Herhangi bir ağaçta `ozel` içeriğin izini arar:
+   birebir kopya (sha256), **imza satırı** ve yol. İmza = kasanın tamamında
+   **yalnız bir kez** geçen, 60 karakterden uzun satır; tek kez geçme şartı
+   şablon/başlık gürültüsünü tanım gereği eler. 52 `ozel` dosyadan 180 imza
+   çıktı. Parçalayarak indeksleyen aracı da yakalar, çünkü parça satırı
+   bütün taşır.
+
+### Astra'nın İ2 deneyi kalıcı test oldu
+
+Astra 21.09 07:26'da bir kez ölçmüş ve bitmişti. Şimdi her test koşusunda
+tekrar koşuyor (`SizintiTests`, 39/39). En kritik testi **negatif kontrol**:
+`test_bulucu_yabanci_indekste_yakalar`. Bulucunun "TEMİZ" demesi, ancak bulucu
+gerçekten bulabiliyorsa bir şey ifade eder — o test olmadan diğerlerinin hepsi
+boş yere geçerdi.
+
+Testlerin koruduğu doğrulandı: üç sabotaj denendi, üçü de yakalandı.
+Yansıma süzgeci kapatıldı → 2 test düştü; imza çıkarımı boşaltıldı → negatif
+kontrol düştü; kapı `gece_kayit`'ten çıkarıldı → kapı testi düştü. Her seferinde
+dosya birebir geri yüklendi (`diff` ile doğrulandı).
+
+### Ne kapanmadı
+
+Üç katman da, bir aracın kasayı **kendi başına taramasını** engellemez. Onu
+ancak dosya izinleri engeller. Lab'de `avenox` kullanıcısının sudo'su yok; aynı
+ayrım yerelde kurulmadı, çünkü kendi araçlarımızı da kilitlerdi. Bulucu da
+özetlenmiş, çevrilmiş ya da yeniden yazılmış içeriği yakalamaz — bu bir **kanıt**
+aracıdır, garanti değil.
+
+**Açık karar kullanıcıda:** gece yazıcısı şu an kapalı. Ya ham oturum kaydı
+`ic` ilan edilecek, ya da gece taslağı üretilmeyecek. [[acik-uclar]] madde 8.
+(claude 96517e26 · 21.09 07:57)
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]

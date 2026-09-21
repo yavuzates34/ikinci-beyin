@@ -52,6 +52,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import disari  # noqa: E402
 import kayit  # noqa: E402
 from omurga import omurga_metni  # noqa: E402
 
@@ -163,6 +164,20 @@ def yazdir(o: kayit.Oturum, cikti: Path | None) -> tuple[bool, str]:
     omurga, ku, mo = omurga_metni(o, tam=True)
     if ku == 0:
         return False, "kullanici mesaji yok"
+
+    # GORUNURLUK KAPISI. Istem uc kaynaktan besleniyor: AGENTS.md, BEYIN.md ve
+    # omurga. Omurganin kaynagi ham oturum kaydi - proje kokunun disinda durur,
+    # yani `ozel`. Bu cagri 19.09'dan beri her gece calisiyordu ve hicbir sey
+    # sormuyordu (claude 96517e26 · 21.09 07:52). Kapi buraya takildi ki
+    # celiski sessiz kalmasin: ya gonderim kisilacak ya da gorunurluk.json
+    # acikca izin verecek. Ikisi de kullanicinin karari.
+    karar = disari.dene([KOK / "AGENTS.md", KOK / "BEYIN.md",
+                         *(o.parcalar or (o.yol,))], hedef="model")
+    if not karar.gecti:
+        return False, ("gorunurluk kapisi kapali: "
+                       + "; ".join(f"{e.yol} [{e.duzey}]" for e in karar.engel)
+                       + " -> python araclar/disari.py --kapi <yol>")
+
     ham = omurga.encode("utf-8")
     kirpildi = ""
     if len(ham) > OMURGA_SINIRI:

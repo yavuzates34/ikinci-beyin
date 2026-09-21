@@ -20,7 +20,9 @@ import baglam
 import bakim
 import derle
 import devir
+import disari
 import gece_kayit
+import gorunurluk
 import kayit
 import oturum_basi
 import precompact
@@ -125,6 +127,32 @@ class OnarimTests(unittest.TestCase):
         with patch.object(kayit, 'oturumlar', return_value=[self.b, self.a]):
             self.assertFalse(kayit.kapanmis_mi(self.a, {'01a0bb8e'}))
 
+    def acik_kapi(self):
+        """Görünürlük kapısını yalnız bu test için açık tutar.
+
+        Fikstür oturumu geçici ağaçta durur, yani gerçek manifestoya göre
+        `ozel`dir ve kapı onu haklı olarak durdurur. Kapının kendi testi
+        `test_gece_yazicisi_kapiyi_sormadan_model_cagirmaz`. Buradaki testler
+        taslak yazımını ölçtüğü için kapı açıkça açılır — sessizce değil.
+        """
+        return patch.object(gece_kayit.disari, 'dene',
+                            return_value=disari.Karar(True, 'model', (), ()))
+
+    def test_gece_yazicisi_kapiyi_sormadan_model_cagirmaz(self):
+        """Ham oturum kaydı `ozel`dir; gece yazıcısı onu modele veremez.
+
+        19.09'dan 21.09'a kadar her gece veriyordu ve hiçbir yer sormuyordu
+        (claude 96517e26 · 21.09 07:52). Model çağrısının HİÇ yapılmadığını
+        ölçer: kapı, isteği göndermeden önce durdurmalı.
+        """
+        with patch.object(gece_kayit, 'istem', return_value='fixture'), \
+             patch.object(gece_kayit.subprocess, 'run') as cagri:
+            ok, neden = gece_kayit.yazdir(self.a, self.root / 'olmamali.md')
+        self.assertFalse(ok)
+        cagri.assert_not_called()
+        self.assertIn('gorunurluk kapisi', neden)
+        self.assertFalse((self.root / 'olmamali.md').exists())
+
     def test_explicit_dry_run_never_calls_model(self):
         with patch.object(sys, 'argv', ['gece_kayit.py', '--kuru', '--oturum', self.a.kimlik]), \
              patch.object(kayit, 'oturum_bul', return_value=self.a), \
@@ -134,7 +162,7 @@ class OnarimTests(unittest.TestCase):
 
     def test_model_cannot_write_closure_marker_in_draft(self):
         fake = type('Result', (), {'stdout': '# Taslak\nkapanan-oturum: '+self.a.kisa+'\n'+'a'*250, 'stderr':'', 'returncode':0})()
-        with patch.object(gece_kayit, 'istem', return_value='fixture'), \
+        with self.acik_kapi(), patch.object(gece_kayit, 'istem', return_value='fixture'), \
              patch.object(gece_kayit.subprocess, 'run', return_value=fake):
             ok, note = gece_kayit.yazdir(self.a, self.root/'bad-draft.md')
         self.assertFalse(ok)
@@ -285,7 +313,7 @@ baglam.kontrol(sys.argv[4],sys.argv[5])
 
     def test_model_success_writes_only_draft(self):
         fake=type('Result',(),{'stdout':'# Denetim taslagi\n'+'Açıklama. '*40,'stderr':'','returncode':0})()
-        with patch.object(gece_kayit,'istem',return_value='fixture'), \
+        with self.acik_kapi(), patch.object(gece_kayit,'istem',return_value='fixture'), \
              patch.object(gece_kayit.subprocess,'run',return_value=fake):
             ok,_=gece_kayit.yazdir(self.a,self.root/'draft.md')
         self.assertTrue(ok)
@@ -353,6 +381,158 @@ baglam.kontrol(sys.argv[4],sys.argv[5])
         BrokenAssertion('runTest').run(result)
         self.assertEqual(len(result.failures),1)
         self.assertFalse(created[0].exists())
+
+
+class SizintiTests(unittest.TestCase):
+    """Astra'nın İ2 deneyinin kalıcı hâli.
+
+    Astra 21.09 07:26'da ölçtü: açıkça `ozel` ve etiketsiz iki notu yabancı bir
+    araç `internal` indeksledi, içeriği bağlama verdi ve gölge modunda sağlayıcı
+    taşıyıcısına ulaştırdı (astra-denetim-raporu, [İ2] ÇÜRÜTÜLDÜ). O deney bir
+    kez koştu ve bitti. Burada her test koşusunda tekrar koşar — bu sefer
+    onarıma karşı.
+
+    En kritik test `test_bulucu_yabanci_indekste_yakalar`: bulucunun "TEMİZ"
+    demesi, ancak bulucu gerçekten bulabiliyorsa bir şey ifade eder. O test
+    olmadan diğerlerinin hepsi boş yere geçer.
+    """
+
+    # 60 karakterden uzun ve kasada tek: imza seçiminin şartı bu.
+    KANARYA_GIZLI = ('Musteri gorusmesinde konusulan rakam ve tarih burada '
+                     'yazili duruyor, disari cikmamali')
+    KANARYA_ETIKETSIZ = ('Bu satir hicbir gorunurluk kuralina baglanmadi, '
+                         'varsayilan geregi kasadan cikmamali')
+    KANARYA_IC = ('Bu satir ic duzeydedir ve bizim sectigimiz bir modele '
+                  'islenmek uzere gidebilir')
+
+    def setUp(self):
+        self._temp = tempfile.TemporaryDirectory(prefix='playground-sizinti-')
+        self.addCleanup(self._temp.cleanup)
+        self.root = Path(self._temp.name).resolve()
+        assert not self.root.is_relative_to(kayit.PROJE_KOKU.resolve())
+        self._cikti = tempfile.TemporaryDirectory(prefix='playground-yansima-')
+        self.addCleanup(self._cikti.cleanup)
+        self.disa = Path(self._cikti.name).resolve()
+
+        (self.root / 'notlar').mkdir()
+        (self.root / 'AGENTS.md').write_text('# kural\n', encoding='utf-8')
+        (self.root / 'notlar' / 'paylasilir.md').write_text(
+            f'# Paylasilir\n\n{self.KANARYA_IC}\n', encoding='utf-8')
+        (self.root / 'notlar' / 'gizli.md').write_text(
+            f'# Gizli\n\n{self.KANARYA_GIZLI}\n', encoding='utf-8')
+        # Manifestoda HIC gecmez: varsayilan 'ozel' bunu tutmali.
+        (self.root / 'notlar' / 'yeni.md').write_text(
+            f'# Yeni\n\n{self.KANARYA_ETIKETSIZ}\n', encoding='utf-8')
+
+        manifesto = self.root / 'gorunurluk.json'
+        manifesto.write_text(json.dumps({
+            'varsayilan': 'ozel',
+            'kurallar': [
+                {'desen': 'AGENTS.md', 'duzey': 'acik'},
+                {'desen': 'notlar/paylasilir.md', 'duzey': 'ic'},
+                {'desen': 'notlar/gizli.md', 'duzey': 'ozel'},
+            ]}), encoding='utf-8')
+
+        for y in (patch.object(gorunurluk, 'KOK', self.root),
+                  patch.object(gorunurluk, 'MANIFESTO', manifesto),
+                  patch.object(disari, 'KOK', self.root)):
+            y.start()
+            self.addCleanup(y.stop)
+
+    def yabanci_indeks(self, hedef: Path) -> Path:
+        """Yabancı bir aracın kasayı tarayıp parçalayarak indekslediği hâl.
+
+        Dosya adları kaybolur, sıra bozulur, içerik JSON'a gömülür ve hepsi
+        `internal` etiketlenir — Avenox'un `beyin_v3_sync` davranışı. Birebir
+        dosya karşılaştırması bunu yakalayamaz; imza satırı yakalamalı.
+        """
+        parca = []
+        for md in sorted((self.root / 'notlar').glob('*.md')):
+            for blok in md.read_text(encoding='utf-8').split('\n\n'):
+                parca.append({'id': f'chunk-{len(parca)}', 'scope': 'internal',
+                              'text': blok.strip()})
+        hedef.mkdir(parents=True, exist_ok=True)
+        (hedef / 'index.json').write_text(
+            json.dumps(parca, ensure_ascii=False), encoding='utf-8')
+        return hedef
+
+    def test_bulucu_yabanci_indekste_yakalar(self):
+        """NEGATİF KONTROL: bulucu gerçekten buluyor mu?
+
+        Bu geçmezse bu sınıftaki 'temiz' sonuçlarının hiçbiri kanıt değildir.
+        """
+        indeks = self.yabanci_indeks(self.disa / 'yabanci')
+        bulgu = disari.denetle(indeks)
+        kaynaklar = {b.kaynak for b in bulgu}
+        self.assertIn('notlar/gizli.md', kaynaklar)
+        self.assertIn('notlar/yeni.md', kaynaklar,
+                      'etiketsiz not varsayilanla ozel; sizintisi yakalanmali')
+        self.assertTrue(any(b.tur == 'imza' for b in bulgu),
+                        'parcalanmis indeks yalniz imza satiriyla yakalanir')
+        self.assertNotIn('notlar/paylasilir.md', kaynaklar,
+                         "'ic' dosya sizinti sayilmamali")
+
+    def test_yansima_ozel_dosyayi_disarida_birakir(self):
+        o = disari.yansit(self.disa / 'y', hedef='model')
+        self.assertTrue(o['tamam'], o.get('hata'))
+        kalan = {p.relative_to(self.disa / 'y').as_posix()
+                 for p in (self.disa / 'y').rglob('*') if p.is_file()}
+        self.assertIn('notlar/paylasilir.md', kalan)
+        self.assertNotIn('notlar/gizli.md', kalan)
+        self.assertNotIn('notlar/yeni.md', kalan)
+
+    def test_yansima_ozel_icerigi_hicbir_dosyada_tasimaz(self):
+        """Dosya adı yokken içerik başka bir dosyada geçiyor olabilir."""
+        disari.yansit(self.disa / 'y', hedef='model')
+        govde = '\n'.join(p.read_text(encoding='utf-8', errors='ignore')
+                          for p in (self.disa / 'y').rglob('*') if p.is_file())
+        self.assertNotIn(self.KANARYA_GIZLI, govde)
+        self.assertNotIn(self.KANARYA_ETIKETSIZ, govde)
+        self.assertIn(self.KANARYA_IC, govde)
+
+    def test_bulucu_temiz_yansimada_alarm_vermez(self):
+        disari.yansit(self.disa / 'y', hedef='model')
+        self.assertEqual(disari.denetle(self.disa / 'y'), [])
+
+    def test_yayin_yansimasi_ic_duzeyi_de_birakir(self):
+        disari.yansit(self.disa / 'y', hedef='yayin')
+        govde = '\n'.join(p.read_text(encoding='utf-8', errors='ignore')
+                          for p in (self.disa / 'y').rglob('*') if p.is_file())
+        self.assertNotIn(self.KANARYA_IC, govde)
+        self.assertNotIn(self.KANARYA_GIZLI, govde)
+
+    def test_kapi_etiketsiz_dosyayi_durdurur(self):
+        k = disari.dene([self.root / 'AGENTS.md',
+                         self.root / 'notlar' / 'yeni.md'], hedef='model')
+        self.assertFalse(k.gecti)
+        self.assertEqual([e.yol for e in k.engel], ['notlar/yeni.md'])
+        self.assertIn('etiketsiz', k.engel[0].neden)
+        with self.assertRaises(disari.SizintiHatasi):
+            disari.kapi([self.root / 'notlar' / 'yeni.md'])
+
+    def test_kapi_proje_disindaki_yolu_durdurur(self):
+        """Ham oturum kaydı kasanın dışında durur; gece yazıcısı onu gönderir."""
+        disarisi = self.disa / 'ham-kayit.jsonl'
+        disarisi.write_text('{}', encoding='utf-8')
+        k = disari.dene([disarisi], hedef='model')
+        self.assertFalse(k.gecti)
+        self.assertIn('proje kokunun disinda', k.engel[0].neden)
+
+    def test_yansima_kasanin_icine_yazilamaz(self):
+        o = disari.yansit(self.root / 'yansima', hedef='model')
+        self.assertFalse(o['tamam'])
+        self.assertIn('ICINE yazilamaz', o['hata'])
+        self.assertFalse((self.root / 'yansima').exists())
+
+    def test_yansima_yabanci_dolu_dizini_ezmez(self):
+        yabanci = self.disa / 'baskasinin-isi'
+        yabanci.mkdir()
+        (yabanci / 'onemli.txt').write_text('silinmemeli', encoding='utf-8')
+        o = disari.yansit(yabanci, hedef='model')
+        self.assertFalse(o['tamam'])
+        self.assertEqual((yabanci / 'onemli.txt').read_text(encoding='utf-8'),
+                         'silinmemeli')
+
 
 
 if __name__ == '__main__':
