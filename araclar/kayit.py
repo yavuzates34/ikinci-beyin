@@ -322,6 +322,18 @@ def _claude_mesajlari(yol: Path) -> Iterator[Mesaj]:
             continue  # arac ciktisi, kullanici mesaji degil
         if k.get("isMeta"):
             continue  # skill metni, komut uyarisi, sistem notu: harness yazdi, kullanici degil
+        if k.get("isCompactSummary"):
+            # Sikistirma ozeti. type=user gorunur ama kullanici yazmadi: modelin
+            # kendi kayipli ozetidir, harness enjekte eder. Omurgaya girerse
+            # ritualin "hatirlamaya degil okumaya dayan" garantisi bozulur -
+            # kapanisi yazan ajan ozeti ham kayit sanir. Olculdu: ayni oturumda
+            # 41 mesaj / 19,5 KB -> 43 mesaj / 44,2 KB, farkin tamami bu tek
+            # girdiden ([[olculmus-bulgular]] §17, claude 96517e26 · 21.09 02:48).
+            # Kayittaki isCompactSummary alani bunu acikca soyluyor; metin
+            # desenine bakmaya gerek yok. Sikistirmanin KENDISI kaybolmuyor:
+            # PreCompact zaten derleme/omurga-anlik/ altina anlik goruntu yazip
+            # devir kutusuna not birakiyor.
+            continue
         govde = _temizle(_blok_metni((k.get("message") or {}).get("content", "")))
         if govde:
             yield Mesaj(

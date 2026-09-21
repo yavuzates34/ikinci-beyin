@@ -514,10 +514,20 @@ sonrası kapanış yazan bir ajan "ham kaydı okudum" derken aslında bir özeti
 okumuş olur ve bunu ayırt edemez. Ayrıca özet, önceki turda düzeltilmiş
 yanlış iddiaları da taşıyabilir — bu oturumda taşıdı.
 
-**Düzeltme (uygulanmadı):** `omurga.py` kullanıcı mesajını süzerken
-sıkıştırma enjeksiyonunu tanıyıp ya dışlamalı ya da ayrı bir bölüme
-`[uygulama özeti]` diye almalı. Kayıtta ayırt edici alan aranmalı; metin
-desenine bakmak son çare, çünkü kullanıcı aynı cümleyi yazabilir.
+**Düzeltme — UYGULANDI (21.09 07:15).** Kayıtta ayırt edici alan aranmalı
+demiştim; alan varmış: sıkıştırma özeti satırı `isCompactSummary: true` (ve
+`isVisibleInTranscriptOnly: true`) taşıyor. Metin desenine hiç bakılmadı.
+Süzgeç `kayit.py::_claude_mesajlari` içine kondu — ortak katman olduğu için
+`omurga.py`, `ara.py`, `anlam.py` ve `oku.py` birlikte düzeldi. Aynı oturumun
+omurgası **43 mesaj / 44,2 KB** iken, düzeltmeden sonra 23 mesaj daha
+eklenmesine rağmen **66 mesaj / 29,1 KB**. Sıkıştırmanın kendisi kaybolmuyor:
+PreCompact zaten `derleme/omurga-anlik/` altına anlık görüntü yazıp devir
+kutusuna not bırakıyor.
+
+Regresyon testi: `test_compact_summary_is_not_counted_as_user_message`.
+Testin gerçekten koruduğu ölçüldü — süzgeç geçici olarak kapatılıp test
+çalıştırıldı, **düştü**; süzgeç geri konunca 29/29 geçti. (Boş test yazmamak
+için: geçmeyen bir testin geçtiğini görmek, hiç test yazmamaktan kötüdür.)
 Tam otomasyon planında eşik ritüeli sıkıştırmadan **önce** çalışacağı için
 bu kusur oradaki ana yolu bozmaz, ama yedek yolu (sıkıştırma sonrası yazma)
 bozar.

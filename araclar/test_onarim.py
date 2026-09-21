@@ -313,6 +313,36 @@ baglam.kontrol(sys.argv[4],sys.argv[5])
         self.assertEqual(len(created),1)
         self.assertFalse(created[0].exists())
 
+    def test_compact_summary_is_not_counted_as_user_message(self):
+        """Sikistirma ozeti type=user gorunur ama kullanici yazmadi.
+
+        Omurgaya girerse kapanisi yazan ajan modelin kayipli ozetini ham
+        kayit sanir - ritualin tek garantisi budur. Kayittaki
+        isCompactSummary alani ayrimi acikca veriyor.
+        (olculmus-bulgular §17, claude 96517e26 · 21.09 02:48)
+        """
+        yol = self.root / 'claude-compact.jsonl'
+        satirlar = [
+            {'type': 'user', 'timestamp': '2026-09-21T01:00:00Z',
+             'message': {'role': 'user', 'content': 'Gercek kullanici sozu'}},
+            {'type': 'user', 'timestamp': '2026-09-21T02:42:00Z',
+             'isCompactSummary': True, 'isVisibleInTranscriptOnly': True,
+             'message': {'role': 'user',
+                         'content': 'This session is being continued from a '
+                                    'previous conversation that ran out of context.'}},
+            {'type': 'user', 'timestamp': '2026-09-21T03:00:00Z',
+             'message': {'role': 'user', 'content': 'Sikistirmadan sonraki soz'}},
+        ]
+        yol.write_text(chr(10).join(json.dumps(r) for r in satirlar), encoding='utf-8')
+        oturum = kayit.Oturum('claude', 'compact-test', yol, 'test',
+                              datetime.now(), yol.stat().st_size)
+        govdeler = [m.metin for m in kayit.mesajlar(oturum)
+                    if m.rol == kayit.KULLANICI]
+        self.assertEqual(govdeler, ['Gercek kullanici sozu', 'Sikistirmadan sonraki soz'])
+        self.assertFalse(any('ran out of context' in g for g in govdeler),
+                         'sikistirma ozeti omurgaya kullanici mesaji olarak girdi')
+
+
     def test_fixture_is_cleaned_when_assertion_fails(self):
         created=[]
         class BrokenAssertion(OnarimTests):

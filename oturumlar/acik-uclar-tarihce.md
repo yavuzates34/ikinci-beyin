@@ -221,3 +221,17 @@ hâli de korur. Bu dosya bir oturum kaydı değildir; `kapanan-oturum:` satırı
 - ~~mem0 gerek var mı~~ **8 Eylül'de gerekçe netleşti, 16 Eylül'de sıraya kondu** —
   tek yönlü köprü, sırası en sonda.
 
+
+## Madde 8 — omurga sıkıştırma özetini kullanıcı mesajı sayıyor (kapandı)
+
+8. ~~**Omurga sıkıştırma özetini kullanıcı mesajı sayıyor.**~~ — **kapandı
+   21.09.2026 07:15.** Açıldığı hâli: *"`/compact` sonrası uygulamanın enjekte
+   ettiği özet `omurga.py` çıktısına gerçek bir kullanıcı mesajı gibi giriyor:
+   aynı oturumda 41 mesaj / 19,5 KB → 43 mesaj / 44,2 KB. Ritüelin
+   'hatırlamaya değil okumaya dayan' garantisini sıkıştırmadan sonra bozuyor."*
+   (claude 96517e26 · 21.09 02:48)
+
+   **Çözüm:** kayıttaki `isCompactSummary` alanı süzgece kondu
+   (`kayit.py::_claude_mesajlari`), regresyon testi yazıldı ve testin koruduğu
+   süzgeç kapatılarak doğrulandı. Ayrıntı [[olculmus-bulgular]] §17.
+   (claude 96517e26 · 21.09 07:15)
