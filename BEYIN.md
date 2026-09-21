@@ -11,7 +11,7 @@ Bu klasör bir ikinci beyin denemesidir: oturumlar yenilenir, taşıdığı bilg
 kalır. Her oturumun başında **önce bu dosya** okunur; buradan hangi notun
 gerektiği görülür.
 
-**Son güncelleme:** 21.09.2026 22:15
+**Son güncelleme:** 21.09.2026 23:45
 
 ---
 
@@ -26,7 +26,7 @@ gerektiği görülür.
 | `araclar/disari.py` | **Dışarı çıkan her şeyin tek kapısı.** `--kapi` (gönderimi durdurur) · `--yansit` (yabancı araca verilecek filtreli kopya) · `--denetle` (sızıntı bulucu) |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
-| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) [[astra-lab-denetimi]], [[astra-y1-kuyruk]], [[astra-y2-kilit]] ve [[kalici-katman-bakim-plani]] |
+| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) [[astra-lab-denetimi]], [[astra-y1-kuyruk]], [[astra-y2-kilit]], [[astra-birlikte-plan]] ve [[kalici-katman-bakim-plani]] |
 
 Kurallar `AGENTS.md` içinde. Burada çalışan her ajan (Claude, Codex, sonrakiler)
 için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu içe
@@ -112,11 +112,15 @@ Haritada görünmeyen dosya, sonraki oturumlar için kayıptır.
   `ic` sayıyor. Nar Ajans dahil başka projelerin kayıtları `ozel` kalıyor.
   Ayrıntı: [[acik-uclar]] madde 8, [[olculmus-bulgular]] §20.
 
-- **SIRADAKİ İŞ: Y2 lab deneyi (21.09 22:13).** Astra hoca olarak yöntemi
-  verdi: koşullu yazma, bütün yazıcıların geçtiği kısa kritik bölüm; git HEAD
-  yetmez. Beş adım plan belgesinde ([[2026-09-21-tam-otomasyon-plani]], Y2).
-  Astra lab'e ulaşamıyor (sandbox `~/.ssh/config`'i okuyamıyor) — deneyi ben
-  koşarım, sonucu ona götürürüm. Tam cevap: [[astra-y2-kilit]].
+- **ŞU AN: Astra ile birlikte plan (21.09 23:45).** Astra bugünkü altı turun
+  hiçbirinde Avenox'un çalışan kodunu görmedi — sandbox'ı lab'e ulaşamıyor;
+  Avenox hakkındaki her iddia yalnız Claude'un okumasıydı ([[yasanan-hatalar]]
+  madde 22). Artık hash'i doğrulanmış yerel kopyayı görüyor. Önce o iddiaları
+  doğruluyor, sonra sıradaki işi birlikte kuruyoruz: [[astra-birlikte-plan]].
+
+- **Y2 karara bağlandı: tek yazıcı, role göre (21.09 23:34).** Kural
+  `AGENTS.md`'de. İki ajanın kendi araçları bayat yazmayı güvenilir biçimde
+  reddetmiyor ([[olculmus-bulgular]] §26–27). Brief: [[astra-y2-kilit]].
 
 - **Y1 kapandı (21.09 22:06).** Devir kutusu dört sürüm, dört Astra turu
   geçirdi; dar port kabul edildi. Kanıt açık kayıt (`--tamamlandi <kimlik>`),

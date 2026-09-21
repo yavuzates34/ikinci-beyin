@@ -157,6 +157,11 @@
       "desen": "rehber/astra-y2-kilit.md",
       "duzey": "ic",
       "not": "Astra'ya verilmek uzere yazildi (hoca turu)"
+    },
+    {
+      "desen": "rehber/astra-birlikte-plan.md",
+      "duzey": "ic",
+      "not": "Astra'ya verilmek uzere yazildi: Avenox dogrulamasi + ortak plan"
     }
   ]
 }
