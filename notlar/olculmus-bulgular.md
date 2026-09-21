@@ -987,4 +987,15 @@ kanıtlanamaz. Doğru ad: **açık işleyici beyanı**, bağımsız doğrulama d
 tamamlanınca dar Y1 portu kabul edilsin, sonra Y2'nin kontrollü eşzamanlı
 yazma deneyi. (claude 96517e26 · 21.09 20:34)
 
+**Düzeltildi (v4.1, `29151b7`), kullanıcı onayıyla yerelde.** Bildirim biçimi
+tek yerde (`rapor_metni`), tam kimlik ve çalıştırılabilir komutla · kimlik
+çözümleme: tam eşleşme ya da ≥6 haneli tekil önek, gerisi reddedilir ve hiçbir
+şey yazılmaz · kanıt: normal dosya + JSON + kendi kimliği · kanıt kaydının adı
+**açık işleyici beyanı**. Testler üretici → tüketici çıktısı → komut zincirini
+gerçek fonksiyonlardan geçiriyor. Kendi sabotaj koşumda bir boş test daha
+çıktı: "çok kısa kimlik" durumu iki borca uyuyordu, kısalığı yüzünden değil
+belirsizliği yüzünden reddediliyordu — alt sınırı kaldıran sabotaj kaçıyordu.
+Sonuç: **12 sabotajın 12'si yakalanıyor**, 66/66. Açık bırakılanlar bilerek:
+uyarı yorgunluğu, açık borca `iptal`, işlenme makbuzunun etkiye bağlanması.
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]
