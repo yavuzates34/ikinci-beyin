@@ -132,7 +132,12 @@ def main() -> int:
         f"Ayrinti hatirlamiyorsan once yukaridaki omurga dosyasini oku - "
         f"konusmanin iskeleti orada, zaman damgalariyla.\n\n"
         f"Bu bir guvenlik agidir: kullanici 'kapatalim' demeden sikistirma "
-        f"geldi. Oturum bitmiyor; yazdiktan sonra kaldigin yerden devam et.", oturum.kimlik
+        f"geldi. Oturum bitmiyor; yazdiktan sonra kaldigin yerden devam et.",
+        oturum.kimlik,
+        # Borcun kapandigini gosteren gozlem: bu oturumdan soz eden bir arsiv
+        # kaydi, borctan SONRA yazilmis olsun. Mesajin basilmasi degil, ISTENEN
+        # ISIN yapilmasi olcut (bkz. araclar/devir.py).
+        kanit={"tur": "oturum-kaydi", "oturum": oturum.kisa},
     )
     cikti(f"Omurga diske alindi: {goreli} ({len(mesajlar)} mesaj, "
           f"{harf / 1024:.1f} KB)")

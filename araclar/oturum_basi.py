@@ -126,6 +126,15 @@ def main() -> int:
     if bekleyen:
         ek.append("DEVIR KUTUSUNDAN:" + chr(10) + bekleyen)
 
+    # Teslim edilemeyen borc sessizce dusmesin. Iki tuketici de ayni protokole
+    # bagli olmali; yalniz devir.main degisseydi yedek yolun kayip penceresi
+    # kalirdi (Astra, 21.09 08:22 - dorduncu sozlesme).
+    dusen = devir.raporlanacaklar()
+    if dusen:
+        ek.append("TESLIM EDILEMEYEN DEVIR BORCU:" + chr(10)
+                  + chr(10).join("  - " + d for d in dusen)
+                  + chr(10) + "Bunlari kullaniciya ilk cevapta soyle.")
+
     uyarilar = derleyici_uyarilari(simdi)
     if uyarilar:
         ek.append("GECE DERLEYICISI UYARISI (derleme/son-calisma.json):\n"

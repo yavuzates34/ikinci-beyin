@@ -710,4 +710,76 @@ aracıdır, garanti değil.
 `ic` ilan edilecek, ya da gece taslağı üretilmeyecek. [[acik-uclar]] madde 8.
 (claude 96517e26 · 21.09 07:57)
 
+## 21. Y1 portu: tasarımım kırıldı, iki kusur doğrulandı
+
+Karar (b)'nin ilk portu. Ben iki kusur ölçtüm, bir tasarım önerdim, Astra
+tasarımı kırdı. Sıra doğruydu: **kod yazılmadan önce kırıldı.**
+
+### Doğrulanan iki kusur
+
+**K1 — borç, teslim edilmeden önce siliniyor.** `devir.al()`
+(`araclar/devir.py:68–89`) mesajı `pop` edip diske yazar; teslim *sonra* olur.
+Arada korumasız pencere var. Yedek yol bunu kapatmıyor: `oturum_basi.py:125`
+aynı `al()`'i çağırıyor, yani kuyruğun ikinci **tüketicisi**, kurtarıcısı değil
+(claude 96517e26 · 21.09 08:11; Astra [İ4] DOGRULANDI).
+
+**K2 — bayat mesaj sessizce yok ediliyor.** İki aşamalı: `_oku()` 12 saatten
+eskiyi süzüp **görünmez** yapar, kalıcı kayıp **sonraki yazmada** olur. 13
+saatlik sentetik borçla ölçüldü: `_oku()` → `[]`, diskte girdi duruyor; sonraki
+`birak()` çağrısında girdi gitti, `stderr` boş (Astra [K2] DOGRULANDI).
+
+### Kırılan tasarım — ve neden kırıldı
+
+Önerim şuydu: `al()` pop etmesin, işaretlesin; `print`+`flush` başarılıysa
+`onayla()` çağrılsın; onaylanmayan yeniden teslim edilsin.
+
+**[İ7] ÇÜRÜTÜLDÜ.** İki gerçek Windows süreci bariyerle sıralandı ve **aynı
+talimat iki ayrı stdout akışına çıktı** (`delivered_output_lines=2`), üstelik
+son durum dosyası geçerli JSON ve `done=1` iken. Sıra: A kilitler → damgalar →
+bırakır → basar; B kilitler → hâlâ onaysız aynı girdiyi damgalar → bırakır →
+basar; A onaylar; B onaylayacak bir şey bulamaz. **Damga kilit değildir.**
+`os.replace` atomik olsa bile `oku → sahiplen → dışarı yaz → onayla` bütünü
+atomik olmaz.
+
+**[İ5] ÖLÇÜLEMEDİ.** "Yeniden teslim zararsızdır" diyordum. PreCompact mesajı
+bilgi değil **emir**: kaydı yaz, notlara terfi et, haritayı güncelle. Ekleyerek
+çalışan temsili bir tüketicide tek olgu için iki terfi satırı oluştu. Astra bunu
+gerçek modele mal etmeyi reddetti — doğru davranış; ama "zararsız" da
+kanıtlanmadı.
+
+**Print/flush onayı yanlış katmanı onaylıyor.** Çıktı baytlarını tüketip modele
+hiç eklemeyen bir alıcı kuruldu: gönderici `exit=0, done=1` gördü,
+`simulated_model_context_messages=0`. Yani K1'in "harness çıktıyı yok sayar"
+ayağı flush onayıyla **kapanmıyor**.
+
+**Kök hata bende.** Brief'imin içinde Avenox'un ilkesini kendim yazmıştım:
+*"borç, denemeyle değil, sonucun gözlenmesiyle kapanır."* Sonra denemeye dayalı
+bir mekanizma tasarladım. Gözlemlediğim şey (flush) ile umursadığım şey (iş
+yapıldı mı) arasında üç katman var.
+
+### Adlandırma düzeltmesi: N6 ≠ Y1
+
+Plan `:102`'de **N6** bizim tur içi ölçüm açığımız (20.09 Astra denetimi).
+`rehber/astra-lab-denetimi.md:102`'deki **Y1** Avenox'un kuyruk telafisi.
+İkisini birbirine karıştırmıştım. **[İ6] ÇÜRÜTÜLDÜ:** kuyruk, hiç
+tetiklenmeyen işi kendiliğinden başlatamaz. Kullanıcı mesaj yazmadan süren araç
+döngüsünde `al/onayla` hiç çalışmaz; boş kuyruğa yeni eşik borcu üretemez.
+Sonraki bir hook önceden **kaydedilmiş** borcu telafi eder; yapılmamış ölçümü
+yapılmış hâle getiremez. Ayrıca planın `:341–346` telafi kuyruğu ağ/push
+borçlarını da kapsıyor; yalnız devir mesajı portu o işi bitirmez.
+
+### Tasarımın ayrıca kapatmadığı üç yer
+
+- **Eşik uyarısı ayrı borç.** `baglam.py:190–199` seviye durumunu uyarının
+  çıktı sonucundan **önce** kaydediyor. İlk uyarı teslim edilmezse devir
+  mesajını yeniden denemek bunu telafi etmez; seviye zaten yanmış sayılıyor.
+- **Sınırlı done listesi yeni sessiz kayıp yaratır.** Raporlanmamış başarısız
+  borç, daha yeni kayıtlar tarafından kapasite dışına atılabilir. Raporlanmayı
+  bekleyen borç ile temizlenebilir teslim geçmişi aynı saklama politikasına
+  bağlanamaz.
+- **Bütün tüketiciler birlikte taşınmalı.** `devir.main` ve
+  `oturum_basi.main` aynı protokole geçmezse yedek yolun kayıp penceresi kalır.
+
+(claude 96517e26 · 21.09 08:24)
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]

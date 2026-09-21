@@ -473,7 +473,7 @@ görülmedi, genel yargı kurulmayacak.
 Karar (b) "doğrulanan mekanizmaları seçerek al" diyor. Sıra: Y1 → Y2 → D3 → Y7.
 Her biri için önce **bizde karşılığı var mı** ölçülür; varsa port yazılmaz.
 
-### Y1 — telafi kuyruğu (Astra'da, 21.09 08:10)
+### Y1 — telafi kuyruğu: tasarım kırıldı (21.09 08:24)
 
 Avenox: `beyin_v3_hook.py:44–102`. Hook iş yapmaz, "iş borcu var" diye küçük bir
 JSON yazar; pahalı iş ayrı boşaltma adımında; borç ancak sonuç başarılıysa
@@ -492,6 +492,11 @@ Bizde iki kusur ölçüldü (claude 96517e26 · 21.09 08:10):
 — kuyruğun ikinci *tüketicisi*, kurtarıcısı değil. Bir teslim penceresinde
 kaybolan mesaj için SessionStart'ta bakacak bir şey kalmıyor
 (claude 96517e26 · 21.09 08:11).
+
+**Astra'nın hükmü:** K1 ve K2 doğrulandı; tasarımım [İ7]'de çürütüldü (iki
+Windows süreci aynı talimatı bastı — damga kilit değildir), [İ5] ölçülemedi,
+[İ6] çürütüldü. **N6 ≠ Y1:** tur içi ölçüm açığı ayrı bir şey, kuyruk onu
+kapatmaz. Ayrıntı ve dört sözleşme: [[olculmus-bulgular]] §21.
 
 ### Y2 — iyimser kilit (henüz ölçülmedi)
 
