@@ -465,3 +465,67 @@ telafi, iki eşzamanlı oturum, kabul testinin uygulanışı.
 
 Vardığımız sonuçlar **yalnız v2 hakkında** olacak; Taha'nın yeni sürümleri
 görülmedi, genel yargı kurulmayacak.
+
+---
+
+## (b) portu: mekanizma mekanizma zemin
+
+Karar (b) "doğrulanan mekanizmaları seçerek al" diyor. Sıra: Y1 → Y2 → D3 → Y7.
+Her biri için önce **bizde karşılığı var mı** ölçülür; varsa port yazılmaz.
+
+### Y1 — telafi kuyruğu (Astra'da, 21.09 08:10)
+
+Avenox: `beyin_v3_hook.py:44–102`. Hook iş yapmaz, "iş borcu var" diye küçük bir
+JSON yazar; pahalı iş ayrı boşaltma adımında; borç ancak sonuç başarılıysa
+`os.replace` ile `hook-done/`'a **taşınır**, silinmez. Çekirdek ilke: *borç,
+denemeyle değil sonucun gözlenmesiyle kapanır.*
+
+Bizde iki kusur ölçüldü (claude 96517e26 · 21.09 08:10):
+- **K1** `devir.al()` (`araclar/devir.py:68–89`) mesajı `pop` edip diske yazar,
+  teslim *sonra* olur. `print`/`flush` patlarsa, hook zaman aşımıyla öldürülürse
+  (ki `baglam.kontrol()` tam o pencerede çalışıyor) ya da harness çıktıyı yok
+  sayarsa mesaj gider.
+- **K2** `_oku()` 12 saatten eski girdiyi her okumada süzer, sonraki `_yaz`
+  süzmeyi kalıcılaştırır. Kimse haberdar edilmez.
+
+**Yedek yol K1'i kapatmıyor.** `oturum_basi.py:125` aynı `devir.al()`'i çağırıyor
+— kuyruğun ikinci *tüketicisi*, kurtarıcısı değil. Bir teslim penceresinde
+kaybolan mesaj için SessionStart'ta bakacak bir şey kalmıyor
+(claude 96517e26 · 21.09 08:11).
+
+### Y2 — iyimser kilit (henüz ölçülmedi)
+
+İki mekanizma **farklı katmanlarda duruyor**; bu yüzden "bizde zaten var"
+demek yanlış olur, "gerekli" demek de erken.
+
+| | Bizim `dosya_kilidi.kilit` | Avenox `update_task` |
+|---|---|---|
+| Tür | Karamsar, işletim sistemi kilidi (`msvcrt` / `fcntl`) | İyimser, revizyon karşılaştırması |
+| Koruduğu | Aynı anda yazan iki **süreç** | Zaman içinde yazan iki **ajan** |
+| Çakışmada | 3 sn bekler, sonra `TimeoutError` | `RevisionConflict: reread source` |
+| Kayıt | Yok | Append-only `events` tablosu |
+
+Bizim kilit mikro saniyeyi korur. Avenox'unki **kayıp güncellemeyi** korur:
+iki ajan aynı kaydı okur, ikisi de düşünür, ikincisi birincinin kararını
+sessizce ezer. Kilit buna hiçbir şey yapmaz, çünkü yazmalar dakikalar arayla.
+
+Bizde bunun karşılığı **git**: iki ajan da commit ederse tarihçede görünür.
+Ama commit edilmemiş pencerede koruma yok — ve iki ajan aynı klasörde
+çalışıyor ([[iki-ajan-calismasi]]).
+
+**Ölçülecek soru:** commit edilmemiş pencerede gerçek bir kayıp güncelleme
+oluyor mu, yoksa git + kilit pratikte yetiyor mu? Ölçülmeden port yazılmaz.
+
+### D3 — kaynak doğrulaması (henüz ölçülmedi)
+
+Bizde işaretçiler yalnız **mekanik** denetleniyor: damga var mı, oturum var mı.
+İçeriğin hâlâ o iddiayı desteklediği kontrol edilmiyor. Avenox içeriği
+hash'leyip sorgu anında yeniden doğruluyor, bayatsa `abstained`. Astra'nın İ3
+bulgusu kısıt: **tek dosya hash'i yetmez**, bağımlılık kapsamı şart — karşı
+örnek bizim kendi commit'imiz `39712b5`.
+
+### Y7 — danışman çitleri (henüz ölçülmedi)
+
+Gölge mod + kapatma anahtarı. Jev'i ya da başka bir ucuz modeli hiçbir karara
+bağlamadan önce gereken şey bu: çalıştır, kararlarını kaydet, hiçbir şeyi
+etkilemesin. Kalibrasyon ölçülene kadar danışman danışmandır.
