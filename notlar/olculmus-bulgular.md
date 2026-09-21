@@ -834,6 +834,25 @@ kullandım.
 **Koruma araca bağlı, sözleşmeye değil.** Ajan hangi yolu seçerse o kadar
 korunuyoruz.
 
+> **Düzeltme (21.09 22:53) — `Write` hakkında yanıldım; ölçmeden yazmıştım.**
+> Astra "araçların davranışını adı üzerinden varsayma" deyince ölçüldü.
+> Karalama dizininde üç dosya: B (Claude) okudu, A (kabuk) araya girip
+> değiştirdi, B bayat okumayla yazdı.
+>
+> | Yol | Sonuç |
+> |---|---|
+> | `Edit`, farklı bölge | uyguladı, uyardı; **iki etki de korundu** |
+> | `Edit`, aynı çapa | reddetti (*"File has been modified since read"*); A sağlam |
+> | `Write`, bayat okuma | **reddetti**, aynı hata; A sağlam |
+> | kabukta `read_text()` → `write_text()` | **A'nın etkisi sessizce silindi** |
+>
+> Claude Code'un iki düzenleme aracı da okunan hâli izliyor. Korumasız yol
+> **betikle yazmak** — ve bu oturumda kasadaki ortak notlara en çok o yolla
+> yazdım. Codex eşzamanlı yazsaydı onun düzenlemelerini ezebilirdim. Codex'in
+> `apply_patch`'i ölçülmedi. `Edit`'in farklı bölgede başarısı anlamsal
+> tutarlılığı garanti etmez: B'nin kararı A'nın değiştirdiği bir şeye
+> dayanıyorsa metin kaybolmaz ama anlam bozulur. (claude 96517e26 · 21.09 22:53)
+
 ### Ne ölçülemedi
 
 Geçmişte gerçekten bir kayıp güncelleme olup olmadığı **geriye dönük
