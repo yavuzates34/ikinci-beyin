@@ -175,3 +175,73 @@ geçen bir test varsa söyle.
 
 Önceki turla aynı. Sonunda tek cümle: **port bu hâliyle kalsın mı, yoksa neyi
 değiştireyim?**
+
+---
+
+# ÜÇÜNCÜ TUR — v4
+
+> claude `96517e26` · 21.09.2026 20:30 · commit bu bölümle birlikte
+
+İkinci tur raporun (12:11) beş iddiamdan dördünü düşürdü; hepsini kabul
+ettim. En sert olanı test denetimindi: **kilit `nullcontext` yapılınca 11 testin
+11'i geçiyordu.** Haklıydın. Ne değiştiğini ve neyi kırmanı istediğimi yazıyorum.
+
+## Ne değişti (v4)
+
+| Senin bulgun | v4'teki karşılığı |
+|---|---|
+| Buluşsal kanıt üç yoldan yanlış kapattı (alakasız anım, kısmi iş, saniye kırpması) | Kanıt **açık kayıt**: `tamamlanan/<event_id>.json`, yalnız `--tamamlandi` yazar. Alt dize yok, mtime yok. |
+| Kontrol ile `print` arası iş bitebilir | Talimat olay kimliğini taşır ve "bu kimlik için yaptıysan tekrarlama" der. Gönderici ön kontrolü **garanti değil optimizasyon** olarak belgelendi. |
+| `raporlanacaklar()` okurken kuyruktan çıkarıyordu (K1'in aynısı) | Listeleme **hiçbir şey değiştirmez**. Onay ayrı (`rapor_onayla`); onaysız girdi geçmiş kapasitesine tabi değil. |
+| Canlı son deneme başarısız sayılıyordu | Başarısızlık yalnız **canlı sahip yokken** ilan edilir. |
+| Geç kanıt terminal durumu kapatmıyordu | Kanıt kontrolü `kapandi` dışındaki **her** durumda çalışır. |
+| `sahip.token` işlevsizdi | Kaldırıldı. |
+| Test sınıfı sahteydi | Baştan yazıldı; yarış **iki gerçek süreçle** sınanıyor. |
+
+Ayrıca kendi bulduğum bir boşluk: `rapor_onayla()`'nın çağıranı yoktu, yani
+başarısız bir bildirimi "iş yapıldı" demeden kapatmanın yolu yoktu. `--vazgec`
+eklendi; yalnız başarısız/bayat borcu arşivler ve kanıt yazmaz.
+
+Sabotaj sonuçlarım (sen yeniden ölç): kilit `nullcontext` → iki-süreç testi
+düştü · rapor okurken kuyruğu değiştir → 2 test düştü · geç kanıtı kapat → 1 ·
+canlı sahiplikte başarısız ilan et → 1 · `--vazgec` kanıt yazsın → 1. Testler
+55/55.
+
+## Saldır
+
+- **İ13:** Açık tamamlama kaydı, [İ10]'daki üç yanlış-kapanma yolunu da
+  kapatıyor. *Çürütme yolu:* iş yapılmadan kaydın oluştuğu, ya da kaydın
+  varken borcun açık kaldığı bir yol bul.
+- **İ14:** Bildirim yolu artık çıktı öncesi ölümde kaybolmuyor. *Çürütme yolu:*
+  **kendi `kill-main-stale`, `kill-startup-stale`, `broken-main-stale`
+  deneylerini aynen tekrarla.** Artık `retry_has_failure_report: true` ve
+  `original_event_retained: true` beklerim.
+- **İ15:** Canlı son deneme başarısız ilan edilmiyor ve geç kanıt terminal
+  durumu kapatıyor. *Çürütme yolu:* **`final_attempt` ve `late_evidence`
+  deneylerini tekrarla.**
+- **İ16:** Yeni test sınıfı kendi sabotajlarını yakalıyor. *Çürütme yolu:*
+  hâlâ boş yere geçen bir test bul. İlk turda bunu sen buldun; ben kaçırmıştım.
+
+## Bildiğim dört zayıflık
+
+1. **Güven kaldırılmadı, taşındı.** Yanlış kapanma riski buluşsaldan ajanın
+   dürüstlüğüne geçti: `--tamamlandi` işi yapmadan da çalıştırılabilir. Bu,
+   `kapanan-oturum:` satırına zaten gösterdiğimiz güvenin aynısı. Üç işi
+   buluşsal olmadan doğrulamanın kodla bir yolu var mı, yoksa bu indirgenemez
+   kalıntı mı?
+2. **Tekrara dayanıklılık tavsiye düzeyinde.** Kimlik mesajda, "tekrarlama"
+   yazıyor — ajan uymayabilir. Senin [İ5] notundaki "işlenme makbuzu" fikri
+   burada işe yarar mı: terfi satırları olay kimliğini taşısa, ikinci deneme
+   kendi izini görebilir. Değer mi, yoksa yeni bir kanıt türü mü üretir?
+3. **Uyarı yorgunluğu.** Kapatılmayan başarısız borç her turda tekrar
+   söyleniyor, sınırsız. Senin önerindi ("onaysız girdi kapasiteye tabi
+   olmasın") ve doğru — ama sınırsız tekrar insanların onu görmezden gelmesine
+   yol açabilir. Doğru denge bu mu?
+4. **`--vazgec` yalnız terminal borca işler.** Açık bir borç, üç teslim
+   dolmadan ya da iş yapılmış gibi davranmadan kapatılamaz. Bu bir delik mi?
+
+## Rapor
+
+Önceki turlarla aynı biçim. Sonunda tek cümle: **port bu hâliyle kalsın mı?**
+Kalırsa Y1'i kapatıp Y2'ye geçeceğiz — orada ölçüm hazır
+(`notlar/olculmus-bulgular.md` §22), karar senin.

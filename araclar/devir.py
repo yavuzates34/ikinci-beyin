@@ -281,14 +281,23 @@ def rapor_onayla(event_idler: list[str]) -> int:
 
 
 def main() -> int:
-    if "--tamamlandi" in sys.argv:
-        i = sys.argv.index("--tamamlandi") + 1
-        if i >= len(sys.argv):
-            print("--tamamlandi <event_id> ister", file=sys.stderr)
-            return 2
-        p = tamamlandi(sys.argv[i])
-        print(f"tamamlandi: {p}")
-        return 0
+    # Iki kapanis yolu var ve anlamlari farkli; birbirinin yerine kullanilmaz:
+    #   --tamamlandi  "istenen is YAPILDI" - kanit kaydi yazar
+    #   --vazgec      "bildirimi gordum, bu is artik gerekmiyor" - is yapilmis
+    #                 gibi davranmaz, yalniz basarisiz/bayat borcu arsivler
+    for bayrak in ("--tamamlandi", "--vazgec"):
+        if bayrak in sys.argv:
+            i = sys.argv.index(bayrak) + 1
+            if i >= len(sys.argv):
+                print(f"{bayrak} <event_id> ister", file=sys.stderr)
+                return 2
+            if bayrak == "--tamamlandi":
+                print(f"tamamlandi: {tamamlandi(sys.argv[i])}")
+                return 0
+            n = rapor_onayla([sys.argv[i]])
+            print(f"vazgecildi: {n} borc" if n else
+                  "vazgecilecek borc yok (yalniz basarisiz/bayat borc kapatilir)")
+            return 0 if n else 1
     try:
         girdi = json.loads(sys.stdin.read() or "{}")
     except (ValueError, OSError):
@@ -302,8 +311,9 @@ def main() -> int:
         parcalar.append(
             "TESLIM EDILEMEYEN DEVIR BORCU:\n"
             + "\n".join("  - " + d for _, d in dusen)
-            + "\nBunlari kullaniciya soyle. Gorup islediysen kapat:\n"
-            + "  python araclar/devir.py --tamamlandi <kimlik>")
+            + "\nBunlari kullaniciya soyle. Kapatmanin iki yolu var:\n"
+            + "  isi yaptiysan:        python araclar/devir.py --tamamlandi <kimlik>\n"
+            + "  artik gerekmiyorsa:   python araclar/devir.py --vazgec <kimlik>")
     # Erken devir: tur sinirinda baglam dolulugu (bkz. araclar/baglam.py).
     # Hata yutulur; devir kutusu teslimi hicbir kosulda bozulmamali.
     try:

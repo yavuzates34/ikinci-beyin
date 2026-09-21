@@ -139,8 +139,8 @@ def main() -> int:
         ek.append("TESLIM EDILEMEYEN DEVIR BORCU:" + chr(10)
                   + chr(10).join("  - " + d for _, d in dusen)
                   + chr(10) + "Bunlari kullaniciya ilk cevapta soyle."
-                  + chr(10) + "Gorup islediysen kapat: "
-                  + "python araclar/devir.py --tamamlandi <kimlik>")
+                  + chr(10) + "Isi yaptiysan: python araclar/devir.py --tamamlandi <kimlik>"
+                  + chr(10) + "Artik gerekmiyorsa: python araclar/devir.py --vazgec <kimlik>")
 
     uyarilar = derleyici_uyarilari(simdi)
     if uyarilar:

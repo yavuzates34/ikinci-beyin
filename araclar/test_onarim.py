@@ -688,6 +688,24 @@ class DevirBorcTests(unittest.TestCase):
         self.assertEqual(devir.rapor_onayla([olay]), 1)
         self.assertEqual(devir.raporlanacaklar(), [])
 
+    def test_vazgec_yalniz_terminal_borcu_kapatir_ve_is_yapildi_demez(self):
+        """`rapor_onayla`'nın komut satırı yolu yoktu; bildirim ancak "iş
+        yapıldı" yalanıyla kapatılabiliyordu. `--vazgec` bunu ayırır."""
+        acik = devir.birak('HALA ACIK', 'oturum-b')
+        basarisiz = devir.birak('DUSTU', 'oturum-a')
+        with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
+            for _ in range(devir.MAX_DENEME + 1):
+                devir.al('oturum-a')
+        for olay, beklenen in ((acik, 1), (basarisiz, 0)):
+            with patch.object(sys, 'argv', ['devir.py', '--vazgec', olay]), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(devir.main(), beklenen)
+        self.assertEqual(devir.raporlanacaklar(), [])
+        self.assertEqual(self.durum(basarisiz)['durum'], devir.BASARISIZ,
+                         'vazgecmek isi yapilmis saymaz')
+        self.assertFalse((self.tamam / f'{basarisiz}.json').exists())
+        self.assertEqual(self.durum(acik)['durum'], devir.BEKLIYOR)
+
     def test_bayat_borc_silinmez_raporlanir(self):
         devir.birak('ESKI BORC', 'oturum-a')
         veri = json.loads(self.kutu.read_text(encoding='utf-8'))
