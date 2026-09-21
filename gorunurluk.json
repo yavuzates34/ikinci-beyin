@@ -152,6 +152,11 @@
       "desen": "rehber/astra-y1-kuyruk.md",
       "duzey": "ic",
       "not": "Astra'ya verilmek uzere yazildi; kasa yollari gecer, sir gecmez"
+    },
+    {
+      "desen": "rehber/astra-y2-kilit.md",
+      "duzey": "ic",
+      "not": "Astra'ya verilmek uzere yazildi (hoca turu)"
     }
   ]
 }

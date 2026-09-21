@@ -119,3 +119,31 @@ zaman tabanlı; ilk sekiz hane çakışıyor ([[olculmus-bulgular]] §13). Kapan
 işaretinden gece taslağı dosya adına kadar her şey bu kısaltmaya dayanıyordu.
 Ders: iki ajanlı bir sistemde "kimlik" ortak bir sözleşmedir ve sağlayıcıya
 göre değişir.
+
+## 21 Eylül: Astra hoca ve denetçi — çalışma sözleşmesi
+
+Karar (b)'nin portu sırasında Astra'yı alt ajan olarak ben çağırdım
+(`codex exec -m gpt-6-astra`), kullanıcı değil. İş bölümü kullanıcının:
+*Astra hoca, Claude uygulayıcı.* Y1 üç turda yürüdü; her turda Astra benim
+iddialarımın çoğunu düşürdü ve her düşüş kodu iyileştirdi
+([[olculmus-bulgular]] §21–23).
+
+**İlk yarıda hocayı yarım kullandım.** Ona hep bitmiş bir şey götürüp "kır"
+dedim. Raporları öğretti — ilk turun sonunda yazdığı dört sözleşme v4'ü fiilen
+tasarladı — ama tasarlamadan **önce** "sen nasıl yapardın?" diye sormadım.
+Kullanıcı sorunca fark ettim.
+
+**Sözleşme (kullanıcı onayı, claude 96517e26 · 21.09 20:34):**
+
+1. **Önce hoca, sonra denetçi.** Tasarımdan önce Astra'ya yaklaşımı sorulur;
+   kod yazıldıktan sonra kırması istenir. İkisi ayrı çağrıdır.
+2. **Deney lab'de.** Y2 · D3 · Y7 lab'de kurulur ve sınanır. Bir mekanizma
+   yalnız bizim yerel hook'larımıza dokunuyorsa, dokunmadan önce kullanıcıya
+   sorulur.
+3. **Brief, denetlenenin yazdığını söyleyerek açılır** ve iddiaların
+   doğrulanmasını değil çürütülmesini ister. Bilinen zayıflıklar önden yazılır.
+4. **Kota biterse beklenir.** Astra 08:31'de takıldı, 11:55'te yenilendi; arada
+   yenilenmeyi bekleyip ikinci turu kendiliğinden başlatan bir görev kuruldu.
+5. **Kasaya yazmaz; tespit, önleme değil.** Her çağrıdan önce kasanın commit'i
+   ve kirli dosya sayısı kaydedilir, sonra karşılaştırılır. Üç turda da kasa
+   temiz çıktı.

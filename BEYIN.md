@@ -26,7 +26,7 @@ gerektiği görülür.
 | `araclar/disari.py` | **Dışarı çıkan her şeyin tek kapısı.** `--kapi` (gönderimi durdurur) · `--yansit` (yabancı araca verilecek filtreli kopya) · `--denetle` (sızıntı bulucu) |
 | `dinleme/`   | Sesli dinlemek için yazılmış düz anlatı dosyaları                                                              |
 | `derleme/`   | Gece derleyicisinin çıktısı: `gunluk/` `haftalik/` `aylik/` ve `omurga-anlik/` (PreCompact kurtarma dosyaları) |
-| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) [[astra-lab-denetimi]], [[astra-y1-kuyruk]] ve [[kalici-katman-bakim-plani]] |
+| `rehber/`    | Kullanıcıya ve dış ajanlara rehberler: sunumun kaynağı (`rehber/sunum/`) Codex'in sesli inceleme haritası ([[codex-sunum-rehberi]]) uygulama bazlı yetenek tablosu (`rehber/uygulama-adaptorleri.md`) Astra kontrol dosyası (`rehber/astra-kontrol.md`) [[astra-lab-denetimi]], [[astra-y1-kuyruk]], [[astra-y2-kilit]] ve [[kalici-katman-bakim-plani]] |
 
 Kurallar `AGENTS.md` içinde. Burada çalışan her ajan (Claude, Codex, sonrakiler)
 için ortak; kapanış ritüelinin uygulanabilir hâli orada. `CLAUDE.md` onu içe
