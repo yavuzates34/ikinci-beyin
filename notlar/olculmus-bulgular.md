@@ -843,4 +843,80 @@ değil, ileriye dönük bir deneyle verilmeli: iki ajanın aynı dosyayı
 **Şimdilik hüküm yok.** Maruziyet ölçüldü ve büyük; koruma kısmi ve kazara.
 Port gerekli mi sorusu Astra'ya açık. (claude 96517e26 · 21.09 08:31)
 
+## 23. Y1 ikinci tur: buluşsal kanıt çürüdü, aynı hatayı bir katman yukarıda tekrarladım
+
+§21'deki tasarımı koda çevirip Astra'ya verdim. Beş iddiadan **dördü düştü**;
+yalnız yarış düzeltmesi tuttu.
+
+| iddia | hüküm |
+|---|---|
+| İ8 yapılmış işin talimatı tekrar teslim edilmez | **ÇÜRÜTÜLDÜ** |
+| İ9 iki süreç yarışı kapandı | **DOĞRULANDI** (`delivered_output_lines=1`) |
+| İ10 yanlış kapanma yolu yok | **ÇÜRÜTÜLDÜ** |
+| İ11 raporlanmamış borç kapasiteyle düşmez | **ÇÜRÜTÜLDÜ** |
+| İ12 yedek yolun kayıp penceresi kalmadı | **ÇÜRÜTÜLDÜ** |
+
+### Buluşsal kanıt üç ayrı yoldan yanlış kapattı
+
+Kanıtı *"`oturumlar/` altında kimlikten söz eden, borçtan yeni bir dosya"*
+diye tanımlamıştım. Astra üç karşı örnek üretti:
+
+- **Alakasız anım.** `Pending review: 96517e26 — Work has NOT been done.`
+  yazan başka bir not borcu kapattı. Alt dize eşleşmesi "işten söz edildi" ile
+  "iş yapıldı"yı ayırt etmiyor.
+- **Kısmi iş.** Borç üç şey istiyor (arşiv, terfi, harita). Yalnız arşiv
+  yazıldığında `promotion_file_exists=false, map_updated=false` olduğu hâlde
+  borç kapandı.
+- **Saniye kırpması.** `birak()` damgayı saniyeye kırpıyordu; borçtan **0,6
+  saniye önce** yazılmış dosya yeni sayıldı ve borcu kapattı.
+
+### Aynı hatayı rapor yolunda tekrarladım
+
+En öğretici bulgu bu. `raporlanacaklar()` rapor metnini **döndürmeden önce**
+borçları kuyruktan çıkarıp sınırlı geçmişe yazıyordu — yani K1'in kendisi, bir
+katman yukarıda. Astra gerçek tüketiciyi çalıştırıp çıktıdan önce öldürdü:
+`stdout_bytes=0`, sonraki çağrıda rapor yok; ardından 21 yeni borç üretince
+`original_event_retained=false`. Bildirim önce görünmez oldu, sonra kapasite
+son izi de sildi.
+
+*Düzelttiğim hatayı, düzeltmenin kendi bildirim yolunda yeniden kurmuşum.*
+
+### Ek bulgu: canlı son deneme başarısız sayılıyordu
+
+`al()` deneme tavanını sahiplik kontrolünden **önce** işliyordu. Üçüncü
+işleyici hâlâ çalışırken alakasız bir oturumun yoklaması borcu `basarisiz`
+yaptı; işleyici sonradan bitirse bile terminal durumlar kanıt kontrolünden
+atlandığı için başarı hiç gözlenmedi.
+
+### Testlerim de sahteydi
+
+Astra sınıfı da denetledi: **`devir.kilit` yerine `nullcontext` konduğunda 11
+testin 11'i yine geçti.** Kilit testim aynı süreçte sıralı çağrıydı, yani
+kilidi hiç sınamıyordu. Rapor testleri de eski hatayı kabul şartına
+çevirmişti: metnin fonksiyondan dönmesini ölçüyor, basılmasını ölçmüyordu.
+
+### Dördüncü sürüm: kanıt buluşsal değil, açık kayıt
+
+`tamamlandi(event_id)` → `derleme/omurga-anlik/tamamlanan/<event_id>.json`.
+Alt dize yok, mtime yok, tahmin yok. İşi biten taraf
+`python araclar/devir.py --tamamlandi <kimlik>` çalıştırır; çalıştırmazsa borç
+kapanmaz, fazladan teslim olur ve raporlanır — hata yönü güvenli tarafta.
+Talimatın kendisi kimliği taşır ve işleyiciye "zaten yaptıysan tekrarlama"
+der, çünkü **gönderici ön kontrolü garanti değil optimizasyondur**: kontrol ile
+`print` arasında iş bitebilir (Astra bunu da ölçtü).
+
+Diğer düzeltmeler: listeleme artık hiçbir şey değiştirmez, onay ayrı
+(`rapor_onayla`) ve onaysız girdi geçmiş kapasitesine hiç tabi değil · geç
+gelen kanıt terminal durumu da kapatır · canlı sahiplik varken başarısızlık
+ilan edilmez · işlevsiz `sahip.token` kaldırıldı (Astra doğruladı: bugün hiçbir
+deliği kapatmıyordu).
+
+Testler 54/54. Dört sabotaj denendi, dördü de yakalandı — **kilidin
+kaldırılması dahil**, ki önceki sınıf onu kaçırıyordu.
+
+**Kapsam dışı kaldığı açıkça yazılan:** `baglam` uyarısı ayrı bir borç
+(`baglam.py:194–199` seviyeyi uyarı dönmeden kaydediyor); bu port onu telafi
+etmiyor. Tur içinde hook'un hiç tetiklenmemesi (N6) da ayrı problem.
+(claude 96517e26 · 21.09 12:11)
+
 > İlgili: [[2026-09-21-tam-otomasyon-plani]] · [[acik-uclar]] · [[ikinci-beyin-mimarisi]] · [[2026-09-21-otomasyon-lab-ve-vds]]

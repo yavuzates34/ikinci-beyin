@@ -129,11 +129,18 @@ def main() -> int:
     # Teslim edilemeyen borc sessizce dusmesin. Iki tuketici de ayni protokole
     # bagli olmali; yalniz devir.main degisseydi yedek yolun kayip penceresi
     # kalirdi (Astra, 21.09 08:22 - dorduncu sozlesme).
+    #
+    # LISTELEME ONAY DEGILDIR. Onceki surum okurken kuyruktan cikariyordu;
+    # cikti basilmadan olen surecte bildirim kayboluyordu (Astra [I11], [I12],
+    # 21.09 12:11). Artik girdi ancak `--tamamlandi` ile kapanir; o zamana
+    # kadar her turda tekrar soylenir. Gurultu, sessiz kayiptan iyidir.
     dusen = devir.raporlanacaklar()
     if dusen:
         ek.append("TESLIM EDILEMEYEN DEVIR BORCU:" + chr(10)
-                  + chr(10).join("  - " + d for d in dusen)
-                  + chr(10) + "Bunlari kullaniciya ilk cevapta soyle.")
+                  + chr(10).join("  - " + d for _, d in dusen)
+                  + chr(10) + "Bunlari kullaniciya ilk cevapta soyle."
+                  + chr(10) + "Gorup islediysen kapat: "
+                  + "python araclar/devir.py --tamamlandi <kimlik>")
 
     uyarilar = derleyici_uyarilari(simdi)
     if uyarilar:

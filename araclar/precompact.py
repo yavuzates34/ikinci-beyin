@@ -35,6 +35,7 @@ Cikis kodu her zaman 0 - bu bir ag, bir bariyer degil.
 import argparse
 import json
 import sys
+import uuid
 from datetime import datetime
 from pathlib import Path
 
@@ -86,8 +87,14 @@ def main() -> int:
         kimlik = girdi.get("session_id")
         oturum = kayit.oturum_bul(kimlik, "hepsi") if kimlik else None
         if oturum is None:
-            devir.birak("PreCompact: oturum kaydi bulunamadi, omurga alinamadi. "
-                        "Baglam sikistirildi - onemli bir sey varsa simdi yaz.", kimlik)
+            olay = uuid.uuid4().hex
+            devir.birak(
+                "PreCompact: oturum kaydi bulunamadi, omurga alinamadi. "
+                "Baglam sikistirildi - onemli bir sey varsa simdi yaz.\n"
+                f"Bu borcun kimligi: {olay}\n"
+                "Yazdiktan sonra kapat, yoksa mesaj tekrar gelir:\n"
+                f"  python araclar/devir.py --tamamlandi {olay}",
+                kimlik, event_id=olay)
             cikti("PreCompact: oturum kaydi bulunamadi, omurga alinamadi.")
             return 0
 
@@ -119,6 +126,7 @@ def main() -> int:
     dosya.write_text("\n".join(govde), encoding="utf-8")
 
     goreli = dosya.relative_to(kayit.PROJE_KOKU).as_posix()
+    olay = uuid.uuid4().hex
     devir.birak(
         f"BAGLAM SIKISTIRILDI ({an:%d.%m %H:%M}, PreCompact, tetik: {tetik}).\n\n"
         f"Ilgili oturum: {oturum.kimlik}. Omurgasi sikistirmadan hemen once "
@@ -132,12 +140,14 @@ def main() -> int:
         f"Ayrinti hatirlamiyorsan once yukaridaki omurga dosyasini oku - "
         f"konusmanin iskeleti orada, zaman damgalariyla.\n\n"
         f"Bu bir guvenlik agidir: kullanici 'kapatalim' demeden sikistirma "
-        f"geldi. Oturum bitmiyor; yazdiktan sonra kaldigin yerden devam et.",
-        oturum.kimlik,
-        # Borcun kapandigini gosteren gozlem: bu oturumdan soz eden bir arsiv
-        # kaydi, borctan SONRA yazilmis olsun. Mesajin basilmasi degil, ISTENEN
-        # ISIN yapilmasi olcut (bkz. araclar/devir.py).
-        kanit={"tur": "oturum-kaydi", "oturum": oturum.kisa},
+        f"geldi. Oturum bitmiyor; yazdiktan sonra kaldigin yerden devam et.\n\n"
+        f"BU BORCUN KIMLIGI: {olay}\n"
+        f"Uc adim bitince KAPAT, yoksa mesaj tekrar gelir:\n"
+        f"  python araclar/devir.py --tamamlandi {olay}\n"
+        f"Bu kimlik icin isi zaten yaptiysan TEKRARLAMA - ayni terfi iki kez "
+        f"yazilmasin. Tekrara dayaniklilik isleyicinin sorumlulugudur; "
+        f"gonderici on kontrolu yalniz gereksiz teslimi azaltir.",
+        oturum.kimlik, event_id=olay,
     )
     cikti(f"Omurga diske alindi: {goreli} ({len(mesajlar)} mesaj, "
           f"{harf / 1024:.1f} KB)")

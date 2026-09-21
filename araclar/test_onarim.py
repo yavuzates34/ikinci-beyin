@@ -540,13 +540,16 @@ class SizintiTests(unittest.TestCase):
 class DevirBorcTests(unittest.TestCase):
     """Devir kutusunun sonuç-temelli borç modeli.
 
-    Astra 21.09 08:22'de önceki tasarımı kırdı: `print`+`flush` onayı yanlış
-    katmanı onaylıyordu ve damga kilit olmadığı için iki Windows süreci aynı
-    talimatı bastı. Bu sınıf, o kırılmaların kapandığını ölçer.
+    Astra bu sınıfın ilk hâlini de denetledi ve haklı çıktı (21.09 12:11):
+    kilit `nullcontext` ile değiştirildiğinde 11 testin 11'i yine geçiyordu —
+    yani kilit testi kilidi hiç sınamıyordu, aynı süreçte sıralı çağrılardı.
+    Rapor testleri de eski hatayı kabul şartına çevirmişti.
 
-    Çekirdek: borç, mesaj basıldığında değil, **istenen iş yapıldığında**
-    kapanır. Kanıt kontrolü teslimden önce gelir — yapılmış işin talimatı bir
-    daha teslim edilmez.
+    Buradaki testler onun karşı örneklerinin kalıcı hâli. Kabul koşulları:
+    alakasız/kısmi kanıt borcu kapatmasın · tamamlama kaydı gerçekleşince
+    tekrar teslim olmasın · bildirim listelemekle kapanmasın · son sahiplik
+    bitmeden başarısızlık ilan edilmesin · geç kanıt terminal durumu kapatsın ·
+    yarış GERÇEK iki süreçle sınansın.
     """
 
     def setUp(self):
@@ -556,124 +559,197 @@ class DevirBorcTests(unittest.TestCase):
         assert not self.root.is_relative_to(kayit.PROJE_KOKU.resolve())
         (self.root / 'oturumlar').mkdir()
         (self.root / 'derleme' / 'omurga-anlik').mkdir(parents=True)
-        kutu = self.root / 'derleme' / 'omurga-anlik' / 'devir-bekliyor.json'
-        for y in (patch.object(devir, 'KUTU', kutu),
+        self.kutu = self.root / 'derleme' / 'omurga-anlik' / 'devir-bekliyor.json'
+        self.tamam = self.root / 'derleme' / 'omurga-anlik' / 'tamamlanan'
+        for y in (patch.object(devir, 'KUTU', self.kutu),
+                  patch.object(devir, 'TAMAMLANAN', self.tamam),
                   patch.object(kayit, 'PROJE_KOKU', self.root)):
             y.start()
             self.addCleanup(y.stop)
-        self.kutu = kutu
-        self.kanit = {'tur': 'oturum-kaydi', 'oturum': '96517e26'}
 
-    def kayit_yaz(self, ad='2026-09-21-is.md', govde='kapanan yok, 96517e26 gecer'):
-        p = self.root / 'oturumlar' / ad
-        p.write_text(govde, encoding='utf-8')
-        # Borçtan sonra yazıldığı kesin olsun: mtime'ı ileri al.
-        os.utime(p, (time.time() + 60, time.time() + 60))
-        return p
-
-    def test_kanit_gerceklestiyse_talimat_teslim_edilmez(self):
-        """Çekirdek garanti: iş yapıldıysa emir bir daha verilmez.
-
-        Astra'nın [İ5] karşı senaryosu (ekleyen tüketicide çift terfi) tam da
-        buradan kapanır.
-        """
-        devir.birak('SIMDI YAZ', 'oturum-a', kanit=self.kanit)
-        self.kayit_yaz()
-        self.assertIsNone(devir.al('oturum-a'))
+    def durum(self, event_id=None):
         veri = json.loads(self.kutu.read_text(encoding='utf-8'))
-        self.assertEqual(veri['kuyruk'], [])
-        self.assertEqual(veri['gecmis'][0]['durum'], devir.KAPANDI)
+        hepsi = veri['kuyruk'] + veri.get('gecmis', [])
+        if event_id is None:
+            return hepsi
+        return next(b for b in hepsi if b['event_id'] == event_id)
 
-    def test_kanit_yoksa_teslim_edilir(self):
-        devir.birak('SIMDI YAZ', 'oturum-a', kanit=self.kanit)
+    # --- kanıt sözleşmesi -------------------------------------------------
+
+    def test_tamamlama_kaydi_borcu_kapatir_ve_tekrar_teslim_etmez(self):
+        olay = devir.birak('SIMDI YAZ', 'oturum-a')
         self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
-
-    def test_eski_kayit_borcu_kapatmaz(self):
-        """Borçtan ÖNCE yazılmış kayıt, borcun yapıldığı anlamına gelmez."""
-        p = self.root / 'oturumlar' / 'eski.md'
-        p.write_text('96517e26', encoding='utf-8')
-        os.utime(p, (time.time() - 3600, time.time() - 3600))
-        devir.birak('SIMDI YAZ', 'oturum-a', kanit=self.kanit)
-        self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
-
-    def test_gece_taslagi_borcu_kapatmaz(self):
-        """Taslak kapanış değildir (AGENTS.md); kanıt da sayılmaz."""
-        devir.birak('SIMDI YAZ', 'oturum-a', kanit=self.kanit)
-        self.kayit_yaz(ad='oto-96517e26.md')
-        self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
-
-    def test_canli_sahiplik_ikinci_teslimi_engeller(self):
-        """Astra [İ7]: damga kilit değildi, aynı talimat iki kez basıldı.
-
-        Artık sahiplik süresi dolmadan ikinci tüketici o borcu alamaz.
-        """
-        devir.birak('SIMDI YAZ', 'oturum-a', kanit=self.kanit)
-        self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
+        devir.tamamlandi(olay)
         self.assertIsNone(devir.al('oturum-a'))
-        self.assertIsNone(devir.al(None, devral=True))  # yedek yol da alamaz
+        self.assertEqual(self.durum(olay)['durum'], devir.KAPANDI)
+
+    def test_alakasiz_kimlik_animi_borcu_kapatmaz(self):
+        """Astra karşı örneği: başka notta kimliğin geçmesi kanıt değil.
+
+        Eski buluşsal kanıt, 'Pending review: 96517e26 — Work has NOT been
+        done.' yazan bir dosyayı bile tamamlanma sayıyordu.
+        """
+        olay = devir.birak('SIMDI YAZ', 'oturum-a')
+        (self.root / 'oturumlar' / 'baska.md').write_text(
+            f'Inceleme bekliyor: {olay} ve 96517e26. Is YAPILMADI.',
+            encoding='utf-8')
+        self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
+
+    def test_kismi_is_borcu_kapatmaz(self):
+        """Borç üç iş istiyor (arşiv, terfi, harita); biri yetmez."""
+        olay = devir.birak('SIMDI YAZ', 'oturum-a')
+        p = self.root / 'oturumlar' / '2026-09-21-is.md'
+        p.write_text('arsiv yazildi', encoding='utf-8')
+        os.utime(p, (time.time() + 60, time.time() + 60))
+        self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
+        self.assertFalse((self.root / 'notlar').exists())
+
+    def test_ayni_saniyedeki_eski_dosya_borcu_kapatmaz(self):
+        """mtime karşılaştırması kalktı; saniye kırpması açığı da kalktı."""
+        p = self.root / 'oturumlar' / 'eski.md'
+        p.write_text('eski', encoding='utf-8')
+        devir.birak('SIMDI YAZ', 'oturum-a')
+        os.utime(p, (time.time() + 1, time.time() + 1))
+        self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
+
+    def test_her_borcun_kimligi_var(self):
+        """Kanıtsız borç kalmadı: yedek PreCompact yolu da kimlik taşır."""
+        olay = devir.birak('KAYIT BULUNAMADI', 'oturum-a')
+        self.assertTrue(olay)
+        self.assertEqual(self.durum(olay)['event_id'], olay)
+
+    # --- sahiplik ve yeniden teslim ---------------------------------------
 
     def test_sahiplik_dolunca_yeniden_teslim(self):
-        """Çıktı sonrası çökme: iş yapılmadıysa emir tekrar verilmeli."""
-        devir.birak('SIMDI YAZ', 'oturum-a', kanit=self.kanit)
-        # Sahiplik SURESI ilk teslimde yazilir; yamayi ikinci cagriya uygulamak
-        # diske yazilmis bitis damgasini geriye cekmez.
+        devir.birak('SIMDI YAZ', 'oturum-a')
         with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
             self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
         self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')
 
-    def test_deneme_tavani_sonrasi_basarisiz_ve_raporlanir(self):
-        devir.birak('SIMDI YAZ', 'oturum-a', kanit=self.kanit)
+    def test_canli_son_deneme_basarisiz_ilan_edilmez(self):
+        """Astra ek bulgusu: üçüncü işleyici hâlâ çalışırken alakasız bir
+        yoklama borcu başarısız sayıyordu."""
+        devir.birak('SIMDI YAZ', 'oturum-a')
         with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
-            for _ in range(devir.MAX_DENEME):
+            for _ in range(devir.MAX_DENEME - 1):
                 devir.al('oturum-a')
-            self.assertIsNone(devir.al('oturum-a'))
+        olay = self.durum()[0]['event_id']
+        self.assertEqual(devir.al('oturum-a'), 'SIMDI YAZ')  # son deneme, canli
+        devir.al('baska-oturum', devral=True)  # alakasiz yoklama
+        self.assertEqual(self.durum(olay)['durum'], devir.TESLIM)
+        self.assertEqual(devir.raporlanacaklar(), [])
+
+    def test_gec_gelen_kanit_terminal_durumu_kapatir(self):
+        """İşleyici geç bitirdiyse başarı yine gözlenmeli."""
+        olay = devir.birak('SIMDI YAZ', 'oturum-a')
+        with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
+            for _ in range(devir.MAX_DENEME + 1):
+                devir.al('oturum-a')
+        self.assertEqual(self.durum(olay)['durum'], devir.BASARISIZ)
+        devir.tamamlandi(olay)
+        devir.al('oturum-a')
+        self.assertEqual(self.durum(olay)['durum'], devir.KAPANDI)
+        self.assertEqual(devir.raporlanacaklar(), [])
+
+    # --- bildirim: listeleme onay değildir --------------------------------
+
+    def test_raporlamak_kuyrugu_degistirmez(self):
+        """Astra [İ11]: okurken çıkarmak, düzeltilen hatanın aynısıydı."""
+        devir.birak('SIMDI YAZ', 'oturum-a')
+        with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
+            for _ in range(devir.MAX_DENEME + 1):
+                devir.al('oturum-a')
+        once = self.kutu.read_text(encoding='utf-8')
+        self.assertEqual(len(devir.raporlanacaklar()), 1)
+        self.assertEqual(self.kutu.read_text(encoding='utf-8'), once)
+        self.assertEqual(len(devir.raporlanacaklar()), 1, 'tekrar bildirilmeli')
+
+    def test_onaysiz_bildirim_gecmis_kapasitesine_tabi_degil(self):
+        """Astra: 21 yeni borç kapatılınca ilk borcun son izi siliniyordu."""
+        devir.birak('ILK BORC', 'oturum-a')
+        with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
+            for _ in range(devir.MAX_DENEME + 1):
+                devir.al('oturum-a')
+        for i in range(devir.GECMIS_SINIRI + 5):
+            o = devir.birak(f'yeni {i}', f'oturum-{i}')
+            devir.al(f'oturum-{i}')
+            devir.tamamlandi(o)
+            devir.al(f'oturum-{i}')
         rapor = devir.raporlanacaklar()
-        self.assertEqual(len(rapor), 1)
-        self.assertIn('BASARISIZ', rapor[0])
-        self.assertEqual(devir.raporlanacaklar(), [], 'iki kez raporlanmamali')
+        self.assertTrue(any('ILK BORC' in m for _, m in rapor),
+                        'onaysiz bildirim gecmis baskisiyla kaybolmamali')
+
+    def test_onay_gelince_kuyruktan_cikar(self):
+        devir.birak('SIMDI YAZ', 'oturum-a')
+        with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
+            for _ in range(devir.MAX_DENEME + 1):
+                devir.al('oturum-a')
+        (olay, _), = devir.raporlanacaklar()
+        self.assertEqual(devir.rapor_onayla([olay]), 1)
+        self.assertEqual(devir.raporlanacaklar(), [])
 
     def test_bayat_borc_silinmez_raporlanir(self):
-        """K2: eski sürüm bayatı sessizce yok ediyordu."""
-        devir.birak('ESKI BORC', 'oturum-a', kanit=self.kanit)
+        devir.birak('ESKI BORC', 'oturum-a')
         veri = json.loads(self.kutu.read_text(encoding='utf-8'))
         veri['kuyruk'][0]['an'] = (datetime.now().astimezone()
-                                   - timedelta(hours=13)).isoformat(timespec='seconds')
+                                   - timedelta(hours=13)).isoformat()
         self.kutu.write_text(json.dumps(veri), encoding='utf-8')
         self.assertIsNone(devir.al('oturum-a'))
         rapor = devir.raporlanacaklar()
         self.assertEqual(len(rapor), 1)
-        self.assertIn('BAYAT', rapor[0])
-        self.assertIn('ESKI BORC', rapor[0])
+        self.assertIn('BAYAT', rapor[0][1])
 
-    def test_raporlanmamis_borc_kapasiteyle_dusmez(self):
-        """Astra: sınırlı done listesi yeni bir sessiz kayıp yaratabilir.
+    # --- gerçek iki süreç -------------------------------------------------
 
-        Başarısız borç, raporlanana kadar kuyrukta kalmalı — ne kadar yeni
-        borç gelirse gelsin.
+    ISCI = '''
+import json, sys, time
+from pathlib import Path
+sys.path.insert(0, sys.argv[1])
+import kayit, devir
+kayit.PROJE_KOKU = Path(sys.argv[2])
+devir.KUTU = Path(sys.argv[3])
+devir.TAMAMLANAN = Path(sys.argv[4])
+kapi = Path(sys.argv[5])
+while not kapi.exists():
+    time.sleep(0.002)
+m = devir.al('oturum-a')
+print('ALDI' if m else 'BOS')
+'''
+
+    def test_iki_gercek_surec_ayni_talimati_iki_kez_basmaz(self):
+        """Astra'nın ilk turda kırdığı yarış — bu sefer kendi testimizde.
+
+        Aynı süreçte sıralı çağrı bunu sınamaz: kilit `nullcontext` yapılsa
+        bile geçer. Bu yüzden iki AYRI süreç, dosya kapısıyla hizalanıyor.
         """
-        devir.birak('ILK BORC', 'oturum-a', kanit=self.kanit)
-        with patch.object(devir, 'SAHIPLIK_OMRU', timedelta(seconds=-1)):
-            for _ in range(devir.MAX_DENEME + 1):
-                devir.al('oturum-a')
-        for i in range(devir.GECMIS_SINIRI * 2):
-            devir.birak(f'yeni borc {i}', f'oturum-{i}', kanit=self.kanit)
-            devir.al(f'oturum-{i}')
-        rapor = devir.raporlanacaklar()
-        self.assertTrue(any('ILK BORC' in r for r in rapor),
-                        'raporlanmamis basarisiz borc kapasiteyle dusmemeli')
+        devir.birak('SIMDI YAZ', 'oturum-a')
+        kapi = self.root / 'kapi'
+        arg = [str(Path(__file__).parent), str(self.root), str(self.kutu),
+               str(self.tamam), str(kapi)]
+        isciler = [subprocess.Popen([sys.executable, '-c', self.ISCI, *arg],
+                                    stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE, text=True)
+                   for _ in range(2)]
+        time.sleep(0.4)  # ikisi de kapida beklesin
+        kapi.write_text('git', encoding='utf-8')
+        ciktilar = [p.communicate(timeout=60)[0].strip() for p in isciler]
+        self.assertEqual(sorted(ciktilar), ['ALDI', 'BOS'],
+                         f'tam olarak bir surec almali, cikti: {ciktilar}')
 
-    def test_surum2_kutusu_okunabilir(self):
+    # --- eski sürüm -------------------------------------------------------
+
+    def test_eski_surum_kutusu_okunabilir(self):
         self.kutu.write_text(json.dumps({'surum': 2, 'kuyruk': [
             {'an': datetime.now().isoformat(timespec='seconds'),
-             'metin': 'ESKI SURUM', 'session_id': 'oturum-a'}]}), encoding='utf-8')
+             'metin': 'ESKI SURUM', 'session_id': 'oturum-a',
+             'kanit': {'tur': 'oturum-kaydi', 'oturum': 'x'}}]}), encoding='utf-8')
         self.assertEqual(devir.al('oturum-a'), 'ESKI SURUM')
 
     def test_baska_oturumun_borcu_etiketlenir(self):
-        devir.birak('BASKA ISIN', 'oturum-b', kanit=self.kanit)
+        devir.birak('BASKA ISIN', 'oturum-b')
         metin = devir.al('oturum-a', devral=True)
         self.assertIn('BASKA OTURUMDAN KURTARMA BILGISI', metin)
         self.assertIn('BASKA ISIN', metin)
-
 
 
 if __name__ == '__main__':
