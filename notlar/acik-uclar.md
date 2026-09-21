@@ -115,6 +115,12 @@ henüz doğrulanmadı.
   erken devir uyarısı ham kayıtta görülmeli.
 - `--fork-session` canlı denenmedi.
 - Ekran kaydı → `izle.py` zinciri gerçek bir ChatGPT kaydıyla denenmedi.
+  **Kısmen kapandı (21.09):** zincir iki gerçek YouTube videosunda uçtan uca
+  çalıştı — indirme, `--altyazi` ikinci tanık, `large-v3` GPU transkripti,
+  birleşik döküm. 955 sn'lik video 4 dakikada bitti. Ölçüm ve kaynak seçme
+  kuralı [[arac-izle]] içinde. **Denenmeyen kalan:** `--kare` + `--ocr` ayağı,
+  yani ekrandaki yazıyı okuma — ChatGPT kaydı senaryosunun asıl kısmı.
+  (claude 96517e26 · 21.09 06:42)
 
 ## Uzun vade
 

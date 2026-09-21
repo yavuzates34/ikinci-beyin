@@ -169,3 +169,51 @@ anlamına gelmez.**
 - Cevap "yok, düz metin/slayt" ise mevcut dört katmanlı hat yeterlidir.
 - Emin değilsen bir kareyi **gözünle gör** ve öyle karar ver — ucuzdur,
   yanlış karar pahalıdır.
+
+## Kaç kaynak, hangisi neyde iyi (ölçüldü 21.09.2026)
+
+Avenox'un iki videosu dört ayrı kaynakla çözümlendi ve özel isimler tek tek
+karşılaştırıldı. Sonuç sezgiye aykırı: **en büyük model en iyi kaynak değil.**
+
+| Terim | YouTube elle | YouTube oto | yerel `small` | yerel `large-v3` |
+|---|---|---|---|---|
+| Claude | ✔ | cloud | Cloud | **Cloud** |
+| Mem0 | ✔ | Memziro | Memzüro | **Memziro** |
+| Karpathy | ✔ | Karpati | Carpathian | yok |
+| GitHub | ✔ | Gitapta | kitapla | ✔ |
+| harness | ✔ | harnsta | harnista | ✔ |
+| hook | ✔ | ✔ | hukuk | ✔ |
+| Vault | ✔ | W'da | Valtı | ✔ |
+| Obsidian | ✔ | Obsidyen | ✔ | ✔ |
+| agent | ✔ | — | **Ejint** | ✔ |
+| **Skor** | **9/9** | 2/9 | 1/9 | **6/9** |
+
+**Neden.** Ses tanıma, duyduğu sese en yakın *bilinen* kelimeye düşer. Yeni
+bir özel isim eğitim verisinde yoksa model onu uyduramaz: JEV videosunda
+`large-v3` "JEV"i baştan sona **"Java" / "Jav"**, "LLM"i **"el elem"** yazdı —
+"JEV" 15.09.2026'da çıkmış bir kelime. YouTube'daki elle yüklenen altyazı ise
+terimi *bilerek* üretildiği için doğru yazıyor. Kanalın altyazısını yapay
+zekânın üretmiş olması onu zayıflatmıyor; üretim bağlamlı yapılmış.
+
+**Kural.** Video çözümlemesinde tek kaynağa güvenme, `--altyazi` ile en az iki
+tanık al ve şöyle oku:
+
+- **Özel isim, komut, sürüm numarası** → YouTube'un elle altyazısı hakem.
+- **Cümlenin tamamı, atlanan bölüm, akışın yapısı** → whisper hakem.
+  Ölçüldü: elle altyazıda eksik olan 01:21–01:24 aralığını `large-v3` doldurdu.
+- **`small` modeli teknik içerikte kullanılmaz.** "agent"ı baştan sona
+  "Ejint", "hook"u "hukuk" yazdı.
+
+**Nerede çalıştırılır.** Lokal GPU (RTX 3060 Ti, 8 GB). 955 sn'lik video,
+indirme dahil **4 dakika**. Aynı iş sunucunun CPU'sunda (Xeon E5-2699 v4,
+4 çekirdek) `medium` ile gerçek zamanın 4,3 katı yavaş ilerliyordu, tahmini
+68 dakika. Video işi sunucuya gönderilmez.
+
+**Bilinen kusur.** `birlesik.md` iki akışı zaman penceresine göre eşliyor;
+damgalar kaydıkça pencereler kayıyor ve "ayrışma" işaretlerinin bir kısmı
+gerçek anlaşmazlık değil **hizalama kayması** oluyor. İlk videoda 48 ayrışma
+işaretlendi, hepsi gerçek değil. `--kova` ile pencere genişletilebilir;
+düzeltme yapılmadı.
+(claude 96517e26 · 21.09 06:42)
+
+> İlgili: [[olculmus-bulgular]] · [[acik-uclar]] · [[2026-09-21-otomasyon-lab-ve-vds]]
