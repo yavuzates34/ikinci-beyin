@@ -1,0 +1,19 @@
+# Local runtime and editor state
+.beyin-runtime.json
+.obsidian/workspace.json
+__pycache__/
+*.pyc
+*.log
+*.tmp
+
+# Credentials and private key material
+.env
+.env.*
+*.pem
+*.p12
+*.pfx
+*.key
+*credentials*.json
+*secret*.json
+*.db
+*.sqlite*
