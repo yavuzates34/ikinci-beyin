@@ -5,6 +5,7 @@ __pycache__/
 *.pyc
 *.log
 *.tmp
+**/.v3-backup-*/
 
 # Credentials and private key material
 .env

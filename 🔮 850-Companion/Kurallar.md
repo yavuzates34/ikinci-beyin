@@ -14,3 +14,10 @@ Nar Ajans'ı öğrenme görevi için yalnız oku; bu klasörde dosya oluşturma,
 silme veya taşıma. Öğrenilenler İkinci Beyin vault'undaki kaynaklı notlara
 kaydedilebilir. Gelecekte bu klasöre yazma ancak Yavuz'un ayrı ve açık talebiyle
 yapılır. Kaynak: Yavuz'un 24 Eylül 2026 tarihli doğrudan mesajı.
+
+## 2026-09-24 — Eski genel proje kuralı güncel değil
+
+Eski deneysel İkinci Beyin'deki “diğer projeler yalnız açık istekle
+değiştirilebilir” özetini bugünün bütün projeleri için geçerli kural sayma.
+Yavuz bunu 24 Eylül 2026'da açıkça seçti. Bu düzeltme, yukarıdaki Nar Ajans
+klasörü için doğrudan verdiği salt okuma sınırını kaldırmaz.

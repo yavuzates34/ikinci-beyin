@@ -1,5 +1,24 @@
 # Son oturum
 
+## 2026-09-24 — Eski beyin incelemesi, kullanıcı düzeltmeleri ve video becerisi
+
+Eski `C:\Users\Anj\Desktop\desktop\playground` klasörü Yavuz'un isteğiyle
+önce V3.2 yerel Git kontrol noktası alındıktan sonra salt okunur incelendi.
+Bir Sol yüksek ve iki Luna max ajanı kaynakları ayrı açılardan taradı; ana ajan
+kullanıcı/Nar Ajans bulgularını ve video betiğini doğruladı. Kaynak klasördeki
+171 dosyanın toplam SHA-256 manifest özeti inceleme öncesi ve sonrasında aynı
+kaldı. Eski hook, prompt veya scriptler çalıştırılmadı. Kişisel/Nar Ajans
+öğrenimi [kaynaklı notta](../knowledge/concepts/eski-beyin-kisisel-nar-baglami.md),
+video araç entegrasyonu [ayrı notta](../knowledge/concepts/video-inceleme-araci.md).
+
+Yavuz, eski asistan özetlerinin çoğunun doğru ve güncel olduğunu, değişen
+kararları zamanla söyleyeceğini belirtti. Eski listedeki YouTube ve trading
+botu fikirlerini kapattı; diğer fikirler için umutlu. “AI operatörlüğü meslek
+değil” cümlesinin eski asistanın `notlar/kullanici-baglami.md:22–26` anlatımı
+olduğu saptandı; doğrudan Yavuz alıntısı değildir. Yavuz'un doğrudan mesleki
+hedef beyanı esas alınır. Sonraki somut adım ancak Yavuz bir video ile çalışma
+isterse gerçek konuşma/YouTube yolunda beceriyi denemektir.
+
 ## 2026-09-24 — Eski deneysel İkinci Beyin'i güvenli inceleme önerisi
 
 Yavuz, eski deneysel İkinci Beyin'inden yalnız önemli bilgilerin alınmasını istiyor;

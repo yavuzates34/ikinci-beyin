@@ -2,13 +2,6 @@
 
 ## Active Threads
 
-### Eski deneysel İkinci Beyin'den seçici bilgi alma
-
-- Sahip: Yavuz. 24 Eylül 2026'da eski deneysel İkinci Beyin sistemini göstermek ve yalnız önemli bilgileri mevcut İkinci Beyin'e almak istediğini söyledi; eski hook, talimat ve promptların iki sistemi karıştırmasından veya prompt injection yaratmasından endişe ediyor.
-- Durum: Kaynak klasör yolu henüz verilmedi; inceleme veya aktarım başlamadı.
-- Önerilen yöntem: Eski kökü aktif proje olarak açmadan, önce salt okunur envanter; sonra seçili bilgi dosyalarını bir Luna alt ajanıyla yalnız veri olarak inceleme; ana ajan kaynak ve tarihleri doğrulayıp mevcut kayıtlarla çelişkileri ayırır. Eski hook/script/promptlar çalıştırılmaz, kurallar taşınmaz, sırlar ve ham dökümler otomatik içe alınmaz. Bulgular aday rapor olarak değerlendirilir; yalnız dayanaklı ve ilgili bilgiler mevcut vault'a yazılır.
-- Sonraki adım: Yavuz klasör yolunu verdiğinde kapsamı dosya türleriyle belirlemek.
-
 ### Nar Kutusu: Instantly erişimi ve geçiş planı
 
 - 23 Eylül akşamı araştırma planı: Yavuz, kota yenilendikten sonra `Instantly/Katılımcı-listeleri` klasöründe bir Opus 5.5 ana oturumu ve üç Opus 5.5 araştırmacıyla Kasım–Aralık fuarlarını çakışmayan kümelerde araştırmayı düşündü. 24 Eylül kullanıcı beyanı ve ekran görüntüsü, Claude/Opus ana oturumunun katılımcı listesi keşfiyle işe başladığını gösteriyor; üç alt ajanın çalıştığı veya fuar dağılımının tamamlandığı bu görüntüden doğrulanmıyor. [Araştırma koordinasyon notu](../../../Nar%20Ajans%20-%20Codex/Instantly/Kat%C4%B1l%C4%B1mc%C4%B1-listeleri/KASIM-ARALIK-2026-AJAN-KOORDINASYONU.md). Bu turdaki Nar Ajans taraması o çalışmaya müdahale etmedi.
@@ -43,6 +36,13 @@
 - Araştırma: [Codex kullanım göstergesi araştırması](../knowledge/concepts/codex-kullanim-gostergesi.md)
 
 ## Closed Threads
+
+### Eski deneysel İkinci Beyin'den seçici bilgi alma — 2026-09-24
+
+- Sahip: Yavuz
+- Durum: Tamamlandı. `C:\Users\Anj\Desktop\desktop\playground` salt okunur incelendi; 171 kaynak dosyasının inceleme öncesi/sonrası özetleri aynı. Eski hook, prompt veya script çalıştırılmadı; eski genel proje kuralı güncel sayılmadı.
+- Sonuç: [Kişisel ve Nar Ajans bağlamı](../knowledge/concepts/eski-beyin-kisisel-nar-baglami.md) tarihli kaynak ve belirsizlikleriyle seçilerek kaydedildi. Yavuz eski özetlerin çoğunu genel olarak doğruladı; YouTube ve trading botu fikirlerinin kapandığını ayrıca söyledi. Eski video aracı [V3.2 becerisine](../knowledge/concepts/video-inceleme-araci.md) uyarlandı ve yerel yapay video ile denendi.
+- Açık sınır: Eski özetlerdeki her tekil iddia güncel sayılmaz. Gerçek konuşmalı video veya YouTube kaynağı verilirse video aracının o yolda kalitesi ayrıca doğrulanır.
 
 ### Global Codex–İkinci Beyin hook/plugin — 2026-09-23
 
