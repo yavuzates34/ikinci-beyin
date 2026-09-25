@@ -1,5 +1,18 @@
 # Son oturum
 
+## 2026-09-25 — İkinci Beyin V3.2 GitHub görüntüsü güncellendi
+
+Yavuz, Nar Ajans Codex ve katılımcı listeleri üzerinde başka ajanlar çalışırken
+İkinci Beyin'i kontrollü biçimde GitHub'a yüklememizi istedi. Yerel V3.2'nin
+69 dosyalık anlık görüntüsü özel
+[`yavuzates34/ikinci-beyin`](https://github.com/yavuzates34/ikinci-beyin)
+deposunun `codex/v3.2` dalına push edildi ve bu dal varsayılan yapıldı.
+Eski `ana` dalı korundu. [Bilgi dizini](../knowledge/index.md) GitHub üzerinden
+doğrulandı. `visibility: private` kişisel not yerelde kaldı. Depo canlı eşitleme
+değil; ajanların bu commit'ten sonraki yazımları yeni push gerektirir.
+Kaynak: [GitHub giriş sayfası](../README.md),
+[yüklenen dal](https://github.com/yavuzates34/ikinci-beyin/tree/codex/v3.2).
+
 ## 2026-09-25 — İkinci Beyin için yerel Qwen kurulumu
 
 Yavuz önce rafa kaldırılan yerel model işini yeniden açıp kararı bize bıraktı.
