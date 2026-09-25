@@ -18,3 +18,6 @@ __pycache__/
 *secret*.json
 *.db
 *.sqlite*
+
+# Private companion context stays local even when the vault is mirrored.
+notes/yavuz-ozel-baglam-2026-09-24.md

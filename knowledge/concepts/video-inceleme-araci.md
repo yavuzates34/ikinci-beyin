@@ -56,3 +56,30 @@ aktarılmadı. Eski AI operatörlüğünün “kariyer değil” anlatımı, Yav
 23 Eylül'deki doğrudan mesleki hedef beyanıyla çeliştiğinden içe alınmadı.
 Eski genel “proje egemenliği” notu Yavuz'un 24 Eylül'deki açık cevabı üzerine
 güncel kural sayılmadı; Nar Ajans için ayrı salt okuma talimatı geçerlidir.
+
+## 24 Eylül 2026 — Esat reels görselindeki iki kaynak
+
+Yavuz'un paylaştığı ekran görüntüsünde `yt-dlp.md` ve `ffmpeg.md` adlı iki
+“developer resource” kartı görünüyor; dosyaların içeriği ve reel bağlantısı
+görselde yok. Bu nedenle bu iki Markdown kaynağının özgün önerileri henüz
+karşılaştırılamadı. Ancak yerel [video becerisi](../../.agents/skills/video-inceleme/SKILL.md)
+ve [betik](../../.agents/skills/video-inceleme/scripts/izle.py) her iki aracı
+zaten kullanıyor: `yt-dlp` YouTube videosu/altyazısı için; `ffmpeg`/`ffprobe`
+kesit, ses dönüşümü, kare çıkarımı ve süre ölçümü için. Aynı gün
+`izle.py --kontrol` çıktısı üçünün de sistemde bulunduğunu doğruladı.
+Görsel tek başına ek kod veya yeni skill kurmayı gerektirmiyor. Özgün dosya
+veya reel bağlantısı gelirse farklı yöntem/özellik olup olmadığı yeniden
+değerlendirilebilir. Kaynak: Yavuz'un 24 Eylül'de paylaştığı reels ekran
+görüntüsü ve yukarıdaki yerel beceri/betik.
+
+## 24 Eylül 2026 — Gerçek Instagram videosuyla kullanım
+
+Yavuz'un verdiği [60,7 saniyelik reel](https://www.instagram.com/reel/DdjwSQBOKzQ/)
+`yt-dlp` ile geçici yerel MP4'e alındı; mevcut `izle.py` bu yerel dosyada
+Whisper large-v3/CUDA ile 23 zaman damgalı transkript satırı, birer saniyelik
+60 kare ve Türkçe/İngilizce OCR üretti. Beş becerinin adları ses ve karelerde
+eşleşti; “Claude” gibi terimler transkriptte yer yer yanlış yazıldı ve
+repo özellikleri özgün GitHub kaynaklarından ayrıca denetlendi. Bu, gerçek
+Türkçe konuşma ve Instagram'dan yerel dosyaya aktarma yolunun çalıştığını
+gösterir; otomatik Instagram URL desteği eklendiği anlamına gelmez. Sonuç:
+[beş beceri değerlendirmesi](reel-bes-beceri-degerlendirmesi.md).
